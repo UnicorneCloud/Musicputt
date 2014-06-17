@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MPLayout.h"
 
 @interface MusicViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UICollectionView*      collectionView;
+@property (nonatomic, weak) IBOutlet MPLayout*              layout;
 
 @end

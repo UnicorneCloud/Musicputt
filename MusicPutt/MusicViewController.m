@@ -9,15 +9,6 @@
 #import "MusicViewController.h"
 
 #import "MPCell.h"
-#import "MPLayout.h"
-
-@interface UIViewController ()
-
-@property (nonatomic, weak) IBOutlet UICollectionView*      collectionView;
-@property (nonatomic, weak) IBOutlet MPLayout*              layout;
-
-@end
-
 
 
 @implementation MusicViewController
