@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MPLayout.h"
+#import "MediaDataSource.h"
 
-@interface MusicViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@class MediaDataSourceManager;
+
+@interface MusicViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MediaDataSource>
 
 @property (nonatomic, weak) IBOutlet UICollectionView*      collectionView;
 @property (nonatomic, weak) IBOutlet MPLayout*              layout;
+@property MediaDataSourceManager* mediaManager;
+
 
 @end

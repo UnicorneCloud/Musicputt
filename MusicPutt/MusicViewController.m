@@ -7,8 +7,17 @@
 //
 
 #import "MusicViewController.h"
+#import "MediaDataSourceManager.h"
+
+
 
 #import "MPCell.h"
+
+@interface MusicViewController ()
+{
+    
+}
+@end
 
 
 @implementation MusicViewController
@@ -17,6 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Init media manager
+    self.mediaManager = [[MediaDataSourceManager alloc] init];
+    [self.mediaManager setDataSource:self];
 	
     // Init custom layout and attach to controller
     self.layout.itemCount = 18;
@@ -25,6 +38,8 @@
     [self.collectionView registerClass:[MPCell class] forCellWithReuseIdentifier:@"Cell"];
     [self.collectionView setCollectionViewLayout:self.layout];
     [self.collectionView reloadData];
+    
+    [self.mediaManager StartLoad];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"endLoad");
 }
@@ -70,6 +85,18 @@
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"DeselectItem Detected");
 }
+
+
+////////////////////////////////////////////
+#pragma mark - IPodLibraryManagerDelegate
+- (void) mediaWillLoad
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Delegate works!!!");
+}
+
+
+
+
 
 
 

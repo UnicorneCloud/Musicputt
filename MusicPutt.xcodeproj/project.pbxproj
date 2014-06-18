@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9706486819510A0900FA877A /* MediaPlayer.framework */; };
+		9706486D19510DE200FA877A /* MediaDataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9706486C19510DE200FA877A /* MediaDataSourceManager.m */; };
 		971D8C8C194FCA1900A348A3 /* MPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 971D8C87194FCA1900A348A3 /* MPCell.m */; };
 		971D8C8D194FCA1900A348A3 /* MPCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971D8C88194FCA1900A348A3 /* MPCell.xib */; };
 		971D8C8E194FCA1900A348A3 /* MPLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 971D8C8A194FCA1900A348A3 /* MPLayout.m */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9706486819510A0900FA877A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		9706486B19510DE200FA877A /* MediaDataSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaDataSourceManager.h; sourceTree = "<group>"; };
+		9706486C19510DE200FA877A /* MediaDataSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaDataSourceManager.m; sourceTree = "<group>"; };
+		9706486E1951111900FA877A /* MediaDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaDataSource.h; sourceTree = "<group>"; };
 		971D8C86194FCA1900A348A3 /* MPCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCell.h; sourceTree = "<group>"; };
 		971D8C87194FCA1900A348A3 /* MPCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCell.m; sourceTree = "<group>"; };
 		971D8C88194FCA1900A348A3 /* MPCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MPCell.xib; sourceTree = "<group>"; };
@@ -70,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */,
 				976687D6194FBB4D00B5A843 /* CoreGraphics.framework in Frameworks */,
 				976687D8194FBB4D00B5A843 /* UIKit.framework in Frameworks */,
 				976687D4194FBB4D00B5A843 /* Foundation.framework in Frameworks */,
@@ -89,15 +96,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9706486A19510D6C00FA877A /* MediaDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				9706486B19510DE200FA877A /* MediaDataSourceManager.h */,
+				9706486C19510DE200FA877A /* MediaDataSourceManager.m */,
+				9706486E1951111900FA877A /* MediaDataSource.h */,
+			);
+			name = MediaDataSource;
+			sourceTree = "<group>";
+		};
 		971D8C90194FCA2200A348A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				971D8C91194FCA3100A348A3 /* MusicController */,
+				971D8C91194FCA3100A348A3 /* MusicCustomLayout */,
 			);
 			name = UI;
 			sourceTree = "<group>";
 		};
-		971D8C91194FCA3100A348A3 /* MusicController */ = {
+		971D8C91194FCA3100A348A3 /* MusicCustomLayout */ = {
 			isa = PBXGroup;
 			children = (
 				971D8C86194FCA1900A348A3 /* MPCell.h */,
@@ -107,7 +124,7 @@
 				971D8C8A194FCA1900A348A3 /* MPLayout.m */,
 				971D8C8B194FCA1900A348A3 /* MPLayout.xib */,
 			);
-			name = MusicController;
+			name = MusicCustomLayout;
 			sourceTree = "<group>";
 		};
 		976687C7194FBB4D00B5A843 = {
@@ -132,6 +149,7 @@
 		976687D2194FBB4D00B5A843 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9706486819510A0900FA877A /* MediaPlayer.framework */,
 				976687D3194FBB4D00B5A843 /* Foundation.framework */,
 				976687D5194FBB4D00B5A843 /* CoreGraphics.framework */,
 				976687D7194FBB4D00B5A843 /* UIKit.framework */,
@@ -143,6 +161,7 @@
 		976687D9194FBB4D00B5A843 /* MusicPutt */ = {
 			isa = PBXGroup;
 			children = (
+				9706486A19510D6C00FA877A /* MediaDataSource */,
 				971D8C90194FCA2200A348A3 /* UI */,
 				976687E2194FBB4D00B5A843 /* AppDelegate.h */,
 				976687E3194FBB4D00B5A843 /* AppDelegate.m */,
@@ -286,6 +305,7 @@
 				971D8C8E194FCA1900A348A3 /* MPLayout.m in Sources */,
 				971D8C8C194FCA1900A348A3 /* MPCell.m in Sources */,
 				976687EA194FBB4D00B5A843 /* MusicViewController.m in Sources */,
+				9706486D19510DE200FA877A /* MediaDataSourceManager.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
 			);
