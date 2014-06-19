@@ -20,7 +20,12 @@
 
 @property (weak) NSObject <MediaDataSource>* dataSource;
 
--(void) StartLoad;
+-(BOOL) loadMediaByGroup;
+
+-(NSUInteger) getNbSection;
+-(NSUInteger) getNbMedia;
+
+-(UIImage*) getMediaImage:(NSUInteger) media :(CGSize) size;
 
 @end
 
@@ -31,9 +36,14 @@ extern NSString *MediaDataSourceWillChangeValueNotification;
 
 
 //! Parameters GroupBy Options
-NSString *const MediaDataSourceLoadMediaGroupByAlbum  = @"LoadMediaGroupByAlbum";            // Load media group by album
-NSString *const MediaDataSourceLoadMediaGroupByArtist = @"LoadMediaGroupByArtist";           // Load media group by artist
-NSString *const MediaDataSourceLoadMediaGroupByPlaylist = @"LoadMediaGroupByPlaylist";       // Load media group by album
+typedef NS_OPTIONS(NSInteger, MediaGroupByType) {
+    
+    MediaDataSourceLoadMediaGroupByAlbumArtist      = 0,        // Load media group by album
+    MediaDataSourceLoadMediaGroupByArtist           = 1 << 0,   // Load media group by artist
+    MediaDataSourceLoadMediaGroupByPlaylist         = 1 << 1    // Load media group by album
+};
+
+
 
 
 

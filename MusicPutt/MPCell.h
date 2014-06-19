@@ -10,6 +10,10 @@
 
 @interface MPCell : UICollectionViewCell
 
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+//@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+
+//@property (nonatomic, weak) UIImage* image;
+
+- (void) setImage:(UIImage*) aimage;
 
 @end
