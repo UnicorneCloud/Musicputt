@@ -8,15 +8,27 @@
 
 #import "MPCell.h"
 
+@interface MPCell ()
+{
+    UIImage*    cellImage;
+    float       with;
+}
+@end
+
 @implementation MPCell
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        with = 0.0;
     }
     return self;
+}
+
+- (void) setImage:(UIImage*) aimage
+{
+    cellImage = [[UIImage alloc] initWithCGImage:aimage.CGImage];
 }
 
 
@@ -28,14 +40,25 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    [[UIColor blueColor] set];
-    CGContextFillRect( context, frame );
+    //[[UIColor blueColor] set];
+    //CGContextFillRect( context, frame );
+    
+    //CGContextDrawImage( context, frame, cellImage.CGImage );
+    
+   
+    CGRect imageRect = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    
+    CGContextTranslateCTM(context, 0, frame.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGContextDrawImage(context, imageRect, cellImage.CGImage);
+    
     
     // Stroke Rect convenience that is equivalent to above
     [[UIColor whiteColor] set];
-    CGContextStrokeRect(context, frame);
+    CGContextStrokeRectWithWidth(context, frame, with);
     
-    // Drawing code
+    
 }
 
 

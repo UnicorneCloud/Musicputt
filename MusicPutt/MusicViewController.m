@@ -30,16 +30,15 @@
     // Init media manager
     self.mediaManager = [[MediaDataSourceManager alloc] init];
     [self.mediaManager setDataSource:self];
+    [self.mediaManager loadMediaByGroup];
 	
     // Init custom layout and attach to controller
-    self.layout.itemCount = 18;
+    self.layout.itemCount = (int)[self.mediaManager getNbMedia];
     
     // Init custom collectionview and attach to layout
     [self.collectionView registerClass:[MPCell class] forCellWithReuseIdentifier:@"Cell"];
     [self.collectionView setCollectionViewLayout:self.layout];
     [self.collectionView reloadData];
-    
-    [self.mediaManager StartLoad];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"endLoad");
 }
@@ -55,15 +54,15 @@
 #pragma mark - UICollectionView DataSource
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@" %s - %@ %d\n", __PRETTY_FUNCTION__, @"return", 18);
-    return 18;
+    NSLog(@" %s - %@ %d\n", __PRETTY_FUNCTION__, @"return", (int)[self.mediaManager getNbMedia]);
+    return (int)[self.mediaManager getNbMedia];
 }
 
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
 {
-    NSLog(@" %s - %@ %d\n", __PRETTY_FUNCTION__, @"return", 1);
-    return 1;
+    NSLog(@" %s - %@ %d\n", __PRETTY_FUNCTION__, @"return", (int)[self.mediaManager getNbSection]);
+    return (int)[self.mediaManager getNbSection];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -71,6 +70,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Return cell");
     
     MPCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    [cell setImage: [self.mediaManager getMediaImage:indexPath.item :cell.frame.size]];
     return cell;
 }
 
@@ -81,6 +81,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@" %s - %@ %ld,%ld,%ld\n", __PRETTY_FUNCTION__, @"SelectItem Detected", indexPath.row, (long)indexPath.item, (long)indexPath.section);
+    [self.mediaManager logMediaInformation:indexPath.item];
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"DeselectItem Detected");
