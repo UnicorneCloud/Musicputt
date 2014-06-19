@@ -10,7 +10,8 @@
 
 @interface MPCell ()
 {
-    UIImage* cellImage;
+    UIImage*    cellImage;
+    float       with;
 }
 @end
 
@@ -20,7 +21,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        with = 0.0;
     }
     return self;
 }
@@ -42,11 +43,20 @@
     //[[UIColor blueColor] set];
     //CGContextFillRect( context, frame );
     
-    CGContextDrawImage( context, frame, cellImage.CGImage );
+    //CGContextDrawImage( context, frame, cellImage.CGImage );
+    
+   
+    CGRect imageRect = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    
+    CGContextTranslateCTM(context, 0, frame.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGContextDrawImage(context, imageRect, cellImage.CGImage);
+    
     
     // Stroke Rect convenience that is equivalent to above
     [[UIColor whiteColor] set];
-    CGContextStrokeRect(context, frame);
+    CGContextStrokeRectWithWidth(context, frame, with);
     
     
 }

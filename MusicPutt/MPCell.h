@@ -14,6 +14,6 @@
 
 //@property (nonatomic, weak) UIImage* image;
 
-- (void) setImage:(UIImage*) aimage;
+- (void) setImage:(UIImage*)    aimage;
 
 @end

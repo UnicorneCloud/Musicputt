@@ -27,6 +27,8 @@
 
 -(UIImage*) getMediaImage:(NSUInteger) media :(CGSize) size;
 
+-(void) logMediaInformation:(NSInteger) media;
+
 @end
 
 

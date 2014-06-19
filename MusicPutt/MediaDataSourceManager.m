@@ -101,54 +101,52 @@
     NSArray *collections = [everything collections];
     
     MPMediaItemCollection *album = nil;
+    album = [collections objectAtIndex:media];
     
-    //for (int i=0; i<collections.count; i++) {
-        
+    MPMediaItem *item = nil;
+    item = [album.items objectAtIndex:0];
     
-        album = [collections objectAtIndex:5];
-    
-        NSLog(@"Album : %@, %@, %@",    [album valueForProperty:MPMediaItemPropertyArtist],
-                                        [album valueForProperty:MPMediaItemPropertyAlbumTitle],
-                                        [album valueForProperty:MPMediaItemPropertyTitle]);
-    
-        MPMediaItem *item = nil;
-        item = [album.items objectAtIndex:2];
-    
-        NSLog(@"Item : %@, %@, %@, %@",     [item valueForProperty:MPMediaItemPropertyArtist],
-                                            [item valueForProperty:MPMediaItemPropertyAlbumTitle],
-                                            [item valueForProperty:MPMediaItemPropertyTitle],
-                                            [item valueForProperty:MPMediaItemPropertyArtwork]);
+    //NSLog(@" %s - Item : %@, %@, %@\n", __PRETTY_FUNCTION__,    [item valueForProperty:MPMediaItemPropertyArtist],
+    //                                                            [item valueForProperty:MPMediaItemPropertyAlbumTitle],
+    //                                                            [item valueForProperty:MPMediaItemPropertyTitle]);
 
     
-        MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
+    MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
     
     if (artwork) {
         retimage = [artwork imageWithSize:size];
     }
     
-        
-        //for (int y=0; y<album.items.count; y++) {
-        //    item = [album.items objectAtIndex:y];
-    
-        //} // end loop items
-    //} // end loop album
-    
     return retimage;
 }
+
+
+
+-(void) logMediaInformation:(NSInteger) media
+{
+    // Obtain the media item collections from the query
+    NSArray *collections = [everything collections];
+    
+    MPMediaItemCollection *album = nil;
+    album = [collections objectAtIndex:media];
+    
+    MPMediaItem *item = nil;
+    item = [album.items objectAtIndex:0];
+    
+    NSLog(@" %s - Item : %@, %@, %@\n", __PRETTY_FUNCTION__,    [item valueForProperty:MPMediaItemPropertyArtist],
+          [item valueForProperty:MPMediaItemPropertyAlbumTitle],
+          [item valueForProperty:MPMediaItemPropertyTitle]);
+
+}
+
 
 ////////////////////////////////////////////
 #pragma mark - MediaDataSource
 -(void) _iPodWillChangeValue
 {
-    //NSNotification *notification;
-    
-    //notification = [NSNotification notificationWithName:MediaDataSourceWillChangeValueNotification object:self];
-    
     if ([self.dataSource respondsToSelector:@selector(mediaWillLoad)]) {
         [self.dataSource mediaWillLoad];
     }
-    
-    //[[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 @end
