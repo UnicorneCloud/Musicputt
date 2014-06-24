@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9706486819510A0900FA877A /* MediaPlayer.framework */; };
+		9706486D19510DE200FA877A /* MediaDataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9706486C19510DE200FA877A /* MediaDataSourceManager.m */; };
+		971D8C8C194FCA1900A348A3 /* MPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 971D8C87194FCA1900A348A3 /* MPCell.m */; };
+		971D8C8D194FCA1900A348A3 /* MPCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971D8C88194FCA1900A348A3 /* MPCell.xib */; };
+		971D8C8E194FCA1900A348A3 /* MPLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 971D8C8A194FCA1900A348A3 /* MPLayout.m */; };
+		971D8C8F194FCA1900A348A3 /* MPLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971D8C8B194FCA1900A348A3 /* MPLayout.xib */; };
 		976687D4194FBB4D00B5A843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D3194FBB4D00B5A843 /* Foundation.framework */; };
 		976687D6194FBB4D00B5A843 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D5194FBB4D00B5A843 /* CoreGraphics.framework */; };
 		976687D8194FBB4D00B5A843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D7194FBB4D00B5A843 /* UIKit.framework */; };
@@ -36,6 +41,15 @@
 
 /* Begin PBXFileReference section */
 		9706486819510A0900FA877A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		9706486B19510DE200FA877A /* MediaDataSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaDataSourceManager.h; sourceTree = "<group>"; };
+		9706486C19510DE200FA877A /* MediaDataSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaDataSourceManager.m; sourceTree = "<group>"; };
+		9706486E1951111900FA877A /* MediaDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaDataSource.h; sourceTree = "<group>"; };
+		971D8C86194FCA1900A348A3 /* MPCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCell.h; sourceTree = "<group>"; };
+		971D8C87194FCA1900A348A3 /* MPCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCell.m; sourceTree = "<group>"; };
+		971D8C88194FCA1900A348A3 /* MPCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MPCell.xib; sourceTree = "<group>"; };
+		971D8C89194FCA1900A348A3 /* MPLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLayout.h; sourceTree = "<group>"; };
+		971D8C8A194FCA1900A348A3 /* MPLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLayout.m; sourceTree = "<group>"; };
+		971D8C8B194FCA1900A348A3 /* MPLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MPLayout.xib; sourceTree = "<group>"; };
 		976687D0194FBB4D00B5A843 /* MusicPutt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPutt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		976687D3194FBB4D00B5A843 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		976687D5194FBB4D00B5A843 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,11 +96,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9706486A19510D6C00FA877A /* MediaDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				9706486B19510DE200FA877A /* MediaDataSourceManager.h */,
+				9706486C19510DE200FA877A /* MediaDataSourceManager.m */,
+				9706486E1951111900FA877A /* MediaDataSource.h */,
+			);
+			name = MediaDataSource;
+			sourceTree = "<group>";
+		};
 		971D8C90194FCA2200A348A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				971D8C91194FCA3100A348A3 /* MusicCustomLayout */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		971D8C91194FCA3100A348A3 /* MusicCustomLayout */ = {
+			isa = PBXGroup;
+			children = (
+				971D8C86194FCA1900A348A3 /* MPCell.h */,
+				971D8C87194FCA1900A348A3 /* MPCell.m */,
+				971D8C88194FCA1900A348A3 /* MPCell.xib */,
+				971D8C89194FCA1900A348A3 /* MPLayout.h */,
+				971D8C8A194FCA1900A348A3 /* MPLayout.m */,
+				971D8C8B194FCA1900A348A3 /* MPLayout.xib */,
+			);
+			name = MusicCustomLayout;
 			sourceTree = "<group>";
 		};
 		976687C7194FBB4D00B5A843 = {
@@ -123,6 +161,7 @@
 		976687D9194FBB4D00B5A843 /* MusicPutt */ = {
 			isa = PBXGroup;
 			children = (
+				9706486A19510D6C00FA877A /* MediaDataSource */,
 				971D8C90194FCA2200A348A3 /* UI */,
 				976687E2194FBB4D00B5A843 /* AppDelegate.h */,
 				976687E3194FBB4D00B5A843 /* AppDelegate.m */,
@@ -240,7 +279,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971D8C8D194FCA1900A348A3 /* MPCell.xib in Resources */,
 				976687EC194FBB4D00B5A843 /* Images.xcassets in Resources */,
+				971D8C8F194FCA1900A348A3 /* MPLayout.xib in Resources */,
 				976687DE194FBB4D00B5A843 /* InfoPlist.strings in Resources */,
 				976687E7194FBB4D00B5A843 /* Main.storyboard in Resources */,
 			);
@@ -261,7 +302,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971D8C8E194FCA1900A348A3 /* MPLayout.m in Sources */,
+				971D8C8C194FCA1900A348A3 /* MPCell.m in Sources */,
 				976687EA194FBB4D00B5A843 /* MusicViewController.m in Sources */,
+				9706486D19510DE200FA877A /* MediaDataSourceManager.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
 			);

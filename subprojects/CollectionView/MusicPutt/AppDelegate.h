@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AppDelegate.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-06-16.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@interface MusicViewController : UIViewController
-
+@property (strong, nonatomic) UIWindow *window;
 
 @end
