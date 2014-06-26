@@ -25,10 +25,8 @@
 		976687FF194FBB4D00B5A843 /* MusicPuttTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687FE194FBB4D00B5A843 /* MusicPuttTests.m */; };
 		97AC0C34195A417100BA60E6 /* bg_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C33195A417100BA60E6 /* bg_blur@2x.png */; };
 		97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AC0C3B195A493800BA60E6 /* MusicViewController.m */; };
-		97AC0C42195A529700BA60E6 /* UIViewArtwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AC0C41195A529700BA60E6 /* UIViewArtwork.m */; };
 		97AC0C44195A58E400BA60E6 /* artwork-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C43195A58E400BA60E6 /* artwork-empty@2x.png */; };
 		97AC0C46195A5E3A00BA60E6 /* musicputt-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C45195A5E3A00BA60E6 /* musicputt-icon@2x.png */; };
-		97AC0C49195A5F6300BA60E6 /* UIViewCurrentTrackDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AC0C48195A5F6300BA60E6 /* UIViewCurrentTrackDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,12 +64,8 @@
 		97AC0C33195A417100BA60E6 /* bg_blur@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_blur@2x.png"; path = "MusicPutt/res/iphone5/bg_blur@2x.png"; sourceTree = "<group>"; };
 		97AC0C3A195A493800BA60E6 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicViewController.h; sourceTree = "<group>"; };
 		97AC0C3B195A493800BA60E6 /* MusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicViewController.m; sourceTree = "<group>"; };
-		97AC0C40195A529700BA60E6 /* UIViewArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewArtwork.h; sourceTree = "<group>"; };
-		97AC0C41195A529700BA60E6 /* UIViewArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewArtwork.m; sourceTree = "<group>"; };
 		97AC0C43195A58E400BA60E6 /* artwork-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "artwork-empty@2x.png"; path = "MusicPutt/res/iphone5/artwork-empty@2x.png"; sourceTree = "<group>"; };
 		97AC0C45195A5E3A00BA60E6 /* musicputt-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "musicputt-icon@2x.png"; path = "MusicPutt/res/iphone5/musicputt-icon@2x.png"; sourceTree = "<group>"; };
-		97AC0C47195A5F6300BA60E6 /* UIViewCurrentTrackDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewCurrentTrackDetails.h; sourceTree = "<group>"; };
-		97AC0C48195A5F6300BA60E6 /* UIViewCurrentTrackDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewCurrentTrackDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,10 +201,6 @@
 			children = (
 				97AC0C3A195A493800BA60E6 /* MusicViewController.h */,
 				97AC0C3B195A493800BA60E6 /* MusicViewController.m */,
-				97AC0C40195A529700BA60E6 /* UIViewArtwork.h */,
-				97AC0C41195A529700BA60E6 /* UIViewArtwork.m */,
-				97AC0C47195A5F6300BA60E6 /* UIViewCurrentTrackDetails.h */,
-				97AC0C48195A5F6300BA60E6 /* UIViewCurrentTrackDetails.m */,
 			);
 			name = MainScreen;
 			sourceTree = "<group>";
@@ -316,12 +306,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97AC0C42195A529700BA60E6 /* UIViewArtwork.m in Sources */,
 				97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */,
 				976687EA194FBB4D00B5A843 /* MusicViewLoadingController.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
-				97AC0C49195A5F6300BA60E6 /* UIViewCurrentTrackDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
