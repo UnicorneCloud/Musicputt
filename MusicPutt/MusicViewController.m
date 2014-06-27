@@ -41,6 +41,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+#pragma mark - Button action
+
+- (IBAction)shufflePressed:(id)sender
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+}
+
+- (IBAction)repeatPressed:(id)sender
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+}
+
+
+- (IBAction)rewindPressed:(id)sender
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+}
+
+
+- (IBAction)playpausePressed:(id)sender
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+}
+
+
+- (IBAction)fastFoward:(id)sender
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+}
+
+
+
+
 /*
 #pragma mark - Navigation
 
@@ -51,5 +86,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

@@ -23,6 +23,14 @@
 		976687F5194FBB4D00B5A843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D7194FBB4D00B5A843 /* UIKit.framework */; };
 		976687FD194FBB4D00B5A843 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 976687FB194FBB4D00B5A843 /* InfoPlist.strings */; };
 		976687FF194FBB4D00B5A843 /* MusicPuttTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687FE194FBB4D00B5A843 /* MusicPuttTests.m */; };
+		97A36CB0195D144600AF6AF8 /* fast_forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CAF195D144600AF6AF8 /* fast_forward@2x.png */; };
+		97A36CB7195D152700AF6AF8 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB1195D152700AF6AF8 /* pause@2x.png */; };
+		97A36CB8195D152700AF6AF8 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB2195D152700AF6AF8 /* play@2x.png */; };
+		97A36CB9195D152700AF6AF8 /* repeat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB3195D152700AF6AF8 /* repeat@2x.png */; };
+		97A36CBA195D152700AF6AF8 /* rewind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB4195D152700AF6AF8 /* rewind@2x.png */; };
+		97A36CBB195D152700AF6AF8 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB5195D152700AF6AF8 /* share@2x.png */; };
+		97A36CBC195D152700AF6AF8 /* shuffle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB6195D152700AF6AF8 /* shuffle@2x.png */; };
+		97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */; };
 		97AC0C34195A417100BA60E6 /* bg_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C33195A417100BA60E6 /* bg_blur@2x.png */; };
 		97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AC0C3B195A493800BA60E6 /* MusicViewController.m */; };
 		97AC0C44195A58E400BA60E6 /* artwork-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C43195A58E400BA60E6 /* artwork-empty@2x.png */; };
@@ -61,6 +69,15 @@
 		976687FA194FBB4D00B5A843 /* MusicPuttTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MusicPuttTests-Info.plist"; sourceTree = "<group>"; };
 		976687FC194FBB4D00B5A843 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		976687FE194FBB4D00B5A843 /* MusicPuttTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPuttTests.m; sourceTree = "<group>"; };
+		97A36CAF195D144600AF6AF8 /* fast_forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fast_forward@2x.png"; path = "MusicPutt/res/iphone5/fast_forward@2x.png"; sourceTree = "<group>"; };
+		97A36CB1195D152700AF6AF8 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause@2x.png"; path = "MusicPutt/res/iphone5/pause@2x.png"; sourceTree = "<group>"; };
+		97A36CB2195D152700AF6AF8 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play@2x.png"; path = "MusicPutt/res/iphone5/play@2x.png"; sourceTree = "<group>"; };
+		97A36CB3195D152700AF6AF8 /* repeat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "repeat@2x.png"; path = "MusicPutt/res/iphone5/repeat@2x.png"; sourceTree = "<group>"; };
+		97A36CB4195D152700AF6AF8 /* rewind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rewind@2x.png"; path = "MusicPutt/res/iphone5/rewind@2x.png"; sourceTree = "<group>"; };
+		97A36CB5195D152700AF6AF8 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share@2x.png"; path = "MusicPutt/res/iphone5/share@2x.png"; sourceTree = "<group>"; };
+		97A36CB6195D152700AF6AF8 /* shuffle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shuffle@2x.png"; path = "MusicPutt/res/iphone5/shuffle@2x.png"; sourceTree = "<group>"; };
+		97A36CBD195D1A9B00AF6AF8 /* UIImageViewArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewArtwork.h; sourceTree = "<group>"; };
+		97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewArtwork.m; sourceTree = "<group>"; };
 		97AC0C33195A417100BA60E6 /* bg_blur@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_blur@2x.png"; path = "MusicPutt/res/iphone5/bg_blur@2x.png"; sourceTree = "<group>"; };
 		97AC0C3A195A493800BA60E6 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicViewController.h; sourceTree = "<group>"; };
 		97AC0C3B195A493800BA60E6 /* MusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicViewController.m; sourceTree = "<group>"; };
@@ -96,6 +113,13 @@
 		970892A5195A3C840047A556 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				97A36CB1195D152700AF6AF8 /* pause@2x.png */,
+				97A36CB2195D152700AF6AF8 /* play@2x.png */,
+				97A36CB3195D152700AF6AF8 /* repeat@2x.png */,
+				97A36CB4195D152700AF6AF8 /* rewind@2x.png */,
+				97A36CB5195D152700AF6AF8 /* share@2x.png */,
+				97A36CB6195D152700AF6AF8 /* shuffle@2x.png */,
+				97A36CAF195D144600AF6AF8 /* fast_forward@2x.png */,
 				97AC0C45195A5E3A00BA60E6 /* musicputt-icon@2x.png */,
 				97AC0C43195A58E400BA60E6 /* artwork-empty@2x.png */,
 				97AC0C33195A417100BA60E6 /* bg_blur@2x.png */,
@@ -201,6 +225,8 @@
 			children = (
 				97AC0C3A195A493800BA60E6 /* MusicViewController.h */,
 				97AC0C3B195A493800BA60E6 /* MusicViewController.m */,
+				97A36CBD195D1A9B00AF6AF8 /* UIImageViewArtwork.h */,
+				97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */,
 			);
 			name = MainScreen;
 			sourceTree = "<group>";
@@ -281,13 +307,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97A36CBC195D152700AF6AF8 /* shuffle@2x.png in Resources */,
+				97A36CB8195D152700AF6AF8 /* play@2x.png in Resources */,
 				97AC0C46195A5E3A00BA60E6 /* musicputt-icon@2x.png in Resources */,
 				97AC0C34195A417100BA60E6 /* bg_blur@2x.png in Resources */,
+				97A36CB0195D144600AF6AF8 /* fast_forward@2x.png in Resources */,
 				97AC0C44195A58E400BA60E6 /* artwork-empty@2x.png in Resources */,
+				97A36CB7195D152700AF6AF8 /* pause@2x.png in Resources */,
 				976687EC194FBB4D00B5A843 /* Images.xcassets in Resources */,
+				97A36CB9195D152700AF6AF8 /* repeat@2x.png in Resources */,
 				976687DE194FBB4D00B5A843 /* InfoPlist.strings in Resources */,
 				970892A8195A3D1A0047A556 /* bg_clear@2x.png in Resources */,
+				97A36CBB195D152700AF6AF8 /* share@2x.png in Resources */,
 				976687E7194FBB4D00B5A843 /* MainIPhone5.storyboard in Resources */,
+				97A36CBA195D152700AF6AF8 /* rewind@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +343,7 @@
 				976687EA194FBB4D00B5A843 /* MusicViewLoadingController.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
+				97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
