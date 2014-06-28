@@ -46,7 +46,9 @@
 
 -(void) loadAppCompleted
 {
-    [self performSegueWithIdentifier:@"loading_completed" sender:self];
+    //[self performSegueWithIdentifier:@"loading_completed" sender:self];
+    [self performSegueWithIdentifier:@"loading_completed2" sender:self];
+    
 }
 
 @end

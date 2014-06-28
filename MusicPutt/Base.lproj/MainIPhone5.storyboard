@@ -29,11 +29,12 @@
                     </view>
                     <connections>
                         <segue destination="kL3-qe-v8G" kind="modal" identifier="loading_completed" modalTransitionStyle="crossDissolve" id="nSu-tb-PIL"/>
+                        <segue destination="Cjd-xt-q5q" kind="modal" identifier="loading_completed2" id="hx6-03-4eM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="369" y="100"/>
+            <point key="canvasLocation" x="401" y="100"/>
         </scene>
         <!--Music View Controller - Song name-->
         <scene sceneID="DNC-a1-kIR">
@@ -205,6 +206,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zpi-L9-6BL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="865" y="100"/>
+        </scene>
+        <!--View Controller - Song list-->
+        <scene sceneID="CQm-SL-6VW">
+            <objects>
+                <viewController id="mQb-n1-7dN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xm5-km-NEP"/>
+                        <viewControllerLayoutGuide type="bottom" id="AUq-vv-Wh0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6IN-MD-8IH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Song list" id="6ko-n9-QPv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E8s-L6-Cg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1346" y="765"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vo0-hP-2Mr">
+            <objects>
+                <viewController id="NPJ-YI-DcX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xB6-lm-G4w"/>
+                        <viewControllerLayoutGuide type="bottom" id="njy-2z-PHy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YA6-6z-LxF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Blr-iY-ZS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1749" y="766"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mcw-CP-zbF">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Cjd-xt-q5q" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PhP-4Q-trC">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mQb-n1-7dN" kind="relationship" relationship="rootViewController" id="5ay-XZ-cBF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7FZ-M3-RpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="865" y="765"/>
         </scene>
     </scenes>
     <resources>
