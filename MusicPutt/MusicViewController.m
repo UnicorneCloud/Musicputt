@@ -11,6 +11,9 @@
 
 
 @interface MusicViewController ()
+{
+    BOOL hideCurrentSong;
+}
 
 @property AppDelegate* del;
 
@@ -23,6 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        hideCurrentSong = TRUE;
     }
     return self;
 }
@@ -33,12 +37,22 @@
     
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
+    
+    hideCurrentSong = TRUE;
+    [self hideCurrentSong:hideCurrentSong];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+- (void) hideCurrentSong:(BOOL)hiddend
+{
+    [_currentSongView setHidden:hiddend];
 }
 
 
@@ -65,6 +79,9 @@
 - (IBAction)playpausePressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    hideCurrentSong = !hideCurrentSong;
+    [self hideCurrentSong:hideCurrentSong];
+    
 }
 
 
