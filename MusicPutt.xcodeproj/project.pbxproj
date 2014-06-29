@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9706486819510A0900FA877A /* MediaPlayer.framework */; };
-		970892A8195A3D1A0047A556 /* bg_clear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970892A7195A3D1A0047A556 /* bg_clear@2x.png */; };
 		976687D4194FBB4D00B5A843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D3194FBB4D00B5A843 /* Foundation.framework */; };
 		976687D6194FBB4D00B5A843 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D5194FBB4D00B5A843 /* CoreGraphics.framework */; };
 		976687D8194FBB4D00B5A843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D7194FBB4D00B5A843 /* UIKit.framework */; };
@@ -23,23 +22,17 @@
 		976687F5194FBB4D00B5A843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D7194FBB4D00B5A843 /* UIKit.framework */; };
 		976687FD194FBB4D00B5A843 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 976687FB194FBB4D00B5A843 /* InfoPlist.strings */; };
 		976687FF194FBB4D00B5A843 /* MusicPuttTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687FE194FBB4D00B5A843 /* MusicPuttTests.m */; };
-		97A36CB0195D144600AF6AF8 /* fast_forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CAF195D144600AF6AF8 /* fast_forward@2x.png */; };
-		97A36CB7195D152700AF6AF8 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB1195D152700AF6AF8 /* pause@2x.png */; };
-		97A36CB8195D152700AF6AF8 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB2195D152700AF6AF8 /* play@2x.png */; };
-		97A36CB9195D152700AF6AF8 /* repeat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB3195D152700AF6AF8 /* repeat@2x.png */; };
-		97A36CBA195D152700AF6AF8 /* rewind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB4195D152700AF6AF8 /* rewind@2x.png */; };
-		97A36CBB195D152700AF6AF8 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB5195D152700AF6AF8 /* share@2x.png */; };
-		97A36CBC195D152700AF6AF8 /* shuffle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CB6195D152700AF6AF8 /* shuffle@2x.png */; };
 		97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */; };
 		97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CC9195F37F000AF6AF8 /* UIViewControllerPlaylist.m */; };
-		97A36CD8195F480C00AF6AF8 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CD7195F480C00AF6AF8 /* BFNavigationBarDrawer.m */; };
 		97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CDB195F560D00AF6AF8 /* CurrentPlayingToolBar.m */; };
 		97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CDF195F593200AF6AF8 /* MPDataManager.m */; };
 		97A36CE3195F902600AF6AF8 /* UIViewControllerPlaylistSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CE2195F902600AF6AF8 /* UIViewControllerPlaylistSong.m */; };
-		97AC0C34195A417100BA60E6 /* bg_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C33195A417100BA60E6 /* bg_blur@2x.png */; };
+		97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CEB195FC54B00AF6AF8 /* UIViewCurrentToolBar.m */; };
+		97A36CF31960669100AF6AF8 /* UIViewCurrentPlayingToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A36CF21960669100AF6AF8 /* UIViewCurrentPlayingToolBar.xib */; };
+		97A36CF719606DA800AF6AF8 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CF619606DA800AF6AF8 /* BFNavigationBarDrawer.m */; };
+		97A36CFB19606DFA00AF6AF8 /* UAProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CFA19606DFA00AF6AF8 /* UAProgressView.m */; };
+		97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36D0119609F5B00AF6AF8 /* UIColor+CreateMethods.m */; };
 		97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AC0C3B195A493800BA60E6 /* MusicViewController.m */; };
-		97AC0C44195A58E400BA60E6 /* artwork-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C43195A58E400BA60E6 /* artwork-empty@2x.png */; };
-		97AC0C46195A5E3A00BA60E6 /* musicputt-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AC0C45195A5E3A00BA60E6 /* musicputt-icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +47,6 @@
 
 /* Begin PBXFileReference section */
 		9706486819510A0900FA877A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		970892A7195A3D1A0047A556 /* bg_clear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_clear@2x.png"; path = "MusicPutt/res/iphone5/bg_clear@2x.png"; sourceTree = "<group>"; };
 		976687D0194FBB4D00B5A843 /* MusicPutt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPutt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		976687D3194FBB4D00B5A843 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		976687D5194FBB4D00B5A843 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -74,30 +66,27 @@
 		976687FA194FBB4D00B5A843 /* MusicPuttTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MusicPuttTests-Info.plist"; sourceTree = "<group>"; };
 		976687FC194FBB4D00B5A843 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		976687FE194FBB4D00B5A843 /* MusicPuttTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPuttTests.m; sourceTree = "<group>"; };
-		97A36CAF195D144600AF6AF8 /* fast_forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fast_forward@2x.png"; path = "MusicPutt/res/iphone5/fast_forward@2x.png"; sourceTree = "<group>"; };
-		97A36CB1195D152700AF6AF8 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause@2x.png"; path = "MusicPutt/res/iphone5/pause@2x.png"; sourceTree = "<group>"; };
-		97A36CB2195D152700AF6AF8 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play@2x.png"; path = "MusicPutt/res/iphone5/play@2x.png"; sourceTree = "<group>"; };
-		97A36CB3195D152700AF6AF8 /* repeat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "repeat@2x.png"; path = "MusicPutt/res/iphone5/repeat@2x.png"; sourceTree = "<group>"; };
-		97A36CB4195D152700AF6AF8 /* rewind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rewind@2x.png"; path = "MusicPutt/res/iphone5/rewind@2x.png"; sourceTree = "<group>"; };
-		97A36CB5195D152700AF6AF8 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share@2x.png"; path = "MusicPutt/res/iphone5/share@2x.png"; sourceTree = "<group>"; };
-		97A36CB6195D152700AF6AF8 /* shuffle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shuffle@2x.png"; path = "MusicPutt/res/iphone5/shuffle@2x.png"; sourceTree = "<group>"; };
 		97A36CBD195D1A9B00AF6AF8 /* UIImageViewArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewArtwork.h; sourceTree = "<group>"; };
 		97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewArtwork.m; sourceTree = "<group>"; };
 		97A36CC8195F37F000AF6AF8 /* UIViewControllerPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerPlaylist.h; sourceTree = "<group>"; };
 		97A36CC9195F37F000AF6AF8 /* UIViewControllerPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerPlaylist.m; sourceTree = "<group>"; };
-		97A36CD6195F480C00AF6AF8 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFNavigationBarDrawer.h; path = BFNavigationBarDrawer/BFNavigationBarDrawer.h; sourceTree = "<group>"; };
-		97A36CD7195F480C00AF6AF8 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFNavigationBarDrawer.m; path = BFNavigationBarDrawer/BFNavigationBarDrawer.m; sourceTree = "<group>"; };
 		97A36CDA195F560D00AF6AF8 /* CurrentPlayingToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentPlayingToolBar.h; sourceTree = "<group>"; };
 		97A36CDB195F560D00AF6AF8 /* CurrentPlayingToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentPlayingToolBar.m; sourceTree = "<group>"; };
 		97A36CDE195F593200AF6AF8 /* MPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDataManager.h; sourceTree = "<group>"; };
 		97A36CDF195F593200AF6AF8 /* MPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDataManager.m; sourceTree = "<group>"; };
 		97A36CE1195F902600AF6AF8 /* UIViewControllerPlaylistSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerPlaylistSong.h; sourceTree = "<group>"; };
 		97A36CE2195F902600AF6AF8 /* UIViewControllerPlaylistSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerPlaylistSong.m; sourceTree = "<group>"; };
-		97AC0C33195A417100BA60E6 /* bg_blur@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_blur@2x.png"; path = "MusicPutt/res/iphone5/bg_blur@2x.png"; sourceTree = "<group>"; };
+		97A36CEA195FC54B00AF6AF8 /* UIViewCurrentToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewCurrentToolBar.h; sourceTree = "<group>"; };
+		97A36CEB195FC54B00AF6AF8 /* UIViewCurrentToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewCurrentToolBar.m; sourceTree = "<group>"; };
+		97A36CF21960669100AF6AF8 /* UIViewCurrentPlayingToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIViewCurrentPlayingToolBar.xib; sourceTree = "<group>"; };
+		97A36CF519606DA800AF6AF8 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFNavigationBarDrawer.h; path = extern/BFNavigationBarDrawer/BFNavigationBarDrawer.h; sourceTree = "<group>"; };
+		97A36CF619606DA800AF6AF8 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFNavigationBarDrawer.m; path = extern/BFNavigationBarDrawer/BFNavigationBarDrawer.m; sourceTree = "<group>"; };
+		97A36CF919606DFA00AF6AF8 /* UAProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UAProgressView.h; path = MusicPutt/extern/UAProgressView/UAProgressView.h; sourceTree = "<group>"; };
+		97A36CFA19606DFA00AF6AF8 /* UAProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UAProgressView.m; path = MusicPutt/extern/UAProgressView/UAProgressView.m; sourceTree = "<group>"; };
+		97A36D0019609F5B00AF6AF8 /* UIColor+CreateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+CreateMethods.h"; path = "MusicPutt/tools/UIColor+CreateMethods.h"; sourceTree = "<group>"; };
+		97A36D0119609F5B00AF6AF8 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+CreateMethods.m"; path = "MusicPutt/tools/UIColor+CreateMethods.m"; sourceTree = "<group>"; };
 		97AC0C3A195A493800BA60E6 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicViewController.h; sourceTree = "<group>"; };
 		97AC0C3B195A493800BA60E6 /* MusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicViewController.m; sourceTree = "<group>"; };
-		97AC0C43195A58E400BA60E6 /* artwork-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "artwork-empty@2x.png"; path = "MusicPutt/res/iphone5/artwork-empty@2x.png"; sourceTree = "<group>"; };
-		97AC0C45195A5E3A00BA60E6 /* musicputt-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "musicputt-icon@2x.png"; path = "MusicPutt/res/iphone5/musicputt-icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,28 +114,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		970892A5195A3C840047A556 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				97A36CB1195D152700AF6AF8 /* pause@2x.png */,
-				97A36CB2195D152700AF6AF8 /* play@2x.png */,
-				97A36CB3195D152700AF6AF8 /* repeat@2x.png */,
-				97A36CB4195D152700AF6AF8 /* rewind@2x.png */,
-				97A36CB5195D152700AF6AF8 /* share@2x.png */,
-				97A36CB6195D152700AF6AF8 /* shuffle@2x.png */,
-				97A36CAF195D144600AF6AF8 /* fast_forward@2x.png */,
-				97AC0C45195A5E3A00BA60E6 /* musicputt-icon@2x.png */,
-				97AC0C43195A58E400BA60E6 /* artwork-empty@2x.png */,
-				97AC0C33195A417100BA60E6 /* bg_blur@2x.png */,
-				970892A7195A3D1A0047A556 /* bg_clear@2x.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		971D8C90194FCA2200A348A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				97A36CD5195F47FF00AF6AF8 /* BFNavigationBarDrawer */,
 				97A36CD9195F55E000AF6AF8 /* CurrentPlayingToolBar */,
 				97A36CC7195F37C800AF6AF8 /* Playlist */,
 				97AC0C36195A419E00BA60E6 /* Song */,
@@ -158,7 +128,8 @@
 		976687C7194FBB4D00B5A843 = {
 			isa = PBXGroup;
 			children = (
-				970892A5195A3C840047A556 /* Resources */,
+				97A36CFC196070F400AF6AF8 /* tools */,
+				97A36CF419606D8700AF6AF8 /* extern */,
 				976687D9194FBB4D00B5A843 /* MusicPutt */,
 				976687F8194FBB4D00B5A843 /* MusicPuttTests */,
 				976687D2194FBB4D00B5A843 /* Frameworks */,
@@ -244,17 +215,21 @@
 		97A36CD5195F47FF00AF6AF8 /* BFNavigationBarDrawer */ = {
 			isa = PBXGroup;
 			children = (
-				97A36CD6195F480C00AF6AF8 /* BFNavigationBarDrawer.h */,
-				97A36CD7195F480C00AF6AF8 /* BFNavigationBarDrawer.m */,
+				97A36CF519606DA800AF6AF8 /* BFNavigationBarDrawer.h */,
+				97A36CF619606DA800AF6AF8 /* BFNavigationBarDrawer.m */,
 			);
 			name = BFNavigationBarDrawer;
+			path = MusicPutt;
 			sourceTree = "<group>";
 		};
 		97A36CD9195F55E000AF6AF8 /* CurrentPlayingToolBar */ = {
 			isa = PBXGroup;
 			children = (
+				97A36CF21960669100AF6AF8 /* UIViewCurrentPlayingToolBar.xib */,
 				97A36CDA195F560D00AF6AF8 /* CurrentPlayingToolBar.h */,
 				97A36CDB195F560D00AF6AF8 /* CurrentPlayingToolBar.m */,
+				97A36CEA195FC54B00AF6AF8 /* UIViewCurrentToolBar.h */,
+				97A36CEB195FC54B00AF6AF8 /* UIViewCurrentToolBar.m */,
 			);
 			name = CurrentPlayingToolBar;
 			sourceTree = "<group>";
@@ -266,6 +241,33 @@
 				97A36CDF195F593200AF6AF8 /* MPDataManager.m */,
 			);
 			name = DataManager;
+			sourceTree = "<group>";
+		};
+		97A36CF419606D8700AF6AF8 /* extern */ = {
+			isa = PBXGroup;
+			children = (
+				97A36CF819606DDE00AF6AF8 /* UAProgressView */,
+				97A36CD5195F47FF00AF6AF8 /* BFNavigationBarDrawer */,
+			);
+			name = extern;
+			sourceTree = "<group>";
+		};
+		97A36CF819606DDE00AF6AF8 /* UAProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				97A36CF919606DFA00AF6AF8 /* UAProgressView.h */,
+				97A36CFA19606DFA00AF6AF8 /* UAProgressView.m */,
+			);
+			name = UAProgressView;
+			sourceTree = "<group>";
+		};
+		97A36CFC196070F400AF6AF8 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				97A36D0019609F5B00AF6AF8 /* UIColor+CreateMethods.h */,
+				97A36D0119609F5B00AF6AF8 /* UIColor+CreateMethods.m */,
+			);
+			name = tools;
 			sourceTree = "<group>";
 		};
 		97AC0C35195A419500BA60E6 /* LoadingScreen */ = {
@@ -364,20 +366,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97A36CBC195D152700AF6AF8 /* shuffle@2x.png in Resources */,
-				97A36CB8195D152700AF6AF8 /* play@2x.png in Resources */,
-				97AC0C46195A5E3A00BA60E6 /* musicputt-icon@2x.png in Resources */,
-				97AC0C34195A417100BA60E6 /* bg_blur@2x.png in Resources */,
-				97A36CB0195D144600AF6AF8 /* fast_forward@2x.png in Resources */,
-				97AC0C44195A58E400BA60E6 /* artwork-empty@2x.png in Resources */,
-				97A36CB7195D152700AF6AF8 /* pause@2x.png in Resources */,
+				97A36CF31960669100AF6AF8 /* UIViewCurrentPlayingToolBar.xib in Resources */,
 				976687EC194FBB4D00B5A843 /* Images.xcassets in Resources */,
-				97A36CB9195D152700AF6AF8 /* repeat@2x.png in Resources */,
 				976687DE194FBB4D00B5A843 /* InfoPlist.strings in Resources */,
-				970892A8195A3D1A0047A556 /* bg_clear@2x.png in Resources */,
-				97A36CBB195D152700AF6AF8 /* share@2x.png in Resources */,
 				976687E7194FBB4D00B5A843 /* MainIPhone5.storyboard in Resources */,
-				97A36CBA195D152700AF6AF8 /* rewind@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,14 +388,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97A36CF719606DA800AF6AF8 /* BFNavigationBarDrawer.m in Sources */,
 				97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
-				97A36CD8195F480C00AF6AF8 /* BFNavigationBarDrawer.m in Sources */,
+				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
 				976687EA194FBB4D00B5A843 /* MusicViewLoadingController.m in Sources */,
+				97A36CFB19606DFA00AF6AF8 /* UAProgressView.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
 				97A36CE3195F902600AF6AF8 /* UIViewControllerPlaylistSong.m in Sources */,
+				97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */,
 				97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */,
 				97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */,
 			);
