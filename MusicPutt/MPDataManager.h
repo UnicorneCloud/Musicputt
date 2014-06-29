@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class MPMusicPlayerController;
 
@@ -15,6 +16,6 @@
 @property (strong, nonatomic) MPMusicPlayerController* musicplayer;
 
 -(bool) initialise;
-
+-(void) setCurrentPlaylistSelect: (MPMediaItem*) item;
 
 @end

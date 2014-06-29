@@ -8,7 +8,7 @@
 
 #import "CurrentPlayingToolBar.h"
 #import "AppDelegate.h"
-#import <MediaPlayer/MPMusicPlayerController.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "UIViewCurrentToolBar.h"
 
 @interface CurrentPlayingToolBar()

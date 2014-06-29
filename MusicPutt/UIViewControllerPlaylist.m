@@ -9,11 +9,15 @@
 #import "UIViewControllerPlaylist.h"
 #import "CurrentPlayingToolBar.h"
 #import "AppDelegate.h"
+#import "UITableViewCellPlaylist.h"
 #import <MediaPlayer/MPMusicPlayerController.h>
+#import <MediaPlayer/MPMediaPlaylist.h>
 
 @interface UIViewControllerPlaylist () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 {
-    CurrentPlayingToolBar *currentPlayingToolBar;
+    CurrentPlayingToolBar*  currentPlayingToolBar;
+    MPMediaQuery*           everything;             // result of current query
+    NSArray*                m_playlists;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
@@ -61,7 +65,8 @@
     
     [[[_del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
     
-    
+    everything = [MPMediaQuery playlistsQuery];
+    m_playlists = [everything collections];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,22 +102,39 @@
     }
 }
 
-#pragma mark UITableViewDataSource
+
+
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [m_playlists count];
 }
 
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellPlaylist*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylist"];
-    
+    UITableViewCellPlaylist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylist"];
+    MPMediaItem* item =  m_playlists[indexPath.row];
+    cell.playlisttitle.text = [item valueForProperty:MPMediaPlaylistPropertyName];
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaPlaylistPropertyName]);
     //cell.textLabel.text = @"text";
     //[cell setBackgroundColor:[UIColor clearColor]];
 	//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     //[cell.imageView setImage:[UIImage imageNamed:dict[@"icon"]]];
     return cell;
+}
+
+
+
+
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return indexPath;
 }
 
 
