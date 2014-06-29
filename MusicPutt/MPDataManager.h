@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class MPMusicPlayerController;
+
 @interface MPDataManager : NSObject
+
+@property (strong, nonatomic) MPMusicPlayerController* musicplayer;
+
+-(bool) initialise;
+
 
 @end

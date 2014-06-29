@@ -7,12 +7,30 @@
 //
 
 #import "AppDelegate.h"
+#import "MPDataManager.h"
+
+@interface AppDelegate()
+{
+}
+@end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    _mpdatamanager = [[MPDataManager alloc]init];
+    if (_mpdatamanager!=NULL) {
+        if (![_mpdatamanager initialise]) {
+            NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[ERROR] - Unable to initialise MPDataManager");
+        }
+    }
+    else{
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[ERROR] - Unable to initialise MPDataManager");
+    }
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     return YES;
 }

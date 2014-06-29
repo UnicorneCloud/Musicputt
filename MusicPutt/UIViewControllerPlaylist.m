@@ -8,6 +8,8 @@
 
 #import "UIViewControllerPlaylist.h"
 #import "CurrentPlayingToolBar.h"
+#import "AppDelegate.h"
+#import <MediaPlayer/MPMusicPlayerController.h>
 
 @interface UIViewControllerPlaylist () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 {
@@ -15,6 +17,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
+@property AppDelegate* del;
 
 @end
 
@@ -33,21 +36,31 @@
 {
     [super viewDidLoad];
     
-    [self setTitle:@"Playlists"];
+    // setup app delegate
+    self.del = [[UIApplication sharedApplication] delegate];
+    
+    [self setTitle:@"Playlist"];
     
     currentPlayingToolBar = [[CurrentPlayingToolBar alloc] init];
     currentPlayingToolBar.scrollView = self.tableView;
-    [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
-    // to hide : [currentPlayingToolBar hideAnimated:YES];
-}
-
--(void) done
-{
+    //[currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
     
-}
-
--(void) cancel
-{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter
+     addObserver: self
+     selector:    @selector (handle_NowPlayingItemChanged:)
+     name:        MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+     object:      [[_del mpdatamanager] musicplayer]];
+    
+    [notificationCenter
+     addObserver: self
+     selector:    @selector (handle_PlaybackStateChanged:)
+     name:        MPMusicPlayerControllerPlaybackStateDidChangeNotification
+     object:      [[_del mpdatamanager] musicplayer]];
+    
+    [[[_del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
+    
     
 }
 
@@ -58,10 +71,36 @@
 }
 
 
+#pragma  mark - MPMusicPlayerNSNotificationCenter
+
+-(void) handle_PlaybackStateChanged:(id) notification
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    MPMediaItem* item = [[[_del mpdatamanager] musicplayer] nowPlayingItem];
+    if (item!=NULL) {
+        [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+    }
+    else{
+        [currentPlayingToolBar hideAnimated:YES];
+    }
+}
+
+-(void) handle_NowPlayingItemChanged:(id) notification
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    MPMediaItem* item = [[[_del mpdatamanager] musicplayer] nowPlayingItem];
+    if (item!=NULL) {
+        [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+    }
+    else{
+        [currentPlayingToolBar hideAnimated:YES];
+    }
+}
+
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 10;
 }
 
 

@@ -9,6 +9,9 @@
 #import "MusicViewController.h"
 #import "AppDelegate.h"
 
+#import <MediaPlayer/MPMusicPlayerController.h>
+#import <MediaPlayer/MPMediaItem.h>
+
 
 @interface MusicViewController ()
 {
@@ -16,6 +19,7 @@
 }
 
 @property AppDelegate* del;
+@property MPDataManager *datamanager;
 
 @end
 
@@ -35,8 +39,9 @@
 {
     [super viewDidLoad];
     
-    // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    
+    
+    
     
     hideCurrentSong = TRUE;
     [self hideCurrentSong:hideCurrentSong];
