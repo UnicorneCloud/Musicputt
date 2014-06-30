@@ -115,7 +115,7 @@
 - (UITableViewCellPlaylist*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellPlaylist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylist"];
-    MPMediaItem* item =  m_playlists[indexPath.row];
+    MPMediaPlaylist* item =  m_playlists[indexPath.row];
     cell.playlisttitle.text = [item valueForProperty:MPMediaPlaylistPropertyName];
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaPlaylistPropertyName]);
     //cell.textLabel.text = @"text";
@@ -133,6 +133,9 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MPMediaPlaylist* item =  m_playlists[indexPath.row];
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaPlaylistPropertyName]);
+    [self.del mpdatamanager].currentPlaylist = item;
     
     return indexPath;
 }

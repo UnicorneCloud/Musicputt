@@ -7,10 +7,18 @@
 //
 
 #import "UIViewControllerPlaylistSong.h"
+#import "AppDelegate.h"
+#import "UITableViewCellPlaylistSong.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface UIViewControllerPlaylistSong () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
+{
+    MPMediaQuery*           everything;             // result of current query
+    NSArray*                m_songs;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
+@property AppDelegate* del;
 
 @end
 
@@ -30,6 +38,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // setup app delegate
+    self.del = [[UIApplication sharedApplication] delegate];
+    
+    everything = [MPMediaQuery playlistsQuery];
+    MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyPersistentID]
+                                                                    forProperty:MPMediaPlaylistPropertyPersistentID
+                                                                    comparisonType:MPMediaPredicateComparisonEqualTo];
+   [everything addFilterPredicate:predicate];
+    m_songs = [everything items];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,15 +60,15 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return m_songs.count;
 }
 
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellPlaylistSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylistSong"];
-    
-    //cell.textLabel.text = @"text";
+    UITableViewCellPlaylistSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylistSong"];
+    MPMediaItem* item =  m_songs[indexPath.row];
+    cell.title.text = [item valueForProperty:MPMediaItemPropertyTitle];
     //[cell setBackgroundColor:[UIColor clearColor]];
 	//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     //[cell.imageView setImage:[UIImage imageNamed:dict[@"icon"]]];

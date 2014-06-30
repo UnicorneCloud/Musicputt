@@ -14,8 +14,8 @@
 @interface MPDataManager : NSObject
 
 @property (strong, nonatomic) MPMusicPlayerController* musicplayer;
+@property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
 
 -(bool) initialise;
--(void) setCurrentPlaylistSelect: (MPMediaItem*) item;
 
 @end
