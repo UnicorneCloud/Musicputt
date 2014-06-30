@@ -120,10 +120,13 @@
 		971D8C90194FCA2200A348A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				97A36CD9195F55E000AF6AF8 /* CurrentPlayingToolBar */,
-				97A36CC7195F37C800AF6AF8 /* Playlist */,
-				97AC0C36195A419E00BA60E6 /* Song */,
 				97AC0C35195A419500BA60E6 /* LoadingScreen */,
+				97A36CD9195F55E000AF6AF8 /* CurrentPlayingToolBar */,
+				9799978A1960F60500360BF8 /* Songlist */,
+				97A36CC7195F37C800AF6AF8 /* Playlist */,
+				9799978B1960F61800360BF8 /* Artist */,
+				9799978C1960F62700360BF8 /* Album */,
+				97AC0C36195A419E00BA60E6 /* Song */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -202,6 +205,27 @@
 				976687FB194FBB4D00B5A843 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9799978A1960F60500360BF8 /* Songlist */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Songlist;
+			sourceTree = "<group>";
+		};
+		9799978B1960F61800360BF8 /* Artist */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Artist;
+			sourceTree = "<group>";
+		};
+		9799978C1960F62700360BF8 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Album;
 			sourceTree = "<group>";
 		};
 		97A36CC7195F37C800AF6AF8 /* Playlist */ = {

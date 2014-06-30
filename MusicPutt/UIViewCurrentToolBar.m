@@ -10,16 +10,13 @@
 #import "AppDelegate.h"
 #import "UIColor+CreateMethods.h"
 
-#import <MediaPlayer/MPMoviePlayerController.h>
-#import <MediaPlayer/MPMusicPlayerController.h>
-#import <MediaPlayer/MPNowPlayingInfoCenter.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 
 @interface UIViewCurrentToolBar()
 {
     UIImageView *playView;
     UIImageView *pauseView;
-    BOOL isPlaying;
 }
 
 @property AppDelegate* del;
@@ -30,6 +27,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
@@ -106,7 +105,7 @@
     UITapGestureRecognizer *tapGestureProgress = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(progressPressed)];
     [_progress addGestureRecognizer:tapGestureProgress];
     
-    isPlaying = false;
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     //NSDictionary *mediaInfo = [[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
     //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [mediaInfo valueForKey:MPNowPlayingInfoPropertyElapsedPlaybackTime]);
