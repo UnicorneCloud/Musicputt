@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "CurrentPlayingToolBar.h"
 
 @class MPMusicPlayerController;
 
@@ -15,6 +16,7 @@
 
 @property (strong, nonatomic) MPMusicPlayerController* musicplayer;
 @property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
+@property (strong, nonatomic) CurrentPlayingToolBar*  currentPlayingToolbar;
 
 -(bool) initialise;
 

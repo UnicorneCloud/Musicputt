@@ -10,6 +10,9 @@
 
 @interface UITableViewCellPlaylistSong : UITableViewCell
 
+@property (weak,nonatomic) IBOutlet UIImageView* imageview;
 @property (weak,nonatomic) IBOutlet UILabel* title;
+@property (weak,nonatomic) IBOutlet UILabel* artist;
+@property (weak,nonatomic) IBOutlet UILabel* album;
 
 @end

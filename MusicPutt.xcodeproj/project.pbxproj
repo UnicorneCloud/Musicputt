@@ -23,6 +23,9 @@
 		976687FD194FBB4D00B5A843 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 976687FB194FBB4D00B5A843 /* InfoPlist.strings */; };
 		976687FF194FBB4D00B5A843 /* MusicPuttTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687FE194FBB4D00B5A843 /* MusicPuttTests.m */; };
 		9799979219611E6200360BF8 /* UITableViewCellPlaylistSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 9799979119611E6200360BF8 /* UITableViewCellPlaylistSong.m */; };
+		979997981961B18700360BF8 /* AMWaveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 979997951961B18700360BF8 /* AMWaveTransition.m */; };
+		979997991961B18700360BF8 /* AMWaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979997971961B18700360BF8 /* AMWaveViewController.m */; };
+		9799979C1961BA8A00360BF8 /* UIViewControllerTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9799979B1961BA8A00360BF8 /* UIViewControllerTabbar.m */; };
 		97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */; };
 		97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CC9195F37F000AF6AF8 /* UIViewControllerPlaylist.m */; };
 		97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CDB195F560D00AF6AF8 /* CurrentPlayingToolBar.m */; };
@@ -70,6 +73,12 @@
 		976687FE194FBB4D00B5A843 /* MusicPuttTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPuttTests.m; sourceTree = "<group>"; };
 		9799979019611E6200360BF8 /* UITableViewCellPlaylistSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellPlaylistSong.h; sourceTree = "<group>"; };
 		9799979119611E6200360BF8 /* UITableViewCellPlaylistSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellPlaylistSong.m; sourceTree = "<group>"; };
+		979997941961B18700360BF8 /* AMWaveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMWaveTransition.h; path = MusicPutt/extern/AMWaveTransition/AMWaveTransition.h; sourceTree = "<group>"; };
+		979997951961B18700360BF8 /* AMWaveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMWaveTransition.m; path = MusicPutt/extern/AMWaveTransition/AMWaveTransition.m; sourceTree = "<group>"; };
+		979997961961B18700360BF8 /* AMWaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMWaveViewController.h; path = MusicPutt/extern/AMWaveTransition/AMWaveViewController.h; sourceTree = "<group>"; };
+		979997971961B18700360BF8 /* AMWaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMWaveViewController.m; path = MusicPutt/extern/AMWaveTransition/AMWaveViewController.m; sourceTree = "<group>"; };
+		9799979A1961BA8A00360BF8 /* UIViewControllerTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerTabbar.h; sourceTree = "<group>"; };
+		9799979B1961BA8A00360BF8 /* UIViewControllerTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerTabbar.m; sourceTree = "<group>"; };
 		97A36CBD195D1A9B00AF6AF8 /* UIImageViewArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewArtwork.h; sourceTree = "<group>"; };
 		97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewArtwork.m; sourceTree = "<group>"; };
 		97A36CC8195F37F000AF6AF8 /* UIViewControllerPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerPlaylist.h; sourceTree = "<group>"; };
@@ -231,6 +240,17 @@
 			name = Album;
 			sourceTree = "<group>";
 		};
+		979997931961B01F00360BF8 /* AMWaveTransition */ = {
+			isa = PBXGroup;
+			children = (
+				979997941961B18700360BF8 /* AMWaveTransition.h */,
+				979997951961B18700360BF8 /* AMWaveTransition.m */,
+				979997961961B18700360BF8 /* AMWaveViewController.h */,
+				979997971961B18700360BF8 /* AMWaveViewController.m */,
+			);
+			name = AMWaveTransition;
+			sourceTree = "<group>";
+		};
 		97A36CC7195F37C800AF6AF8 /* Playlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +300,7 @@
 		97A36CF419606D8700AF6AF8 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				979997931961B01F00360BF8 /* AMWaveTransition */,
 				97A36CF819606DDE00AF6AF8 /* UAProgressView */,
 				97A36CD5195F47FF00AF6AF8 /* BFNavigationBarDrawer */,
 			);
@@ -300,6 +321,8 @@
 			children = (
 				97A36D0019609F5B00AF6AF8 /* UIColor+CreateMethods.h */,
 				97A36D0119609F5B00AF6AF8 /* UIColor+CreateMethods.m */,
+				9799979A1961BA8A00360BF8 /* UIViewControllerTabbar.h */,
+				9799979B1961BA8A00360BF8 /* UIViewControllerTabbar.m */,
 			);
 			name = tools;
 			sourceTree = "<group>";
@@ -424,6 +447,7 @@
 			files = (
 				97A36CF719606DA800AF6AF8 /* BFNavigationBarDrawer.m in Sources */,
 				97AF57B61960A53A002978E8 /* UITableViewCellPlaylist.m in Sources */,
+				979997991961B18700360BF8 /* AMWaveViewController.m in Sources */,
 				97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
@@ -431,11 +455,13 @@
 				9799979219611E6200360BF8 /* UITableViewCellPlaylistSong.m in Sources */,
 				97A36CFB19606DFA00AF6AF8 /* UAProgressView.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
+				979997981961B18700360BF8 /* AMWaveTransition.m in Sources */,
 				97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
 				97A36CE3195F902600AF6AF8 /* UIViewControllerPlaylistSong.m in Sources */,
 				97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */,
 				97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */,
+				9799979C1961BA8A00360BF8 /* UIViewControllerTabbar.m in Sources */,
 				97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

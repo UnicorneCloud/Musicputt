@@ -23,6 +23,9 @@
     // Init MusicPlayer
     retval = [self initialiseMediaPlayer];
     
+    // init current playing toolbar
+    _currentPlayingToolbar = [[CurrentPlayingToolBar alloc] init];
+    
     return retval;
 }
 

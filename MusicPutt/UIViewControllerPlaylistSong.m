@@ -13,6 +13,7 @@
 
 @interface UIViewControllerPlaylistSong () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 {
+    //CurrentPlayingToolBar*  currentPlayingToolBar;
     MPMediaQuery*           everything;             // result of current query
     NSArray*                m_songs;
 }
@@ -29,7 +30,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [self setTitle:@"Playlist Title"];
     }
     return self;
 }
@@ -39,15 +39,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
     
+    // setup table view
+    toolbarTableView = self.tableView;
+    
+    // setup title
+    [self setTitle:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyName]];
+    
+    // query playlist songs
     everything = [MPMediaQuery playlistsQuery];
     MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyPersistentID]
                                                                     forProperty:MPMediaPlaylistPropertyPersistentID
                                                                     comparisonType:MPMediaPredicateComparisonEqualTo];
    [everything addFilterPredicate:predicate];
     m_songs = [everything items];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,10 +80,26 @@
     UITableViewCellPlaylistSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylistSong"];
     MPMediaItem* item =  m_songs[indexPath.row];
     cell.title.text = [item valueForProperty:MPMediaItemPropertyTitle];
-    //[cell setBackgroundColor:[UIColor clearColor]];
-	//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    //[cell.imageView setImage:[UIImage imageNamed:dict[@"icon"]]];
+    cell.artist.text = [item valueForProperty:MPMediaItemPropertyArtist];
+    cell.album.text = [item valueForProperty:MPMediaItemPropertyAlbumTitle];
+    
+    UIImage* image;
+    MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
+    if (artwork)
+        image = [artwork imageWithSize:[cell.imageview frame].size];
+    if (image.size.height>0 && image.size.width>0) // check if image present
+        [cell.imageview setImage:image];
+    else
+        [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
+    
     return cell;
+}
+
+#pragma mark - AMWaveViewController
+
+- (NSArray*)visibleCells
+{
+    return [self.tableView visibleCells];
 }
 
 
