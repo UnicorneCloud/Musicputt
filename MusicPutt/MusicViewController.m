@@ -9,13 +9,13 @@
 #import "MusicViewController.h"
 #import "AppDelegate.h"
 
+#import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <MediaPlayer/MPMediaItem.h>
 
 
 @interface MusicViewController ()
 {
-    BOOL hideCurrentSong;
 }
 
 @property AppDelegate* del;
@@ -29,8 +29,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        hideCurrentSong = TRUE;
+        
     }
     return self;
 }
@@ -39,12 +38,33 @@
 {
     [super viewDidLoad];
     
+    // setup app delegate
+    self.del = [[UIApplication sharedApplication] delegate];
     
+    // update current playing song display
+    //[self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
+    [notificationCenter
+     addObserver: self
+     selector:    @selector (handle_NowPlayingItemChanged:)
+     name:        MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+     object:      [[self.del mpdatamanager] musicplayer]];
     
-    hideCurrentSong = TRUE;
-    [self hideCurrentSong:hideCurrentSong];
+    [notificationCenter
+     addObserver: self
+     selector:    @selector (handle_PlaybackStateChanged:)
+     name:        MPMusicPlayerControllerPlaybackStateDidChangeNotification
+     object:      [[self.del mpdatamanager] musicplayer]];
+    
+    [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(updateCurrentTime)
+                                   userInfo: nil
+                                    repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,12 +74,81 @@
 }
 
 
-
-- (void) hideCurrentSong:(BOOL)hiddend
+-(void) displayMediaItem: (MPMediaItem*) aitem
 {
-    [_currentSongView setHidden:hiddend];
+    if (aitem!=NULL) {
+        
+        // setup title
+        [self setTitle:[aitem valueForProperty:MPMediaItemPropertyTitle]];
+        
+        UIImage* image;
+        MPMediaItemArtwork *artwork = [aitem valueForProperty:MPMediaItemPropertyArtwork];
+        
+        if (artwork) {
+            image = [artwork imageWithSize:[_imageview frame].size];
+            if(image.size.height==0 || image.size.width==0)
+                image = [UIImage imageNamed:@"empty"];
+            
+        }
+        
+        [_imageview setImage:image];
+        [_songtitle setText:[aitem valueForProperty:MPMediaItemPropertyTitle]];
+        
+        NSString *artistalbum = [NSString stringWithFormat:@"%@ - %@", [aitem valueForProperty:MPMediaItemPropertyArtist]
+                                                                     , [aitem valueForProperty:MPMediaItemPropertyAlbumTitle]];
+        [_artistalbum setText:artistalbum];
+        
+        //[self updateCurrentTime];
+    }
+    else{
+        [_imageview setImage:nil];
+        [_songtitle setText:@""];
+        [_artistalbum setText:@""];
+    }
+    
 }
 
+-(void) updateCurrentTime
+{
+    // update current time with progress round
+    NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
+    NSTimeInterval playbackDuration;
+    double progressValue = 0;
+    
+    if ([[[self.del mpdatamanager] musicplayer] nowPlayingItem]!=NULL) {
+        NSNumber* duration = [[[[self.del mpdatamanager] musicplayer] nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
+        playbackDuration = [duration doubleValue];
+        
+        if (playbackDuration>0 && currentTime>0) {
+            
+            // calcul progressvalue
+            progressValue = currentTime / playbackDuration;
+            
+            // set current time
+            long minutes = currentTime / 60;
+            long seconds = (int)currentTime % 60;
+            
+            NSString *currentTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+            [_curtime setText:currentTime];
+            
+            // set endtime
+            minutes = [duration integerValue] / 60;
+            seconds = [duration integerValue] % 60;
+            
+            NSString *enddingTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+            [_endtime setText:enddingTime];
+        }
+    }
+    [_progresstime setProgress:progressValue animated:false];
+    
+    // update icon play/pause
+    //MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+    //if([player playbackState] == MPMoviePlaybackStatePlaying)
+    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
+        [_playpause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+    else
+        [_playpause setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+}
 
 
 #pragma mark - Button action
@@ -78,15 +167,46 @@
 - (IBAction)rewindPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    //[[[self.del mpdatamanager] musicplayer] ]
 }
 
 
 - (IBAction)playpausePressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    hideCurrentSong = !hideCurrentSong;
-    [self hideCurrentSong:hideCurrentSong];
     
+    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+    
+    if([player playbackState] == MPMusicPlaybackStateStopped)
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateStopped");
+        
+    else if([player playbackState] == MPMusicPlaybackStatePlaying)
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStatePlaying");
+    
+    else if([player playbackState] == MPMusicPlaybackStatePaused)
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStatePaused");
+    
+    else if([player playbackState] == MPMusicPlaybackStateInterrupted)
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateInterrupted");
+    
+    else if([player playbackState] == MPMusicPlaybackStateSeekingForward)
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateSeekingForward");
+    
+    else if([player playbackState] == MPMusicPlaybackStateSeekingBackward)
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateSeekingBackward");
+    
+    
+    //if([player playbackState] == MPMoviePlaybackStatePlaying)
+    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
+    {
+        [player pause];
+        [_playpause setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [player play];
+        [_playpause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+    }
 }
 
 
@@ -95,6 +215,22 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
 }
 
+
+
+#pragma  mark - MPMusicPlayerNSNotificationCenter
+
+-(void) handle_PlaybackStateChanged:(id) notification
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    
+}
+
+-(void) handle_NowPlayingItemChanged:(id) notification
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+}
 
 
 

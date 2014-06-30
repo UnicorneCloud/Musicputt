@@ -17,7 +17,7 @@
 {
     //CurrentPlayingToolBar*  currentPlayingToolBar;
     MPMediaQuery*           everything;             // result of current query
-    NSArray*                m_playlists;
+    NSArray*                playlists;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
@@ -53,7 +53,7 @@
     
     // setup query playlist
     everything = [MPMediaQuery playlistsQuery];
-    m_playlists = [everything collections];
+    playlists = [everything collections];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -85,14 +85,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [m_playlists count];
+    return [playlists count];
 }
 
 
 - (UITableViewCellPlaylist*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellPlaylist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylist"];
-    MPMediaPlaylist* item =  m_playlists[indexPath.row];
+    MPMediaPlaylist* item =  playlists[indexPath.row];
     cell.playlisttitle.text = [item valueForProperty:MPMediaPlaylistPropertyName];
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaPlaylistPropertyName]);
     return cell;
@@ -103,7 +103,7 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MPMediaPlaylist* item =  m_playlists[indexPath.row];
+    MPMediaPlaylist* item = playlists[indexPath.row];
     [self.del mpdatamanager].currentPlaylist = item;
     return indexPath;
 }

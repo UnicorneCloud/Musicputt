@@ -10,6 +10,8 @@
 #import "CurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 @interface UIViewControllerTabbar ()
 {
     BOOL isShowTabbar;
@@ -64,6 +66,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -75,7 +79,8 @@
     
     
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    if([player playbackState] == MPMoviePlaybackStatePlaying)
+    //if([player playbackState] == MPMoviePlaybackStatePlaying)
+    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
     {
         [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
         isShowTabbar = true;
@@ -97,6 +102,14 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Complete");
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // setup currentPlayingToolBar
+    currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
+    [currentPlayingToolBar hideAnimated:YES];
+
+}
+
 
 #pragma  mark - MPMusicPlayerNSNotificationCenter
 
@@ -104,7 +117,8 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    if([player playbackState] == MPMoviePlaybackStatePlaying)
+    //if([player playbackState] == MPMoviePlaybackStatePlaying)
+    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
         [self showTabbar];
     else
     {
@@ -117,7 +131,8 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    if([player playbackState] == MPMoviePlaybackStatePlaying)
+    //if([player playbackState] == MPMoviePlaybackStatePlaying)
+    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
     {
         [self showTabbar];
     }

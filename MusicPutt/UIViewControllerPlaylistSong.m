@@ -15,7 +15,7 @@
 {
     //CurrentPlayingToolBar*  currentPlayingToolBar;
     MPMediaQuery*           everything;             // result of current query
-    NSArray*                m_songs;
+    NSArray*                songs;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
@@ -56,7 +56,7 @@
                                                                     forProperty:MPMediaPlaylistPropertyPersistentID
                                                                     comparisonType:MPMediaPredicateComparisonEqualTo];
    [everything addFilterPredicate:predicate];
-    m_songs = [everything items];
+    songs = [everything items];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -71,14 +71,14 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return m_songs.count;
+    return songs.count;
 }
 
 
 - (UITableViewCellPlaylistSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellPlaylistSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylistSong"];
-    MPMediaItem* item =  m_songs[indexPath.row];
+    MPMediaItem* item =  songs[indexPath.row];
     cell.title.text = [item valueForProperty:MPMediaItemPropertyTitle];
     cell.artist.text = [item valueForProperty:MPMediaItemPropertyArtist];
     cell.album.text = [item valueForProperty:MPMediaItemPropertyAlbumTitle];
@@ -100,6 +100,36 @@
 - (NSArray*)visibleCells
 {
     return [self.tableView visibleCells];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    NSMutableArray* list = [[NSMutableArray alloc] init];
+    NSInteger step = 0;
+    NSInteger maxstep = songs.count;
+    NSInteger pos = indexPath.row;
+    
+    while (step<maxstep) {
+        [list addObject: [songs objectAtIndex:pos]];
+        step++;
+        pos++;
+        if(pos == songs.count)
+            pos=0;
+    }
+    
+    [[[self.del mpdatamanager] musicplayer] stop];
+    
+    [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
+    
+    [[[self.del mpdatamanager] musicplayer] play];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+    
+    return indexPath;
 }
 
 

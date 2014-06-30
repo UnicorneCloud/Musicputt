@@ -13,11 +13,13 @@
 
 @property (weak, nonatomic) IBOutlet UIImageViewArtwork* imageviewartwork;
 
+@property (weak, nonatomic) IBOutlet UIImageView*       imageview;
+
 @property (weak, nonatomic) IBOutlet UIView*            currentSongView;
 @property (weak, nonatomic) IBOutlet UILabel*           songtitle;
 @property (weak, nonatomic) IBOutlet UILabel*           artistalbum;
 
-@property (weak, nonatomic) IBOutlet UILabel*           starttime;
+@property (weak, nonatomic) IBOutlet UILabel*           curtime;
 @property (weak, nonatomic) IBOutlet UILabel*           endtime;
 @property (weak, nonatomic) IBOutlet UIProgressView*    progresstime;
 @property (weak, nonatomic) IBOutlet UIButton*          shuffle;
@@ -26,9 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIButton*          rewind;
 @property (weak, nonatomic) IBOutlet UIButton*          playpause;
 @property (weak, nonatomic) IBOutlet UIButton*          fastfoward;
-
-
-- (void) hideCurrentSong:(BOOL)hiddend;
 
 - (IBAction)shufflePressed:(id)sender;
 - (IBAction)repeatPressed:(id)sender;

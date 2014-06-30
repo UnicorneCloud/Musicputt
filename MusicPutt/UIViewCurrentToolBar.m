@@ -11,6 +11,7 @@
 #import "UIColor+CreateMethods.h"
 
 #import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface UIViewCurrentToolBar()
@@ -123,6 +124,9 @@
         
         if (artwork) {
             image = [artwork imageWithSize:[_imageview frame].size];
+            if(image.size.height==0 || image.size.width==0)
+                image = [UIImage imageNamed:@"empty"];
+                
         }
         
         [_imageview setImage:image];
@@ -160,8 +164,10 @@
     [_progress setProgress:progressValue animated:false];
     
     // update icon play/pause
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    if([player playbackState] == MPMoviePlaybackStatePlaying)
+    
+    //MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+    //if([player playbackState] == MPMoviePlaybackStatePlaying)
+    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
         _progress.centralView =  pauseView;
     else
         _progress.centralView =  playView;
@@ -201,7 +207,8 @@
     
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     
-    if([player playbackState] == MPMoviePlaybackStatePlaying)
+    //if([player playbackState] == MPMoviePlaybackStatePlaying)
+    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
         [player pause];
     else
         [player play];

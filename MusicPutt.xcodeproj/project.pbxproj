@@ -79,6 +79,7 @@
 		979997971961B18700360BF8 /* AMWaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMWaveViewController.m; path = MusicPutt/extern/AMWaveTransition/AMWaveViewController.m; sourceTree = "<group>"; };
 		9799979A1961BA8A00360BF8 /* UIViewControllerTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerTabbar.h; sourceTree = "<group>"; };
 		9799979B1961BA8A00360BF8 /* UIViewControllerTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerTabbar.m; sourceTree = "<group>"; };
+		9799979D1962086E00360BF8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		97A36CBD195D1A9B00AF6AF8 /* UIImageViewArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewArtwork.h; sourceTree = "<group>"; };
 		97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewArtwork.m; sourceTree = "<group>"; };
 		97A36CC8195F37F000AF6AF8 /* UIViewControllerPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerPlaylist.h; sourceTree = "<group>"; };
@@ -167,6 +168,7 @@
 		976687D2194FBB4D00B5A843 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9799979D1962086E00360BF8 /* AVFoundation.framework */,
 				9706486819510A0900FA877A /* MediaPlayer.framework */,
 				976687D3194FBB4D00B5A843 /* Foundation.framework */,
 				976687D5194FBB4D00B5A843 /* CoreGraphics.framework */,
