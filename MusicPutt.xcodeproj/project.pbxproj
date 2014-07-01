@@ -14,7 +14,7 @@
 		976687DE194FBB4D00B5A843 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 976687DC194FBB4D00B5A843 /* InfoPlist.strings */; };
 		976687E0194FBB4D00B5A843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687DF194FBB4D00B5A843 /* main.m */; };
 		976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687E3194FBB4D00B5A843 /* AppDelegate.m */; };
-		976687E7194FBB4D00B5A843 /* MainIPhone5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 976687E5194FBB4D00B5A843 /* MainIPhone5.storyboard */; };
+		976687E7194FBB4D00B5A843 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 976687E5194FBB4D00B5A843 /* Main.storyboard */; };
 		976687EA194FBB4D00B5A843 /* MusicViewLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687E9194FBB4D00B5A843 /* MusicViewLoadingController.m */; };
 		976687EC194FBB4D00B5A843 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 976687EB194FBB4D00B5A843 /* Images.xcassets */; };
 		976687F3194FBB4D00B5A843 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687F2194FBB4D00B5A843 /* XCTest.framework */; };
@@ -62,7 +62,7 @@
 		976687E1194FBB4D00B5A843 /* MusicPutt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicPutt-Prefix.pch"; sourceTree = "<group>"; };
 		976687E2194FBB4D00B5A843 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		976687E3194FBB4D00B5A843 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		976687E6194FBB4D00B5A843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainIPhone5.storyboard; sourceTree = "<group>"; };
+		976687E6194FBB4D00B5A843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		976687E8194FBB4D00B5A843 /* MusicViewLoadingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicViewLoadingController.h; sourceTree = "<group>"; };
 		976687E9194FBB4D00B5A843 /* MusicViewLoadingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicViewLoadingController.m; sourceTree = "<group>"; };
 		976687EB194FBB4D00B5A843 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 				971D8C90194FCA2200A348A3 /* UI */,
 				976687E2194FBB4D00B5A843 /* AppDelegate.h */,
 				976687E3194FBB4D00B5A843 /* AppDelegate.m */,
-				976687E5194FBB4D00B5A843 /* MainIPhone5.storyboard */,
+				976687E5194FBB4D00B5A843 /* Main.storyboard */,
 				976687EB194FBB4D00B5A843 /* Images.xcassets */,
 				976687DA194FBB4D00B5A843 /* Supporting Files */,
 			);
@@ -428,7 +428,7 @@
 				97A36CF31960669100AF6AF8 /* UIViewCurrentPlayingToolBar.xib in Resources */,
 				976687EC194FBB4D00B5A843 /* Images.xcassets in Resources */,
 				976687DE194FBB4D00B5A843 /* InfoPlist.strings in Resources */,
-				976687E7194FBB4D00B5A843 /* MainIPhone5.storyboard in Resources */,
+				976687E7194FBB4D00B5A843 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,12 +495,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		976687E5194FBB4D00B5A843 /* MainIPhone5.storyboard */ = {
+		976687E5194FBB4D00B5A843 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				976687E6194FBB4D00B5A843 /* Base */,
 			);
-			name = MainIPhone5.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		976687FB194FBB4D00B5A843 /* InfoPlist.strings */ = {

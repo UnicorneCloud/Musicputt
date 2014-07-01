@@ -178,7 +178,7 @@
 - (void)imageViewPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
     [self.navigationController pushViewController:musicView animated:YES];
 }
@@ -187,7 +187,7 @@
 - (void)songtitlePressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
     [self.navigationController pushViewController:musicView animated:YES];
 }
@@ -197,7 +197,7 @@
 - (void)artistPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
     [self.navigationController pushViewController:musicView animated:YES];
 }
@@ -207,7 +207,7 @@
 - (void)albumPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
     [self.navigationController pushViewController:musicView animated:YES];
 }
