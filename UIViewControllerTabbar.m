@@ -75,6 +75,7 @@
     // setup currentPlayingToolBar
     currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
     [currentPlayingToolBar hideAnimated:NO];
+    [currentPlayingToolBar setNavigationController:self.navigationController];
     currentPlayingToolBar.scrollView = self->toolbarTableView;
     
     

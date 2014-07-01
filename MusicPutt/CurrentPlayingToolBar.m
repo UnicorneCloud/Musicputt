@@ -13,6 +13,8 @@
 
 @interface CurrentPlayingToolBar()
 {
+    UIViewCurrentToolBar *view;
+    UINavigationController* navController;
 }
 
 @property AppDelegate* del;
@@ -35,7 +37,7 @@
         [barItems addObject:flexSpace];
         
         UINib *nib = [UINib nibWithNibName:@"UIViewCurrentPlayingToolBar" bundle:nil];
-        UIViewCurrentToolBar *view = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
+        view = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
         [view setBackgroundColor:[UIColor clearColor]];
         UIBarButtonItem *customViewContainer = [[UIBarButtonItem alloc] initWithCustomView:view];
         
@@ -50,6 +52,12 @@
 }
 
 -(void)dealloc {
+}
+
+- (void) setNavigationController:(UINavigationController*) controller;
+{
+    self->navController = controller;
+    [view setNavigationController:navController];
 }
 
 

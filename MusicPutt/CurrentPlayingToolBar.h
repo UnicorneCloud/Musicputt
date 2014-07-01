@@ -10,4 +10,6 @@
 
 @interface CurrentPlayingToolBar : BFNavigationBarDrawer
 
+- (void) setNavigationController:(UINavigationController*) controller;
+
 @end

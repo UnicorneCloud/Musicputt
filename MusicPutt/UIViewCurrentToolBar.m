@@ -9,6 +9,7 @@
 #import "UIViewCurrentToolBar.h"
 #import "AppDelegate.h"
 #import "UIColor+CreateMethods.h"
+#import "MusicViewController.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
@@ -177,12 +178,18 @@
 - (void)imageViewPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    [self.navigationController pushViewController:musicView animated:YES];
 }
 
 
 - (void)songtitlePressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    [self.navigationController pushViewController:musicView animated:YES];
 }
 
 
@@ -190,6 +197,9 @@
 - (void)artistPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    [self.navigationController pushViewController:musicView animated:YES];
 }
 
 
@@ -197,6 +207,9 @@
 - (void)albumPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainIPhone5" bundle:nil];
+    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    [self.navigationController pushViewController:musicView animated:YES];
 }
 
 

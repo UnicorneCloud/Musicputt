@@ -38,7 +38,7 @@
         <!--Music View Controller - Song name-->
         <scene sceneID="DNC-a1-kIR">
             <objects>
-                <viewController title="Song name" id="kL3-qe-v8G" customClass="MusicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Song" title="Song name" id="kL3-qe-v8G" customClass="MusicViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="acT-yD-PcF"/>
                         <viewControllerLayoutGuide type="bottom" id="vgb-Hw-hOp"/>

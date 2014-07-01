@@ -38,11 +38,14 @@
 {
     [super viewDidLoad];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
     
     // update current playing song display
-    //[self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    [self updateCurrentTime];
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
@@ -65,6 +68,8 @@
                                    selector:@selector(updateCurrentTime)
                                    userInfo: nil
                                     repeats:YES];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 - (void)didReceiveMemoryWarning

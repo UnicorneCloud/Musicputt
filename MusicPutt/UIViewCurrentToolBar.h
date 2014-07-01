@@ -16,6 +16,7 @@
 @property (weak,nonatomic) IBOutlet UILabel* artist;
 @property (weak,nonatomic) IBOutlet UILabel* album;
 @property (weak,nonatomic) IBOutlet UAProgressView* progress;
+@property (strong,nonatomic) UINavigationController* navigationController;
 
 
 - (void)imageViewPressed;
