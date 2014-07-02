@@ -194,7 +194,15 @@
 - (IBAction)rewindPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    //[[[self.del mpdatamanager] musicplayer] ]
+    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+    NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
+    if (currentTime<=2.0) {
+        [player skipToPreviousItem];
+    }
+    else{
+        [player skipToBeginning];
+    }
+    
 }
 
 
@@ -203,26 +211,6 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    
-    if([player playbackState] == MPMusicPlaybackStateStopped)
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateStopped");
-        
-    else if([player playbackState] == MPMusicPlaybackStatePlaying)
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStatePlaying");
-    
-    else if([player playbackState] == MPMusicPlaybackStatePaused)
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStatePaused");
-    
-    else if([player playbackState] == MPMusicPlaybackStateInterrupted)
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateInterrupted");
-    
-    else if([player playbackState] == MPMusicPlaybackStateSeekingForward)
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateSeekingForward");
-    
-    else if([player playbackState] == MPMusicPlaybackStateSeekingBackward)
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MPMusicPlaybackStateSeekingBackward");
-    
-    
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
     if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
     {
@@ -240,6 +228,8 @@
 - (IBAction)fastFoward:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+    [player skipToNextItem];
 }
 
 
