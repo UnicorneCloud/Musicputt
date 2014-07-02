@@ -78,6 +78,8 @@
                                    selector:@selector(updateCurrentTime)
                                    userInfo: nil
                                     repeats:YES];
+    
+    [[self.del mpdatamanager] setMusicViewControllerVisible:true];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -94,6 +96,8 @@
      object:         [[_del mpdatamanager] musicplayer]];
     
     [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
+    
+    [[self.del mpdatamanager] setMusicViewControllerVisible:false];
 }
 
 

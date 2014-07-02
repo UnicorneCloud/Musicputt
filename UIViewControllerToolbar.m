@@ -103,12 +103,21 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Complete");
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    // setup currentPlayingToolBar
+    if ([[self.del mpdatamanager] isMusicViewControllerVisible]) {
+        currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
+        [currentPlayingToolBar hideAnimated:YES];
+    }
+    
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
-    // setup currentPlayingToolBar
-    currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
-    [currentPlayingToolBar hideAnimated:YES];
-    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // desabled notification if view is not visible.
     [[NSNotificationCenter defaultCenter]
@@ -123,6 +132,7 @@
     
     [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
 
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 
@@ -160,18 +170,15 @@
 
 -(void) showTabbar
 {
-    if (!isShowTabbar) {
+    if (![currentPlayingToolBar isVisible]) {
         [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
-        isShowTabbar = true;
     }
-    
 }
 
 -(void) hideTabbar
 {
-    if (isShowTabbar) {
+    if ([currentPlayingToolBar isVisible]) {
         [currentPlayingToolBar hideAnimated:YES];
-        isShowTabbar = false;
     }
 }
 

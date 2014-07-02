@@ -361,10 +361,10 @@
             </objects>
             <point key="canvasLocation" x="907" y="100"/>
         </scene>
-        <!--View Controller - Song list-->
+        <!--View Controller Songlist - Song list-->
         <scene sceneID="OAO-JX-xYe">
             <objects>
-                <viewController id="Dl7-vJ-VJv" sceneMemberID="viewController">
+                <viewController id="Dl7-vJ-VJv" customClass="UIViewControllerSonglist" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gtb-9A-d83"/>
                         <viewControllerLayoutGuide type="bottom" id="768-Sh-kkf"/>

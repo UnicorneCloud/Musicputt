@@ -26,6 +26,8 @@
 		979997981961B18700360BF8 /* AMWaveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 979997951961B18700360BF8 /* AMWaveTransition.m */; };
 		979997991961B18700360BF8 /* AMWaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979997971961B18700360BF8 /* AMWaveViewController.m */; };
 		9799979C1961BA8A00360BF8 /* UIViewControllerToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9799979B1961BA8A00360BF8 /* UIViewControllerToolbar.m */; };
+		979DED221963A46F0055AD39 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 979DED211963A46F0055AD39 /* UIScrollView+EmptyDataSet.m */; };
+		979DED251963A4D50055AD39 /* UIViewControllerSonglist.m in Sources */ = {isa = PBXBuildFile; fileRef = 979DED241963A4D50055AD39 /* UIViewControllerSonglist.m */; };
 		97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */; };
 		97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CC9195F37F000AF6AF8 /* UIViewControllerPlaylist.m */; };
 		97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CDB195F560D00AF6AF8 /* CurrentPlayingToolBar.m */; };
@@ -80,6 +82,10 @@
 		9799979A1961BA8A00360BF8 /* UIViewControllerToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerToolbar.h; sourceTree = "<group>"; };
 		9799979B1961BA8A00360BF8 /* UIViewControllerToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerToolbar.m; sourceTree = "<group>"; };
 		9799979D1962086E00360BF8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		979DED201963A46F0055AD39 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+EmptyDataSet.h"; path = "MusicPutt/extern/KVNMasterPageControl/UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		979DED211963A46F0055AD39 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+EmptyDataSet.m"; path = "MusicPutt/extern/KVNMasterPageControl/UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
+		979DED231963A4D50055AD39 /* UIViewControllerSonglist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerSonglist.h; sourceTree = "<group>"; };
+		979DED241963A4D50055AD39 /* UIViewControllerSonglist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerSonglist.m; sourceTree = "<group>"; };
 		97A36CBD195D1A9B00AF6AF8 /* UIImageViewArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewArtwork.h; sourceTree = "<group>"; };
 		97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewArtwork.m; sourceTree = "<group>"; };
 		97A36CC8195F37F000AF6AF8 /* UIViewControllerPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerPlaylist.h; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 		9799978A1960F60500360BF8 /* Songlist */ = {
 			isa = PBXGroup;
 			children = (
+				979DED231963A4D50055AD39 /* UIViewControllerSonglist.h */,
+				979DED241963A4D50055AD39 /* UIViewControllerSonglist.m */,
 			);
 			name = Songlist;
 			sourceTree = "<group>";
@@ -251,6 +259,15 @@
 				979997971961B18700360BF8 /* AMWaveViewController.m */,
 			);
 			name = AMWaveTransition;
+			sourceTree = "<group>";
+		};
+		979DED1F1963A4480055AD39 /* KVNMasterPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				979DED201963A46F0055AD39 /* UIScrollView+EmptyDataSet.h */,
+				979DED211963A46F0055AD39 /* UIScrollView+EmptyDataSet.m */,
+			);
+			name = KVNMasterPageControl;
 			sourceTree = "<group>";
 		};
 		97A36CC7195F37C800AF6AF8 /* Playlist */ = {
@@ -302,6 +319,7 @@
 		97A36CF419606D8700AF6AF8 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				979DED1F1963A4480055AD39 /* KVNMasterPageControl */,
 				979997931961B01F00360BF8 /* AMWaveTransition */,
 				97A36CF819606DDE00AF6AF8 /* UAProgressView */,
 				97A36CD5195F47FF00AF6AF8 /* BFNavigationBarDrawer */,
@@ -456,9 +474,11 @@
 				97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
+				979DED221963A46F0055AD39 /* UIScrollView+EmptyDataSet.m in Sources */,
 				976687EA194FBB4D00B5A843 /* MusicViewLoadingController.m in Sources */,
 				9799979219611E6200360BF8 /* UITableViewCellPlaylistSong.m in Sources */,
 				97A36CFB19606DFA00AF6AF8 /* UAProgressView.m in Sources */,
+				979DED251963A4D50055AD39 /* UIViewControllerSonglist.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				979997981961B18700360BF8 /* AMWaveTransition.m in Sources */,
 				97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */,

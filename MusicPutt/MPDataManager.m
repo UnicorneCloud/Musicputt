@@ -11,7 +11,7 @@
 
 @implementation MPDataManager
 {
-    
+    bool musicviewcontrollervisible;
 }
 
 
@@ -26,7 +26,19 @@
     // init current playing toolbar
     _currentPlayingToolbar = [[CurrentPlayingToolBar alloc] init];
     
+    musicviewcontrollervisible = false;
+    
     return retval;
+}
+
+- (bool) isMusicViewControllerVisible
+{
+    return musicviewcontrollervisible;
+}
+
+- (void) setMusicViewControllerVisible:(bool) visible
+{
+    musicviewcontrollervisible = visible;
 }
 
 

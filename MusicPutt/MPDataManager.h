@@ -18,6 +18,8 @@
 @property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
 @property (strong, nonatomic) CurrentPlayingToolBar*  currentPlayingToolbar;
 
--(bool) initialise;
+- (bool) initialise;
+- (bool) isMusicViewControllerVisible;
+- (void) setMusicViewControllerVisible:(bool) visible;
 
 @end
