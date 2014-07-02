@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIViewControllerTabbar.h"
+#import "UIViewControllerToolbar.h"
 
-@interface UIViewControllerPlaylist : UIViewControllerTabbar
+@interface UIViewControllerPlaylist : UIViewControllerToolbar
 
 
 

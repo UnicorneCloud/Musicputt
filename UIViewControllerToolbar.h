@@ -10,7 +10,7 @@
 #import "AMWaveViewController.h"
 #import "CurrentPlayingToolBar.h"
 
-@interface UIViewControllerTabbar : AMWaveViewController
+@interface UIViewControllerToolbar : AMWaveViewController
 {
     CurrentPlayingToolBar*  currentPlayingToolBar;
     UITableView*            toolbarTableView;

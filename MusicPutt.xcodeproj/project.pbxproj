@@ -25,7 +25,7 @@
 		9799979219611E6200360BF8 /* UITableViewCellPlaylistSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 9799979119611E6200360BF8 /* UITableViewCellPlaylistSong.m */; };
 		979997981961B18700360BF8 /* AMWaveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 979997951961B18700360BF8 /* AMWaveTransition.m */; };
 		979997991961B18700360BF8 /* AMWaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979997971961B18700360BF8 /* AMWaveViewController.m */; };
-		9799979C1961BA8A00360BF8 /* UIViewControllerTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9799979B1961BA8A00360BF8 /* UIViewControllerTabbar.m */; };
+		9799979C1961BA8A00360BF8 /* UIViewControllerToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9799979B1961BA8A00360BF8 /* UIViewControllerToolbar.m */; };
 		97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */; };
 		97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CC9195F37F000AF6AF8 /* UIViewControllerPlaylist.m */; };
 		97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36CDB195F560D00AF6AF8 /* CurrentPlayingToolBar.m */; };
@@ -77,8 +77,8 @@
 		979997951961B18700360BF8 /* AMWaveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMWaveTransition.m; path = MusicPutt/extern/AMWaveTransition/AMWaveTransition.m; sourceTree = "<group>"; };
 		979997961961B18700360BF8 /* AMWaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMWaveViewController.h; path = MusicPutt/extern/AMWaveTransition/AMWaveViewController.h; sourceTree = "<group>"; };
 		979997971961B18700360BF8 /* AMWaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMWaveViewController.m; path = MusicPutt/extern/AMWaveTransition/AMWaveViewController.m; sourceTree = "<group>"; };
-		9799979A1961BA8A00360BF8 /* UIViewControllerTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerTabbar.h; sourceTree = "<group>"; };
-		9799979B1961BA8A00360BF8 /* UIViewControllerTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerTabbar.m; sourceTree = "<group>"; };
+		9799979A1961BA8A00360BF8 /* UIViewControllerToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerToolbar.h; sourceTree = "<group>"; };
+		9799979B1961BA8A00360BF8 /* UIViewControllerToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerToolbar.m; sourceTree = "<group>"; };
 		9799979D1962086E00360BF8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		97A36CBD195D1A9B00AF6AF8 /* UIImageViewArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewArtwork.h; sourceTree = "<group>"; };
 		97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewArtwork.m; sourceTree = "<group>"; };
@@ -323,8 +323,8 @@
 			children = (
 				97A36D0019609F5B00AF6AF8 /* UIColor+CreateMethods.h */,
 				97A36D0119609F5B00AF6AF8 /* UIColor+CreateMethods.m */,
-				9799979A1961BA8A00360BF8 /* UIViewControllerTabbar.h */,
-				9799979B1961BA8A00360BF8 /* UIViewControllerTabbar.m */,
+				9799979A1961BA8A00360BF8 /* UIViewControllerToolbar.h */,
+				9799979B1961BA8A00360BF8 /* UIViewControllerToolbar.m */,
 			);
 			name = tools;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 				97A36CE3195F902600AF6AF8 /* UIViewControllerPlaylistSong.m in Sources */,
 				97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */,
 				97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */,
-				9799979C1961BA8A00360BF8 /* UIViewControllerTabbar.m in Sources */,
+				9799979C1961BA8A00360BF8 /* UIViewControllerToolbar.m in Sources */,
 				97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

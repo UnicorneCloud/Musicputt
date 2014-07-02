@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "UIViewControllerTabbar.h"
+#import "UIViewControllerToolbar.h"
 #import "CurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface UIViewControllerTabbar ()
+@interface UIViewControllerToolbar ()
 {
     BOOL isShowTabbar;
 }
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation UIViewControllerTabbar
+@implementation UIViewControllerToolbar
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
