@@ -15,10 +15,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView*       imageview;
 
-@property (weak, nonatomic) IBOutlet UIView*            currentSongView;
+@property (weak, nonatomic) IBOutlet UIView*            currentsongview;
 @property (weak, nonatomic) IBOutlet UILabel*           songtitle;
 @property (weak, nonatomic) IBOutlet UILabel*           artistalbum;
 
+@property (weak, nonatomic) IBOutlet UIView*            controlview;
 @property (weak, nonatomic) IBOutlet UILabel*           curtime;
 @property (weak, nonatomic) IBOutlet UILabel*           endtime;
 @property (weak, nonatomic) IBOutlet UIProgressView*    progresstime;

@@ -9,8 +9,8 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="MusicViewLoadingController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="j1E-RE-mXv"/>
-                        <viewControllerLayoutGuide type="bottom" id="p0b-Vf-jTW"/>
+                        <viewControllerLayoutGuide type="top" id="beU-er-L1a"/>
+                        <viewControllerLayoutGuide type="bottom" id="nzT-pO-rkK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="82O-4N-WXt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -40,19 +40,23 @@
             <objects>
                 <viewController storyboardIdentifier="Song" title="Song name" id="kL3-qe-v8G" customClass="MusicViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="acT-yD-PcF"/>
-                        <viewControllerLayoutGuide type="bottom" id="vgb-Hw-hOp"/>
+                        <viewControllerLayoutGuide type="top" id="wk2-fN-fUL"/>
+                        <viewControllerLayoutGuide type="bottom" id="XTP-4d-HF6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aS1-fT-rwE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-ah-ZhC">
-                                <rect key="frame" x="-75" y="64" width="470" height="477"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-ah-ZhC">
+                                <rect key="frame" x="-65" y="65" width="450" height="453"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="453" id="6dK-kr-hLN"/>
+                                    <constraint firstAttribute="width" constant="450" id="IST-gs-x9f"/>
+                                </constraints>
                             </imageView>
-                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-na-pPy">
-                                <rect key="frame" x="0.0" y="399" width="320" height="46"/>
+                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-na-pPy">
+                                <rect key="frame" x="0.0" y="400" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="9Fw-LK-mqf">
@@ -71,9 +75,13 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="5wI-k3-6cE"/>
+                                    <constraint firstAttribute="height" constant="46" id="gwy-ee-xgL"/>
+                                </constraints>
                             </view>
-                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO">
-                                <rect key="frame" x="0.0" y="445" width="320" height="74"/>
+                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO">
+                                <rect key="frame" x="0.0" y="446" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOr-t9-xfT">
@@ -148,16 +156,27 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="eg6-fM-bA7"/>
+                                    <constraint firstAttribute="width" constant="320" id="yGY-hc-nfC"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="zrT-na-pPy" firstAttribute="leading" secondItem="aS1-fT-rwE" secondAttribute="leading" id="OrH-89-FtY"/>
+                            <constraint firstAttribute="bottom" secondItem="n8M-i6-VAO" secondAttribute="bottom" constant="48" id="TRV-XE-ggv"/>
+                            <constraint firstAttribute="bottom" secondItem="zrT-na-pPy" secondAttribute="bottom" constant="122" id="agK-Er-kJu"/>
+                            <constraint firstItem="zrT-na-pPy" firstAttribute="leading" secondItem="n8M-i6-VAO" secondAttribute="leading" id="vVg-ZA-GY1"/>
+                            <constraint firstItem="zrT-na-pPy" firstAttribute="centerX" secondItem="nnY-ah-ZhC" secondAttribute="centerX" id="vyj-Dg-Jhm"/>
+                            <constraint firstAttribute="bottom" secondItem="nnY-ah-ZhC" secondAttribute="bottom" constant="50" id="wrK-5P-6cw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nhy-t2-tJo"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="artistalbum" destination="Qfj-YC-b5d" id="k20-QZ-e57"/>
-                        <outlet property="currentSongView" destination="zrT-na-pPy" id="dxy-3H-lrR"/>
+                        <outlet property="controlview" destination="n8M-i6-VAO" id="M5J-kJ-4LD"/>
+                        <outlet property="currentsongview" destination="zrT-na-pPy" id="FRH-tc-4TG"/>
                         <outlet property="curtime" destination="FTj-rR-Dms" id="PjA-2a-xcg"/>
                         <outlet property="endtime" destination="3JP-3c-jRS" id="6Ch-Jq-DXc"/>
                         <outlet property="fastfoward" destination="NOr-t9-xfT" id="TuB-am-wEu"/>
@@ -179,8 +198,8 @@
             <objects>
                 <viewController id="mQb-n1-7dN" customClass="UIViewControllerPlaylist" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xm5-km-NEP"/>
-                        <viewControllerLayoutGuide type="bottom" id="AUq-vv-Wh0"/>
+                        <viewControllerLayoutGuide type="top" id="nxA-8P-Gb0"/>
+                        <viewControllerLayoutGuide type="bottom" id="pDk-Li-nTU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6IN-MD-8IH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -249,8 +268,8 @@
             <objects>
                 <viewController id="NPJ-YI-DcX" customClass="UIViewControllerPlaylistSong" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xB6-lm-G4w"/>
-                        <viewControllerLayoutGuide type="bottom" id="njy-2z-PHy"/>
+                        <viewControllerLayoutGuide type="top" id="Dkx-qu-aXw"/>
+                        <viewControllerLayoutGuide type="bottom" id="jl9-sf-NZV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YA6-6z-LxF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -335,7 +354,7 @@
                         <segue destination="5Su-im-Pzc" kind="relationship" relationship="viewControllers" id="Glf-IF-bnc"/>
                         <segue destination="Cjd-xt-q5q" kind="relationship" relationship="viewControllers" id="ZSb-L6-1c6"/>
                         <segue destination="6Yh-D2-FN2" kind="relationship" relationship="viewControllers" id="6kb-YN-taI"/>
-                        <segue destination="wuG-WM-9ha" kind="relationship" relationship="viewControllers" id="4wl-O8-OnS"/>
+                        <segue destination="MBT-Kv-xOF" kind="relationship" relationship="viewControllers" id="9BT-HJ-Mwb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBk-UF-UHg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,8 +366,8 @@
             <objects>
                 <viewController id="Dl7-vJ-VJv" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KKQ-xv-tQe"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qok-Po-Ojn"/>
+                        <viewControllerLayoutGuide type="top" id="Gtb-9A-d83"/>
+                        <viewControllerLayoutGuide type="bottom" id="768-Sh-kkf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VJF-gq-1kl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -431,8 +450,8 @@
             <objects>
                 <viewController id="Dkf-df-RHb" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PdQ-Ft-MTA"/>
-                        <viewControllerLayoutGuide type="bottom" id="vvr-SG-iNs"/>
+                        <viewControllerLayoutGuide type="top" id="wY1-pq-76X"/>
+                        <viewControllerLayoutGuide type="bottom" id="WUu-pQ-hZf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nDo-lF-V13">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -460,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSb-OB-4iG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1997" y="1442"/>
+            <point key="canvasLocation" x="1997" y="1460"/>
         </scene>
         <!--Table View Controller - Artist name-->
         <scene sceneID="sPV-aX-Hyc">
@@ -530,23 +549,23 @@
             <point key="canvasLocation" x="1574" y="-611"/>
         </scene>
         <!--Navigation Controller - Album-->
-        <scene sceneID="ZyC-dm-dq3">
+        <scene sceneID="pYf-MM-ncf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wuG-WM-9ha" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Album" image="album" id="zz4-bv-7ic"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MBT-Kv-xOF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Album" image="album" id="vt8-De-cbE"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2a0-YD-Zyt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WDE-UT-wdc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Dkf-df-RHb" kind="relationship" relationship="rootViewController" id="4HX-fh-0S1"/>
+                        <segue destination="Dkf-df-RHb" kind="relationship" relationship="rootViewController" id="xMy-ZX-1RK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pvg-CR-dIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ag1-89-OMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="1442"/>
+            <point key="canvasLocation" x="1574" y="1460"/>
         </scene>
     </scenes>
     <resources>
