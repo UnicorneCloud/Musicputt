@@ -46,6 +46,17 @@
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateCurrentTime];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [notificationCenter
@@ -67,14 +78,22 @@
                                    selector:@selector(updateCurrentTime)
                                    userInfo: nil
                                     repeats:YES];
-    
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
-- (void)didReceiveMemoryWarning
+- (void) viewWillDisappear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // desabled notification if view is not visible.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver: self
+     name:           MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+     object:         [[_del mpdatamanager] musicplayer]];
+    
+    [[NSNotificationCenter defaultCenter]
+     removeObserver: self
+     name:           MPMusicPlayerControllerPlaybackStateDidChangeNotification
+     object:         [[_del mpdatamanager] musicplayer]];
+    
+    [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
 }
 
 

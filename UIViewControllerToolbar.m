@@ -40,6 +40,21 @@
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
     
+    isShowTabbar = false;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
     // setup Notification for NowPlayingItem
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
@@ -56,21 +71,6 @@
      object:      [[_del mpdatamanager] musicplayer]];
     
     [[[_del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
-    
-    isShowTabbar = false;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // setup currentPlayingToolBar
     currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
@@ -108,6 +108,20 @@
     // setup currentPlayingToolBar
     currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
     [currentPlayingToolBar hideAnimated:YES];
+    
+    
+    // desabled notification if view is not visible.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver: self
+     name:           MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+     object:         [[_del mpdatamanager] musicplayer]];
+    
+    [[NSNotificationCenter defaultCenter]
+     removeObserver: self
+     name:           MPMusicPlayerControllerPlaybackStateDidChangeNotification
+     object:         [[_del mpdatamanager] musicplayer]];
+    
+    [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
 
 }
 
