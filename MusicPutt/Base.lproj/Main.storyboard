@@ -228,7 +228,7 @@
                                                     <color key="textColor" red="0.37918223509999999" green="0.0" blue="0.01786659027" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artists" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwY-DE-Fx5">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X track(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwY-DE-Fx5">
                                                     <rect key="frame" x="71" y="33" width="216" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -239,7 +239,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imageview" destination="Wxi-Nv-IKq" id="YaD-Uj-2jX"/>
-                                            <outlet property="playlistartist" destination="rwY-DE-Fx5" id="ffk-U2-GXb"/>
+                                            <outlet property="playlistnbtracks" destination="rwY-DE-Fx5" id="YbJ-4V-gs0"/>
                                             <outlet property="playlisttitle" destination="401-wc-YiR" id="pCX-39-icd"/>
                                             <segue destination="NPJ-YI-DcX" kind="push" id="B0d-44-jHG"/>
                                         </connections>

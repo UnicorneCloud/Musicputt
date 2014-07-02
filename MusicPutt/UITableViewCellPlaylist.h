@@ -12,6 +12,6 @@
 
 @property (weak,nonatomic) IBOutlet UIImageView* imageview;
 @property (weak,nonatomic) IBOutlet UILabel* playlisttitle;
-@property (weak,nonatomic) IBOutlet UILabel* playlistartist;
+@property (weak,nonatomic) IBOutlet UILabel* playlistnbtracks;
 
 @end

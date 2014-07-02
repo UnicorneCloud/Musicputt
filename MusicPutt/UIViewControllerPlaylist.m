@@ -94,6 +94,7 @@
     UITableViewCellPlaylist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylist"];
     MPMediaPlaylist* item =  playlists[indexPath.row];
     cell.playlisttitle.text = [item valueForProperty:MPMediaPlaylistPropertyName];
+    cell.playlistnbtracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)item.count];
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaPlaylistPropertyName]);
     return cell;
 }
