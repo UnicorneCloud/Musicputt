@@ -155,14 +155,15 @@
             long minutes = currentTime / 60;
             long seconds = (int)currentTime % 60;
             
-            NSString *currentTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
-            [_curtime setText:currentTime];
+            NSString *strCurrentTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+            [_curtime setText:strCurrentTime];
             
             // set endtime
-            minutes = [duration integerValue] / 60;
-            seconds = [duration integerValue] % 60;
+            double timerest = [duration integerValue] - currentTime;
+            minutes = timerest / 60;
+            seconds = (int)timerest % 60;
             
-            NSString *enddingTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+            NSString *enddingTime = [NSString stringWithFormat:@"-%ld:%02ld", minutes, seconds];
             [_endtime setText:enddingTime];
         }
     }
