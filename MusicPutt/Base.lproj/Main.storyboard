@@ -55,7 +55,7 @@
                                     <constraint firstAttribute="width" constant="450" id="IST-gs-x9f"/>
                                 </constraints>
                             </imageView>
-                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-na-pPy">
+                            <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-na-pPy">
                                 <rect key="frame" x="0.0" y="400" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -80,7 +80,7 @@
                                     <constraint firstAttribute="height" constant="46" id="gwy-ee-xgL"/>
                                 </constraints>
                             </view>
-                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO">
+                            <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO">
                                 <rect key="frame" x="0.0" y="446" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -196,7 +196,7 @@
         <!--View Controller Playlist - Playlist-->
         <scene sceneID="CQm-SL-6VW">
             <objects>
-                <viewController id="mQb-n1-7dN" customClass="UIViewControllerPlaylist" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Playlist" id="mQb-n1-7dN" customClass="UIViewControllerPlaylist" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nxA-8P-Gb0"/>
                         <viewControllerLayoutGuide type="bottom" id="pDk-Li-nTU"/>
@@ -387,11 +387,18 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Dl7-vJ-VJv" id="Kgz-v5-DR7"/>
+                                    <outlet property="delegate" destination="Dl7-vJ-VJv" id="dtP-aG-fSk"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Song list" id="rc4-KU-pst"/>
+                    <connections>
+                        <outlet property="tableView" destination="x3y-hJ-mpb" id="dsj-ky-5K9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xmb-Fp-dfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,7 +10,6 @@
 #import "CurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 #import "UITableViewCellPlaylist.h"
-
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface UIViewControllerPlaylist () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
