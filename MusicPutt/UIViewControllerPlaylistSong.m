@@ -125,6 +125,8 @@
     
     [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
     
+    self.del.mpdatamanager.currentSonglist = list;
+    
     [[[self.del mpdatamanager] musicplayer] play];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");

@@ -9,6 +9,7 @@
 #import "UIViewControllerSonglist.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIViewControllerPlaylist.h"
+#import "UITableViewCellSong.h"
 #import "AppDelegate.h"
 
 @interface UIViewControllerSonglist ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -39,14 +40,26 @@
     
     // setup title
     [self setTitle:@"Songlist"];
-
     
+    // setup tableview
+    toolbarTableView = _tableView;
+    
+    // setup empty view
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
     
+    // setup table to permit row move
+    [self.tableView setEditing:YES animated:YES];
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +67,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UITableView - Move cell
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+
+}
+
 
 #pragma mark - AMWaveViewController
 
@@ -66,13 +97,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.del.mpdatamanager.currentSonglist.count;
 }
 
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    NSArray* songs = self.del.mpdatamanager.currentSonglist;
+    UITableViewCellSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellSong"];
+    MPMediaItem* item = songs[indexPath.row];
+    cell.title.text = [item valueForProperty:MPMediaItemPropertyTitle];
+    cell.artist.text = [item valueForProperty:MPMediaItemPropertyArtist];
+    cell.album.text = [item valueForProperty:MPMediaItemPropertyAlbumTitle];
+    
+    UIImage* image;
+    MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
+    if (artwork)
+        image = [artwork imageWithSize:[cell.imageview frame].size];
+    if (image.size.height>0 && image.size.width>0) // check if image present
+        [cell.imageview setImage:image];
+    else
+        [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
+    
+    return cell;
 }
 
 
@@ -140,13 +187,13 @@
     
     return YES;
 }
-
+*/
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
 {
     
     return YES;
 }
-*/
+
 
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
 {
