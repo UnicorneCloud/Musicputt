@@ -95,6 +95,25 @@
     MPMediaPlaylist* item =  playlists[indexPath.row];
     cell.playlisttitle.text = [item valueForProperty:MPMediaPlaylistPropertyName];
     cell.playlistnbtracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)item.count];
+    
+    if(item.count>0)
+    {
+        UIImage* image;
+        MPMediaItem* song = item.items[0]; // 0 to keep firts item in playlist
+        MPMediaItemArtwork *artwork = [song valueForProperty:MPMediaItemPropertyArtwork];
+        if (artwork)
+            image = [artwork imageWithSize:[cell.imageview frame].size];
+        if (image.size.height>0 && image.size.width>0) // check if image present
+            [cell.imageview setImage:image];
+        else
+            [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
+    }
+    else
+    {
+        [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
+    }
+    
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaPlaylistPropertyName]);
     return cell;
 }

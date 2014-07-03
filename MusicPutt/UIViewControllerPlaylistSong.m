@@ -78,7 +78,7 @@
 - (UITableViewCellPlaylistSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellPlaylistSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylistSong"];
-    MPMediaItem* item =  songs[indexPath.row];
+    MPMediaItem* item = songs[indexPath.row];
     cell.title.text = [item valueForProperty:MPMediaItemPropertyTitle];
     cell.artist.text = [item valueForProperty:MPMediaItemPropertyArtist];
     cell.album.text = [item valueForProperty:MPMediaItemPropertyAlbumTitle];
