@@ -17,6 +17,7 @@
 @property (strong, nonatomic) MPMusicPlayerController* musicplayer;
 @property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
 @property (strong, nonatomic) CurrentPlayingToolBar*  currentPlayingToolbar;
+@property (strong, nonatomic) NSMutableArray* currentSonglist;
 
 - (bool) initialise;
 - (bool) isMusicViewControllerVisible;
