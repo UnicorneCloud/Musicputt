@@ -57,6 +57,10 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    [[self.del mpdatamanager] setMusicViewControllerVisible:true];
+    
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [notificationCenter
@@ -79,11 +83,15 @@
                                    userInfo: nil
                                     repeats:YES];
     
-    [[self.del mpdatamanager] setMusicViewControllerVisible:true];
+    // update current playing song display
+    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    [self updateCurrentTime];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
     // desabled notification if view is not visible.
     [[NSNotificationCenter defaultCenter]
      removeObserver: self
