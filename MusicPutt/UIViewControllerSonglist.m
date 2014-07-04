@@ -52,7 +52,7 @@
     self.tableView.tableFooterView = [UIView new];
     
     // setup table to permit row move
-    [self.tableView setEditing:YES animated:YES];
+    [self.tableView setEditing:NO animated:YES];
     
 }
 
@@ -187,13 +187,13 @@
     
     return YES;
 }
-*/
+
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
 {
     
     return YES;
 }
-
+*/
 
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
 {
