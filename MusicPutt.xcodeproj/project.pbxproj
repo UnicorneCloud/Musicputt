@@ -41,6 +41,8 @@
 		97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A36D0119609F5B00AF6AF8 /* UIColor+CreateMethods.m */; };
 		97AC0C3C195A493800BA60E6 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AC0C3B195A493800BA60E6 /* MusicViewController.m */; };
 		97AF57B61960A53A002978E8 /* UITableViewCellPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AF57B51960A53A002978E8 /* UITableViewCellPlaylist.m */; };
+		D537F13E1964E84400DC9EE7 /* UIViewControllerArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */; };
+		D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,10 @@
 		97AC0C3B195A493800BA60E6 /* MusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicViewController.m; sourceTree = "<group>"; };
 		97AF57B41960A53A002978E8 /* UITableViewCellPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellPlaylist.h; sourceTree = "<group>"; };
 		97AF57B51960A53A002978E8 /* UITableViewCellPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellPlaylist.m; sourceTree = "<group>"; };
+		D537F13C1964E84400DC9EE7 /* UIViewControllerArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerArtist.h; sourceTree = "<group>"; };
+		D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerArtist.m; sourceTree = "<group>"; };
+		D537F1421964FF7900DC9EE7 /* UITableViewCellArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellArtist.h; sourceTree = "<group>"; };
+		D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellArtist.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +250,10 @@
 		9799978B1960F61800360BF8 /* Artist */ = {
 			isa = PBXGroup;
 			children = (
+				D537F13C1964E84400DC9EE7 /* UIViewControllerArtist.h */,
+				D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */,
+				D537F1421964FF7900DC9EE7 /* UITableViewCellArtist.h */,
+				D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */,
 			);
 			name = Artist;
 			sourceTree = "<group>";
@@ -485,12 +495,14 @@
 				9799979219611E6200360BF8 /* UITableViewCellPlaylistSong.m in Sources */,
 				97A36CFB19606DFA00AF6AF8 /* UAProgressView.m in Sources */,
 				979DED251963A4D50055AD39 /* UIViewControllerSonglist.m in Sources */,
+				D537F13E1964E84400DC9EE7 /* UIViewControllerArtist.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				979997981961B18700360BF8 /* AMWaveTransition.m in Sources */,
 				97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
 				97A36CE3195F902600AF6AF8 /* UIViewControllerPlaylistSong.m in Sources */,
 				97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */,
+				D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */,
 				97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */,
 				9799979C1961BA8A00360BF8 /* UIViewControllerToolbar.m in Sources */,
 				97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */,
