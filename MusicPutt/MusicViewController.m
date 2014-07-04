@@ -57,6 +57,10 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    [[self.del mpdatamanager] setMusicViewControllerVisible:true];
+    
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [notificationCenter
@@ -79,11 +83,15 @@
                                    userInfo: nil
                                     repeats:YES];
     
-    [[self.del mpdatamanager] setMusicViewControllerVisible:true];
+    // update current playing song display
+    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    [self updateCurrentTime];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
     // desabled notification if view is not visible.
     [[NSNotificationCenter defaultCenter]
      removeObserver: self
@@ -155,14 +163,15 @@
             long minutes = currentTime / 60;
             long seconds = (int)currentTime % 60;
             
-            NSString *currentTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
-            [_curtime setText:currentTime];
+            NSString *strCurrentTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+            [_curtime setText:strCurrentTime];
             
             // set endtime
-            minutes = [duration integerValue] / 60;
-            seconds = [duration integerValue] % 60;
+            double timerest = [duration integerValue] - currentTime;
+            minutes = timerest / 60;
+            seconds = (int)timerest % 60;
             
-            NSString *enddingTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+            NSString *enddingTime = [NSString stringWithFormat:@"-%ld:%02ld", minutes, seconds];
             [_endtime setText:enddingTime];
         }
     }
