@@ -12,7 +12,7 @@
 
 @property (weak,nonatomic) IBOutlet UIImageView* imageview;
 @property (weak,nonatomic) IBOutlet UILabel* artistName;
-@property (weak,nonatomic) IBOutlet UILabel* nbAlbum;
+@property (weak,nonatomic) IBOutlet UILabel* nbAlbums;
 @property (weak,nonatomic) IBOutlet UILabel* nbTracks;
 
 @end
