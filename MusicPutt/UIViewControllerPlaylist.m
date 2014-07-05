@@ -69,6 +69,14 @@
     
 }
 
+- (IBAction)addPlaylistToSonglist:(id)sender
+{
+    MPMediaPlaylist* item =  playlists[0];
+    for (int i=0 ; i<=item.items.count ; i++) {
+        [[[self.del mpdatamanager] currentSonglist] addObject:item.items[i]];
+    }
+}
+
 
 #pragma mark - AMWaveViewController
 
@@ -92,6 +100,7 @@
     MPMediaPlaylist* item =  playlists[indexPath.row];
     cell.playlisttitle.text = [item valueForProperty:MPMediaPlaylistPropertyName];
     cell.playlistnbtracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)item.count];
+    cell.uid = [item valueForProperty:MPMediaPlaylistPropertyPersistentID];
     
     if(item.count>0)
     {

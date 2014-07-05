@@ -13,6 +13,9 @@
 #import "AppDelegate.h"
 
 @interface UIViewControllerSonglist ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+{
+    UIBarButtonItem* editButton;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
 @property AppDelegate* del;
@@ -51,8 +54,8 @@
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
     
-    // setup table to permit row move
-    [self.tableView setEditing:NO animated:YES];
+    // setup right edit button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleDone target:self action:@selector(editPressed)];
     
 }
 
@@ -66,6 +69,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) editPressed
+{
+    
+    if (self.del.mpdatamanager.currentSonglist.count == 0) {
+        self.tabBarController.selectedIndex = 1;
+    }
+    else {
+        // setup table to permit row move
+        [self.tableView setEditing:![self.tableView isEditing] animated:YES];
+        
+    }
 }
 
 #pragma mark - UITableView - Move cell

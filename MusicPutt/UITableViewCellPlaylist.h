@@ -14,4 +14,6 @@
 @property (weak,nonatomic) IBOutlet UILabel* playlisttitle;
 @property (weak,nonatomic) IBOutlet UILabel* playlistnbtracks;
 
+@property (weak,nonatomic) NSNumber* uid;
+
 @end

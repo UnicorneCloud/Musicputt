@@ -222,19 +222,26 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playlist Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="401-wc-YiR">
-                                                    <rect key="frame" x="71" y="11" width="216" height="21"/>
+                                                    <rect key="frame" x="71" y="11" width="188" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.37918223509999999" green="0.0" blue="0.01786659027" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X track(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwY-DE-Fx5">
-                                                    <rect key="frame" x="71" y="33" width="216" height="21"/>
+                                                    <rect key="frame" x="71" y="33" width="188" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2V-fn-U46">
+                                                    <rect key="frame" x="261" y="17" width="27" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="plus">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -361,7 +368,7 @@
             </objects>
             <point key="canvasLocation" x="907" y="100"/>
         </scene>
-        <!--View Controller Songlist - Song list-->
+        <!--View Controller Songlist - Title-->
         <scene sceneID="OAO-JX-xYe">
             <objects>
                 <viewController id="Dl7-vJ-VJv" customClass="UIViewControllerSonglist" sceneMemberID="viewController">
@@ -428,7 +435,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Song list" id="rc4-KU-pst"/>
+                    <navigationItem key="navigationItem" title="Title" id="RMn-Va-FJY"/>
                     <connections>
                         <outlet property="tableView" destination="x3y-hJ-mpb" id="dsj-ky-5K9"/>
                     </connections>
@@ -615,6 +622,7 @@
         <image name="fast_forward" width="64" height="64"/>
         <image name="play" width="64" height="64"/>
         <image name="playlist" width="25" height="25"/>
+        <image name="plus" width="64" height="64"/>
         <image name="repeat" width="64" height="64"/>
         <image name="rewind" width="64" height="64"/>
         <image name="shuffle" width="64" height="64"/>
