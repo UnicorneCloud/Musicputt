@@ -9,13 +9,13 @@
 #import "UIViewControllerArtist.h"
 #import "UITableViewCellArtist.h"
 #import "AppDelegate.h"
-//#import <MediaPlayer/MediaPlayer.h>
 #import <MediaPlayer/MPMediaQuery.h>
 
 @interface UIViewControllerArtist ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 {
     MPMediaQuery* everything;             // result of current query
     NSArray*      artists;
+    NSMutableDictionary *artistDictionary;
 }
 @property AppDelegate* del;
 @property (weak, nonatomic) IBOutlet UITableView*  tableView;
@@ -49,8 +49,25 @@
     
     // setup query playlist
     everything = [MPMediaQuery artistsQuery];
-    [everything setGroupingType:MPMediaGroupingAlbumArtist];
+    //[everything setGroupingType:MPMediaGroupingArtist];
     artists = [everything collections];
+    
+    // Initiate the dictionnairy and fill it.
+    artistDictionary = [NSMutableDictionary dictionary];
+    NSMutableSet *tempSet = [NSMutableSet set];
+    
+    [artists enumerateObjectsUsingBlock:^(MPMediaItemCollection *artistCollection, NSUInteger idx, BOOL *stop) {
+        NSString *artistName = [[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist];
+        
+        [[artistCollection items] enumerateObjectsUsingBlock:^(MPMediaItem *songItem, NSUInteger idx, BOOL *stop) {
+            NSString *albumName = [songItem valueForProperty:MPMediaItemPropertyAlbumTitle];
+            [tempSet addObject:albumName];
+        }];
+        [artistDictionary setValue:[NSNumber numberWithUnsignedInteger:[tempSet count]]
+                            forKey:artistName];
+        [tempSet removeAllObjects];
+    }];
+    NSLog(@"Artist Album Count Dictionary: %@", artistDictionary);
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -70,10 +87,30 @@
 - (UITableViewCellArtist*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellArtist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellArtist"];
-    MPMediaItem * item =  [artists[indexPath.row] representativeItem];
-    cell.artistName.text = [item valueForProperty:MPMediaPlaylistPropertyName];
-    //cell.nbTracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)item.count];
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaItemPropertyAlbumArtist]);
+    MPMediaItemCollection *collection = artists[indexPath.row];
+    MPMediaItem * item =  [collection representativeItem];
+    
+    if([collection count]>0)
+    {
+        UIImage* image;
+        MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
+        if (artwork)
+            image = [artwork imageWithSize:[cell.imageview frame].size];
+        if (image.size.height>0 && image.size.width>0) // check if image present
+            [cell.imageview setImage:image];
+        else
+            [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
+    }
+    else
+    {
+        [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
+    }
+    cell.artistName.text = [item valueForProperty:MPMediaItemPropertyArtist];
+    cell.nbAlbums.text = [NSString stringWithFormat:@"%@ album(s)", [artistDictionary objectForKey:(cell.artistName.text)]];
+    cell.nbTracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)[collection count]];
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaItemPropertyArtist]);
+    
+    NSLog(@"Album number : %@\n", [artistDictionary objectForKey:(cell.artistName.text)]);
     return cell;
 }
 /*
