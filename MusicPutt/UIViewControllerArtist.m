@@ -106,8 +106,27 @@
         [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
     }
     cell.artistName.text = [item valueForProperty:MPMediaItemPropertyArtist];
-    cell.nbAlbums.text = [NSString stringWithFormat:@"%@ album(s)", [artistDictionary objectForKey:(cell.artistName.text)]];
-    cell.nbTracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)[collection count]];
+    
+    int nbAlbums = [[artistDictionary objectForKey:(cell.artistName.text)] intValue];
+    if(nbAlbums>1)
+    {
+        cell.nbAlbums.text = [NSString stringWithFormat:@"%d albums", nbAlbums];
+    }
+    else
+    {
+        cell.nbAlbums.text = [NSString stringWithFormat:@"%d album", nbAlbums];
+    }
+    
+    int nbTracks = [collection count];
+    if(nbTracks>1)
+    {
+        cell.nbTracks.text = [NSString stringWithFormat:@"%d tracks", nbTracks];
+    }
+    else
+    {
+        cell.nbTracks.text = [NSString stringWithFormat:@"%d track", nbTracks];
+    }
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaItemPropertyArtist]);
     
     NSLog(@"Album number : %@\n", [artistDictionary objectForKey:(cell.artistName.text)]);
