@@ -67,7 +67,7 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
 	self.borderWidth = 1.0f;
 	self.lineWidth = 2.0f;
 	
-	//[self setupGestureRecognizer];
+	[self setupGestureRecognizer];
 	
 	[self tintColorDidChange];
 }

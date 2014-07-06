@@ -1,0 +1,5 @@
+#include "Pods-MusicPutt-AMWaveTransition.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AMWaveTransition" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AMWaveTransition" "${PODS_ROOT}/Headers/BFNavigationBarDrawer" "${PODS_ROOT}/Headers/DZNEmptyDataSet" "${PODS_ROOT}/Headers/UAProgressView"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}

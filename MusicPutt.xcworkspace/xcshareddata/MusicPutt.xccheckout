@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9F02604A-AFF0-4052-9CD9-67B5B1EE5787</string>
+	<string>01871F0C-7CDD-4AE7-9945-564551A0DB8E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MusicPutt</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/ericpinet/musicputt</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MusicPutt.xcodeproj/project.xcworkspace</string>
+	<string>MusicPutt.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F2A26DB4-ACC2-47FE-83E9-53855BAC24EE</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ericpinet/musicputt</string>

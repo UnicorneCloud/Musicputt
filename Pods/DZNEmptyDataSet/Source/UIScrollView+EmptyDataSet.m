@@ -24,7 +24,7 @@
 
 @property (nonatomic, assign) CGPoint offset;
 @property (nonatomic, assign) CGFloat verticalSpace;
-@property (nonatomic) BOOL didConfigureConstraints;
+@property (nonatomic, getter = didCenterToSuperview) BOOL centerToSuperview;
 
 - (void)cleanContent;
 
@@ -145,7 +145,6 @@
     if (_customView) {
         [_customView removeFromSuperview];
         _customView = nil;
-        return;
     }
     
     if (!view) {
@@ -202,8 +201,8 @@
     
     NSMutableDictionary *views = [NSMutableDictionary dictionaryWithDictionary:NSDictionaryOfVariableBindings(self,_contentView)];
     
-    if (!self.didConfigureConstraints) {
-        self.didConfigureConstraints = YES;
+    if (!self.didCenterToSuperview) {
+        self.centerToSuperview = YES;
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[self]-(<=0)-[_contentView]"
                                                                      options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
@@ -212,7 +211,7 @@
                                                                      options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     }
     
-    if (!CGPointEqualToPoint(self.offset, CGPointZero)) {
+    if (!CGPointEqualToPoint(self.offset, CGPointZero) && self.constraints.count == 4) {
         
         NSLayoutConstraint *hConstraint = self.constraints[3];
         hConstraint.constant = self.offset.x*-1;
@@ -335,6 +334,29 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 {
     UIView *view = objc_getAssociatedObject(self, kEmptyDataSetView);
     return !view.hidden;
+}
+
+- (BOOL)dzn_canDisplay
+{
+    if ([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]]) {
+        id source = self.emptyDataSetSource;
+        
+        if (source && [source conformsToProtocol:@protocol(DZNEmptyDataSetSource)]) {
+            return YES;
+        }
+        else {
+            return NO;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)dzn_shouldDisplay
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetShouldDisplay:)]) {
+        return [self.emptyDataSetDelegate emptyDataSetShouldDisplay:self];
+    }
+    return YES;
 }
 
 - (BOOL)dzn_isTouchAllowed
@@ -472,12 +494,17 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 {
     objc_setAssociatedObject(self, kEmptyDataSetSource, source, OBJC_ASSOCIATION_ASSIGN);
     
-    if (![self respondsToSelector:@selector(reloadData)] || ![source conformsToProtocol:@protocol(DZNEmptyDataSetSource)]) {
+    if (![self dzn_canDisplay]) {
         return;
     }
     
-    // We add method sizzling for detecting when -reloadData is called
-    [self swizzleReloadData];
+    // We add method sizzling for injecting -dzn_reloadData implementation to the native -reloadData implementation
+    [self swizzle:@selector(reloadData)];
+    
+    // If UITableView, we also inject -dzn_reloadData to -endUpdates
+    if ([self isKindOfClass:[UITableView class]]) {
+        [self swizzle:@selector(endUpdates)];
+    }
 }
 
 - (void)setEmptyDataSetDelegate:(id<DZNEmptyDataSetDelegate>)delegate
@@ -485,7 +512,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     objc_setAssociatedObject(self, kEmptyDataSetDelegate, delegate, OBJC_ASSOCIATION_ASSIGN);
     
     if (!delegate) {
-        [self invalidate];
+        [self dzn_invalidate];
     }
 }
 
@@ -513,7 +540,11 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 
 - (void)dzn_reloadEmptyDataSet
 {
-    if ([self dzn_itemsCount] == 0)
+    if (![self dzn_canDisplay]) {
+        return;
+    }
+    
+    if ([self dzn_shouldDisplay] && [self dzn_itemsCount] == 0)
     {
         DZNEmptyDataSetView *view = self.emptyDataSetView;
         UIView *customView = [self dzn_customView];
@@ -561,11 +592,11 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         self.scrollEnabled = [self dzn_isScrollAllowed];
     }
     else if (self.isEmptyDataSetVisible) {
-        [self invalidate];
+        [self dzn_invalidate];
     }
 }
 
-- (void)invalidate
+- (void)dzn_invalidate
 {
     if (self.emptyDataSetView) {
         [self.emptyDataSetView cleanContent];
@@ -580,23 +611,93 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 
 #pragma mark - ReloadData Method Swizzling
 
-// Based on Bryce Buchanan's swizzling technique from http://blog.newrelic.com/2014/04/16/right-way-to-swizzle/
-static IMP dzn_reloadData_original;
-void dzn_reloadData_replacement(id self, SEL _cmd)
+static NSMutableDictionary *_impLookupTable;
+static NSString *const DZNSwizzleInfoPointerKey = @"pointer";
+static NSString *const DZNSwizzleInfoOwnerKey = @"owner";
+static NSString *const DZNSwizzleInfoSelectorKey = @"selector";
+
+// Based on Bryce Buchanan's swizzling technique http://blog.newrelic.com/2014/04/16/right-way-to-swizzle/
+// And Juzzin's ideas https://github.com/juzzin/JUSEmptyViewController
+
+void dzn_original_implementation(id self, SEL _cmd)
 {
-    assert([NSStringFromSelector(_cmd) isEqualToString:@"reloadData"]);
+    // Fetch original implementation from lookup table
+    NSString *key = _implementationKey(self, _cmd);
+    
+    NSDictionary *swizzleInfo = [_impLookupTable objectForKey:key];
+    NSValue *impValue = [swizzleInfo valueForKey:DZNSwizzleInfoPointerKey];
+    
+    IMP impPointer = [impValue pointerValue];
+    
+    // If found, call original implementation
+    if (impPointer) {
+        ((void(*)(id,SEL))impPointer)(self,_cmd);
+    }
+    
+    // We then inject the additional implementation for reloading the empty dataset
     [self dzn_reloadEmptyDataSet];
-    return ((void(*)(id,SEL))dzn_reloadData_original)(self,_cmd);
 }
 
-- (void)swizzleReloadData
+NSString *_implementationKey(id target, SEL selector)
 {
-    // We make sure that setImplementation is called once
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Method method = class_getInstanceMethod([self class], @selector(reloadData));
-        dzn_reloadData_original = method_setImplementation(method, (IMP)dzn_reloadData_replacement);
-    });
+    if (!target || !selector) {
+        return nil;
+    }
+    
+    Class baseClass;
+    if ([target isKindOfClass:[UITableView class]]) baseClass = [UITableView class];
+    else if ([target isKindOfClass:[UICollectionView class]]) baseClass = [UICollectionView class];
+    else return nil;
+    
+    NSString *className = NSStringFromClass([baseClass class]);
+    
+    NSString *selectorName = NSStringFromSelector(selector);
+    return [NSString stringWithFormat:@"%@_%@",className,selectorName];
+}
+
+
+- (void)swizzle:(SEL)selector
+{
+    // Check if the target responds to selector
+    if (![self respondsToSelector:selector]) {
+        return;
+    }
+    
+    // Create the lookup table
+    if (!_impLookupTable) {
+        _impLookupTable = [[NSMutableDictionary alloc] initWithCapacity:2];
+    }
+    
+    // We make sure that setImplementation is called once per class kind, UITableView or UICollectionView.
+    for (NSDictionary *info in [_impLookupTable allValues]) {
+        Class class = [info objectForKey:DZNSwizzleInfoOwnerKey];
+        NSString *selectorName = [info objectForKey:DZNSwizzleInfoSelectorKey];
+        
+        if ([selectorName isEqualToString:NSStringFromSelector(selector)]) {
+            if ([self isKindOfClass:class]) {
+                return;
+            }
+        }
+    }
+    
+    NSString *key = _implementationKey(self, selector);
+    NSValue *impValue = [[_impLookupTable objectForKey:key] valueForKey:DZNSwizzleInfoPointerKey];
+    
+    // If the implementation for this class already exist, skip!!
+    if (impValue) {
+        return;
+    }
+    
+    // Swizzle by injecting additional implementation
+    Method method = class_getInstanceMethod([self class], selector);
+    IMP dzn_newImplementation = method_setImplementation(method, (IMP)dzn_original_implementation);
+    
+    // Store the new implementation in the lookup table
+    NSDictionary *swizzledInfo = @{DZNSwizzleInfoOwnerKey: [self class],
+                                   DZNSwizzleInfoSelectorKey: NSStringFromSelector(selector),
+                                   DZNSwizzleInfoPointerKey: [NSValue valueWithPointer:dzn_newImplementation]};
+    
+    [_impLookupTable setObject:swizzledInfo forKey:key];
 }
 
 

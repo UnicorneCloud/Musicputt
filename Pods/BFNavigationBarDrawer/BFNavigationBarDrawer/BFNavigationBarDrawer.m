@@ -8,8 +8,7 @@
 
 #import "BFNavigationBarDrawer.h"
 
-#define kAnimationDuration  0.5
-#define barDrawerHeight     60
+#define kAnimationDuration 0.3
 
 typedef NS_ENUM(NSInteger, BFNavigationBarDrawerState) {
 	BFNavigationBarDrawerStateHidden,	// The drawer is currently hidden behind the navigation bar, or not added to a view hierarchy yet.
@@ -42,7 +41,7 @@ typedef NS_ENUM(NSInteger, BFNavigationBarDrawerState) {
 
 - (id)init
 {
-    self = [self initWithFrame:CGRectMake(0, 0, 320, barDrawerHeight)];
+    self = [self initWithFrame:CGRectMake(0, 0, 320, 44)];
     return self;
 }
 
@@ -102,7 +101,7 @@ typedef NS_ENUM(NSInteger, BFNavigationBarDrawerState) {
 												 toItem:nil
 											  attribute:NSLayoutAttributeNotAnAttribute
 											 multiplier:1
-											   constant:barDrawerHeight];
+											   constant:44];
 	[self addConstraint:constraint];
 }
 
