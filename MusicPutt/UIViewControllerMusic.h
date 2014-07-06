@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImageViewArtwork.h"
 
-@interface MusicViewController : UIViewController
+@interface UIViewControllerMusic : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageViewArtwork* imageviewartwork;
 

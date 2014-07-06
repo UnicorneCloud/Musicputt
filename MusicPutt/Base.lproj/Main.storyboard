@@ -35,10 +35,10 @@
             </objects>
             <point key="canvasLocation" x="401" y="100"/>
         </scene>
-        <!--Music View Controller - Song name-->
+        <!--View Controller Music - Song name-->
         <scene sceneID="DNC-a1-kIR">
             <objects>
-                <viewController storyboardIdentifier="Song" title="Song name" id="kL3-qe-v8G" customClass="MusicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Song" title="Song name" id="kL3-qe-v8G" customClass="UIViewControllerMusic" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wk2-fN-fUL"/>
                         <viewControllerLayoutGuide type="bottom" id="XTP-4d-HF6"/>

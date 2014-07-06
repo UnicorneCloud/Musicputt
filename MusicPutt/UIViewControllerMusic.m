@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "MusicViewController.h"
+#import "UIViewControllerMusic.h"
 #import "AppDelegate.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <MediaPlayer/MPMediaItem.h>
 
-@interface MusicViewController ()
+@interface UIViewControllerMusic ()
 {
 }
 
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation MusicViewController
+@implementation UIViewControllerMusic
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

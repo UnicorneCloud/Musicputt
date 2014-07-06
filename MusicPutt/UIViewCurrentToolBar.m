@@ -9,7 +9,7 @@
 #import "UIViewCurrentToolBar.h"
 #import "AppDelegate.h"
 #import "UIColor+CreateMethods.h"
-#import "MusicViewController.h"
+#import "UIViewControllerMusic.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
@@ -178,7 +178,7 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
     [self.navigationController pushViewController:musicView animated:YES];
 }
 
@@ -187,7 +187,7 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
     [self.navigationController pushViewController:musicView animated:YES];
 }
 
@@ -197,7 +197,7 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
     [self.navigationController pushViewController:musicView animated:YES];
 }
 
@@ -207,7 +207,7 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MusicViewController *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"]; // @"SettingsListViewController" is the string you have set in above picture
+    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
     [self.navigationController pushViewController:musicView animated:YES];
 }
 
@@ -218,7 +218,6 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
     if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
         [player pause];
