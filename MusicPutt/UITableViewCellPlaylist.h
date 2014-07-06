@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class MPMediaPlaylist;
+
 @interface UITableViewCellPlaylist : UITableViewCell
 
 @property (weak,nonatomic) IBOutlet UIImageView* imageview;
@@ -15,5 +17,10 @@
 @property (weak,nonatomic) IBOutlet UILabel* playlistnbtracks;
 
 @property (weak,nonatomic) NSNumber* uid;
+
+
+- (void) setMediaItem:(MPMediaPlaylist*) mediaItem;
+- (MPMediaPlaylist*) getMediaItem;
+
 
 @end

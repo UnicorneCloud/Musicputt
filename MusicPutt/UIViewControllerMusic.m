@@ -44,7 +44,7 @@
     
     // update current playing song display
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
-    [self updateCurrentTime];
+    [self updateDisplay];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -79,13 +79,13 @@
     
     [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
-                                   selector:@selector(updateCurrentTime)
+                                   selector:@selector(updateDisplay)
                                    userInfo: nil
                                     repeats:YES];
     
     // update current playing song display
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
-    [self updateCurrentTime];
+    [self updateDisplay];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -143,7 +143,7 @@
     
 }
 
--(void) updateCurrentTime
+-(void) updateDisplay
 {
     // update current time with progress round
     NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
@@ -184,6 +184,31 @@
         [_playpause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
     else
         [_playpause setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+
+    
+    // update repeat button
+    if ([[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeDefault ||
+        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeAll ||
+        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeOne ) {
+        _repeat.opaque = false;
+        _repeat.alpha = 1.0;
+    }
+    else{
+        _repeat.opaque = false;
+        _repeat.alpha = 0.5;
+    }
+    
+    // update shuffle button
+    if ([[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeDefault ||
+        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeSongs ||
+        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeAlbums ) {
+        _shuffle.opaque = false;
+        _shuffle.alpha = 1.0;
+    }
+    else{
+        _shuffle.opaque = false;
+        _shuffle.alpha = 0.5;
+    }
 }
 
 
@@ -192,11 +217,38 @@
 - (IBAction)shufflePressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+    if ([[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeDefault ||
+        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeSongs ||
+        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeAlbums ) {
+        player.shuffleMode = MPMusicShuffleModeOff;
+        _shuffle.opaque = false;
+        _shuffle.alpha = 0.5;
+    }
+    else{
+        player.shuffleMode = MPMusicShuffleModeSongs;
+        _shuffle.opaque = false;
+        _shuffle.alpha = 1.0;
+    }
+    
 }
 
 - (IBAction)repeatPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+    if ([[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeDefault ||
+        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeAll ||
+        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeOne ) {
+        player.repeatMode = MPMusicRepeatModeNone;
+        _repeat.opaque = false;
+        _repeat.alpha = 0.5;
+    }
+    else{
+        player.repeatMode = MPMusicRepeatModeAll;
+        _repeat.opaque = false;
+        _repeat.alpha = 1.0;
+    }
 }
 
 

@@ -11,6 +11,5 @@
 
 @interface UIViewControllerPlaylist : UIViewControllerToolbar
 
-- (IBAction)addPlaylistToSonglist:(id)sender;
 
 @end
