@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-MusicPutt-AMWaveTransition.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MusicPutt-BFNavigationBarDrawer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MusicPutt-DZNEmptyDataSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MusicPutt-UAProgressView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MusicPutt.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>291B7263AAB54C57BEF8EDE6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3114C6FADE7D439BBD501647</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B450BCB44A041968A382C0E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5967C76F67A042A6BAAAA348</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62D3D3CC8BD0441EBF31DC6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

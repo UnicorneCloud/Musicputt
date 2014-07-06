@@ -1,0 +1,19 @@
+PODS:
+  - AMWaveTransition (0.5)
+  - BFNavigationBarDrawer (1.0.2)
+  - DZNEmptyDataSet (1.3.2)
+  - UAProgressView (0.1.1)
+
+DEPENDENCIES:
+  - AMWaveTransition
+  - BFNavigationBarDrawer
+  - DZNEmptyDataSet
+  - UAProgressView
+
+SPEC CHECKSUMS:
+  AMWaveTransition: 0c709a7e9b2eaf55b4f390006b7aef5f7a6074d7
+  BFNavigationBarDrawer: c59a8e9f8db3d60cd4641e78dba96de2f9bd483b
+  DZNEmptyDataSet: 187872be53d045fd1fccab0d1561659cd29a014a
+  UAProgressView: c393bc53d1cabc077279e957c5898a5bb7bdb3ce
+
+COCOAPODS: 0.33.1
