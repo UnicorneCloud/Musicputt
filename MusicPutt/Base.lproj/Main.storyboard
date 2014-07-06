@@ -38,7 +38,7 @@
         <!--View Controller Music - Song name-->
         <scene sceneID="DNC-a1-kIR">
             <objects>
-                <viewController storyboardIdentifier="Song" title="Song name" id="kL3-qe-v8G" customClass="UIViewControllerMusic" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Song" title="Song name" hidesBottomBarWhenPushed="YES" id="kL3-qe-v8G" customClass="UIViewControllerMusic" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wk2-fN-fUL"/>
                         <viewControllerLayoutGuide type="bottom" id="XTP-4d-HF6"/>
@@ -47,16 +47,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-ah-ZhC">
-                                <rect key="frame" x="-65" y="65" width="450" height="453"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-ah-ZhC">
+                                <rect key="frame" x="-30" y="64" width="380" height="383"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="453" id="6dK-kr-hLN"/>
-                                    <constraint firstAttribute="width" constant="450" id="IST-gs-x9f"/>
-                                </constraints>
                             </imageView>
-                            <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-na-pPy">
-                                <rect key="frame" x="0.0" y="400" width="320" height="46"/>
+                            <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-na-pPy">
+                                <rect key="frame" x="0.0" y="448" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="9Fw-LK-mqf">
@@ -75,13 +71,9 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="5wI-k3-6cE"/>
-                                    <constraint firstAttribute="height" constant="46" id="gwy-ee-xgL"/>
-                                </constraints>
                             </view>
-                            <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO">
-                                <rect key="frame" x="0.0" y="446" width="320" height="74"/>
+                            <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO">
+                                <rect key="frame" x="0.0" y="494" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOr-t9-xfT">
@@ -163,16 +155,9 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="zrT-na-pPy" firstAttribute="leading" secondItem="aS1-fT-rwE" secondAttribute="leading" id="OrH-89-FtY"/>
-                            <constraint firstAttribute="bottom" secondItem="n8M-i6-VAO" secondAttribute="bottom" constant="48" id="TRV-XE-ggv"/>
-                            <constraint firstAttribute="bottom" secondItem="zrT-na-pPy" secondAttribute="bottom" constant="122" id="agK-Er-kJu"/>
-                            <constraint firstItem="zrT-na-pPy" firstAttribute="leading" secondItem="n8M-i6-VAO" secondAttribute="leading" id="vVg-ZA-GY1"/>
-                            <constraint firstItem="zrT-na-pPy" firstAttribute="centerX" secondItem="nnY-ah-ZhC" secondAttribute="centerX" id="vyj-Dg-Jhm"/>
-                            <constraint firstAttribute="bottom" secondItem="nnY-ah-ZhC" secondAttribute="bottom" constant="50" id="wrK-5P-6cw"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nhy-t2-tJo"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="artistalbum" destination="Qfj-YC-b5d" id="k20-QZ-e57"/>
                         <outlet property="controlview" destination="n8M-i6-VAO" id="M5J-kJ-4LD"/>
@@ -191,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zpi-L9-6BL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3587" y="488"/>
+            <point key="canvasLocation" x="3089" y="364"/>
         </scene>
         <!--View Controller Playlist - Playlist-->
         <scene sceneID="CQm-SL-6VW">
