@@ -20,7 +20,7 @@
     UIImageView *playView;
     UIImageView *pauseView;
 }
-
+@property (nonatomic, copy) void (^didSelectBlock)(UAProgressView *progressView);
 @property AppDelegate* del;
 
 @end
@@ -83,6 +83,15 @@
                                    selector:@selector(updateCurrentTime)
                                    userInfo: nil
                                     repeats:YES];
+    
+    _progress.didSelectBlock = ^(UAProgressView *progressView){
+        MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        //if([player playbackState] == MPMoviePlaybackStatePlaying)
+        if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
+            [player pause];
+        else
+            [player play];
+    };
     
     
     
@@ -216,15 +225,17 @@
 - (void)progressPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    
+    /*
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
     if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
         [player pause];
     else
         [player play];
-    
+    */
 }
+
+
 
 
 
