@@ -46,6 +46,11 @@
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateDisplay];
     
+    // Detect tapgesture
+    _imageview.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGestureImageview = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewPressed)];
+    [_imageview addGestureRecognizer:tapGestureImageview];
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
@@ -86,6 +91,15 @@
     // update current playing song display
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateDisplay];
+    
+    
+    // prepare menubar with gradien to display Artist, Album, Listen more
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = _menubar.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], [[UIColor colorWithWhite:1 alpha:0] CGColor], nil];
+    _menubar.backgroundColor = [UIColor clearColor];
+    [_menubar.layer insertSublayer:gradient atIndex:0];
+    _menubar.hidden = true;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -291,6 +305,11 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     [player skipToNextItem];
+}
+
+- (void) imageViewPressed
+{
+    _menubar.hidden = !_menubar.isHidden;
 }
 
 

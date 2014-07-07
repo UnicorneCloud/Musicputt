@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIButton*          playpause;
 @property (weak, nonatomic) IBOutlet UIButton*          fastfoward;
 
+@property (weak, nonatomic) IBOutlet UIView*            menubar;
+
 - (IBAction)shufflePressed:(id)sender;
 - (IBAction)repeatPressed:(id)sender;
 - (IBAction)rewindPressed:(id)sender;
