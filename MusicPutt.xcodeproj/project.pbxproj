@@ -39,6 +39,7 @@
 		BBB27CA7FF3A48CFA03F0003 /* libPods-MusicPutt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F007E19973FA4492B118CA24 /* libPods-MusicPutt.a */; };
 		D537F13E1964E84400DC9EE7 /* UIViewControllerArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */; };
 		D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */; };
+		D596A5921968F24D00C55597 /* UIViewControllerArtistAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D596A5911968F24D00C55597 /* UIViewControllerArtistAlbum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerArtist.m; sourceTree = "<group>"; };
 		D537F1421964FF7900DC9EE7 /* UITableViewCellArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellArtist.h; sourceTree = "<group>"; };
 		D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellArtist.m; sourceTree = "<group>"; };
+		D596A5901968F24D00C55597 /* UIViewControllerArtistAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerArtistAlbum.h; sourceTree = "<group>"; };
+		D596A5911968F24D00C55597 /* UIViewControllerArtistAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerArtistAlbum.m; sourceTree = "<group>"; };
 		F007E19973FA4492B118CA24 /* libPods-MusicPutt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MusicPutt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -244,6 +247,8 @@
 				D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */,
 				D537F1421964FF7900DC9EE7 /* UITableViewCellArtist.h */,
 				D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */,
+				D596A5901968F24D00C55597 /* UIViewControllerArtistAlbum.h */,
+				D596A5911968F24D00C55597 /* UIViewControllerArtistAlbum.m */,
 			);
 			name = Artist;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				97A36CDC195F560D00AF6AF8 /* CurrentPlayingToolBar.m in Sources */,
 				976687E0194FBB4D00B5A843 /* main.m in Sources */,
+				D596A5921968F24D00C55597 /* UIViewControllerArtistAlbum.m in Sources */,
 				97A36CE3195F902600AF6AF8 /* UIViewControllerPlaylistSong.m in Sources */,
 				97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */,
 				D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */,

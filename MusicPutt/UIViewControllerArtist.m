@@ -107,7 +107,7 @@
     }
     cell.artistName.text = [item valueForProperty:MPMediaItemPropertyArtist];
     
-    int nbAlbums = [[artistDictionary objectForKey:(cell.artistName.text)] intValue];
+    NSUInteger nbAlbums = [[artistDictionary objectForKey:(cell.artistName.text)] intValue];
     if(nbAlbums>1)
     {
         cell.nbAlbums.text = [NSString stringWithFormat:@"%d albums", nbAlbums];
@@ -117,7 +117,7 @@
         cell.nbAlbums.text = [NSString stringWithFormat:@"%d album", nbAlbums];
     }
     
-    int nbTracks = [collection count];
+    NSUInteger nbTracks = [collection count];
     if(nbTracks>1)
     {
         cell.nbTracks.text = [NSString stringWithFormat:@"%d tracks", nbTracks];
