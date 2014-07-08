@@ -15,4 +15,5 @@
 @property (weak,nonatomic) IBOutlet UILabel* nbAlbums;
 @property (weak,nonatomic) IBOutlet UILabel* nbTracks;
 
+- (void)setArtistItem:(NSArray*)artistCollection withDictionnary:(NSMutableDictionary*)dictionary;
 @end

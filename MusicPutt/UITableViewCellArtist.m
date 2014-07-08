@@ -7,6 +7,17 @@
 //
 
 #import "UITableViewCellArtist.h"
+#import "AppDelegate.h"
+
+@interface UITableViewCellArtist()
+{
+    MPMediaItem* artist;
+}
+
+@property AppDelegate* del;
+
+@end
+
 
 @implementation UITableViewCellArtist
 
@@ -24,11 +35,73 @@
     // Initialization code
 }
 
+/**
+ * Set the current artist value.
+ *
+ * @param
+ * @param
+ * @return
+ */
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    if (selected==true) {
+        // setup app delegate
+        self.del = [[UIApplication sharedApplication] delegate];
+        [self.del mpdatamanager].currentArtist = artist;
+    }
 }
 
+/**
+ * This function fill the table cell with the displayed information.
+ *
+ * @param
+ * @param
+ * @return
+ */
+- (void)setArtistItem:(NSArray*)artistCollection withDictionnary:(NSMutableDictionary*)dictionary
+{
+    artist = [(MPMediaItemCollection*)artistCollection representativeItem];
+    
+    if([artistCollection count]>0)
+    {
+        UIImage* image;
+        MPMediaItemArtwork *artwork = [artist valueForProperty:MPMediaItemPropertyArtwork];
+        if (artwork)
+            image = [artwork imageWithSize:[[self imageview] frame].size];
+        if (image.size.height>0 && image.size.width>0) // check if image present
+            [[self imageview] setImage:image];
+        else
+            [[self imageview] setImage:[UIImage imageNamed:@"empty"]];
+    }
+    else
+    {
+        [[self imageview] setImage:[UIImage imageNamed:@"empty"]];
+    }
+    self.artistName.text = [artist valueForProperty:MPMediaItemPropertyArtist];
+    
+    NSUInteger nbAlbums = [[dictionary objectForKey:(self.artistName.text)] intValue];
+    if(nbAlbums>1)
+    {
+        self.nbAlbums.text = [NSString stringWithFormat:@"%lu albums", (unsigned long)nbAlbums];
+    }
+    else
+    {
+        self.nbAlbums.text = [NSString stringWithFormat:@"%lu album", (unsigned long)nbAlbums];
+    }
+    
+    NSUInteger nbTracks = [artistCollection count];
+    if(nbTracks>1)
+    {
+        self.nbTracks.text = [NSString stringWithFormat:@"%lu tracks", (unsigned long)nbTracks];
+    }
+    else
+    {
+        self.nbTracks.text = [NSString stringWithFormat:@"%d track", nbTracks];
+    }
+    
+    NSLog(@"Album number : %@\n", [dictionary objectForKey:(self.artistName.text)]);
+}
 @end

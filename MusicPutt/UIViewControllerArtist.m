@@ -42,7 +42,7 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup title
-    [self setTitle:@"Artistes"];
+    [self setTitle:@"Artists"];
     
     // setup tableview
     toolbarTableView = _tableView;
@@ -87,51 +87,12 @@
 - (UITableViewCellArtist*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellArtist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellArtist"];
-    MPMediaItemCollection *collection = artists[indexPath.row];
-    MPMediaItem * item =  [collection representativeItem];
-    
-    if([collection count]>0)
-    {
-        UIImage* image;
-        MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
-        if (artwork)
-            image = [artwork imageWithSize:[cell.imageview frame].size];
-        if (image.size.height>0 && image.size.width>0) // check if image present
-            [cell.imageview setImage:image];
-        else
-            [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
-    }
-    else
-    {
-        [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
-    }
-    cell.artistName.text = [item valueForProperty:MPMediaItemPropertyArtist];
-    
-    NSUInteger nbAlbums = [[artistDictionary objectForKey:(cell.artistName.text)] intValue];
-    if(nbAlbums>1)
-    {
-        cell.nbAlbums.text = [NSString stringWithFormat:@"%d albums", nbAlbums];
-    }
-    else
-    {
-        cell.nbAlbums.text = [NSString stringWithFormat:@"%d album", nbAlbums];
-    }
-    
-    NSUInteger nbTracks = [collection count];
-    if(nbTracks>1)
-    {
-        cell.nbTracks.text = [NSString stringWithFormat:@"%d tracks", nbTracks];
-    }
-    else
-    {
-        cell.nbTracks.text = [NSString stringWithFormat:@"%d track", nbTracks];
-    }
-    
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [item valueForProperty:MPMediaItemPropertyArtist]);
-    
-    NSLog(@"Album number : %@\n", [artistDictionary objectForKey:(cell.artistName.text)]);
+    [cell setArtistItem: artists[indexPath.row] withDictionnary:artistDictionary];
+
     return cell;
 }
+
+
 /*
 #pragma mark - Navigation
 

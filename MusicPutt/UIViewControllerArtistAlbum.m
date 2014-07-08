@@ -51,7 +51,7 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup title
-    [self setTitle:@"Artistes"];
+    [self setTitle:[[[self.del mpdatamanager] currentArtist] valueForProperty:MPMediaItemPropertyArtist]];
     
     // setup tableview
     toolbarTableView = _tableView;

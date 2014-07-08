@@ -35,10 +35,10 @@
             </objects>
             <point key="canvasLocation" x="401" y="100"/>
         </scene>
-        <!--Music View Controller - Song name-->
+        <!--View Controller Music - Song name-->
         <scene sceneID="DNC-a1-kIR">
             <objects>
-                <viewController storyboardIdentifier="Song" title="Song name" id="kL3-qe-v8G" customClass="MusicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Song" title="Song name" hidesBottomBarWhenPushed="YES" id="kL3-qe-v8G" customClass="UIViewControllerMusic" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wk2-fN-fUL"/>
                         <viewControllerLayoutGuide type="bottom" id="XTP-4d-HF6"/>
@@ -48,15 +48,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-ah-ZhC">
-                                <rect key="frame" x="-65" y="65" width="450" height="453"/>
+                                <rect key="frame" x="-30" y="64" width="380" height="383"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="453" id="6dK-kr-hLN"/>
-                                    <constraint firstAttribute="width" constant="450" id="IST-gs-x9f"/>
-                                </constraints>
                             </imageView>
                             <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-na-pPy">
-                                <rect key="frame" x="0.0" y="400" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="448" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="9Fw-LK-mqf">
@@ -75,13 +71,9 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="5wI-k3-6cE"/>
-                                    <constraint firstAttribute="height" constant="46" id="gwy-ee-xgL"/>
-                                </constraints>
                             </view>
                             <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO">
-                                <rect key="frame" x="0.0" y="446" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="494" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOr-t9-xfT">
@@ -161,18 +153,66 @@
                                     <constraint firstAttribute="width" constant="320" id="yGY-hc-nfC"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Hr-IO-Zbm">
+                                <rect key="frame" x="0.0" y="64" width="320" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylt-GH-jIw">
+                                        <rect key="frame" x="54" y="8" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="lyrics">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9h-As-731">
+                                        <rect key="frame" x="102" y="8" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="artist">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sd9-0k-YUC">
+                                        <rect key="frame" x="154" y="8" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="album">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NG6-Vl-CxW">
+                                        <rect key="frame" x="247" y="8" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="share">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-a0-phG">
+                                        <rect key="frame" x="202" y="7" width="25" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="discover">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="zrT-na-pPy" firstAttribute="leading" secondItem="aS1-fT-rwE" secondAttribute="leading" id="OrH-89-FtY"/>
-                            <constraint firstAttribute="bottom" secondItem="n8M-i6-VAO" secondAttribute="bottom" constant="48" id="TRV-XE-ggv"/>
-                            <constraint firstAttribute="bottom" secondItem="zrT-na-pPy" secondAttribute="bottom" constant="122" id="agK-Er-kJu"/>
-                            <constraint firstItem="zrT-na-pPy" firstAttribute="leading" secondItem="n8M-i6-VAO" secondAttribute="leading" id="vVg-ZA-GY1"/>
-                            <constraint firstItem="zrT-na-pPy" firstAttribute="centerX" secondItem="nnY-ah-ZhC" secondAttribute="centerX" id="vyj-Dg-Jhm"/>
-                            <constraint firstAttribute="bottom" secondItem="nnY-ah-ZhC" secondAttribute="bottom" constant="50" id="wrK-5P-6cw"/>
+                            <constraint firstItem="zrT-na-pPy" firstAttribute="top" secondItem="aS1-fT-rwE" secondAttribute="top" constant="448" id="1KI-IC-KbT"/>
+                            <constraint firstItem="n8M-i6-VAO" firstAttribute="trailing" secondItem="zrT-na-pPy" secondAttribute="trailing" id="5Ku-eo-39X"/>
+                            <constraint firstAttribute="bottom" secondItem="n8M-i6-VAO" secondAttribute="bottom" id="8R9-iC-dRP"/>
+                            <constraint firstItem="n8M-i6-VAO" firstAttribute="leading" secondItem="zrT-na-pPy" secondAttribute="leading" id="D6o-jl-gBO"/>
+                            <constraint firstItem="n8M-i6-VAO" firstAttribute="centerX" secondItem="nnY-ah-ZhC" secondAttribute="centerX" id="JLN-EQ-Rna"/>
+                            <constraint firstItem="nnY-ah-ZhC" firstAttribute="leading" secondItem="aS1-fT-rwE" secondAttribute="leading" constant="-30" id="gL3-6W-a8z"/>
+                            <constraint firstItem="zrT-na-pPy" firstAttribute="top" secondItem="nnY-ah-ZhC" secondAttribute="bottom" constant="1" id="lX2-ZE-WwG"/>
+                            <constraint firstItem="n8M-i6-VAO" firstAttribute="leading" secondItem="aS1-fT-rwE" secondAttribute="leading" id="otm-Ak-SMw"/>
+                            <constraint firstItem="nnY-ah-ZhC" firstAttribute="top" secondItem="wk2-fN-fUL" secondAttribute="bottom" id="ptB-Un-Cqg"/>
+                            <constraint firstItem="n8M-i6-VAO" firstAttribute="top" secondItem="zrT-na-pPy" secondAttribute="bottom" id="uLu-Sr-fOR"/>
+                            <constraint firstItem="zrT-na-pPy" firstAttribute="centerX" secondItem="nnY-ah-ZhC" secondAttribute="centerX" id="v9B-hL-dH0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nhy-t2-tJo"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="artistalbum" destination="Qfj-YC-b5d" id="k20-QZ-e57"/>
                         <outlet property="controlview" destination="n8M-i6-VAO" id="M5J-kJ-4LD"/>
@@ -181,6 +221,7 @@
                         <outlet property="endtime" destination="3JP-3c-jRS" id="6Ch-Jq-DXc"/>
                         <outlet property="fastfoward" destination="NOr-t9-xfT" id="TuB-am-wEu"/>
                         <outlet property="imageview" destination="nnY-ah-ZhC" id="jCP-j3-Cau"/>
+                        <outlet property="menubar" destination="5Hr-IO-Zbm" id="fFi-DL-phl"/>
                         <outlet property="playpause" destination="03g-KS-J9t" id="Ot1-9g-Q1w"/>
                         <outlet property="progresstime" destination="dra-1h-ffa" id="qic-zA-rPT"/>
                         <outlet property="repeat" destination="Bpw-Pl-cFV" id="hzQ-Di-pkI"/>
@@ -191,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zpi-L9-6BL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3587" y="488"/>
+            <point key="canvasLocation" x="3089" y="364"/>
         </scene>
         <!--View Controller Playlist - Playlist-->
         <scene sceneID="CQm-SL-6VW">
@@ -235,13 +276,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2V-fn-U46">
-                                                    <rect key="frame" x="261" y="17" width="27" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="plus">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -536,10 +570,10 @@
             </objects>
             <point key="canvasLocation" x="1997" y="774"/>
         </scene>
-        <!--View Controller - Artist title-->
+        <!--View Controller Artist Album - Artist title-->
         <scene sceneID="3cE-DG-KkD">
             <objects>
-                <viewController id="0g8-ph-yTh" sceneMemberID="viewController">
+                <viewController id="0g8-ph-yTh" customClass="UIViewControllerArtistAlbum" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hPa-sE-Clv"/>
                         <viewControllerLayoutGuide type="bottom" id="eUJ-se-fO3"/>
@@ -653,13 +687,15 @@
         <image name="album" width="25" height="25"/>
         <image name="artist" width="25" height="25"/>
         <image name="bg_clear" width="320" height="568"/>
+        <image name="discover" width="64" height="64"/>
         <image name="empty" width="60" height="60"/>
         <image name="fast_forward" width="64" height="64"/>
+        <image name="lyrics" width="64" height="64"/>
         <image name="play" width="64" height="64"/>
         <image name="playlist" width="25" height="25"/>
-        <image name="plus" width="64" height="64"/>
         <image name="repeat" width="64" height="64"/>
         <image name="rewind" width="64" height="64"/>
+        <image name="share" width="64" height="64"/>
         <image name="shuffle" width="64" height="64"/>
         <image name="songlist" width="25" height="25"/>
     </resources>

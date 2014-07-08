@@ -60,6 +60,42 @@
     [view setNavigationController:navController];
 }
 
+- (id)init
+{
+    self = [self initWithFrame:CGRectMake(0, 0, 320, 60)];
+    return self;
+}
+
+- (void)setupConstraintsWithNavigationBar:(UINavigationBar *)bar {
+	NSLayoutConstraint *constraint;
+	constraint = [NSLayoutConstraint constraintWithItem:self
+											  attribute:NSLayoutAttributeLeft
+											  relatedBy:NSLayoutRelationEqual
+												 toItem:bar
+											  attribute:NSLayoutAttributeLeft
+											 multiplier:1
+											   constant:0];
+	[self.superview addConstraint:constraint];
+	
+	constraint = [NSLayoutConstraint constraintWithItem:self
+											  attribute:NSLayoutAttributeRight
+											  relatedBy:NSLayoutRelationEqual
+												 toItem:bar
+											  attribute:NSLayoutAttributeRight
+											 multiplier:1
+											   constant:0];
+	[self.superview addConstraint:constraint];
+	
+	constraint = [NSLayoutConstraint constraintWithItem:self
+											  attribute:NSLayoutAttributeHeight
+											  relatedBy:NSLayoutRelationEqual
+												 toItem:nil
+											  attribute:NSLayoutAttributeNotAnAttribute
+											 multiplier:1
+											   constant:60];
+	[self addConstraint:constraint];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

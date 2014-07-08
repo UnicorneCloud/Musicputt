@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImageViewArtwork.h"
 
-@interface MusicViewController : UIViewController
+@interface UIViewControllerMusic : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageViewArtwork* imageviewartwork;
 
@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIButton*          rewind;
 @property (weak, nonatomic) IBOutlet UIButton*          playpause;
 @property (weak, nonatomic) IBOutlet UIButton*          fastfoward;
+
+@property (weak, nonatomic) IBOutlet UIView*            menubar;
 
 - (IBAction)shufflePressed:(id)sender;
 - (IBAction)repeatPressed:(id)sender;

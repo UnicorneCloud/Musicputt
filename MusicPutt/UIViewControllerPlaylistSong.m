@@ -78,20 +78,7 @@
 - (UITableViewCellPlaylistSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellPlaylistSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylistSong"];
-    MPMediaItem* item = songs[indexPath.row];
-    cell.title.text = [item valueForProperty:MPMediaItemPropertyTitle];
-    cell.artist.text = [item valueForProperty:MPMediaItemPropertyArtist];
-    cell.album.text = [item valueForProperty:MPMediaItemPropertyAlbumTitle];
-    
-    UIImage* image;
-    MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
-    if (artwork)
-        image = [artwork imageWithSize:[cell.imageview frame].size];
-    if (image.size.height>0 && image.size.width>0) // check if image present
-        [cell.imageview setImage:image];
-    else
-        [cell.imageview setImage:[UIImage imageNamed:@"empty"]];
-    
+    [cell setMediaItem: songs[indexPath.row]];
     return cell;
 }
 
@@ -108,6 +95,8 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
+    UITableViewCellPlaylistSong* cell = (UITableViewCellPlaylistSong*)[self tableView:_tableView cellForRowAtIndexPath:indexPath];
+    
     NSMutableArray* list = [[NSMutableArray alloc] init];
     NSInteger step = 0;
     NSInteger maxstep = songs.count;
@@ -123,11 +112,26 @@
     
     [[[self.del mpdatamanager] musicplayer] stop];
     
+    BOOL shuffleWasOn = NO;
+    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff)
+    {
+        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
+        shuffleWasOn = YES;
+    }
     [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
+    [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[cell getMediaItem]];
+    if (shuffleWasOn)
+        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+    
+    [[[self.del mpdatamanager] musicplayer] play];
+    
+    
+    
+    //[[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
     
     self.del.mpdatamanager.currentSonglist = list;
     
-    [[[self.del mpdatamanager] musicplayer] play];
+    //[[[self.del mpdatamanager] musicplayer] play];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
