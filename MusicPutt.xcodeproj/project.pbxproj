@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		971E736C19721707000B33DD /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 971E736D19721707000B33DD /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				971E737819721826000B33DD /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9706486819510A0900FA877A /* MediaPlayer.framework */; };
 		976687D4194FBB4D00B5A843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D3194FBB4D00B5A843 /* Foundation.framework */; };
@@ -15,7 +29,7 @@
 		976687E0194FBB4D00B5A843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687DF194FBB4D00B5A843 /* main.m */; };
 		976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687E3194FBB4D00B5A843 /* AppDelegate.m */; };
 		976687E7194FBB4D00B5A843 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 976687E5194FBB4D00B5A843 /* Main.storyboard */; };
-		976687EA194FBB4D00B5A843 /* MusicViewLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687E9194FBB4D00B5A843 /* MusicViewLoadingController.m */; };
+		976687EA194FBB4D00B5A843 /* UIMusicViewLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687E9194FBB4D00B5A843 /* UIMusicViewLoadingController.m */; };
 		976687EC194FBB4D00B5A843 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 976687EB194FBB4D00B5A843 /* Images.xcassets */; };
 		976687F3194FBB4D00B5A843 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687F2194FBB4D00B5A843 /* XCTest.framework */; };
 		976687F4194FBB4D00B5A843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D3194FBB4D00B5A843 /* Foundation.framework */; };
@@ -65,8 +79,8 @@
 		976687E2194FBB4D00B5A843 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		976687E3194FBB4D00B5A843 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		976687E6194FBB4D00B5A843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		976687E8194FBB4D00B5A843 /* MusicViewLoadingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicViewLoadingController.h; sourceTree = "<group>"; };
-		976687E9194FBB4D00B5A843 /* MusicViewLoadingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicViewLoadingController.m; sourceTree = "<group>"; };
+		976687E8194FBB4D00B5A843 /* UIMusicViewLoadingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMusicViewLoadingController.h; sourceTree = "<group>"; };
+		976687E9194FBB4D00B5A843 /* UIMusicViewLoadingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIMusicViewLoadingController.m; sourceTree = "<group>"; };
 		976687EB194FBB4D00B5A843 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		976687F1194FBB4D00B5A843 /* MusicPuttTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicPuttTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		976687F2194FBB4D00B5A843 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -310,8 +324,8 @@
 		97AC0C35195A419500BA60E6 /* LoadingScreen */ = {
 			isa = PBXGroup;
 			children = (
-				976687E8194FBB4D00B5A843 /* MusicViewLoadingController.h */,
-				976687E9194FBB4D00B5A843 /* MusicViewLoadingController.m */,
+				976687E8194FBB4D00B5A843 /* UIMusicViewLoadingController.h */,
+				976687E9194FBB4D00B5A843 /* UIMusicViewLoadingController.m */,
 			);
 			name = LoadingScreen;
 			sourceTree = "<group>";
@@ -399,6 +413,7 @@
 			targets = (
 				976687CF194FBB4D00B5A843 /* MusicPutt */,
 				976687F0194FBB4D00B5A843 /* MusicPuttTests */,
+				971E736C19721707000B33DD /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -426,6 +441,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		971E737819721826000B33DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Eric Pinet\";\ncompanyID=\"com.ericpinet\";\ncompanyURL=\"http://www.ericpinet.com\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/github/musicputt/doc\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+		};
 		AA0B10B5D74F4758BB8843EA /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -468,7 +496,7 @@
 				97AC0C3C195A493800BA60E6 /* UIViewControllerMusic.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
-				976687EA194FBB4D00B5A843 /* MusicViewLoadingController.m in Sources */,
+				976687EA194FBB4D00B5A843 /* UIMusicViewLoadingController.m in Sources */,
 				9799979219611E6200360BF8 /* UITableViewCellPlaylistSong.m in Sources */,
 				979DED251963A4D50055AD39 /* UIViewControllerSonglist.m in Sources */,
 				D537F13E1964E84400DC9EE7 /* UIViewControllerArtist.m in Sources */,
@@ -531,6 +559,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		971E736E19721707000B33DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		971E736F19721707000B33DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		97668800194FBB4D00B5A843 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -607,7 +649,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -626,7 +668,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -682,6 +724,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		971E736D19721707000B33DD /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				971E736E19721707000B33DD /* Debug */,
+				971E736F19721707000B33DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		976687CB194FBB4D00B5A843 /* Build configuration list for PBXProject "MusicPutt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

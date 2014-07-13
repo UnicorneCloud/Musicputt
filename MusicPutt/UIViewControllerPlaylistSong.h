@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UIViewControllerToolbar.h"
 
+
+/**
+ *  Playlist song display all song of the current sellected playlist.
+ *  @see MPDataManager.h
+ */
 @interface UIViewControllerPlaylistSong : UIViewControllerToolbar
 
 @end

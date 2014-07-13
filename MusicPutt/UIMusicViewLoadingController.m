@@ -1,15 +1,15 @@
 //
-//  ViewController.m
+//  UIMusicViewLoadingController.m
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-06-16.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "MusicViewLoadingController.h"
+#import "UIMusicViewLoadingController.h"
 #import "AppDelegate.h"
 
-@interface MusicViewLoadingController ()
+@interface UIMusicViewLoadingController ()
 {
     
 }
@@ -17,7 +17,7 @@
 @end
 
 
-@implementation MusicViewLoadingController
+@implementation UIMusicViewLoadingController
 
 
 - (void)viewDidLoad
@@ -39,10 +39,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 -(void) loadApp
 {
     [self performSelector:@selector(loadAppCompleted) withObject:nil afterDelay:0.0];
 }
+
 
 -(void) loadAppCompleted
 {

@@ -9,33 +9,119 @@
 #import <UIKit/UIKit.h>
 #import "UIImageViewArtwork.h"
 
+/**
+ *  Main screen to display current playing song.
+ *  When this screen is display, the UICurrentPlayingToolBar is hidden. 
+ *  When this screen is hidden, the UICurrentPlayingToolBar is display.
+ *  
+ *  From this screen, the user can access all details screen (lyrics, artist, album, discover, share)
+ */
 @interface UIViewControllerMusic : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIImageViewArtwork* imageviewartwork;
-
+/**
+ *  Artwork of the current playing song.
+ */
 @property (weak, nonatomic) IBOutlet UIImageView*       imageview;
 
+/**
+ *  View contain du song title, artist name and album title of the current playing song.
+ */
 @property (weak, nonatomic) IBOutlet UIView*            currentsongview;
+
+/**
+ *  Song title of the current playing song.
+ */
 @property (weak, nonatomic) IBOutlet UILabel*           songtitle;
+
+/**
+ *  Artist and Album title of the current playing song.
+ */
 @property (weak, nonatomic) IBOutlet UILabel*           artistalbum;
 
+/**
+ *  View contain all controls to manage media player.
+ */
 @property (weak, nonatomic) IBOutlet UIView*            controlview;
+
+/**
+ *  Current playing time. Position in the current playing song.
+ */
 @property (weak, nonatomic) IBOutlet UILabel*           curtime;
+
+/**
+ *  Elapse time to reach end of the current playing song.
+ */
 @property (weak, nonatomic) IBOutlet UILabel*           endtime;
+
+/**
+ *  Progressbar to display current position in the current playing song.
+ */
 @property (weak, nonatomic) IBOutlet UIProgressView*    progresstime;
+
+/**
+ *  Button to display and manage shuffle mode of the media player.
+ */
 @property (weak, nonatomic) IBOutlet UIButton*          shuffle;
+
+/**
+ *  Button to display and manage the repeat mode of the media player.
+ */
 @property (weak, nonatomic) IBOutlet UIButton*          repeat;
 
+/**
+ *  Button to manage the rewind for the media player.
+ */
 @property (weak, nonatomic) IBOutlet UIButton*          rewind;
+
+/**
+ *  Play/Pause button for the media player.
+ */
 @property (weak, nonatomic) IBOutlet UIButton*          playpause;
+
+/**
+ *  Button to manage fastfoward for the media player.
+ */
 @property (weak, nonatomic) IBOutlet UIButton*          fastfoward;
 
+/**
+ *  Menu bar on top of the Artwork for display lyrics, artist, album, discover, share.
+ */
 @property (weak, nonatomic) IBOutlet UIView*            menubar;
 
+
+/**
+ *  Shuffle button pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
 - (IBAction)shufflePressed:(id)sender;
+
+/**
+ *  Repeat button pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
 - (IBAction)repeatPressed:(id)sender;
+
+/**
+ *  Rewind button pressed by the user.
+ *
+ *  @param sender send of event.
+ */
 - (IBAction)rewindPressed:(id)sender;
+
+/**
+ *  Play/Pause button pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
 - (IBAction)playpausePressed:(id)sender;
+
+/**
+ *  Foward button pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
 - (IBAction)fastFoward:(id)sender;
 
 @end

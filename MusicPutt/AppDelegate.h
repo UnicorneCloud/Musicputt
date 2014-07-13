@@ -9,10 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "MPDataManager.h"
 
+
+/**
+ *  Application main delegate.
+ */
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+
+/**
+ *  Main window application.
+ */
 @property (strong, nonatomic) UIWindow *window;
 
+
+/**
+ *  Object use for maintain data of the current execution of that application.
+ */
 @property (strong, nonatomic) MPDataManager* mpdatamanager;
 
 @end

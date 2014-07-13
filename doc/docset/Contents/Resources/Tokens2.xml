@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/AppDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/AppDelegate</TokenIdentifier>
+			<Abstract type="html">Application main delegate.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setWindow:</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setMpdatamanager:</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
+			
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/mpdatamanager</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
+			
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/mpdatamanager</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
+			
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

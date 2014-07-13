@@ -7,7 +7,7 @@
         <!--Music View Loading Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MusicViewLoadingController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="UIMusicViewLoadingController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="beU-er-L1a"/>
                         <viewControllerLayoutGuide type="bottom" id="nzT-pO-rkK"/>
