@@ -91,7 +91,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="fastFoward:" destination="kL3-qe-v8G" eventType="touchUpInside" id="AY7-st-Gsg"/>
+                                            <action selector="fastFowardPressed:" destination="kL3-qe-v8G" eventType="touchUpInside" id="jYf-Vz-4ii"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03g-KS-J9t">
@@ -192,6 +192,9 @@
                                         <state key="normal" image="share">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sharePressed:" destination="kL3-qe-v8G" eventType="touchUpInside" id="JXq-H7-5Hf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-a0-phG">
                                         <rect key="frame" x="202" y="7" width="25" height="25"/>

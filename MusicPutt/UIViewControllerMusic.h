@@ -122,6 +122,14 @@
  *
  *  @param sender sender of event.
  */
-- (IBAction)fastFoward:(id)sender;
+- (IBAction)fastFowardPressed:(id)sender;
+
+
+/**
+ *  Share button was pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
+- (IBAction)sharePressed:(id)sender;
 
 @end
