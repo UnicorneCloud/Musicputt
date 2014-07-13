@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "CurrentPlayingToolBar.h"
+#import "UICurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "UIViewCurrentToolBar.h"
 
-@interface CurrentPlayingToolBar()
+@interface UICurrentPlayingToolBar()
 {
     UIViewCurrentToolBar *view;
     UINavigationController* navController;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation CurrentPlayingToolBar
+@implementation UICurrentPlayingToolBar
 
 - (id)initWithFrame:(CGRect)frame
 {

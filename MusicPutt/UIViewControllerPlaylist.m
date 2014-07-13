@@ -7,7 +7,7 @@
 //
 
 #import "UIViewControllerPlaylist.h"
-#import "CurrentPlayingToolBar.h"
+#import "UICurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 #import "UITableViewCellPlaylist.h"
 #import <MediaPlayer/MediaPlayer.h>

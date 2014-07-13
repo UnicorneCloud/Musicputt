@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "CurrentPlayingToolBar.h"
+#import "UICurrentPlayingToolBar.h"
 
 @class MPMusicPlayerController;
+
 
 @interface MPDataManager : NSObject
 
 @property (strong, nonatomic) MPMusicPlayerController* musicplayer;
 @property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
-@property (strong, nonatomic) CurrentPlayingToolBar*  currentPlayingToolbar;
+@property (strong, nonatomic) UICurrentPlayingToolBar*  currentPlayingToolbar;
 @property (strong, nonatomic) NSMutableArray* currentSonglist;
 @property (strong, nonatomic) MPMediaItem* currentArtist;
-//@property (strong, nonatomic) MPMedia
 
 - (bool) initialise;
 - (bool) isMusicViewControllerVisible;

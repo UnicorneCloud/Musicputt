@@ -7,7 +7,7 @@
 //
 
 #import "UIViewControllerToolbar.h"
-#import "CurrentPlayingToolBar.h"
+#import "UICurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 
 #import <AVFoundation/AVFoundation.h>

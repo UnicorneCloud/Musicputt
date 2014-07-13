@@ -24,7 +24,7 @@
     retval = [self initialiseMediaPlayer];
     
     // init current playing toolbar
-    _currentPlayingToolbar = [[CurrentPlayingToolBar alloc] init];
+    _currentPlayingToolbar = [[UICurrentPlayingToolBar alloc] init];
     
     musicviewcontrollervisible = false;
     

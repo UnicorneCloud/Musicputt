@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AMWaveViewController.h"
-#import "CurrentPlayingToolBar.h"
+#import "UICurrentPlayingToolBar.h"
 
 @interface UIViewControllerToolbar : AMWaveViewController
 {
-    CurrentPlayingToolBar*  currentPlayingToolBar;
-    UITableView*            toolbarTableView;
+    UICurrentPlayingToolBar*    currentPlayingToolBar;
+    UITableView*                toolbarTableView;
 }
 @end

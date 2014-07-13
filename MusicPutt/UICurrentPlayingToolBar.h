@@ -8,7 +8,7 @@
 
 #import "BFNavigationBarDrawer.h"
 
-@interface CurrentPlayingToolBar : BFNavigationBarDrawer
+@interface UICurrentPlayingToolBar : BFNavigationBarDrawer
 
 - (void) setNavigationController:(UINavigationController*) controller;
 
