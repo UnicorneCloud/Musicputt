@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UIMusicViewLoadingController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UIMusicViewLoadingController</TokenIdentifier>
+			<Abstract type="html">UIViewController for display application loading.</Abstract>
+			<DeclaredIn>UIMusicViewLoadingController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="7"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIMusicViewLoadingController/loadApp</TokenIdentifier>
+			<Abstract type="html">Prepare application to start.</Abstract>
+			<DeclaredIn>UIMusicViewLoadingController.h</DeclaredIn>
+			
+			<Declaration>- (void)loadApp</Declaration>
+			
+			
+			<Anchor>//api/name/loadApp</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIMusicViewLoadingController/loadAppCompleted</TokenIdentifier>
+			<Abstract type="html">Called when application is loaded and ready to open.</Abstract>
+			<DeclaredIn>UIMusicViewLoadingController.h</DeclaredIn>
+			
+			<Declaration>- (void)loadAppCompleted</Declaration>
+			
+			
+			<Anchor>//api/name/loadAppCompleted</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

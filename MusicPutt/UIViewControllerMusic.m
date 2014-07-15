@@ -6,12 +6,18 @@
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
+
 #import "UIViewControllerMusic.h"
 #import "AppDelegate.h"
+
 
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <MediaPlayer/MPMediaItem.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+
+@class SCLAlertView;
 
 @interface UIViewControllerMusic ()
 {
@@ -101,6 +107,8 @@
     [_menubar.layer insertSublayer:gradient atIndex:0];
     _menubar.hidden = true;
 }
+
+
 
 - (void) viewWillDisappear:(BOOL)animated
 {
@@ -300,7 +308,7 @@
 }
 
 
-- (IBAction)fastFoward:(id)sender
+- (IBAction)fastFowardPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
@@ -310,6 +318,51 @@
 - (void) imageViewPressed
 {
     _menubar.hidden = !_menubar.isHidden;
+}
+
+
+/**
+ *  Share button was pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
+- (IBAction)sharePressed:(id)sender
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *fbPost = [SLComposeViewController
+                                           composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        
+        [fbPost setInitialText: [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", _songtitle.text, _artistalbum.text]];
+        [fbPost addImage:_imageview.image];
+        [self presentViewController:fbPost animated:YES completion:nil];
+        [fbPost setCompletionHandler:^(SLComposeViewControllerResult result) {
+            switch (result) {
+                case SLComposeViewControllerResultCancelled:
+                    NSLog(@"Post Canceled");
+                    break;
+                case SLComposeViewControllerResultDone:
+                    NSLog(@"Post Sucessful");
+                    break;
+                default:
+                    break;
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    }
+    else{
+        UIAlertView *message = [[UIAlertView alloc]
+                                initWithTitle:@"Error"
+                                message:@"Your facebook service account is not set up and reachable. Go to setting for setup your facebook account."
+                                delegate:nil
+                                cancelButtonTitle:@"OK"
+                                otherButtonTitles:nil];
+        
+        [message show];
+    
+    }
+
 }
 
 

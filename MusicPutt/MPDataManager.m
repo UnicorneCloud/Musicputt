@@ -9,12 +9,23 @@
 #import "MPDataManager.h"
 #import <MediaPlayer/MPMusicPlayerController.h>
 
+
+@interface MPDataManager()
+
+
+@end
+
 @implementation MPDataManager
 {
     bool musicviewcontrollervisible;
 }
 
 
+/**
+ *  Initialise all data for the current execution of the application.
+ *
+ *  @return True if the initialization succesed.
+ */
 -(bool) initialise
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -24,27 +35,45 @@
     retval = [self initialiseMediaPlayer];
     
     // init current playing toolbar
-    _currentPlayingToolbar = [[CurrentPlayingToolBar alloc] init];
+    _currentPlayingToolbar = [[UICurrentPlayingToolBar alloc] init];
     
+    // the initial state of the musicviewcontroller is hidden.
     musicviewcontrollervisible = false;
     
     return retval;
 }
 
+
+
+/**
+ *  Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
+ *  is displayed, UICurrentPlayingToolBar is hidden.
+ *
+ *  @return True if UIMusicViewController displayed
+ */
 - (bool) isMusicViewControllerVisible
 {
     return musicviewcontrollervisible;
 }
 
+
+/**
+ *  Set the status of the visibility of the UIMusicViewController.
+ *
+ *  @param visible True to indicate the UIMusicViewController displayed.
+ */
 - (void) setMusicViewControllerVisible:(bool) visible
 {
     musicviewcontrollervisible = visible;
 }
 
-
-
 #pragma mark - MediaPlayer
 
+/**
+ *  Initialization of the media player.
+ *
+ *  @return True if initialization succesed.
+ */
 -(bool) initialiseMediaPlayer
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");

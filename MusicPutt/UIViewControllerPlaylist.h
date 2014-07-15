@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UIViewControllerToolbar.h"
 
+
+/**
+ *  Playlist UIViewController
+ *  Display all playlist presents on device.
+ */
 @interface UIViewControllerPlaylist : UIViewControllerToolbar
 
 

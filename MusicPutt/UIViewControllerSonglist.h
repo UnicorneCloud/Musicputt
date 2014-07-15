@@ -9,6 +9,9 @@
 #import "UIViewControllerToolbar.h"
 
 
+/**
+ *  Songlist view controller
+ */
 @interface UIViewControllerSonglist: UIViewControllerToolbar
 
 @end

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MPDataManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MPDataManager</TokenIdentifier>
+			<Abstract type="html">MPDataManager is the main application data manager. This class maintain all data for
+the current execution.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicplayer:</TokenIdentifier>
+			<Abstract type="html">Main music player controller.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			
+			
+			<Anchor>//api/name/musicplayer</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/musicplayer</TokenIdentifier>
+			<Abstract type="html">Main music player controller.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			
+			
+			<Anchor>//api/name/musicplayer</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/musicplayer</TokenIdentifier>
+			<Abstract type="html">Main music player controller.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			
+			
+			<Anchor>//api/name/musicplayer</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlayingToolbar:</TokenIdentifier>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlayingToolbar</TokenIdentifier>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlayingToolbar</TokenIdentifier>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlaylist:</TokenIdentifier>
+			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlaylist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlaylist</TokenIdentifier>
+			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlaylist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlaylist</TokenIdentifier>
+			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlaylist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentSonglist:</TokenIdentifier>
+			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			
+			
+			<Anchor>//api/name/currentSonglist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentSonglist</TokenIdentifier>
+			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			
+			
+			<Anchor>//api/name/currentSonglist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentSonglist</TokenIdentifier>
+			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			
+			
+			<Anchor>//api/name/currentSonglist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtist:</TokenIdentifier>
+			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtist</TokenIdentifier>
+			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtist</TokenIdentifier>
+			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtist</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialise</TokenIdentifier>
+			<Abstract type="html">Initialise all data for the current execution of the application.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>- (bool)initialise</Declaration>
+			
+			<ReturnValue><Abstract type="html">True if the initialization succesed.</Abstract></ReturnValue>
+			<Anchor>//api/name/initialise</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/isMusicViewControllerVisible</TokenIdentifier>
+			<Abstract type="html">Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
+is displayed, UICurrentPlayingToolBar is hidden.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>- (bool)isMusicViewControllerVisible</Declaration>
+			
+			<ReturnValue><Abstract type="html">True if UIMusicViewController displayed</Abstract></ReturnValue>
+			<Anchor>//api/name/isMusicViewControllerVisible</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicViewControllerVisible:</TokenIdentifier>
+			<Abstract type="html">Set the status of the visibility of the UIMusicViewController.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>- (void)setMusicViewControllerVisible:(bool)visible</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>visible</Name>
+					<Abstract type="html">True to indicate the UIMusicViewController displayed.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setMusicViewControllerVisible:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialiseMediaPlayer</TokenIdentifier>
+			<Abstract type="html">Initialization of the media player.</Abstract>
+			<DeclaredIn>MPDataManager.m</DeclaredIn>
+			
+			<Declaration>- (bool)initialiseMediaPlayer</Declaration>
+			
+			<ReturnValue><Abstract type="html">True if initialization succesed.</Abstract></ReturnValue>
+			<Anchor>//api/name/initialiseMediaPlayer</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

@@ -7,6 +7,7 @@ pod 'AMWaveTransition'
 pod 'DZNEmptyDataSet'
 pod 'UAProgressView'
 pod 'BFNavigationBarDrawer'
+pod 'RestKit'
 
 end
 
