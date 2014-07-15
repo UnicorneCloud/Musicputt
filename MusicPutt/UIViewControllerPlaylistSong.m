@@ -51,13 +51,15 @@
     [self setTitle:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyName]];
     
     // query playlist songs
-    everything = [MPMediaQuery playlistsQuery];
+    /*everything = [MPMediaQuery playlistsQuery];
     MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyPersistentID]
                                                                     forProperty:MPMediaPlaylistPropertyPersistentID
                                                                     comparisonType:MPMediaPredicateComparisonEqualTo];
    [everything addFilterPredicate:predicate];
     songs = [everything items];
-    
+    */
+    songs = [[[self.del mpdatamanager] currentPlaylist] items];
+             
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 

@@ -47,7 +47,7 @@
     // setup tableview
     toolbarTableView = _tableView;
     
-    // setup query playlist
+    // setup query artists
     everything = [MPMediaQuery artistsQuery];
     //[everything setGroupingType:MPMediaGroupingArtist];
     artists = [everything collections];
@@ -92,6 +92,12 @@
     return cell;
 }
 
+#pragma mark - AMWaveViewController
+
+- (NSArray*)visibleCells
+{
+    return [self.tableView visibleCells];
+}
 
 /*
 #pragma mark - Navigation

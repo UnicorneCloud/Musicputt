@@ -11,7 +11,7 @@
 
 @interface UITableViewCellArtist()
 {
-    MPMediaItem* artist;
+    MPMediaItemCollection* artist;
 }
 
 @property AppDelegate* del;
@@ -50,7 +50,7 @@
     if (selected==true) {
         // setup app delegate
         self.del = [[UIApplication sharedApplication] delegate];
-        [self.del mpdatamanager].currentArtist = artist;
+        [self.del mpdatamanager].currentArtistCollection = artist;
     }
 }
 
@@ -61,14 +61,15 @@
  * @param
  * @return
  */
-- (void)setArtistItem:(NSArray*)artistCollection withDictionnary:(NSMutableDictionary*)dictionary
+- (void)setArtistItem:(MPMediaItemCollection*)artistCollection withDictionnary:(NSMutableDictionary*)dictionary
 {
-    artist = [(MPMediaItemCollection*)artistCollection representativeItem];
+    MPMediaItem* artistRepresentativeItem = [(MPMediaItemCollection*)artistCollection representativeItem];
+    artist = artistCollection;
     
     if([artistCollection count]>0)
     {
         UIImage* image;
-        MPMediaItemArtwork *artwork = [artist valueForProperty:MPMediaItemPropertyArtwork];
+        MPMediaItemArtwork *artwork = [artistRepresentativeItem valueForProperty:MPMediaItemPropertyArtwork];
         if (artwork)
             image = [artwork imageWithSize:[[self imageview] frame].size];
         if (image.size.height>0 && image.size.width>0) // check if image present
@@ -80,7 +81,7 @@
     {
         [[self imageview] setImage:[UIImage imageNamed:@"empty"]];
     }
-    self.artistName.text = [artist valueForProperty:MPMediaItemPropertyArtist];
+    self.artistName.text = [artistRepresentativeItem valueForProperty:MPMediaItemPropertyArtist];
     
     NSUInteger nbAlbums = [[dictionary objectForKey:(self.artistName.text)] intValue];
     if(nbAlbums>1)

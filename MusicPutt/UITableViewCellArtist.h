@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface UITableViewCellArtist : UITableViewCell
 
@@ -15,5 +16,5 @@
 @property (weak,nonatomic) IBOutlet UILabel* nbAlbums;
 @property (weak,nonatomic) IBOutlet UILabel* nbTracks;
 
-- (void)setArtistItem:(NSArray*)artistCollection withDictionnary:(NSMutableDictionary*)dictionary;
+- (void)setArtistItem:(MPMediaItemCollection*)artistCollection withDictionnary:(NSMutableDictionary*)dictionary;
 @end

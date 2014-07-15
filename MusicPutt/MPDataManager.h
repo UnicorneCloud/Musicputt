@@ -18,7 +18,7 @@
 @property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
 @property (strong, nonatomic) CurrentPlayingToolBar*  currentPlayingToolbar;
 @property (strong, nonatomic) NSMutableArray* currentSonglist;
-@property (strong, nonatomic) MPMediaItem* currentArtist;
+@property (strong, nonatomic) MPMediaItemCollection* currentArtistCollection;
 //@property (strong, nonatomic) MPMedia
 
 - (bool) initialise;
