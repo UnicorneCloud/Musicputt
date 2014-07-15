@@ -115,6 +115,84 @@
     [self executeSearch:itemId addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithId delegate:anObject];
 }
 
+/**
+ *  Execute asynchrone query in itunes store.
+ *
+ *  @param type       Indicate type of the query. See: MPServiceStoreQueryType
+ *  @param searchTerm searchTerm or itemId for query with item
+ *  @param anObject   the object delegate that receive result
+ */
+- (void) executeQuery:(MPServiceStoreQueryType) type searchTerm:(NSString*)searchTerm setDelegate:(id) anObject
+{
+    NSString *filterTerm;
+    
+    if (type == MPQueryMusicTrackWithId ||
+        type == MPQueryMusicTrackWithSearchTerm ) {
+        filterTerm = @"musicTrack";
+    }
+    else if (type == MPQueryArtistWithId ||
+             type == MPQueryArtistWithSearchTerm ) {
+        filterTerm = @"artist";
+    }
+    else if (type == MPQueryAlbumWithId ||
+             type == MPQueryAlbumWithSearchTerm ) {
+        filterTerm = @"album";
+    }
+    
+    //Let's get this on a background thread.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                   ^{
+                       NSURLRequest *request;
+                       if (type == MPQueryMusicTrackWithId ||
+                           type == MPQueryArtistWithId ||
+                           type == MPQueryAlbumWithId ) {
+                           request = [NSURLRequest requestWithURL:[self createURLForCallWithId:searchTerm andFilter:filterTerm]];
+                       }
+                       else{
+                           request = [NSURLRequest requestWithURL:[self createURLForCallWithSearchTerm:searchTerm andFilter:filterTerm]];
+                       }
+                       
+                       RKObjectRequestOperation *operation;
+                       if ( MPQueryMusicTrackWithId == type ||
+                           MPQueryMusicTrackWithSearchTerm == type){
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]];
+                       }
+                       else if ( MPQueryArtistWithId == type ||
+                                MPQueryArtistWithSearchTerm == type ){
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
+                       }
+                       else if ( MPQueryAlbumWithId == type ||
+                                MPQueryAlbumWithSearchTerm == type ){
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
+                       }
+                       else{
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
+                       }
+                       
+                       operation.HTTPRequestOperation.acceptableContentTypes = [NSSet setWithObject:@"text/javascript"];
+                       [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+                           
+                           //About to update the UI, so jump back to the main/UI thread
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request completed.");
+                               if ( [anObject respondsToSelector:@selector(queryResult:type:results:)]){
+                                   [anObject queryResult:MPServiceStoreStatusSucceed type:type results:[result array]];
+                               }
+                           });
+                           
+                       } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                           
+                           //About to update the UI, so jump back to the main/UI thread
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request failed.");
+                               if ( [anObject respondsToSelector:@selector(queryResult:type:results:)] ){
+                                   [anObject queryResult:MPServiceStoreStatusFailed type:type results:nil];
+                               }
+                           });
+                       }];
+                       [operation start];
+                   });
+}
 
 /**
  *  Make request to the iTunes Store with searchTerm and filterTerm.
@@ -129,16 +207,32 @@
     //Let's get this on a background thread.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                    ^{
-                       NSURLRequest *request = [NSURLRequest requestWithURL:[self createURLForCallWithSearchTerm:searchTerm andFilter:filterTerm]];
+                       NSURLRequest *request;
+                       if (type == MPQueryMusicTrackWithId ||
+                           type == MPQueryArtistWithId ||
+                           type == MPQueryAlbumWithId ) {
+                           request = [NSURLRequest requestWithURL:[self createURLForCallWithId:searchTerm andFilter:filterTerm]];
+                       }
+                       else{
+                           request = [NSURLRequest requestWithURL:[self createURLForCallWithSearchTerm:searchTerm andFilter:filterTerm]];
+                       }
+                       
                        RKObjectRequestOperation *operation;
-                       if ( MPQueryMusicTrackWithId == type || MPQueryMusicTrackWithSearchTerm == type)
+                       if ( MPQueryMusicTrackWithId == type ||
+                            MPQueryMusicTrackWithSearchTerm == type){
                            operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]];
-                       else if ( MPQueryArtistWithId == type || MPQueryArtistWithSearchTerm == type )
+                       }
+                       else if ( MPQueryArtistWithId == type ||
+                                 MPQueryArtistWithSearchTerm == type ){
                            operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
-                       else if ( MPQueryAlbumWithId == type || MPQueryAlbumWithSearchTerm == type )
+                       }
+                       else if ( MPQueryAlbumWithId == type ||
+                                 MPQueryAlbumWithSearchTerm == type ){
                            operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
-                       else
+                       }
+                       else{
                            operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
+                       }
                        
                        operation.HTTPRequestOperation.acceptableContentTypes = [NSSet setWithObject:@"text/javascript"];
                        [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
@@ -179,6 +273,23 @@
     NSString *urlAsString = [NSString stringWithFormat:@"https://itunes.apple.com/search?entity=%@&limit=25&term=%@",
                             filterTerm,
                             [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    return url;
+}
+
+/**
+ *  Build valid URL to search on itune store api with a unique id of item.
+ *
+ *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *
+ *  @return valid url request to call RKObjectRequestOperation initWithRequest.
+ */
+-(NSURL *)createURLForCallWithId:(NSString *)itemId andFilter:(NSString *)filterTerm {
+    
+    NSString *urlAsString = [NSString stringWithFormat:@"https://itunes.apple.com/lookup?entity=%@&id=%@",
+                             filterTerm,
+                             [itemId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *url = [NSURL URLWithString:urlAsString];
     return url;
 }

@@ -56,6 +56,12 @@ typedef enum {
 
 
 /**
+ *  Configuration of the connection with the iTunes Store API.
+ */
+- (void) configureConnection;
+
+
+/**
  *  Execute query in iTunes Store and return results to the delagate.
  *
  *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
@@ -73,6 +79,14 @@ typedef enum {
 - (void) queryMusicTrackWithId:(NSString*)itemId setDelegate:(id) anObject;
 
 
+/**
+ *  Execute asynchrone query in itunes store.
+ *
+ *  @param type       Indicate type of the query. See: MPServiceStoreQueryType
+ *  @param searchTerm searchTerm or itemId for query with item
+ *  @param anObject   the object delegate that receive result
+ */
+- (void) executeQuery:(MPServiceStoreQueryType) type searchTerm:(NSString*)searchTerm setDelegate:(id) anObject;
 
 
 @end

@@ -11,9 +11,12 @@
 
 @interface MPServiceStoreTest : XCTestCase <MPServiceStoreDelegate>
 {
+    MPServiceStore *iTunes;
+    
     NSArray* resultArray;
-    BOOL queryMusicTrackWithSearchTermResult;
+    BOOL queryMusicTrackWithSearchTerm;
     BOOL queryMusicTrackWithSearchTId;
+    BOOL testResult;
 }
 
 @end
@@ -24,6 +27,11 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    iTunes = [[MPServiceStore alloc] init];
+    [iTunes configureConnection];
+    resultArray = [[NSArray alloc]init];
+    testResult = false;
+    
 }
 
 - (void)tearDown
@@ -32,44 +40,48 @@
     [super tearDown];
 }
 
+
 - (void)testQueryMusicTrackWithSearchTerm
 {
-        
-    [NSThread sleepForTimeInterval:2.0];
+    [iTunes queryMusicTrackWithSearchTerm:@"london+grammar+strong" setDelegate:self];
     
-    if (!queryMusicTrackWithSearchTermResult) {
-        XCTFail(@"Querry failed \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:5.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:fiveSecondsFromNow];
+    
+    if(resultArray.count>0 && queryMusicTrackWithSearchTerm){
+        testResult = true;
     }
+    XCTAssert(testResult);
 }
 
 
 - (void)testQueryMusicTrackWithId
 {
-    resultArray = [[NSArray alloc]init];
-    MPServiceStore *iTunes = [[MPServiceStore alloc] init];
+    [iTunes queryMusicTrackWithId:@"695806055" setDelegate:self];
     
-    if(iTunes)
-        [iTunes queryMusicTrackWithId:@"695806055" setDelegate:self];
-    else
-        XCTFail(@"Unable to initialise MPServiceStore \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:5.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:fiveSecondsFromNow];
     
-    [NSThread sleepForTimeInterval:2.0];
-    
-    if (!queryMusicTrackWithSearchTId) {
-        XCTFail(@"Querry failed \"%s\"", __PRETTY_FUNCTION__);
+    if (resultArray.count==1 && queryMusicTrackWithSearchTId) {
+        testResult = true;
     }
+    
+    XCTAssert(testResult);
+    
 }
 
 
 -(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results
 {
     if (status==MPServiceStoreStatusSucceed) {
-        if (type == MPQueryMusicTrackWithSearchTerm)
-            queryMusicTrackWithSearchTermResult = true;
-        else if ( type == MPQueryMusicTrackWithId )
+        if (type == MPQueryMusicTrackWithSearchTerm){
+            queryMusicTrackWithSearchTerm = true;
+        }
+        else if ( type == MPQueryMusicTrackWithId ){
             queryMusicTrackWithSearchTId = true;
+        }
+        resultArray = results;
     }
-    NSLog(@"\nTEST PASS\n");
 }
 
 

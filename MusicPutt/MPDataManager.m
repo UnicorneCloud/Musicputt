@@ -7,12 +7,10 @@
 //
 
 #import "MPDataManager.h"
-#import "MPServiceStore.h"
-
 #import <MediaPlayer/MPMusicPlayerController.h>
 
 
-@interface MPDataManager() <MPServiceStoreDelegate>
+@interface MPDataManager()
 
 
 @end
@@ -42,23 +40,9 @@
     // the initial state of the musicviewcontroller is hidden.
     musicviewcontrollervisible = false;
     
-    MPServiceStore *store = [[MPServiceStore alloc] init];
-    [store queryMusicTrackWithSearchTerm:@"London grammar strong" setDelegate:self];
-    
     return retval;
 }
 
--(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results
-{
-    if (status==MPServiceStoreStatusSucceed) {
-        //if (type == MPQueryMusicTrackWithSearchTerm)
-            //queryMusicTrackWithSearchTermResult = true;
-        //else if ( type == MPQueryMusicTrackWithId)
-            //queryMusicTrackWithSearchTId = true;
-        NSLog(@"\nTEST PASS\n");
-    }
-    
-}
 
 
 /**
