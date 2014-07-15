@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UICurrentPlayingToolBar.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UICurrentPlayingToolBar</TokenIdentifier>
+			<Abstract type="html">Navigation Toolbar to displayed current playing song.
+This toolbar can display current playing song.</Abstract>
+			<DeclaredIn>UICurrentPlayingToolBar.h</DeclaredIn>
+            
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/cl/UIViewCurrentToolBar</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<NodeRef refid="6"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UICurrentPlayingToolBar/setNavigationController:</TokenIdentifier>
+			<Abstract type="html">Set the current NavigationController.
+You have to attach the navigation bar with the toolbar for properly display.</Abstract>
+			<DeclaredIn>UICurrentPlayingToolBar.h</DeclaredIn>
+			
+			<Declaration>- (void)setNavigationController:(UINavigationController *)controller</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>controller</Name>
+					<Abstract type="html">UINavigationController for attach with the toolbar.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setNavigationController:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

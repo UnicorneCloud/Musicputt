@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/AMWaveTransition.html">
+	<File path="Classes/AppDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/AMWaveTransition</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/AppDelegate</TokenIdentifier>
+			<Abstract type="html">Application main delegate.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
             
 			
 			<NodeRef refid="1"/>
@@ -13,249 +13,74 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/AMWaveTransition/transitionWithOperation:</TokenIdentifier>
-			<Abstract type="html">New transition</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setWindow:</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
 			
-			<Declaration>+ (instancetype)transitionWithOperation:(UINavigationControllerOperation)operation</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>operation</Name>
-					<Abstract type="html">The UINavigationControllerOperation that determines the transition type (push or pop)</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
 			
-			<Anchor>//api/name/transitionWithOperation:</Anchor>
+			
+			<Anchor>//api/name/window</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/AMWaveTransition/transitionWithOperation:andTransitionType:</TokenIdentifier>
-			<Abstract type="html">New transition</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
 			
-			<Declaration>+ (instancetype)transitionWithOperation:(UINavigationControllerOperation)operation andTransitionType:(AMWaveTransitionType)type</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>operation</Name>
-					<Abstract type="html">The UINavigationControllerOperation that determines the transition type (push or pop)</Abstract>
-				</Parameter><Parameter>
-					<Name>type</Name>
-					<Abstract type="html">The transition type</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
 			
-			<Anchor>//api/name/transitionWithOperation:andTransitionType:</Anchor>
+			
+			<Anchor>//api/name/window</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/initWithOperation:</TokenIdentifier>
-			<Abstract type="html">New transition</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithOperation:(UINavigationControllerOperation)operation</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>operation</Name>
-					<Abstract type="html">The UINavigationControllerOperation that determines the transition type (push or pop)</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
 			
-			<Anchor>//api/name/initWithOperation:</Anchor>
+			
+			<Anchor>//api/name/window</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/initWithOperation:andTransitionType:</TokenIdentifier>
-			<Abstract type="html">New transition</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setMpdatamanager:</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithOperation:(UINavigationControllerOperation)operation andTransitionType:(AMWaveTransitionType)type</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>operation</Name>
-					<Abstract type="html">The UINavigationControllerOperation that determines the transition type (push or pop)</Abstract>
-				</Parameter><Parameter>
-					<Name>type</Name>
-					<Abstract type="html">The transition type</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
 			
-			<Anchor>//api/name/initWithOperation:andTransitionType:</Anchor>
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/attachInteractiveGestureToNavigationController:</TokenIdentifier>
-			<Abstract type="html">Attach the interactive gesture</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/mpdatamanager</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
 			
-			<Declaration>- (void)attachInteractiveGestureToNavigationController:(UINavigationController *)navigationController</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>navigationController</Name>
-					<Abstract type="html">The UINavigationController that holds the current view controller</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
 			
-			<Anchor>//api/name/attachInteractiveGestureToNavigationController:</Anchor>
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/detachInteractiveGesture</TokenIdentifier>
-			<Abstract type="html">Detach the interactive gesture</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/mpdatamanager</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
 			
-			<Declaration>- (void)detachInteractiveGesture</Declaration>
-			
-			
-			<Anchor>//api/name/detachInteractiveGesture</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/setOperation:</TokenIdentifier>
-			<Abstract type="html">Operation type</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) UINavigationControllerOperation operation</Declaration>
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
 			
 			
-			<Anchor>//api/name/operation</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/operation</TokenIdentifier>
-			<Abstract type="html">Operation type</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) UINavigationControllerOperation operation</Declaration>
-			
-			
-			<Anchor>//api/name/operation</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/AMWaveTransition/operation</TokenIdentifier>
-			<Abstract type="html">Operation type</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) UINavigationControllerOperation operation</Declaration>
-			
-			
-			<Anchor>//api/name/operation</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/setTransitionType:</TokenIdentifier>
-			<Abstract type="html">Transition type</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) AMWaveTransitionType transitionType</Declaration>
-			
-			
-			<Anchor>//api/name/transitionType</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/transitionType</TokenIdentifier>
-			<Abstract type="html">Transition type</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) AMWaveTransitionType transitionType</Declaration>
-			
-			
-			<Anchor>//api/name/transitionType</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/AMWaveTransition/transitionType</TokenIdentifier>
-			<Abstract type="html">Transition type</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) AMWaveTransitionType transitionType</Declaration>
-			
-			
-			<Anchor>//api/name/transitionType</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/setDuration:</TokenIdentifier>
-			<Abstract type="html">Animation duration</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) CGFloat duration</Declaration>
-			
-			
-			<Anchor>//api/name/duration</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/duration</TokenIdentifier>
-			<Abstract type="html">Animation duration</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) CGFloat duration</Declaration>
-			
-			
-			<Anchor>//api/name/duration</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/AMWaveTransition/duration</TokenIdentifier>
-			<Abstract type="html">Animation duration</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) CGFloat duration</Declaration>
-			
-			
-			<Anchor>//api/name/duration</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/setMaxDelay:</TokenIdentifier>
-			<Abstract type="html">Maximum animation delay</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) CGFloat maxDelay</Declaration>
-			
-			
-			<Anchor>//api/name/maxDelay</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/AMWaveTransition/maxDelay</TokenIdentifier>
-			<Abstract type="html">Maximum animation delay</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) CGFloat maxDelay</Declaration>
-			
-			
-			<Anchor>//api/name/maxDelay</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/AMWaveTransition/maxDelay</TokenIdentifier>
-			<Abstract type="html">Maximum animation delay</Abstract>
-			<DeclaredIn>AMWaveTransition.h</DeclaredIn>
-			
-			<Declaration>@property (assign, nonatomic) CGFloat maxDelay</Declaration>
-			
-			
-			<Anchor>//api/name/maxDelay</Anchor>
+			<Anchor>//api/name/mpdatamanager</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		
