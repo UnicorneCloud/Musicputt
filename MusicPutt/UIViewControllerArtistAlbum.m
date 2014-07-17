@@ -117,6 +117,7 @@
  */
 - (NSString*)fullAlbumLength:(NSInteger)indexAlbum
 {
+    fullLength = 0;
     [[[everything collections][indexAlbum] items] enumerateObjectsUsingBlock:^(MPMediaItem *songItem, NSUInteger idx, BOOL *stop) {
         fullLength = @([fullLength floatValue] + [[songItem valueForProperty:MPMediaItemPropertyPlaybackDuration] floatValue]);
     }];
@@ -156,8 +157,9 @@
     headerCell.albumName.text = [[[everything collections][section] representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle];
     [headerCell.albumName sizeToFit];
     
-    NSNumber *trackCount = [[[everything collections][section] representativeItem] valueForProperty:MPMediaItemPropertyAlbumTrackCount];
-    if (trackCount > 0) {
+    NSNumber *trackCount = [NSNumber numberWithInteger:([[[everything collections][section] items] count])];
+    if (trackCount > 0)
+    {
         headerCell.infoAlbum.text = [trackCount.stringValue stringByAppendingString:@" tracks"];
     }
     else
