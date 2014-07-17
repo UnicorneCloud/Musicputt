@@ -42,11 +42,16 @@
     self.del = [[UIApplication sharedApplication] delegate];    
 }
 
+/**
+ *  Set the information of the media item (name, track no. and duration).
+ *
+ *  @param artistAlbumItem : The media item to set.
+ */
 - (void)setArtistAlbumItem: (MPMediaItem*)artistAlbumItem
 {
     self.songName.text = [artistAlbumItem valueForProperty:MPMediaItemPropertyTitle];
     self.trackNo.text  = [[artistAlbumItem valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
-    NSLog(@"%@", [artistAlbumItem valueForProperty:MPMediaItemPropertyAlbumTrackNumber]);
+
     NSNumber *durationtime = [artistAlbumItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
     self.songDuration.text = [NSString stringWithFormat: @"%02d:%02d",
                              [durationtime intValue]/60,

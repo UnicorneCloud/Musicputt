@@ -10,8 +10,17 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface UITableViewCellArtistAlbum : UITableViewCell
+/**
+ *  Song's track number.
+ */
 @property (weak,nonatomic) IBOutlet UILabel* trackNo;
+/**
+ *  Song's name.
+ */
 @property (weak,nonatomic) IBOutlet UILabel* songName;
+/**
+ *  Song's duration.
+ */
 @property (weak,nonatomic) IBOutlet UILabel* songDuration;
 
 - (void)setArtistAlbumItem: (MPMediaItem*)artistAlbumItem;

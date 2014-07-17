@@ -36,7 +36,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
@@ -49,7 +48,7 @@
     
     // setup query artists
     everything = [MPMediaQuery artistsQuery];
-    //[everything setGroupingType:MPMediaGroupingArtist];
+
     artists = [everything collections];
     
     // Initiate the dictionnairy and fill it.
@@ -67,9 +66,6 @@
                             forKey:artistName];
         [tempSet removeAllObjects];
     }];
-    NSLog(@"Artist Album Count Dictionary: %@", artistDictionary);
-    
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 - (void)didReceiveMemoryWarning

@@ -54,13 +54,6 @@
     }
 }
 
-/**
- * This function fill the table cell with the displayed information.
- *
- * @param
- * @param
- * @return
- */
 - (void)setArtistItem:(MPMediaItemCollection*)artistCollection withDictionnary:(NSMutableDictionary*)dictionary
 {
     MPMediaItem* artistRepresentativeItem = [(MPMediaItemCollection*)artistCollection representativeItem];
@@ -102,7 +95,5 @@
     {
         self.nbTracks.text = [NSString stringWithFormat:@"%d track", nbTracks];
     }
-    
-    NSLog(@"Album number : %@\n", [dictionary objectForKey:(self.artistName.text)]);
 }
 @end
