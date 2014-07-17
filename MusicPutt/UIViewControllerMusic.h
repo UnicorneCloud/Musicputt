@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "UIImageViewArtwork.h"
 
+@class UIViewControllerArtworkPage;
+@class UIViewControllerArtistPage;
+
 /**
  *  Main screen to display current playing song.
  *  When this screen is display, the UICurrentPlayingToolBar is hidden. 
@@ -17,6 +20,27 @@
  *  From this screen, the user can access all details screen (lyrics, artist, album, discover, share)
  */
 @interface UIViewControllerMusic : UIViewController
+
+
+/**
+ *  Page view controller for access artist, album and lyrics.
+ */
+@property (weak, nonatomic) IBOutlet UIPageViewController*  pageviewcontroller;
+
+/**
+ *  View that content page view controller for artist, album and lyrics.
+ */
+@property (weak, nonatomic) IBOutlet UIView*            pageview;
+
+/**
+ *  Artwork page.
+ */
+@property (strong, nonatomic) UIViewControllerArtworkPage* artworkpage;
+
+/**
+ *  Artist information page.
+ */
+@property (strong, nonatomic) UIViewControllerArtistPage* artistpage;
 
 /**
  *  Artwork of the current playing song.

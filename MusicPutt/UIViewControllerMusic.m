@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-
-#import "UIViewControllerMusic.h"
 #import "AppDelegate.h"
-
+#import "UIPageContentViewController.h"
+#import "UIViewControllerMusic.h"
+#import "UIViewControllerArtworkPage.h"
+#import "UIViewControllerArtistPage.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPMusicPlayerController.h>
@@ -17,9 +18,8 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 
-@class SCLAlertView;
 
-@interface UIViewControllerMusic ()
+@interface UIViewControllerMusic () <UIPageViewControllerDataSource>
 {
 }
 
@@ -52,10 +52,31 @@
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateDisplay];
     
-    // Detect tapgesture
-    _imageview.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureImageview = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewPressed)];
-    [_imageview addGestureRecognizer:tapGestureImageview];
+    // Create page view content
+    _artistpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtistPage"];
+    _artistpage.pageIndex = 0;
+    _artistpage.view.alpha = 0.95;
+    _artworkpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtworkPage"];
+    _artworkpage.pageIndex = 1;
+    _artworkpage.view.backgroundColor = [UIColor clearColor];
+    
+    // Create page view controller
+    _pageviewcontroller = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewControllerMusic"];
+    _pageviewcontroller.dataSource = self;
+    
+    UIPageContentViewController *startingViewController = [self viewControllerAtIndex:1];
+    NSArray *viewControllers = @[startingViewController];
+    [_pageviewcontroller setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    
+    // Change the size of page view controller
+    _pageviewcontroller.view.frame = CGRectMake(0, 0, _pageview.frame.size.width, _pageview.frame.size.height);
+    
+    [self addChildViewController:_pageviewcontroller];
+    
+    _pageview.backgroundColor = [UIColor clearColor];
+    [_pageview addSubview:_pageviewcontroller.view];
+    [_pageviewcontroller didMoveToParentViewController:self];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -97,15 +118,6 @@
     // update current playing song display
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateDisplay];
-    
-    
-    // prepare menubar with gradien to display Artist, Album, Listen more
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = _menubar.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], [[UIColor colorWithWhite:1 alpha:0] CGColor], nil];
-    _menubar.backgroundColor = [UIColor clearColor];
-    [_menubar.layer insertSublayer:gradient atIndex:0];
-    _menubar.hidden = true;
 }
 
 
@@ -154,8 +166,6 @@
         NSString *artistalbum = [NSString stringWithFormat:@"%@ - %@", [aitem valueForProperty:MPMediaItemPropertyArtist]
                                                                      , [aitem valueForProperty:MPMediaItemPropertyAlbumTitle]];
         [_artistalbum setText:artistalbum];
-        
-        //[self updateCurrentTime];
     }
     else{
         [_imageview setImage:nil];
@@ -380,6 +390,53 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+}
+
+
+#pragma mark - Page View Controller Data Source
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((UIPageContentViewController*) viewController).pageIndex;
+    
+    if ((index == 0) || (index == NSNotFound)) {
+        return nil;
+    }
+    
+    index--;
+    return [self viewControllerAtIndex:index];
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((UIPageContentViewController*) viewController).pageIndex;
+    
+    if (index == NSNotFound) {
+        return nil;
+    }
+    
+    index++;
+    if (index == 1) {
+        return nil;
+    }
+    return [self viewControllerAtIndex:index];
+}
+
+- (UIPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
+{
+    // Create a new view controller and pass suitable data.
+    UIPageContentViewController *pageContentViewController;
+    if(index==0)
+    {
+        pageContentViewController = _artistpage;
+        
+    }
+    else if(index ==1)
+    {
+        pageContentViewController = _artworkpage;
+    }
+    
+    return pageContentViewController;
 }
 
 
