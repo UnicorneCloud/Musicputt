@@ -96,6 +96,30 @@
 	[self addConstraint:constraint];
 }
 
+/**
+ *  Show navigation tabbar
+ *
+ *  @param bar      navigation bar parent of the toolbar.
+ *  @param animated animation during show.
+ */
+- (void)showFromNavigationBar:(UINavigationBar *)bar animated:(BOOL)animated
+{
+    [view updateCurrentPlayingItem];
+    [super showFromNavigationBar:bar animated:animated];
+    [view startNotificationCapture];
+}
+
+/**
+ *  Hide tabbar
+ *
+ *  @param animated animate during hide.
+ */
+- (void)hideAnimated:(BOOL)animated
+{
+    [super hideAnimated:animated];
+    [view stopNotificationCapture];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

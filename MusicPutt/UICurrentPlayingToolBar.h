@@ -25,4 +25,20 @@
  */
 - (void) setNavigationController:(UINavigationController*) controller;
 
+
+/**
+ *  Show navigation tabbar
+ *
+ *  @param bar      navigation bar parent of the toolbar.
+ *  @param animated animation during show.
+ */
+- (void)showFromNavigationBar:(UINavigationBar *)bar animated:(BOOL)animated;
+
+/**
+ *  Hide tabbar
+ *
+ *  @param animated animate during hide.
+ */
+- (void)hideAnimated:(BOOL)animated;
+
 @end
