@@ -16,6 +16,7 @@
 {
     MPMediaQuery* everything;             // result of current query
     MPMediaItemCollection *artistCollection;
+    NSNumber *fullLength;
 }
 
 @property AppDelegate* del;
@@ -34,6 +35,9 @@
     return self;
 }
 
+/**
+ *  <#Description#>
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -51,9 +55,6 @@
                               forProperty:MPMediaItemPropertyAlbumArtist];
     [everything addFilterPredicate:artistPredicate];
     
-    NSLog(@"%@", [everything collections]);
-    
-    
     // setup title
     [self setTitle:[[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist]];
     
@@ -67,17 +68,39 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  Number of section in the table view.
+ *
+ *  @param tableView :
+ *
+ *  @return          : Number of section. 
+ */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[everything collections] count];
 }
 
+/**
+ *  The number of rows in the specified section.
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   : Section's index.
+ *
+ *  @return          : Number of row of this section.
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%d %d",section,[[everything collections][section] count]);
     return [[everything collections][section] count] ;
 }
 
+/**
+ *  Return the cell at a specified location in the talbe view.
+ *
+ *  @param tableView :
+ *  @param indexPath : The path to the cell.
+ *
+ *  @return
+ */
 - (UITableViewCellArtistAlbum*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellArtistAlbum* cell = [tableView dequeueReusableCellWithIdentifier:@"CellArtistAlbum"];
@@ -85,11 +108,39 @@
     
     return cell;
 }
+/**
+ *  Calculate the playback duration of full album.
+ *
+ *  @param indexAlbum : Album index or section.
+ *
+ *  @return           : The full duration of the album.
+ */
+- (NSString*)fullAlbumLength:(NSInteger)indexAlbum
+{
+    fullLength = 0;
+    [[[everything collections][indexAlbum] items] enumerateObjectsUsingBlock:^(MPMediaItem *songItem, NSUInteger idx, BOOL *stop) {
+        fullLength = @([fullLength floatValue] + [[songItem valueForProperty:MPMediaItemPropertyPlaybackDuration] floatValue]);
+    }];
+    
+    int fullMinutes = trunc([fullLength floatValue]) / 60;
+    
+    NSString* length = [NSString stringWithFormat:@"%d mins",fullMinutes];
+    return length;
+}
 
+/**
+ *  Create the header cell of the section in the table view.
+ *
+ *  @param tableView :
+ *  @param section   : The section index.
+ *  @return          : The header cell.
+ */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // 1. Dequeue the custom header cell
     UITableViewCellHeaderSection * headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderCell"];
+    headerCell.contentView.backgroundColor = [UIColor whiteColor];
+    
+    // Image of album's cover.
     if([artistCollection count]>0)
     {
         UIImage* image;
@@ -102,17 +153,47 @@
             [[headerCell imageHeader] setImage:[UIImage imageNamed:@"empty"]];
     }
     
-    // 2. Set the various properties
+    // Album's name.
     headerCell.albumName.text = [[[everything collections][section] representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle];
     [headerCell.albumName sizeToFit];
     
-    headerCell.artistName.text = [[[everything collections][section] representativeItem] valueForProperty:MPMediaItemPropertyAlbumArtist];
-    [headerCell.artistName sizeToFit];
+    NSNumber *trackCount = [NSNumber numberWithInteger:([[[everything collections][section] items] count])];
+    if (trackCount > 0)
+    {
+        headerCell.infoAlbum.text = [trackCount.stringValue stringByAppendingString:@" tracks"];
+    }
+    else
+    {
+        headerCell.infoAlbum.text = @"";
+    }
     
-    // 3. And return
+    // Album's duration.
+    NSString *strLength = [self fullAlbumLength:section];
+    if (strLength != nil)
+    {
+        if(trackCount > 0)
+        {
+            headerCell.infoAlbum.text = [headerCell.infoAlbum.text stringByAppendingString: @", "];
+        }
+        headerCell.infoAlbum.text = [headerCell.infoAlbum.text stringByAppendingString: strLength];
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    
+    headerCell.albumYear.text = [formatter stringFromDate:[[[everything collections][section] representativeItem] valueForProperty:MPMediaItemPropertyReleaseDate]];
+    
     return headerCell;
 }
 
+/**
+ *  Set the section header's height.
+ *
+ *  @param tableView
+ *  @param section   : Section index.
+ *
+ *  @return          : Section hearder's height.
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 80.0f;
