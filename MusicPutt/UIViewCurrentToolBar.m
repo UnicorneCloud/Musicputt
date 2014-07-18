@@ -19,6 +19,7 @@
 {
     UIImageView *playView;
     UIImageView *pauseView;
+    NSTimer* timer;
 }
 @property (nonatomic, copy) void (^didSelectBlock)(UAProgressView *progressView);
 @property AppDelegate* del;
@@ -61,11 +62,13 @@
     pauseView.alpha = .30;
     _progress.centralView =  playView;
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    /*
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(updateCurrentTime)
                                    userInfo: nil
                                     repeats:YES];
+     */
     
     _progress.didSelectBlock = ^(UAProgressView *progressView){
         MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
@@ -170,6 +173,12 @@
  */
 - (void) startNotificationCapture
 {
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                             target:self
+                                           selector:@selector(updateCurrentTime)
+                                           userInfo: nil
+                                            repeats:YES];
+    
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [notificationCenter
@@ -206,6 +215,8 @@
      object:         [[_del mpdatamanager] musicplayer]];
     
     [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
+    
+    [timer invalidate];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"stoped");
 }

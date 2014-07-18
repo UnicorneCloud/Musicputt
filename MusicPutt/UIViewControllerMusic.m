@@ -22,6 +22,7 @@
 
 @interface UIViewControllerMusic () <UIPageViewControllerDataSource, UIScrollViewDelegate>
 {
+    NSTimer *timer;
 }
 
 @property AppDelegate* del;
@@ -129,7 +130,7 @@
     
     [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.2
                                      target:self
                                    selector:@selector(updateDisplay)
                                    userInfo: nil
@@ -145,6 +146,8 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    [timer invalidate];
     
     // desabled notification if view is not visible.
     [[NSNotificationCenter defaultCenter]
