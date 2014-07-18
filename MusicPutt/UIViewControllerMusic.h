@@ -11,6 +11,7 @@
 
 @class UIViewControllerArtworkPage;
 @class UIViewControllerArtistPage;
+@class UIViewControllerLyricsPage;
 
 /**
  *  Main screen to display current playing song.
@@ -43,14 +44,19 @@
 @property (strong, nonatomic) UIViewControllerArtistPage* artistpage;
 
 /**
+ *  Lyrics page.
+ */
+@property (strong, nonatomic) UIViewControllerLyricsPage* lyricspage;
+
+/**
  *  Artwork of the current playing song.
  */
 @property (weak, nonatomic) IBOutlet UIImageView*       imageview;
 
 /**
- *  View contain du song title, artist name and album title of the current playing song.
+ *  Page control to display page.
  */
-@property (weak, nonatomic) IBOutlet UIView*            currentsongview;
+@property (weak, nonatomic) IBOutlet UIPageControl*     pagecontrol;
 
 /**
  *  Song title of the current playing song.

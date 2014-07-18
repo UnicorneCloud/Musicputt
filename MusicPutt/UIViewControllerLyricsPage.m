@@ -1,18 +1,18 @@
 //
-//  UIViewControllerArtistPage.m
+//  UIViewControllerLyricsPage.m
 //  MusicPutt
 //
-//  Created by Eric Pinet on 2014-07-16.
+//  Created by Eric Pinet on 2014-07-17.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "UIViewControllerArtistPage.h"
+#import "UIViewControllerLyricsPage.h"
 
-@interface UIViewControllerArtistPage ()
+@interface UIViewControllerLyricsPage ()
 
 @end
 
-@implementation UIViewControllerArtistPage
+@implementation UIViewControllerLyricsPage
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +33,6 @@
     self.view.backgroundColor = [UIColor clearColor];
     blurtoolbar.autoresizingMask = self.view.autoresizingMask;
     [self.view insertSubview:blurtoolbar atIndex:0];
-    
 }
 
 - (void)didReceiveMemoryWarning
