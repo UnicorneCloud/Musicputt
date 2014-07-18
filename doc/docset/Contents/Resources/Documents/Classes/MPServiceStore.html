@@ -45,7 +45,11 @@
 	
 	<option value="//api/name/configureConnection">&nbsp;&nbsp;&nbsp;&nbsp;- configureConnection</option>
 	
+	<option value="//api/name/createURLForCallWithId:andFilter:">&nbsp;&nbsp;&nbsp;&nbsp;- createURLForCallWithId:andFilter:</option>
+	
 	<option value="//api/name/createURLForCallWithSearchTerm:andFilter:">&nbsp;&nbsp;&nbsp;&nbsp;- createURLForCallWithSearchTerm:andFilter:</option>
+	
+	<option value="//api/name/executeQuery:searchTerm:setDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- executeQuery:searchTerm:setDelegate:</option>
 	
 	<option value="//api/name/executeSearch:addFilter:queryType:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;- executeSearch:addFilter:queryType:delegate:</option>
 	
@@ -85,7 +89,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/configureConnection">configureConnection</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createURLForCallWithId:andFilter:">createURLForCallWithId:andFilter:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createURLForCallWithSearchTerm:andFilter:">createURLForCallWithSearchTerm:andFilter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/executeQuery:searchTerm:setDelegate:">executeQuery:searchTerm:setDelegate:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/executeSearch:addFilter:queryType:delegate:">executeSearch:addFilter:queryType:delegate:</a></span></li>
 	
@@ -153,6 +161,12 @@ for details of the API.</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/configureConnection">&ndash;&nbsp;configureConnection</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/queryMusicTrackWithSearchTerm:setDelegate:">&ndash;&nbsp;queryMusicTrackWithSearchTerm:setDelegate:</a></code>
 	</span>
 	
@@ -160,6 +174,12 @@ for details of the API.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/queryMusicTrackWithId:setDelegate:">&ndash;&nbsp;queryMusicTrackWithId:setDelegate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/executeQuery:searchTerm:setDelegate:">&ndash;&nbsp;executeQuery:searchTerm:setDelegate:</a></code>
 	</span>
 	
 	
@@ -179,12 +199,6 @@ for details of the API.</p>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/configureConnection">&ndash;&nbsp;configureConnection</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/executeSearch:addFilter:queryType:delegate:">&ndash;&nbsp;executeSearch:addFilter:queryType:delegate:</a></code>
 	</span>
 	
@@ -192,6 +206,12 @@ for details of the API.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/createURLForCallWithSearchTerm:andFilter:">&ndash;&nbsp;createURLForCallWithSearchTerm:andFilter:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createURLForCallWithId:andFilter:">&ndash;&nbsp;createURLForCallWithId:andFilter:</a></code>
 	</span>
 	
 	
@@ -229,6 +249,62 @@ for details of the API.</p>
     
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPServiceStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createURLForCallWithId:andFilter:" title="createURLForCallWithId:andFilter:"></a>
+	<h3 class="subsubtitle method-title">createURLForCallWithId:andFilter:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Build valid URL to search on itune store api with a unique id of item.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSURL *)createURLForCallWithId:(NSString *)<em>itemId</em> andFilter:(NSString *)<em>filterTerm</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>filterTerm</em></dt>
+			<dd><p>see itunes api doc: <a href="https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html">https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</a></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>searchTerm</em></dt>
+			<dd><p>see itunes api doc: <a href="https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html">https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</a></p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>valid url request to call RKObjectRequestOperation initWithRequest.</p>
+	</div>
 	
 	
 	
@@ -299,6 +375,62 @@ for details of the API.</p>
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
 		<code class="declared-in-ref">MPServiceStore.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/executeQuery:searchTerm:setDelegate:" title="executeQuery:searchTerm:setDelegate:"></a>
+	<h3 class="subsubtitle method-title">executeQuery:searchTerm:setDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Execute asynchrone query in itunes store.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)executeQuery:(MPServiceStoreQueryType)<em>type</em> searchTerm:(NSString *)<em>searchTerm</em> setDelegate:(id)<em>anObject</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>type</em></dt>
+			<dd><p>Indicate type of the query. See: MPServiceStoreQueryType</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>searchTerm</em></dt>
+			<dd><p>searchTerm or itemId for query with item</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>anObject</em></dt>
+			<dd><p>the object delegate that receive result</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPServiceStore.h</code><br />
 	</div>				
 	
 	
@@ -521,7 +653,7 @@ for details of the API.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Eric Pinet. All rights reserved. (Last updated: 2014-07-14)</span><br />
+						<p><span class="copyright">&copy; 2014 Eric Pinet. All rights reserved. (Last updated: 2014-07-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

@@ -27,6 +27,9 @@
 						<NodeRef refid="14"/>
 						<NodeRef refid="15"/>
 						<NodeRef refid="16"/>
+						<NodeRef refid="17"/>
+						<NodeRef refid="18"/>
+						<NodeRef refid="19"/>
 						
 					</Subnodes>
 				</Node>
@@ -37,7 +40,7 @@
 					<Name>Protocols</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="17"/>
+						<NodeRef refid="20"/>
 						
 					</Subnodes>
 				</Node>
@@ -47,7 +50,7 @@
 					<Name>Constants</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="18"/>
+						<NodeRef refid="21"/>
 						
 					</Subnodes>
 				</Node>
@@ -269,6 +272,12 @@
                     <Anchor>tasks</Anchor>
                 </Node>
                 
+                <Node type="section">
+                    <Path>Classes/UITableViewCellArtist.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
                 
                 
                 <Node type="section">
@@ -281,6 +290,66 @@
             
         </Node>
 		<Node id="9" type="file" documentType="reference">
+            <Name>UITableViewCellArtistAlbum</Name>
+            <Path>Classes/UITableViewCellArtistAlbum.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellArtistAlbum.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellArtistAlbum.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UITableViewCellArtistAlbum.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UITableViewCellArtistAlbum.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="10" type="file" documentType="reference">
+            <Name>UITableViewCellHeaderSection</Name>
+            <Path>Classes/UITableViewCellHeaderSection.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellHeaderSection.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellHeaderSection.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UITableViewCellHeaderSection.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="11" type="file" documentType="reference">
             <Name>UITableViewCellPlaylist</Name>
             <Path>Classes/UITableViewCellPlaylist.html</Path>
             
@@ -313,7 +382,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="10" type="file" documentType="reference">
+		<Node id="12" type="file" documentType="reference">
             <Name>UITableViewCellPlaylistSong</Name>
             <Path>Classes/UITableViewCellPlaylistSong.html</Path>
             
@@ -346,7 +415,34 @@
             </Subnodes>
             
         </Node>
-		<Node id="11" type="file" documentType="reference">
+		<Node id="13" type="file" documentType="reference">
+            <Name>UIViewControllerArtistAlbum</Name>
+            <Path>Classes/UIViewControllerArtistAlbum.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerArtistAlbum.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerArtistAlbum.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UIViewControllerArtistAlbum.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="14" type="file" documentType="reference">
             <Name>UIViewControllerMusic</Name>
             <Path>Classes/UIViewControllerMusic.html</Path>
             
@@ -379,27 +475,27 @@
             </Subnodes>
             
         </Node>
-		<Node id="12" type="file" documentType="reference">
+		<Node id="15" type="file" documentType="reference">
             <Name>UIViewControllerPlaylist</Name>
             <Path>Classes/UIViewControllerPlaylist.html</Path>
             
         </Node>
-		<Node id="13" type="file" documentType="reference">
+		<Node id="16" type="file" documentType="reference">
             <Name>UIViewControllerPlaylistSong</Name>
             <Path>Classes/UIViewControllerPlaylistSong.html</Path>
             
         </Node>
-		<Node id="14" type="file" documentType="reference">
+		<Node id="17" type="file" documentType="reference">
             <Name>UIViewControllerSonglist</Name>
             <Path>Classes/UIViewControllerSonglist.html</Path>
             
         </Node>
-		<Node id="15" type="file" documentType="reference">
+		<Node id="18" type="file" documentType="reference">
             <Name>UIViewControllerToolbar</Name>
             <Path>Classes/UIViewControllerToolbar.html</Path>
             
         </Node>
-		<Node id="16" type="file" documentType="reference">
+		<Node id="19" type="file" documentType="reference">
             <Name>UIViewCurrentToolBar</Name>
             <Path>Classes/UIViewCurrentToolBar.html</Path>
             
@@ -434,7 +530,7 @@
         </Node>
 		
 		
-        <Node id="17" type="file" documentType="reference">
+        <Node id="20" type="file" documentType="reference">
             <Name>MPServiceStoreDelegate</Name>
             <Path>Protocols/MPServiceStoreDelegate.html</Path>
             
@@ -462,7 +558,7 @@
             
         </Node>
 		
-        <Node id="18" type="file" documentType="reference">
+        <Node id="21" type="file" documentType="reference">
             <Name>MediaGroupByType</Name>
             <Path>Constants/MediaGroupByType.html</Path>
             
