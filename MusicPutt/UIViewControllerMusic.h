@@ -113,6 +113,12 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton*          fastfoward;
 
+
+/**
+ *  Button to manage share functionality
+ */
+@property (weak, nonatomic) IBOutlet UIButton*          share;
+
 /**
  *  Menu bar on top of the Artwork for display lyrics, artist, album, discover, share.
  */

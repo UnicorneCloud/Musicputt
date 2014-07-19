@@ -199,6 +199,7 @@
                         <outlet property="progresstime" destination="dra-1h-ffa" id="qic-zA-rPT"/>
                         <outlet property="repeat" destination="Bpw-Pl-cFV" id="hzQ-Di-pkI"/>
                         <outlet property="rewind" destination="2gz-dh-Pzc" id="H1h-Ie-MRd"/>
+                        <outlet property="share" destination="NG6-Vl-CxW" id="s6V-Or-UQO"/>
                         <outlet property="shuffle" destination="4Fo-cu-D4s" id="e36-zh-dGH"/>
                         <outlet property="songtitle" destination="9Fw-LK-mqf" id="wBq-Va-P1E"/>
                     </connections>
@@ -217,6 +218,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7xg-4E-Izy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3527" y="398"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Xep-tf-6O1">
+            <objects>
+                <viewController id="cBd-4A-3p8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I4u-sR-Kr8"/>
+                        <viewControllerLayoutGuide type="bottom" id="91r-Nb-Rux"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dw8-xb-qX8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="380"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Album" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07p-Ht-Fhx">
+                                <rect key="frame" x="139" y="140" width="50" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="380"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mts-pY-dZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3918" y="-98"/>
         </scene>
         <!--View Controller Artist Page-->
         <scene sceneID="QKi-Ke-IMh">
@@ -284,7 +314,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26R-Nm-NCl">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26R-Nm-NCl">
                                                 <rect key="frame" x="9" y="128" width="302" height="206"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -321,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="okz-DT-kBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3918" y="-68"/>
+            <point key="canvasLocation" x="3918" y="-565"/>
         </scene>
         <!--View Controller Artwork Page-->
         <scene sceneID="A7w-OX-oyo">

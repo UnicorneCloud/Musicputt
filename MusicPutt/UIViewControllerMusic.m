@@ -12,6 +12,7 @@
 #import "UIViewControllerArtworkPage.h"
 #import "UIViewControllerArtistPage.h"
 #import "UIViewControllerLyricsPage.h"
+#import "UIButton+Extensions.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPMusicPlayerController.h>
@@ -84,19 +85,14 @@
     [_pageview addSubview:_pageviewcontroller.view];
     [_pageviewcontroller didMoveToParentViewController:self];
     
-    /*
-    // Create blur effect for _currentsongview
-    UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
-    _currentsongview.backgroundColor = [UIColor clearColor];
-    blurtoolbar.autoresizingMask = self.view.autoresizingMask;
-    [_currentsongview insertSubview:blurtoolbar atIndex:0];
-    */
-    
     // create blur effect for _controlview
     UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     _controlview.backgroundColor = [UIColor clearColor];
     blurtoolbar.autoresizingMask = self.view.autoresizingMask;
     [_controlview insertSubview:blurtoolbar atIndex:0];
+    
+    // improve hittest for share button.
+    [_share setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
@@ -130,7 +126,7 @@
     
     [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.2
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(updateDisplay)
                                    userInfo: nil
