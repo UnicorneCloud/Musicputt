@@ -8,6 +8,9 @@
 
 #import "UIPageContentViewController.h"
 
+
 @interface UIViewControllerAlbumPage : UIPageContentViewController
+
+
 
 @end

@@ -11,6 +11,7 @@
 
 @class UIViewControllerArtworkPage;
 @class UIViewControllerArtistPage;
+@class UIViewControllerAlbumPage;
 @class UIViewControllerLyricsPage;
 
 /**
@@ -37,6 +38,11 @@
  *  Artwork page.
  */
 @property (strong, nonatomic) UIViewControllerArtworkPage* artworkpage;
+
+/**
+ *  Album details page.
+ */
+@property (strong, nonatomic) UIViewControllerAlbumPage* albumpage;
 
 /**
  *  Artist information page.
