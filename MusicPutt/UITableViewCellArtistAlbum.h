@@ -22,6 +22,16 @@
  *  Song's duration.
  */
 @property (weak,nonatomic) IBOutlet UILabel* songDuration;
-
+/**
+ *  Set the artist album item information for the cell.
+ *
+ *  @param artistAlbumItem : the media item of the cell.
+ */
 - (void)setArtistAlbumItem: (MPMediaItem*)artistAlbumItem;
+/**
+ *  return the media item.
+ *
+ *  @return : the media item.
+ */
+- (MPMediaItem*)getMediaItem;
 @end

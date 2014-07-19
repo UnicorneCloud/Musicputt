@@ -11,7 +11,7 @@
 
 @interface UITableViewCellArtistAlbum()
 {
-   // MPMediaItemCollection* artist;
+   MPMediaItem* mediaItem;
 }
 
 @property AppDelegate* del;
@@ -49,6 +49,7 @@
  */
 - (void)setArtistAlbumItem: (MPMediaItem*)artistAlbumItem
 {
+    mediaItem = artistAlbumItem;
     self.songName.text = [artistAlbumItem valueForProperty:MPMediaItemPropertyTitle];
     self.trackNo.text  = [[artistAlbumItem valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
 
@@ -56,6 +57,11 @@
     self.songDuration.text = [NSString stringWithFormat: @"%02d:%02d",
                              [durationtime intValue]/60,
                              [durationtime intValue]%60];
+}
+
+- (MPMediaItem*)getMediaItem
+{
+    return mediaItem;
 }
 
 @end

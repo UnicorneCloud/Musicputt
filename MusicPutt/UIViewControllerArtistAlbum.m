@@ -47,7 +47,6 @@
     
     artistCollection = [[self.del mpdatamanager] currentArtistCollection];
     
-    
     // Find out all the medias which match the current artist name.
     everything = [MPMediaQuery albumsQuery];
     MPMediaPropertyPredicate *artistPredicate =
@@ -204,6 +203,100 @@
 - (NSArray*)visibleCells
 {
     return [self.tableView visibleCells];
+}
+
+/**
+ *  Get the global position of selected item in liste to play.
+ *
+ *  @param indexPath : The path of the selected item.
+ *
+ *  @return          : the global position.
+ */
+- (NSUInteger)getGlobalItemPos:(NSIndexPath*)indexPath
+{
+    return indexPath.row + [self getItemNumberBeforeSection:indexPath.section];
+}
+
+/**
+ *  Get the count of total items located before the section.
+ *
+ *  @param section : The section of the table.
+ *
+ *  @return        : the count of total items located before the section.
+ */
+- (NSUInteger)getItemNumberBeforeSection:(NSUInteger) section
+{
+    NSUInteger itemCount = 0;
+    if (section > 0)
+    {
+        for(NSUInteger i = 0; i < section-1; i++)
+        {
+            itemCount += [[everything collections][i] items].count;
+        }
+    }
+    
+    return itemCount;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCellArtistAlbum* cell = (UITableViewCellArtistAlbum*)[self tableView:_tableView cellForRowAtIndexPath:indexPath];
+    
+    NSMutableArray* list = [[NSMutableArray alloc] init];
+    NSInteger step = 0;
+    NSInteger maxstep = 0;
+    
+    maxstep = [self getItemNumberBeforeSection: [[everything collections] count] + 1];
+    
+    NSInteger  currentSection = indexPath.section;
+    // Global position of item in the list.
+    NSUInteger pos = [self getGlobalItemPos:indexPath];
+    
+    NSUInteger localPos = indexPath.row;
+    
+    while (step<maxstep) {
+        [list addObject: [[[everything collections][currentSection] items] objectAtIndex:localPos]];
+        //NSLog(@"%@", [list[step] valueForProperty:MPMediaItemPropertyTitle]);
+        step++;
+        pos++;
+        localPos++;
+        
+        // update the section when reading the next album.
+        if (localPos == [[everything collections][currentSection] items].count)
+            
+        {
+            currentSection++;
+            localPos = 0;
+        }
+        
+        if(pos == maxstep)
+        {
+            pos=0;
+            localPos = 0;
+            currentSection = 0;
+        }
+    }
+
+    [[[self.del mpdatamanager] musicplayer] stop];
+    
+    BOOL shuffleWasOn = NO;
+    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff)
+    {
+        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
+        shuffleWasOn = YES;
+    }
+    [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
+    [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[cell getMediaItem]];
+    if (shuffleWasOn)
+        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+    
+    [[[self.del mpdatamanager] musicplayer] play];
+    
+    self.del.mpdatamanager.currentSonglist = list;
+
+    return indexPath;
 }
 /*
 #pragma mark - Navigation
