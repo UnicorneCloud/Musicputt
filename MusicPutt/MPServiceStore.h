@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPMusicTrack.h"
 
 
 /**
@@ -46,6 +47,9 @@ typedef enum {
 @end
 
 
+
+@class MPMediaItem;
+
 /**
  *  Service for access to iTunes Store.
  *
@@ -54,11 +58,6 @@ typedef enum {
  */
 @interface MPServiceStore : NSObject
 
-
-/**
- *  Configuration of the connection with the iTunes Store API.
- */
-- (void) configureConnection;
 
 
 /**
@@ -87,6 +86,16 @@ typedef enum {
  *  @param anObject   the object delegate that receive result
  */
 - (void) executeQuery:(MPServiceStoreQueryType) type searchTerm:(NSString*)searchTerm setDelegate:(id) anObject;
+
+
+/**
+ *  Build searchterm for find song in iTunes Store.
+ *
+ *  @param mediaitem MediaItem that you expect find in store.
+ *
+ *  @return searchTerm to find song.
+ */
+-(NSString*) buildSearchTermFromMediaItem:(MPMediaItem*) mediaitem;
 
 
 @end

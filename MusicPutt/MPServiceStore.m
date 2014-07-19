@@ -10,6 +10,7 @@
 #import "MPMusicTrack.h"
 
 #import <RestKit/RestKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MPServiceStore()
 {
@@ -292,6 +293,55 @@
                              [itemId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *url = [NSURL URLWithString:urlAsString];
     return url;
+}
+
+
+/**
+ *  Build searchterm for find song in iTunes Store.
+ *
+ *  @param mediaitem MediaItem that you expect find in store.
+ *
+ *  @return searchTerm to find song.
+ */
+-(NSString*) buildSearchTermFromMediaItem:(MPMediaItem*) mediaitem
+{
+    NSMutableString *retval = [[NSMutableString alloc] init];
+    bool found = false;
+    
+    //artist name
+    if ( ![[mediaitem valueForProperty:MPMediaItemPropertyArtist]  isEqual: @""] )
+    {
+        if (found) {
+            [retval appendString:@"+"];
+        }
+        [retval appendString:[mediaitem valueForProperty:MPMediaItemPropertyArtist]];
+        found = true;
+    }
+    
+    // album name
+    if ( ![[mediaitem valueForProperty:MPMediaItemPropertyAlbumTitle]  isEqual: @""] )
+    {
+        if (found) {
+            [retval appendString:@"+"];
+        }
+        [retval appendString:[mediaitem valueForProperty:MPMediaItemPropertyAlbumTitle]];
+        found = true;
+    }
+    
+    // song name
+    if ( ![[mediaitem valueForProperty:MPMediaItemPropertyTitle]  isEqual: @""] )
+    {
+        if (found) {
+            [retval appendString:@"+"];
+        }
+        [retval appendString:[mediaitem valueForProperty:MPMediaItemPropertyTitle]];
+        found = true;
+    }
+    
+    [retval replaceOccurrencesOfString:@" " withString:@"+" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [retval length])];
+    
+    
+    return retval;
 }
 
 @end

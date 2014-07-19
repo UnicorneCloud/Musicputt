@@ -28,7 +28,6 @@
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     iTunes = [[MPServiceStore alloc] init];
-    [iTunes configureConnection];
     resultArray = [[NSArray alloc]init];
     testResult = false;
     

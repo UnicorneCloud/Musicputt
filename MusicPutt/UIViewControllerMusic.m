@@ -11,7 +11,9 @@
 #import "UIViewControllerMusic.h"
 #import "UIViewControllerArtworkPage.h"
 #import "UIViewControllerArtistPage.h"
+#import "UIViewControllerAlbumPage.h"
 #import "UIViewControllerLyricsPage.h"
+#import "UIButton+Extensions.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPMusicPlayerController.h>
@@ -20,7 +22,7 @@
 #import <Accounts/Accounts.h>
 
 
-@interface UIViewControllerMusic () <UIPageViewControllerDataSource, UIScrollViewDelegate>
+@interface UIViewControllerMusic () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 {
     NSTimer *timer;
 }
@@ -57,22 +59,25 @@
     // Create page view content
     _artistpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtistPage"];
     _artistpage.pageIndex = 0;
+    _albumpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicAlbumPage"];
+    _albumpage.pageIndex = 1;
     _artworkpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtworkPage"];
-    _artworkpage.pageIndex = 1;
+    _artworkpage.pageIndex = 2;
     _artworkpage.view.backgroundColor = [UIColor clearColor];
     _lyricspage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicLyricsPage"];
-    _lyricspage.pageIndex = 2;
+    _lyricspage.pageIndex = 3;
     
-    _pagecontrol.numberOfPages = 3;
-    _pagecontrol.currentPage = 1;
+    _pagecontrol.numberOfPages = 4;
+    _pagecontrol.currentPage = 2;
     
     // Create page view controller
     _pageviewcontroller = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewControllerMusic"];
     _pageviewcontroller.dataSource = self;
     
-    UIPageContentViewController *startingViewController = [self viewControllerAtIndex:1];
+    UIPageContentViewController *startingViewController = [self viewControllerAtIndex:2];
     NSArray *viewControllers = @[startingViewController];
     [_pageviewcontroller setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [_pageviewcontroller setDelegate:self];
     
     
     // Change the size of page view controller
@@ -84,19 +89,14 @@
     [_pageview addSubview:_pageviewcontroller.view];
     [_pageviewcontroller didMoveToParentViewController:self];
     
-    /*
-    // Create blur effect for _currentsongview
-    UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
-    _currentsongview.backgroundColor = [UIColor clearColor];
-    blurtoolbar.autoresizingMask = self.view.autoresizingMask;
-    [_currentsongview insertSubview:blurtoolbar atIndex:0];
-    */
-    
     // create blur effect for _controlview
     UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     _controlview.backgroundColor = [UIColor clearColor];
     blurtoolbar.autoresizingMask = self.view.autoresizingMask;
     [_controlview insertSubview:blurtoolbar atIndex:0];
+    
+    // improve hittest for share button.
+    [_share setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
@@ -130,7 +130,7 @@
     
     [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.2
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(updateDisplay)
                                    userInfo: nil
@@ -455,14 +455,29 @@
     }
     else if(index ==1)
     {
-        pageContentViewController = _artworkpage;
+        pageContentViewController = _albumpage;
     }
     else if(index ==2)
+    {
+        pageContentViewController = _artworkpage;
+    }
+    else if(index ==3)
     {
         pageContentViewController = _lyricspage;
     }
     return pageContentViewController;
 }
+
+
+
+#pragma mark - UIPageViewControllerDelegate
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    UIPageContentViewController* currentpage = pageViewController.viewControllers[0];
+    [_pagecontrol setCurrentPage:[currentpage pageIndex]];
+    
+}
+
 
 
 

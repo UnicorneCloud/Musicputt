@@ -11,6 +11,7 @@
 
 @class UIViewControllerArtworkPage;
 @class UIViewControllerArtistPage;
+@class UIViewControllerAlbumPage;
 @class UIViewControllerLyricsPage;
 
 /**
@@ -37,6 +38,11 @@
  *  Artwork page.
  */
 @property (strong, nonatomic) UIViewControllerArtworkPage* artworkpage;
+
+/**
+ *  Album details page.
+ */
+@property (strong, nonatomic) UIViewControllerAlbumPage* albumpage;
 
 /**
  *  Artist information page.
@@ -112,6 +118,12 @@
  *  Button to manage fastfoward for the media player.
  */
 @property (weak, nonatomic) IBOutlet UIButton*          fastfoward;
+
+
+/**
+ *  Button to manage share functionality
+ */
+@property (weak, nonatomic) IBOutlet UIButton*          share;
 
 /**
  *  Menu bar on top of the Artwork for display lyrics, artist, album, discover, share.
