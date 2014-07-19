@@ -19,6 +19,7 @@
 {
     UIImageView *playView;
     UIImageView *pauseView;
+    NSTimer* timer;
 }
 @property (nonatomic, copy) void (^didSelectBlock)(UAProgressView *progressView);
 @property AppDelegate* del;
@@ -34,23 +35,6 @@
     
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
-    
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
-    [notificationCenter
-     addObserver: self
-     selector:    @selector (handle_NowPlayingItemChanged:)
-     name:        MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-     object:      [[self.del mpdatamanager] musicplayer]];
-    
-    [notificationCenter
-     addObserver: self
-     selector:    @selector (handle_PlaybackStateChanged:)
-     name:        MPMusicPlayerControllerPlaybackStateDidChangeNotification
-     object:      [[self.del mpdatamanager] musicplayer]];
-    
-    [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
-    
     
     [_progress setBackgroundColor:[UIColor clearColor]];
     _progress.borderWidth = 1.0;
@@ -78,11 +62,13 @@
     pauseView.alpha = .30;
     _progress.centralView =  playView;
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    /*
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(updateCurrentTime)
                                    userInfo: nil
                                     repeats:YES];
+     */
     
     _progress.didSelectBlock = ^(UAProgressView *progressView){
         MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
@@ -182,6 +168,59 @@
         _progress.centralView =  playView;
 }
 
+/**
+ *  Active notification capture from the media player.
+ */
+- (void) startNotificationCapture
+{
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                             target:self
+                                           selector:@selector(updateCurrentTime)
+                                           userInfo: nil
+                                            repeats:YES];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter
+     addObserver: self
+     selector:    @selector (handle_NowPlayingItemChanged:)
+     name:        MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+     object:      [[self.del mpdatamanager] musicplayer]];
+    
+    [notificationCenter
+     addObserver: self
+     selector:    @selector (handle_PlaybackStateChanged:)
+     name:        MPMusicPlayerControllerPlaybackStateDidChangeNotification
+     object:      [[self.del mpdatamanager] musicplayer]];
+    
+    [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"started");
+}
+
+/**
+ *  Stop notification capture from the media player.
+ */
+- (void) stopNotificationCapture
+{
+    // desabled notification if view is not visible.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver: self
+     name:           MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+     object:         [[_del mpdatamanager] musicplayer]];
+    
+    [[NSNotificationCenter defaultCenter]
+     removeObserver: self
+     name:           MPMusicPlayerControllerPlaybackStateDidChangeNotification
+     object:         [[_del mpdatamanager] musicplayer]];
+    
+    [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
+    
+    [timer invalidate];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"stoped");
+}
+
 
 - (void)imageViewPressed
 {
@@ -237,7 +276,13 @@
 
 
 
-
+/**
+ *  Check the current playing item and update display.
+ */
+-(void) updateCurrentPlayingItem
+{
+    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+}
 
 
 

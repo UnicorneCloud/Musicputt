@@ -48,6 +48,23 @@
 @property (strong,nonatomic) UINavigationController* navigationController;
 
 
+/**
+ *  Active notification capture from the media player.
+ */
+- (void) startNotificationCapture;
+
+
+/**
+ *  Stop notification capture from the media player.
+ */
+- (void) stopNotificationCapture;
+
+
+/**
+ *  Check the current playing item and update display.
+ */
+-(void) updateCurrentPlayingItem;
+
 
 /**
  *  Image of the album Artwork pressed by the user.

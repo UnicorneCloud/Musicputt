@@ -158,6 +158,42 @@ the current execution.</Abstract>
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtistCollection:</TokenIdentifier>
+			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtistCollection</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtistCollection</TokenIdentifier>
+			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtistCollection</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtistCollection</TokenIdentifier>
+			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtistCollection</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtist:</TokenIdentifier>
 			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
 			<DeclaredIn>MPDataManager.h</DeclaredIn>

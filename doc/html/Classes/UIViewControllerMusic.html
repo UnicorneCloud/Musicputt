@@ -41,9 +41,11 @@
 	
 	<option value="//api/name/artistalbum">&nbsp;&nbsp;&nbsp;&nbsp;artistalbum</option>
 	
-	<option value="//api/name/controlview">&nbsp;&nbsp;&nbsp;&nbsp;controlview</option>
+	<option value="//api/name/artistpage">&nbsp;&nbsp;&nbsp;&nbsp;artistpage</option>
 	
-	<option value="//api/name/currentsongview">&nbsp;&nbsp;&nbsp;&nbsp;currentsongview</option>
+	<option value="//api/name/artworkpage">&nbsp;&nbsp;&nbsp;&nbsp;artworkpage</option>
+	
+	<option value="//api/name/controlview">&nbsp;&nbsp;&nbsp;&nbsp;controlview</option>
 	
 	<option value="//api/name/curtime">&nbsp;&nbsp;&nbsp;&nbsp;curtime</option>
 	
@@ -53,7 +55,15 @@
 	
 	<option value="//api/name/imageview">&nbsp;&nbsp;&nbsp;&nbsp;imageview</option>
 	
+	<option value="//api/name/lyricspage">&nbsp;&nbsp;&nbsp;&nbsp;lyricspage</option>
+	
 	<option value="//api/name/menubar">&nbsp;&nbsp;&nbsp;&nbsp;menubar</option>
+	
+	<option value="//api/name/pagecontrol">&nbsp;&nbsp;&nbsp;&nbsp;pagecontrol</option>
+	
+	<option value="//api/name/pageview">&nbsp;&nbsp;&nbsp;&nbsp;pageview</option>
+	
+	<option value="//api/name/pageviewcontroller">&nbsp;&nbsp;&nbsp;&nbsp;pageviewcontroller</option>
 	
 	<option value="//api/name/playpause">&nbsp;&nbsp;&nbsp;&nbsp;playpause</option>
 	
@@ -112,9 +122,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/artistalbum">artistalbum</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/controlview">controlview</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/artistpage">artistpage</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentsongview">currentsongview</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/artworkpage">artworkpage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/controlview">controlview</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/curtime">curtime</a></span></li>
 	
@@ -124,7 +136,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageview">imageview</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lyricspage">lyricspage</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/menubar">menubar</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pagecontrol">pagecontrol</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageview">pageview</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageviewcontroller">pageviewcontroller</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/playpause">playpause</a></span></li>
 	
@@ -217,13 +237,43 @@ When this screen is hidden, the <a href="../Classes/UICurrentPlayingToolBar.html
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pageviewcontroller">&nbsp;&nbsp;pageviewcontroller</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageview">&nbsp;&nbsp;pageview</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/artworkpage">&nbsp;&nbsp;artworkpage</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/artistpage">&nbsp;&nbsp;artistpage</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lyricspage">&nbsp;&nbsp;lyricspage</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/imageview">&nbsp;&nbsp;imageview</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/currentsongview">&nbsp;&nbsp;currentsongview</a></code>
+		<code><a href="#//api/name/pagecontrol">&nbsp;&nbsp;pagecontrol</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -385,18 +435,18 @@ When this screen is hidden, the <a href="../Classes/UICurrentPlayingToolBar.html
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/controlview" title="controlview"></a>
-	<h3 class="subsubtitle method-title">controlview</h3>
+	<a name="//api/name/artistpage" title="artistpage"></a>
+	<h3 class="subsubtitle method-title">artistpage</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>View contain all controls to manage media player.</p>
+		<p>Artist information page.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UIView *controlview</code></div>
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) UIViewControllerArtistPage *artistpage</code></div>
 
     
 	
@@ -421,18 +471,54 @@ When this screen is hidden, the <a href="../Classes/UICurrentPlayingToolBar.html
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/currentsongview" title="currentsongview"></a>
-	<h3 class="subsubtitle method-title">currentsongview</h3>
+	<a name="//api/name/artworkpage" title="artworkpage"></a>
+	<h3 class="subsubtitle method-title">artworkpage</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>View contain du song title, artist name and album title of the current playing song.</p>
+		<p>Artwork page.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UIView *currentsongview</code></div>
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) UIViewControllerArtworkPage *artworkpage</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerMusic.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/controlview" title="controlview"></a>
+	<h3 class="subsubtitle method-title">controlview</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>View contain all controls to manage media player.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UIView *controlview</code></div>
 
     
 	
@@ -601,6 +687,42 @@ When this screen is hidden, the <a href="../Classes/UICurrentPlayingToolBar.html
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/lyricspage" title="lyricspage"></a>
+	<h3 class="subsubtitle method-title">lyricspage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Lyrics page.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) UIViewControllerLyricsPage *lyricspage</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerMusic.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/menubar" title="menubar"></a>
 	<h3 class="subsubtitle method-title">menubar</h3>
 	
@@ -613,6 +735,114 @@ When this screen is hidden, the <a href="../Classes/UICurrentPlayingToolBar.html
     
 
 	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UIView *menubar</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerMusic.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pagecontrol" title="pagecontrol"></a>
+	<h3 class="subsubtitle method-title">pagecontrol</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Page control to display page.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UIPageControl *pagecontrol</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerMusic.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageview" title="pageview"></a>
+	<h3 class="subsubtitle method-title">pageview</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>View that content page view controller for artist, album and lyrics.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UIView *pageview</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerMusic.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageviewcontroller" title="pageviewcontroller"></a>
+	<h3 class="subsubtitle method-title">pageviewcontroller</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Page view controller for access artist, album and lyrics.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UIPageViewController *pageviewcontroller</code></div>
 
     
 	
@@ -1156,7 +1386,7 @@ When this screen is hidden, the <a href="../Classes/UICurrentPlayingToolBar.html
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Eric Pinet. All rights reserved. (Last updated: 2014-07-14)</span><br />
+						<p><span class="copyright">&copy; 2014 Eric Pinet. All rights reserved. (Last updated: 2014-07-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

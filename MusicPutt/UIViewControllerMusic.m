@@ -11,6 +11,7 @@
 #import "UIViewControllerMusic.h"
 #import "UIViewControllerArtworkPage.h"
 #import "UIViewControllerArtistPage.h"
+#import "UIViewControllerLyricsPage.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPMusicPlayerController.h>
@@ -19,8 +20,9 @@
 #import <Accounts/Accounts.h>
 
 
-@interface UIViewControllerMusic () <UIPageViewControllerDataSource>
+@interface UIViewControllerMusic () <UIPageViewControllerDataSource, UIScrollViewDelegate>
 {
+    NSTimer *timer;
 }
 
 @property AppDelegate* del;
@@ -55,10 +57,14 @@
     // Create page view content
     _artistpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtistPage"];
     _artistpage.pageIndex = 0;
-    _artistpage.view.alpha = 0.95;
     _artworkpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtworkPage"];
     _artworkpage.pageIndex = 1;
     _artworkpage.view.backgroundColor = [UIColor clearColor];
+    _lyricspage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicLyricsPage"];
+    _lyricspage.pageIndex = 2;
+    
+    _pagecontrol.numberOfPages = 3;
+    _pagecontrol.currentPage = 1;
     
     // Create page view controller
     _pageviewcontroller = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewControllerMusic"];
@@ -77,6 +83,21 @@
     _pageview.backgroundColor = [UIColor clearColor];
     [_pageview addSubview:_pageviewcontroller.view];
     [_pageviewcontroller didMoveToParentViewController:self];
+    
+    /*
+    // Create blur effect for _currentsongview
+    UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    _currentsongview.backgroundColor = [UIColor clearColor];
+    blurtoolbar.autoresizingMask = self.view.autoresizingMask;
+    [_currentsongview insertSubview:blurtoolbar atIndex:0];
+    */
+    
+    // create blur effect for _controlview
+    UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    _controlview.backgroundColor = [UIColor clearColor];
+    blurtoolbar.autoresizingMask = self.view.autoresizingMask;
+    [_controlview insertSubview:blurtoolbar atIndex:0];
+    
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -109,7 +130,7 @@
     
     [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.2
                                      target:self
                                    selector:@selector(updateDisplay)
                                    userInfo: nil
@@ -125,6 +146,8 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    [timer invalidate];
     
     // desabled notification if view is not visible.
     [[NSNotificationCenter defaultCenter]
@@ -429,13 +452,15 @@
     if(index==0)
     {
         pageContentViewController = _artistpage;
-        
     }
     else if(index ==1)
     {
         pageContentViewController = _artworkpage;
     }
-    
+    else if(index ==2)
+    {
+        pageContentViewController = _lyricspage;
+    }
     return pageContentViewController;
 }
 
