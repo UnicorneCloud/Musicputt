@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UITableViewCellArtistAlbum.html">
+	<File path="Classes/UITableViewCellArtist.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UITableViewCellArtistAlbum</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/UITableViewCellArtist</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
             
 			
 			<NodeRef refid="9"/>
@@ -13,127 +13,178 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtistAlbum/setTrackNo:</TokenIdentifier>
-			<Abstract type="html">Song&apos;s track number.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/setImageview:</TokenIdentifier>
+			<Abstract type="html">Artist&apos;s picture.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *trackNo</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UIImageView *imageview</Declaration>
 			
 			
-			<Anchor>//api/name/trackNo</Anchor>
+			<Anchor>//api/name/imageview</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtistAlbum/trackNo</TokenIdentifier>
-			<Abstract type="html">Song&apos;s track number.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/imageview</TokenIdentifier>
+			<Abstract type="html">Artist&apos;s picture.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *trackNo</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UIImageView *imageview</Declaration>
 			
 			
-			<Anchor>//api/name/trackNo</Anchor>
+			<Anchor>//api/name/imageview</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellArtistAlbum/trackNo</TokenIdentifier>
-			<Abstract type="html">Song&apos;s track number.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellArtist/imageview</TokenIdentifier>
+			<Abstract type="html">Artist&apos;s picture.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *trackNo</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UIImageView *imageview</Declaration>
 			
 			
-			<Anchor>//api/name/trackNo</Anchor>
+			<Anchor>//api/name/imageview</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtistAlbum/setSongName:</TokenIdentifier>
-			<Abstract type="html">Song&apos;s name.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/setArtistName:</TokenIdentifier>
+			<Abstract type="html">Artist&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *songName</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *artistName</Declaration>
 			
 			
-			<Anchor>//api/name/songName</Anchor>
+			<Anchor>//api/name/artistName</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtistAlbum/songName</TokenIdentifier>
-			<Abstract type="html">Song&apos;s name.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/artistName</TokenIdentifier>
+			<Abstract type="html">Artist&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *songName</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *artistName</Declaration>
 			
 			
-			<Anchor>//api/name/songName</Anchor>
+			<Anchor>//api/name/artistName</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellArtistAlbum/songName</TokenIdentifier>
-			<Abstract type="html">Song&apos;s name.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellArtist/artistName</TokenIdentifier>
+			<Abstract type="html">Artist&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *songName</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *artistName</Declaration>
 			
 			
-			<Anchor>//api/name/songName</Anchor>
+			<Anchor>//api/name/artistName</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtistAlbum/setSongDuration:</TokenIdentifier>
-			<Abstract type="html">Song&apos;s duration.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/setNbAlbums:</TokenIdentifier>
+			<Abstract type="html">The number of albums of the artist.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *songDuration</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *nbAlbums</Declaration>
 			
 			
-			<Anchor>//api/name/songDuration</Anchor>
+			<Anchor>//api/name/nbAlbums</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtistAlbum/songDuration</TokenIdentifier>
-			<Abstract type="html">Song&apos;s duration.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/nbAlbums</TokenIdentifier>
+			<Abstract type="html">The number of albums of the artist.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *songDuration</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *nbAlbums</Declaration>
 			
 			
-			<Anchor>//api/name/songDuration</Anchor>
+			<Anchor>//api/name/nbAlbums</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellArtistAlbum/songDuration</TokenIdentifier>
-			<Abstract type="html">Song&apos;s duration.</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellArtist/nbAlbums</TokenIdentifier>
+			<Abstract type="html">The number of albums of the artist.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *songDuration</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *nbAlbums</Declaration>
 			
 			
-			<Anchor>//api/name/songDuration</Anchor>
+			<Anchor>//api/name/nbAlbums</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtistAlbum/setArtistAlbumItem:</TokenIdentifier>
-			<Abstract type="html">Set the information of the media item (name, track no. and duration).</Abstract>
-			<DeclaredIn>UITableViewCellArtistAlbum.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/setNbTracks:</TokenIdentifier>
+			<Abstract type="html">The number of tracks of this artist in the library.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
 			
-			<Declaration>- (void)setArtistAlbumItem:(MPMediaItem *)artistAlbumItem</Declaration>
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *nbTracks</Declaration>
+			
+			
+			<Anchor>//api/name/nbTracks</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/nbTracks</TokenIdentifier>
+			<Abstract type="html">The number of tracks of this artist in the library.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *nbTracks</Declaration>
+			
+			
+			<Anchor>//api/name/nbTracks</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellArtist/nbTracks</TokenIdentifier>
+			<Abstract type="html">The number of tracks of this artist in the library.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *nbTracks</Declaration>
+			
+			
+			<Anchor>//api/name/nbTracks</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/setArtistItem:withDictionnary:</TokenIdentifier>
+			<Abstract type="html">This function fills the table cell of artist with the displayed information.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.h</DeclaredIn>
+			
+			<Declaration>- (void)setArtistItem:(MPMediaItemCollection *)artistCollection withDictionnary:(NSMutableDictionary *)dictionary</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>artistAlbumItem</Name>
-					<Abstract type="html">: The media item to set.</Abstract>
+					<Name>artistCollection</Name>
+					<Abstract type="html">: Artist collection.</Abstract>
+				</Parameter><Parameter>
+					<Name>dictionary</Name>
+					<Abstract type="html">: Dictionnary which contains artist&apos;s name - &gt; number of albums.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/setArtistAlbumItem:</Anchor>
+			<Anchor>//api/name/setArtistItem:withDictionnary:</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellArtist/setSelected:animated:</TokenIdentifier>
+			<Abstract type="html">Set the current artist value.</Abstract>
+			<DeclaredIn>UITableViewCellArtist.m</DeclaredIn>
+			
+			<Declaration>- (void)setSelected:(BOOL)selected animated:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/setSelected:animated:</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		

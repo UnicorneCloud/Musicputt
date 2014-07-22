@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UITableViewCellPlaylist.html">
+	<File path="Classes/UITableViewCellHeaderSection.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UITableViewCellPlaylist</TokenIdentifier>
-			<Abstract type="html">Cell for a playlist item.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UITableViewCellHeaderSection</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
             
 			
 			<NodeRef refid="11"/>
@@ -13,139 +13,146 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/setImageview:</TokenIdentifier>
-			<Abstract type="html">Album Artwork of the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setAlbumName:</TokenIdentifier>
+			<Abstract type="html">Album&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UIImageView *imageview</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumName</Declaration>
 			
 			
-			<Anchor>//api/name/imageview</Anchor>
+			<Anchor>//api/name/albumName</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/imageview</TokenIdentifier>
-			<Abstract type="html">Album Artwork of the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/albumName</TokenIdentifier>
+			<Abstract type="html">Album&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UIImageView *imageview</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumName</Declaration>
 			
 			
-			<Anchor>//api/name/imageview</Anchor>
+			<Anchor>//api/name/albumName</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellPlaylist/imageview</TokenIdentifier>
-			<Abstract type="html">Album Artwork of the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/albumName</TokenIdentifier>
+			<Abstract type="html">Album&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UIImageView *imageview</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumName</Declaration>
 			
 			
-			<Anchor>//api/name/imageview</Anchor>
+			<Anchor>//api/name/albumName</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/setPlaylisttitle:</TokenIdentifier>
-			<Abstract type="html">Title of the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setInfoAlbum:</TokenIdentifier>
+			<Abstract type="html">Album&apos;s information. There are tracks counte and the duration of the album at present.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *playlisttitle</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *infoAlbum</Declaration>
 			
 			
-			<Anchor>//api/name/playlisttitle</Anchor>
+			<Anchor>//api/name/infoAlbum</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/playlisttitle</TokenIdentifier>
-			<Abstract type="html">Title of the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/infoAlbum</TokenIdentifier>
+			<Abstract type="html">Album&apos;s information. There are tracks counte and the duration of the album at present.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *playlisttitle</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *infoAlbum</Declaration>
 			
 			
-			<Anchor>//api/name/playlisttitle</Anchor>
+			<Anchor>//api/name/infoAlbum</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellPlaylist/playlisttitle</TokenIdentifier>
-			<Abstract type="html">Title of the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/infoAlbum</TokenIdentifier>
+			<Abstract type="html">Album&apos;s information. There are tracks counte and the duration of the album at present.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *playlisttitle</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *infoAlbum</Declaration>
 			
 			
-			<Anchor>//api/name/playlisttitle</Anchor>
+			<Anchor>//api/name/infoAlbum</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/setPlaylistnbtracks:</TokenIdentifier>
-			<Abstract type="html">Nb songs presents in the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setAlbumYear:</TokenIdentifier>
+			<Abstract type="html">The year of the birth of the album.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *playlistnbtracks</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumYear</Declaration>
 			
 			
-			<Anchor>//api/name/playlistnbtracks</Anchor>
+			<Anchor>//api/name/albumYear</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/playlistnbtracks</TokenIdentifier>
-			<Abstract type="html">Nb songs presents in the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/albumYear</TokenIdentifier>
+			<Abstract type="html">The year of the birth of the album.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *playlistnbtracks</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumYear</Declaration>
 			
 			
-			<Anchor>//api/name/playlistnbtracks</Anchor>
+			<Anchor>//api/name/albumYear</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellPlaylist/playlistnbtracks</TokenIdentifier>
-			<Abstract type="html">Nb songs presents in the playlist.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/albumYear</TokenIdentifier>
+			<Abstract type="html">The year of the birth of the album.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) IBOutlet UILabel *playlistnbtracks</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumYear</Declaration>
 			
 			
-			<Anchor>//api/name/playlistnbtracks</Anchor>
+			<Anchor>//api/name/albumYear</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/setMediaItem:</TokenIdentifier>
-			<Abstract type="html">Set the media item playlist attach with this cell.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setImageHeader:</TokenIdentifier>
+			<Abstract type="html">Album&apos;s cover.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>- (void)setMediaItem:(MPMediaPlaylist *)mediaItem</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>mediaItem</Name>
-					<Abstract type="html">the playlist attach with this cell.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *imageHeader</Declaration>
 			
-			<Anchor>//api/name/setMediaItem:</Anchor>
+			
+			<Anchor>//api/name/imageHeader</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellPlaylist/getMediaItem</TokenIdentifier>
-			<Abstract type="html">Get the media item playlist attach with this cell.</Abstract>
-			<DeclaredIn>UITableViewCellPlaylist.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/imageHeader</TokenIdentifier>
+			<Abstract type="html">Album&apos;s cover.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
 			
-			<Declaration>- (MPMediaPlaylist *)getMediaItem</Declaration>
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *imageHeader</Declaration>
 			
-			<ReturnValue><Abstract type="html">the media item.</Abstract></ReturnValue>
-			<Anchor>//api/name/getMediaItem</Anchor>
+			
+			<Anchor>//api/name/imageHeader</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/imageHeader</TokenIdentifier>
+			<Abstract type="html">Album&apos;s cover.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *imageHeader</Declaration>
+			
+			
+			<Anchor>//api/name/imageHeader</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		

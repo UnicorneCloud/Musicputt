@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>MPServiceStoreDelegate Protocol Reference</title>
+		<title>UITableViewCellAlbumPageSong Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">MPServiceStoreDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">UITableViewCellAlbumPageSong Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -25,8 +25,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -37,13 +35,24 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/songDuration">&nbsp;&nbsp;&nbsp;&nbsp;songDuration</option>
+	
+	<option value="//api/name/songName">&nbsp;&nbsp;&nbsp;&nbsp;songName</option>
+	
+	<option value="//api/name/trackNo">&nbsp;&nbsp;&nbsp;&nbsp;trackNo</option>
+	
+	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/queryResult:type:results:">&nbsp;&nbsp;&nbsp;&nbsp;- queryResult:type:results:</option>
+	<option value="//api/name/getMediaItem">&nbsp;&nbsp;&nbsp;&nbsp;- getMediaItem</option>
+	
+	<option value="//api/name/setMediaItem:">&nbsp;&nbsp;&nbsp;&nbsp;- setMediaItem:</option>
 	
 	
 	
@@ -54,12 +63,12 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Extension Methods">Extension Methods</a></span></li>
 	
 </ul></li>
 
@@ -67,13 +76,25 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/songDuration">songDuration</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/songName">songName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/trackNo">trackNo</a></span></li>
+	
+</ul></li>
+
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queryResult:type:results:">queryResult:type:results:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMediaItem">getMediaItem</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMediaItem:">setMediaItem:</a></span></li>
 	
 </ul></li>
 
@@ -82,7 +103,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="MPServiceStoreDelegate Protocol Reference" name="top"></a>
+				<a title="UITableViewCellAlbumPageSong Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -91,31 +112,23 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">MPServiceStoreDelegate Protocol Reference</h1>
+						<h1 class="title title-header">UITableViewCellAlbumPageSong Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UITableViewCell</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">MPServiceStore.h</td>
+	<td class="specification-value">UITableViewCellAlbumPageSong.h<br />UITableViewCellAlbumPageSong.m</td>
 </tr>
 						</tbody></table></div>
 					
                     
                     
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Protocol for the delegate of the <a href="../Classes/MPServiceStore.html">MPServiceStore</a>.</p>
-					</div>
-					
-					
 					
 					
 					
@@ -125,14 +138,46 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/queryResult:type:results:">&ndash;&nbsp;queryResult:type:results:</a></code>
+		<code><a href="#//api/name/setMediaItem:">&ndash;&nbsp;setMediaItem:</a></code>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMediaItem">&ndash;&nbsp;getMediaItem</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Extension Methods" name="task_Extension Methods"></a>
+						<h3 class="subsubtitle task-title">Extension Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/trackNo">&nbsp;&nbsp;trackNo</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/songName">&nbsp;&nbsp;songName</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/songDuration">&nbsp;&nbsp;songDuration</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -143,6 +188,120 @@
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/songDuration" title="songDuration"></a>
+	<h3 class="subsubtitle method-title">songDuration</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Song&rsquo;s duration.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UILabel *songDuration</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UITableViewCellAlbumPageSong.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/songName" title="songName"></a>
+	<h3 class="subsubtitle method-title">songName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Song&rsquo;s name.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UILabel *songName</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UITableViewCellAlbumPageSong.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/trackNo" title="trackNo"></a>
+	<h3 class="subsubtitle method-title">trackNo</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Song&rsquo;s track number.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) IBOutlet UILabel *trackNo</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UITableViewCellAlbumPageSong.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 					
 					
@@ -152,18 +311,59 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/queryResult:type:results:" title="queryResult:type:results:"></a>
-	<h3 class="subsubtitle method-title">queryResult:type:results:</h3>
+	<a name="//api/name/getMediaItem" title="getMediaItem"></a>
+	<h3 class="subsubtitle method-title">getMediaItem</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Implement this methode for recieve result after query.</p>
+		<p>Get media item attach with this cell.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)queryResult:(MPServiceStoreQueryStatus)<em>status</em> type:(MPServiceStoreQueryType)<em>type</em> results:(NSArray *)<em>results</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (MPMediaItem *)getMediaItem</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>mediaItem attach with this cell.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UITableViewCellAlbumPageSong.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setMediaItem:" title="setMediaItem:"></a>
+	<h3 class="subsubtitle method-title">setMediaItem:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the information of the media item (name, track no. and duration).</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setMediaItem:(MPMediaItem *)<em>mediaitem</em></code></div>
 
     
 	
@@ -171,18 +371,8 @@
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>status</em></dt>
-			<dd><p>Status of the querys</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>type</em></dt>
-			<dd><p>Type of query sender</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>results</em></dt>
-			<dd><p>resultset of the query</p></dd>
+			<dt><em>artistAlbumItem</em></dt>
+			<dd><p>: The media item to set.</p></dd>
 		</dl>
 		
 	</div>
@@ -201,7 +391,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MPServiceStore.h</code><br />
+		<code class="declared-in-ref">UITableViewCellAlbumPageSong.h</code><br />
 	</div>				
 	
 	

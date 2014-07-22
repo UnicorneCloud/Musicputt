@@ -34,6 +34,15 @@
 
 @implementation UIViewControllerMusic
 
+
+/**
+ *  Init with nib file. Not user right now.
+ *
+ *  @param nibNameOrNil   <#nibNameOrNil description#>
+ *  @param nibBundleOrNil <#nibBundleOrNil description#>
+ *
+ *  @return <#return value description#>
+ */
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -43,6 +52,11 @@
     return self;
 }
 
+
+/**
+ *  viewDidLoad 
+ *  Init delegate, update current playing song, create page view.
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -102,12 +116,23 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
+
+/**
+ *  <#Description#>
+ */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+
+/**
+ *  Start notification from mediaplayer, start timer update current time.
+ *
+ *  @param animated <#animated description#>
+ */
 - (void) viewWillAppear:(BOOL)animated
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -142,11 +167,16 @@
 }
 
 
-
+/**
+ *  Stop notification, stop timer update current time.
+ *
+ *  @param animated <#animated description#>
+ */
 - (void) viewWillDisappear:(BOOL)animated
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
+    // stop timer update current time
     [timer invalidate];
     
     // desabled notification if view is not visible.
@@ -166,6 +196,11 @@
 }
 
 
+/**
+ *  Display current playing song
+ *
+ *  @param aitem <#aitem description#>
+ */
 -(void) displayMediaItem: (MPMediaItem*) aitem
 {
     if (aitem!=NULL) {
@@ -198,6 +233,9 @@
     
 }
 
+/**
+ *  Update current playing time, update progress, update button control
+ */
 -(void) updateDisplay
 {
     // update current time with progress round
@@ -269,6 +307,11 @@
 
 #pragma mark - Button action
 
+/**
+ *  Shuffle pressed
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)shufflePressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -288,6 +331,12 @@
     
 }
 
+
+/**
+ *  Repeat pressed.
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)repeatPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -306,7 +355,11 @@
     }
 }
 
-
+/**
+ *  Rewind pressed
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)rewindPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -322,6 +375,11 @@
 }
 
 
+/**
+ *  Play/pause pressed
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)playpausePressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -340,7 +398,11 @@
     }
 }
 
-
+/**
+ *  Fastfoward pressed
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)fastFowardPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -402,6 +464,11 @@
 
 #pragma  mark - MPMusicPlayerNSNotificationCenter
 
+/**
+ *  Notification receive from mediaplayer.
+ *
+ *  @param notification <#notification description#>
+ */
 -(void) handle_PlaybackStateChanged:(id) notification
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -409,6 +476,13 @@
     
 }
 
+
+
+/**
+ *  Notification receive from mediaplayer.
+ *
+ *  @param notification <#notification description#>
+ */
 -(void) handle_NowPlayingItemChanged:(id) notification
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -418,6 +492,14 @@
 
 #pragma mark - Page View Controller Data Source
 
+/**
+ *  Return page before.
+ *
+ *  @param pageViewController <#pageViewController description#>
+ *  @param viewController     <#viewController description#>
+ *
+ *  @return <#return value description#>
+ */
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((UIPageContentViewController*) viewController).pageIndex;
@@ -430,6 +512,15 @@
     return [self viewControllerAtIndex:index];
 }
 
+
+/**
+ *  Return next page.
+ *
+ *  @param pageViewController <#pageViewController description#>
+ *  @param viewController     <#viewController description#>
+ *
+ *  @return <#return value description#>
+ */
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((UIPageContentViewController*) viewController).pageIndex;
@@ -445,6 +536,14 @@
     return [self viewControllerAtIndex:index];
 }
 
+
+/**
+ *  Return page content view controller.
+ *
+ *  @param index <#index description#>
+ *
+ *  @return <#return value description#>
+ */
 - (UIPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     // Create a new view controller and pass suitable data.
@@ -471,6 +570,15 @@
 
 
 #pragma mark - UIPageViewControllerDelegate
+
+/**
+ *  Page view changed.
+ *
+ *  @param pageViewController      <#pageViewController description#>
+ *  @param finished                <#finished description#>
+ *  @param previousViewControllers <#previousViewControllers description#>
+ *  @param completed               <#completed description#>
+ */
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
     UIPageContentViewController* currentpage = pageViewController.viewControllers[0];

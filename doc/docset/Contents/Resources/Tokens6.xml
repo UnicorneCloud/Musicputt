@@ -36,6 +36,43 @@ You have to attach the navigation bar with the toolbar for properly display.</Ab
             <NodeRef refid="6"/>
 		</Token>
 		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UICurrentPlayingToolBar/showFromNavigationBar:animated:</TokenIdentifier>
+			<Abstract type="html">Show navigation tabbar</Abstract>
+			<DeclaredIn>UICurrentPlayingToolBar.h</DeclaredIn>
+			
+			<Declaration>- (void)showFromNavigationBar:(UINavigationBar *)bar animated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>bar</Name>
+					<Abstract type="html">navigation bar parent of the toolbar.</Abstract>
+				</Parameter><Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">animation during show.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showFromNavigationBar:animated:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UICurrentPlayingToolBar/hideAnimated:</TokenIdentifier>
+			<Abstract type="html">Hide tabbar</Abstract>
+			<DeclaredIn>UICurrentPlayingToolBar.h</DeclaredIn>
+			
+			<Declaration>- (void)hideAnimated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">animate during hide.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/hideAnimated:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
         
         
 	</File>
