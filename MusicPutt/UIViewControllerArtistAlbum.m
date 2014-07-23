@@ -282,7 +282,8 @@
     [[[self.del mpdatamanager] musicplayer] stop];
     
     BOOL shuffleWasOn = NO;
-    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff)
+    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+        [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
     {
         [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
         shuffleWasOn = YES;
