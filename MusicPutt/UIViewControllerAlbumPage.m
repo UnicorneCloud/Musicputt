@@ -42,6 +42,15 @@
 
 @implementation UIViewControllerAlbumPage
 
+
+/**
+ *  <#Description#>
+ *
+ *  @param nibNameOrNil   <#nibNameOrNil description#>
+ *  @param nibBundleOrNil <#nibBundleOrNil description#>
+ *
+ *  @return <#return value description#>
+ */
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,6 +60,10 @@
     return self;
 }
 
+
+/**
+ *  <#Description#>
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -65,8 +78,10 @@
     blurtoolbar.autoresizingMask = self.view.autoresizingMask;
     [self.view insertSubview:blurtoolbar atIndex:0];
     
+    // ensure that song list has a clear bg
     [_songstable setBackgroundColor:[UIColor clearColor]];
     
+    // active gesture on album label
     _albumname.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureAlbum = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(albumPressed)];
     [_albumname addGestureRecognizer:tapGestureAlbum];
@@ -209,6 +224,14 @@
 
 #pragma mark - UITableViewDelegate
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
@@ -251,6 +274,10 @@
     return indexPath;
 }
 
+
+/**
+ *  <#Description#>
+ */
 -(void) albumPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
