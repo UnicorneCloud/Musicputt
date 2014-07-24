@@ -267,15 +267,22 @@
         if (localPos == [[everything collections][currentSection] items].count)
             
         {
-            currentSection++;
+            // If it's not the last section.
+            if(currentSection < ([self numberOfSectionsInTableView:_tableView] - 1))
+            {
+                currentSection++;
+            }
+            // Go to the first section if it's the last section in the table view.
+            else
+            {
+                currentSection = 0;
+            }
             localPos = 0;
         }
         
         if(pos == maxstep)
         {
             pos=0;
-            localPos = 0;
-            currentSection = 0;
         }
     }
 
