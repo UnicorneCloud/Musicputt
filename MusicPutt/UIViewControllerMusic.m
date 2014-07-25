@@ -71,24 +71,24 @@
     [self updateDisplay];
     
     // Create page view content
-    _artistpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtistPage"];
-    _artistpage.pageIndex = 0;
+    //_artistpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtistPage"];
+    //_artistpage.pageIndex = 0;
     _albumpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicAlbumPage"];
-    _albumpage.pageIndex = 1;
+    _albumpage.pageIndex = 0;
     _artworkpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtworkPage"];
-    _artworkpage.pageIndex = 2;
+    _artworkpage.pageIndex = 1;
     _artworkpage.view.backgroundColor = [UIColor clearColor];
     _lyricspage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicLyricsPage"];
-    _lyricspage.pageIndex = 3;
+    _lyricspage.pageIndex = 2;
     
-    _pagecontrol.numberOfPages = 4;
-    _pagecontrol.currentPage = 2;
+    _pagecontrol.numberOfPages = 3;
+    _pagecontrol.currentPage = 1;
     
     // Create page view controller
     _pageviewcontroller = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewControllerMusic"];
     _pageviewcontroller.dataSource = self;
     
-    UIPageContentViewController *startingViewController = [self viewControllerAtIndex:2];
+    UIPageContentViewController *startingViewController = [self viewControllerAtIndex:1];
     NSArray *viewControllers = @[startingViewController];
     [_pageviewcontroller setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [_pageviewcontroller setDelegate:self];
@@ -548,19 +548,20 @@
 {
     // Create a new view controller and pass suitable data.
     UIPageContentViewController *pageContentViewController;
-    if(index==0)
-    {
-        pageContentViewController = _artistpage;
-    }
-    else if(index ==1)
+    //if(index==0)
+    //{
+    //    pageContentViewController = _artistpage;
+    //}
+    /*else */
+    if(index ==0)
     {
         pageContentViewController = _albumpage;
     }
-    else if(index ==2)
+    else if(index ==1)
     {
         pageContentViewController = _artworkpage;
     }
-    else if(index ==3)
+    else if(index ==2)
     {
         pageContentViewController = _lyricspage;
     }

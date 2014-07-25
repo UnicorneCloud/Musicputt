@@ -45,7 +45,7 @@
 @property (strong, nonatomic) UIViewControllerAlbumPage* albumpage;
 
 /**
- *  Artist information page.
+ *  Artist information page. (Not display right now)
  */
 @property (strong, nonatomic) UIViewControllerArtistPage* artistpage;
 
