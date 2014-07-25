@@ -33,4 +33,5 @@
  *  @param artistAlbumItem Collection of media item of the album.
  */
 - (void)setAlbumItem: (MPMediaItem*)artistAlbumItem;
+
 @end

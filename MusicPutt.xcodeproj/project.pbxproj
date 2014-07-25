@@ -67,6 +67,9 @@
 		D596A5921968F24D00C55597 /* UIViewControllerArtistAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D596A5911968F24D00C55597 /* UIViewControllerArtistAlbum.m */; };
 		D5B241351981E4C600233953 /* UIViewControllerAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B241341981E4C600233953 /* UIViewControllerAlbum.m */; };
 		D5B241381981E9A300233953 /* UITableViewCellAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B241371981E9A300233953 /* UITableViewCellAlbum.m */; };
+		D5B2413B1982A3BE00233953 /* UIViewControllerAlbumSongs.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2413A1982A3BE00233953 /* UIViewControllerAlbumSongs.m */; };
+		D5B2413E1982AC5700233953 /* UITableViewCellMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2413D1982AC5700233953 /* UITableViewCellMediaItem.m */; };
+		D5B241411982AC8800233953 /* UITableViewCellMediaItemHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B241401982AC8800233953 /* UITableViewCellMediaItemHeader.m */; };
 		D5B6DE55196D83040042F072 /* UITableViewCellArtistAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B6DE54196D83040042F072 /* UITableViewCellArtistAlbum.m */; };
 		D5B6DE58197594240042F072 /* UITableViewCellHeaderSection.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B6DE57197594240042F072 /* UITableViewCellHeaderSection.m */; };
 /* End PBXBuildFile section */
@@ -162,6 +165,12 @@
 		D5B241341981E4C600233953 /* UIViewControllerAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAlbum.m; sourceTree = "<group>"; };
 		D5B241361981E9A300233953 /* UITableViewCellAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellAlbum.h; sourceTree = "<group>"; };
 		D5B241371981E9A300233953 /* UITableViewCellAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellAlbum.m; sourceTree = "<group>"; };
+		D5B241391982A3BE00233953 /* UIViewControllerAlbumSongs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerAlbumSongs.h; sourceTree = "<group>"; };
+		D5B2413A1982A3BE00233953 /* UIViewControllerAlbumSongs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAlbumSongs.m; sourceTree = "<group>"; };
+		D5B2413C1982AC5700233953 /* UITableViewCellMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellMediaItem.h; sourceTree = "<group>"; };
+		D5B2413D1982AC5700233953 /* UITableViewCellMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellMediaItem.m; sourceTree = "<group>"; };
+		D5B2413F1982AC8800233953 /* UITableViewCellMediaItemHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellMediaItemHeader.h; sourceTree = "<group>"; };
+		D5B241401982AC8800233953 /* UITableViewCellMediaItemHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellMediaItemHeader.m; sourceTree = "<group>"; };
 		D5B6DE53196D83040042F072 /* UITableViewCellArtistAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellArtistAlbum.h; sourceTree = "<group>"; };
 		D5B6DE54196D83040042F072 /* UITableViewCellArtistAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellArtistAlbum.m; sourceTree = "<group>"; };
 		D5B6DE56197594240042F072 /* UITableViewCellHeaderSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellHeaderSection.h; sourceTree = "<group>"; };
@@ -323,6 +332,12 @@
 				D5B241341981E4C600233953 /* UIViewControllerAlbum.m */,
 				D5B241361981E9A300233953 /* UITableViewCellAlbum.h */,
 				D5B241371981E9A300233953 /* UITableViewCellAlbum.m */,
+				D5B241391982A3BE00233953 /* UIViewControllerAlbumSongs.h */,
+				D5B2413A1982A3BE00233953 /* UIViewControllerAlbumSongs.m */,
+				D5B2413C1982AC5700233953 /* UITableViewCellMediaItem.h */,
+				D5B2413D1982AC5700233953 /* UITableViewCellMediaItem.m */,
+				D5B2413F1982AC8800233953 /* UITableViewCellMediaItemHeader.h */,
+				D5B241401982AC8800233953 /* UITableViewCellMediaItemHeader.m */,
 			);
 			name = Album;
 			sourceTree = "<group>";
@@ -593,15 +608,18 @@
 				97901B1C1979F1F700526A04 /* UIButton+Extensions.m in Sources */,
 				97AF57B61960A53A002978E8 /* UITableViewCellPlaylist.m in Sources */,
 				97ECDFBC1972F042007889E3 /* MPMusicTrack.m in Sources */,
+				D5B241411982AC8800233953 /* UITableViewCellMediaItemHeader.m in Sources */,
 				97AC0C3C195A493800BA60E6 /* UIViewControllerMusic.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
 				976687EA194FBB4D00B5A843 /* UIMusicViewLoadingController.m in Sources */,
 				97901B191978B65400526A04 /* UIViewControllerLyricsPage.m in Sources */,
 				D5B6DE58197594240042F072 /* UITableViewCellHeaderSection.m in Sources */,
+				D5B2413B1982A3BE00233953 /* UIViewControllerAlbumSongs.m in Sources */,
 				9799979219611E6200360BF8 /* UITableViewCellPlaylistSong.m in Sources */,
 				979DED251963A4D50055AD39 /* UIViewControllerSonglist.m in Sources */,
 				97901B161977471D00526A04 /* UIPageContentViewController.m in Sources */,
+				D5B2413E1982AC5700233953 /* UITableViewCellMediaItem.m in Sources */,
 				97901B10197743E100526A04 /* UIViewControllerArtworkPage.m in Sources */,
 				D537F13E1964E84400DC9EE7 /* UIViewControllerArtist.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,

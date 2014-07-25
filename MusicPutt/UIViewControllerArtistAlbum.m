@@ -157,9 +157,13 @@
     [headerCell.albumName sizeToFit];
     
     NSNumber *trackCount = [NSNumber numberWithInteger:([[[everything collections][section] items] count])];
-    if (trackCount > 0)
+    if (trackCount.integerValue > 1)
     {
         headerCell.infoAlbum.text = [trackCount.stringValue stringByAppendingString:@" tracks"];
+    }
+    else if (trackCount.integerValue > 0)
+    {
+        headerCell.infoAlbum.text = [trackCount.stringValue stringByAppendingString:@" track"];
     }
     else
     {

@@ -7,12 +7,20 @@
 //
 
 #import "UITableViewCellAlbum.h"
+#import "AppDelegate.h"
 
-@implementation UITableViewCellAlbum
+@interface UITableViewCellAlbum()
 {
     NSNumber *fullLength;
+    MPMediaItemCollection *album;
 }
 
+
+@property AppDelegate* del;
+
+@end
+
+@implementation UITableViewCellAlbum
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -25,6 +33,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    self.del = [[UIApplication sharedApplication] delegate];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -32,6 +41,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    if (selected==true) {
+        // setup app delegate
+        //[self.del mpdatamanager].currentArtistCollection = album;
+    }
 }
 
 /**

@@ -33,6 +33,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    self.del = [[UIApplication sharedApplication] delegate];
 }
 
 /**
@@ -49,7 +50,6 @@
     // Configure the view for the selected state
     if (selected==true) {
         // setup app delegate
-        self.del = [[UIApplication sharedApplication] delegate];
         [self.del mpdatamanager].currentArtistCollection = artist;
     }
 }

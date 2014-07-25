@@ -34,25 +34,25 @@
  */
 @property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
 
-
 /**
  *  Current song list for the songlist navigation bar.
  */
 @property (strong, nonatomic) NSMutableArray* currentSonglist;
-
 
 /**
  * Current selected artist collection for the artist navigation bar.
  */
 @property (strong, nonatomic) MPMediaItemCollection* currentArtistCollection;
 
+/**
+ *  Current selected album collection for the album navigation bar.
+ */
+@property (strong, nonatomic) MPMediaItemCollection* currentAlbumCollection;
 
 /**
  *  Current selected artist for the artist navigation bar.
  */
 @property (strong, nonatomic) MPMediaItem* currentArtist;
-
-
 
 /**
  *  Initialise all data for the current execution of the application.
@@ -61,7 +61,6 @@
  */
 - (bool) initialise;
 
-
 /**
  *  Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
  *  is displayed, UICurrentPlayingToolBar is hidden.
@@ -69,7 +68,6 @@
  *  @return True if UIMusicViewController displayed
  */
 - (bool) isMusicViewControllerVisible;
-
 
 /**
  *  Set the status of the visibility of the UIMusicViewController.

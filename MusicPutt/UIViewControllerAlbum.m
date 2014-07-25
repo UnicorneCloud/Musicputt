@@ -48,23 +48,6 @@
     // setup query artists
     everything = [MPMediaQuery albumsQuery];
     albums = [everything collections];
-//    artists = [everything collections];
-//    
-//    // Initiate the dictionnairy and fill it.
-//    artistDictionary = [NSMutableDictionary dictionary];
-//    NSMutableSet *tempSet = [NSMutableSet set];
-//    
-//    [artists enumerateObjectsUsingBlock:^(MPMediaItemCollection *artistCollection, NSUInteger idx, BOOL *stop) {
-//        NSString *artistName = [[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist];
-//        
-//        [[artistCollection items] enumerateObjectsUsingBlock:^(MPMediaItem *songItem, NSUInteger idx, BOOL *stop) {
-//            NSString *albumName = [songItem valueForProperty:MPMediaItemPropertyAlbumTitle];
-//            [tempSet addObject:albumName];
-//        }];
-//        [artistDictionary setValue:[NSNumber numberWithUnsignedInteger:[tempSet count]]
-//                            forKey:artistName];
-//        [tempSet removeAllObjects];
-//    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +69,14 @@
     [cell setAlbumItem: albums[indexPath.row]];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.del mpdatamanager].currentAlbumCollection = albums[indexPath.row];
+    return indexPath;
 }
 
 /*
