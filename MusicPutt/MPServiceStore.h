@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MPMusicTrack.h"
+#import "MPAlbum.h"
 
 
 /**
@@ -18,6 +19,7 @@ typedef enum {
     MPQueryMusicTrackWithId,
     MPQueryAlbumWithSearchTerm,
     MPQueryAlbumWithId,
+    MPQueryAlbumWithArtistId,
     MPQueryArtistWithSearchTerm,
     MPQueryArtistWithId,
     MPQueryAll
@@ -61,13 +63,12 @@ typedef enum {
 
 
 /**
- *  Execute query in iTunes Store and return results to the delagate.
+ *  Execute query for return musics tracks from iTunes Store and return results to the delagate.
  *
- *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param searchTerm see itunes api doc
  *  @param anObject   Delagate to receive the result. Must respect MPServiceStoreDelegate.
  */
 - (void) queryMusicTrackWithSearchTerm:(NSString*)searchTerm setDelegate:(id) anObject;
-
 
 /**
  *  Execute query in iTunes Store and return music track with this id to the delagate.
@@ -79,13 +80,28 @@ typedef enum {
 
 
 /**
- *  Execute asynchrone query in itunes store.
+ *  Execute query for return albums from iTunes Store and return results to the delagate.
  *
- *  @param type       Indicate type of the query. See: MPServiceStoreQueryType
- *  @param searchTerm searchTerm or itemId for query with item
- *  @param anObject   the object delegate that receive result
+ *  @param searchTerm see itunes api doc
+ *  @param anObject   Delagate to receive the result. Must respect MPServiceStoreDelegate.
  */
-- (void) executeQuery:(MPServiceStoreQueryType) type searchTerm:(NSString*)searchTerm setDelegate:(id) anObject;
+- (void) queryAlbumWithSearchTerm:(NSString*)searchTerm setDelegate:(id) anObject;
+
+/**
+ *  Execute query in iTunes Store and return music track with this id to the delagate.
+ *
+ *  @param itemId   id of the music track to find
+ *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ */
+- (void) queryAlbumTrackWithId:(NSString*)itemId setDelegate:(id) anObject;
+
+/**
+ *  Execute query in iTunes Store and return all album for an artist with this id to the delagate.
+ *
+ *  @param itemId   id of the music track to find
+ *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ */
+- (void) queryAlbumTrackWithArtistId:(NSString*)itemId setDelegate:(id) anObject;
 
 
 /**
@@ -95,7 +111,8 @@ typedef enum {
  *
  *  @return searchTerm to find song.
  */
--(NSString*) buildSearchTermFromMediaItem:(MPMediaItem*) mediaitem;
+-(NSString*) buildSearchTermForMusicTrackFromMediaItem:(MPMediaItem*) mediaitem;
+
 
 
 @end

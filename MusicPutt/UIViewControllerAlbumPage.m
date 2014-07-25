@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "UITableViewCellAlbumPageSong.h"
 #import "MPServiceStore.h"
+#import "UIViewControllerStoreArtist.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -23,6 +24,8 @@
 @property AppDelegate* del;
 
 @property (weak, nonatomic) IBOutlet UIImageView* imageview;
+
+@property (weak, nonatomic) IBOutlet UILabel* artistname;
 
 @property (weak, nonatomic) IBOutlet UILabel* albumname;
 
@@ -81,13 +84,17 @@
     // ensure that song list has a clear bg
     [_songstable setBackgroundColor:[UIColor clearColor]];
     
-    // active gesture on album label
+    // active gesture on artist and album label
+    _artistname.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGestureArtist = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(artistAlbumPressed)];
+    [_artistname addGestureRecognizer:tapGestureArtist];
+    
     _albumname.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureAlbum = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(albumPressed)];
+    UITapGestureRecognizer *tapGestureAlbum = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(artistAlbumPressed)];
     [_albumname addGestureRecognizer:tapGestureAlbum];
     
     _albumlink.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureLink = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(albumPressed)];
+    UITapGestureRecognizer *tapGestureLink = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(artistAlbumPressed)];
     [_albumlink addGestureRecognizer:tapGestureLink];
     
 }
@@ -106,7 +113,7 @@
     
     // query store for album information
     MPServiceStore *store = [[MPServiceStore alloc]init];
-    NSString* searchTerm = [store buildSearchTermFromMediaItem:currentplayingitem];
+    NSString* searchTerm = [store buildSearchTermForMusicTrackFromMediaItem:currentplayingitem];
     [store queryMusicTrackWithSearchTerm:searchTerm setDelegate:self];
     
     // query album media on device
@@ -127,6 +134,8 @@
     else
         [_imageview setImage:[UIImage imageNamed:@"empty"]];
     
+    // Artist's name
+    _artistname.text = [currentplayingitem valueForProperty:MPMediaItemPropertyAlbumArtist];
     
     // Album's name.
     _albumname.text = [currentplayingitem valueForProperty:MPMediaItemPropertyAlbumTitle];
@@ -278,11 +287,13 @@
 /**
  *  <#Description#>
  */
--(void) albumPressed
+-(void) artistAlbumPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
-    
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewControllerStoreArtist *storeView = [sb instantiateViewControllerWithIdentifier:@"StoreArtist"];
+    [self.navigationController pushViewController:storeView animated:YES];
 }
 
 /**
@@ -296,6 +307,7 @@
 {
     if (status!=MPServiceStoreStatusSucceed || [results count]==0) {
         
+            /*
             UIAlertView *message = [[UIAlertView alloc]
                                     initWithTitle:@"Not found!"
                                     message:@"Unable to found this album on the iTunes Store."
@@ -304,12 +316,11 @@
                                     otherButtonTitles:nil];
             
             [message show];
+             */
     }
     else
     {
         MPMusicTrack* result = results[0];
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [result collectionViewUrl]);
-        
         
         // year
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -321,7 +332,6 @@
         
         // price
         _price.text = [NSString stringWithFormat:@"%@$", [result collectionPrice]];
-        
     }
 }
 
