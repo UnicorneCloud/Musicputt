@@ -93,7 +93,7 @@
     }
     else
     {
-        self.nbTracks.text = [NSString stringWithFormat:@"%d track", nbTracks];
+        self.nbTracks.text = [NSString stringWithFormat:@"%lu track", (unsigned long)nbTracks];
     }
 }
 @end
