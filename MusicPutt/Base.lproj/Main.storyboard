@@ -604,9 +604,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="568" id="BhI-Zv-eUt"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CellPlaylistSong" rowHeight="60" id="Ubp-lu-Uyu" customClass="UITableViewCellPlaylistSong">
                                         <rect key="frame" x="0.0" y="86" width="320" height="60"/>
@@ -677,6 +674,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="e8F-mg-ywI" firstAttribute="top" secondItem="YA6-6z-LxF" secondAttribute="top" id="RZC-G5-Tkw"/>
                             <constraint firstAttribute="trailing" secondItem="e8F-mg-ywI" secondAttribute="trailing" id="eHz-Co-PkM"/>
                             <constraint firstItem="e8F-mg-ywI" firstAttribute="leading" secondItem="YA6-6z-LxF" secondAttribute="leading" id="ghK-Xl-vNu"/>
                             <constraint firstAttribute="bottom" secondItem="e8F-mg-ywI" secondAttribute="bottom" id="sHz-bi-UBZ"/>
