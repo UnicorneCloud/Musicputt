@@ -65,6 +65,8 @@
 		D537F13E1964E84400DC9EE7 /* UIViewControllerArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */; };
 		D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */; };
 		D596A5921968F24D00C55597 /* UIViewControllerArtistAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D596A5911968F24D00C55597 /* UIViewControllerArtistAlbum.m */; };
+		D5B241351981E4C600233953 /* UIViewControllerAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B241341981E4C600233953 /* UIViewControllerAlbum.m */; };
+		D5B241381981E9A300233953 /* UITableViewCellAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B241371981E9A300233953 /* UITableViewCellAlbum.m */; };
 		D5B6DE55196D83040042F072 /* UITableViewCellArtistAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B6DE54196D83040042F072 /* UITableViewCellArtistAlbum.m */; };
 		D5B6DE58197594240042F072 /* UITableViewCellHeaderSection.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B6DE57197594240042F072 /* UITableViewCellHeaderSection.m */; };
 /* End PBXBuildFile section */
@@ -156,6 +158,10 @@
 		D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellArtist.m; sourceTree = "<group>"; };
 		D596A5901968F24D00C55597 /* UIViewControllerArtistAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerArtistAlbum.h; sourceTree = "<group>"; };
 		D596A5911968F24D00C55597 /* UIViewControllerArtistAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerArtistAlbum.m; sourceTree = "<group>"; };
+		D5B241331981E4C600233953 /* UIViewControllerAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerAlbum.h; sourceTree = "<group>"; };
+		D5B241341981E4C600233953 /* UIViewControllerAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAlbum.m; sourceTree = "<group>"; };
+		D5B241361981E9A300233953 /* UITableViewCellAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellAlbum.h; sourceTree = "<group>"; };
+		D5B241371981E9A300233953 /* UITableViewCellAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellAlbum.m; sourceTree = "<group>"; };
 		D5B6DE53196D83040042F072 /* UITableViewCellArtistAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellArtistAlbum.h; sourceTree = "<group>"; };
 		D5B6DE54196D83040042F072 /* UITableViewCellArtistAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellArtistAlbum.m; sourceTree = "<group>"; };
 		D5B6DE56197594240042F072 /* UITableViewCellHeaderSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellHeaderSection.h; sourceTree = "<group>"; };
@@ -313,6 +319,10 @@
 		9799978C1960F62700360BF8 /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				D5B241331981E4C600233953 /* UIViewControllerAlbum.h */,
+				D5B241341981E4C600233953 /* UIViewControllerAlbum.m */,
+				D5B241361981E9A300233953 /* UITableViewCellAlbum.h */,
+				D5B241371981E9A300233953 /* UITableViewCellAlbum.m */,
 			);
 			name = Album;
 			sourceTree = "<group>";
@@ -578,6 +588,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5B241351981E4C600233953 /* UIViewControllerAlbum.m in Sources */,
 				979DED28196500E50055AD39 /* UITableViewCellSong.m in Sources */,
 				97901B1C1979F1F700526A04 /* UIButton+Extensions.m in Sources */,
 				97AF57B61960A53A002978E8 /* UITableViewCellPlaylist.m in Sources */,
@@ -608,6 +619,7 @@
 				D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */,
 				D5B6DE55196D83040042F072 /* UITableViewCellArtistAlbum.m in Sources */,
 				97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */,
+				D5B241381981E9A300233953 /* UITableViewCellAlbum.m in Sources */,
 				97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
