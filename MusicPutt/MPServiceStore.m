@@ -8,6 +8,7 @@
 
 #import "MPServiceStore.h"
 #import "MPMusicTrack.h"
+#import "MPAlbum.h"
 
 #import <RestKit/RestKit.h>
 #import <MediaPlayer/MediaPlayer.h>
@@ -16,6 +17,7 @@
 {
     NSArray*                searchResult;
     RKResponseDescriptor*   rdMusicTrack;
+    RKResponseDescriptor*   rdAlbum;
     RKObjectManager*        objectManager;
 }
 
@@ -87,6 +89,39 @@
                                                                  statusCodes:nil];
     
     [objectManager addResponseDescriptor:rdMusicTrack];
+    
+    // define location object mapping
+    RKObjectMapping *albumMapping = [RKObjectMapping mappingForClass:[MPAlbum class]];
+    [albumMapping addAttributeMappingsFromArray:@[@"wrapperType",
+                                                  @"collectionType",
+                                                  @"artistId",
+                                                  @"collectionId",
+                                                  @"artistName",
+                                                  @"collectionName",
+                                                  @"collectionCensoredName",
+                                                  @"artistViewUrl",
+                                                  @"collectionViewUrl",
+                                                  @"artworkUrl60",
+                                                  @"artworkUrl100",
+                                                  @"collectionPrice",
+                                                  @"collectionExplicitness",
+                                                  @"trackCount",
+                                                  @"copyright",
+                                                  @"country",
+                                                  @"currency",
+                                                  @"releaseDate",
+                                                  @"primaryGenreName"
+                                                  ]];
+    
+    // register mappings with the provider using a response descriptor
+    rdAlbum = [RKResponseDescriptor responseDescriptorWithMapping:albumMapping
+                                                                method:RKRequestMethodGET
+                                                           pathPattern:nil
+                                                               keyPath:@"results"
+                                                           statusCodes:nil];
+    
+    [objectManager addResponseDescriptor:rdAlbum];
+    
     [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class] forMIMEType:@"text/javascript"];
     
     
@@ -117,82 +152,37 @@
 }
 
 /**
- *  Execute asynchrone query in itunes store.
+ *  Execute query for return albums from iTunes Store and return results to the delagate.
  *
- *  @param type       Indicate type of the query. See: MPServiceStoreQueryType
- *  @param searchTerm searchTerm or itemId for query with item
- *  @param anObject   the object delegate that receive result
+ *  @param searchTerm see itunes api doc
+ *  @param anObject   Delagate to receive the result. Must respect MPServiceStoreDelegate.
  */
-- (void) executeQuery:(MPServiceStoreQueryType) type searchTerm:(NSString*)searchTerm setDelegate:(id) anObject
+- (void) queryAlbumWithSearchTerm:(NSString*)searchTerm setDelegate:(id) anObject
 {
-    NSString *filterTerm;
-    
-    if (type == MPQueryMusicTrackWithId ||
-        type == MPQueryMusicTrackWithSearchTerm ) {
-        filterTerm = @"musicTrack";
-    }
-    else if (type == MPQueryArtistWithId ||
-             type == MPQueryArtistWithSearchTerm ) {
-        filterTerm = @"artist";
-    }
-    else if (type == MPQueryAlbumWithId ||
-             type == MPQueryAlbumWithSearchTerm ) {
-        filterTerm = @"album";
-    }
-    
-    //Let's get this on a background thread.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-                   ^{
-                       NSURLRequest *request;
-                       if (type == MPQueryMusicTrackWithId ||
-                           type == MPQueryArtistWithId ||
-                           type == MPQueryAlbumWithId ) {
-                           request = [NSURLRequest requestWithURL:[self createURLForCallWithId:searchTerm andFilter:filterTerm]];
-                       }
-                       else{
-                           request = [NSURLRequest requestWithURL:[self createURLForCallWithSearchTerm:searchTerm andFilter:filterTerm]];
-                       }
-                       
-                       RKObjectRequestOperation *operation;
-                       if ( MPQueryMusicTrackWithId == type ||
-                           MPQueryMusicTrackWithSearchTerm == type){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]];
-                       }
-                       else if ( MPQueryArtistWithId == type ||
-                                MPQueryArtistWithSearchTerm == type ){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
-                       }
-                       else if ( MPQueryAlbumWithId == type ||
-                                MPQueryAlbumWithSearchTerm == type ){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
-                       }
-                       else{
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
-                       }
-                       
-                       operation.HTTPRequestOperation.acceptableContentTypes = [NSSet setWithObject:@"text/javascript"];
-                       [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-                           
-                           //About to update the UI, so jump back to the main/UI thread
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request completed.");
-                               if ( [anObject respondsToSelector:@selector(queryResult:type:results:)]){
-                                   [anObject queryResult:MPServiceStoreStatusSucceed type:type results:[result array]];
-                               }
-                           });
-                           
-                       } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                           
-                           //About to update the UI, so jump back to the main/UI thread
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request failed.");
-                               if ( [anObject respondsToSelector:@selector(queryResult:type:results:)] ){
-                                   [anObject queryResult:MPServiceStoreStatusFailed type:type results:nil];
-                               }
-                           });
-                       }];
-                       [operation start];
-                   });
+    [self executeSearch:searchTerm addFilter:@"album" queryType:MPQueryAlbumWithSearchTerm delegate:anObject];
+}
+
+/**
+ *  Execute query in iTunes Store and return music track with this id to the delagate.
+ *
+ *  @param itemId   id of the music track to find
+ *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ */
+- (void) queryAlbumTrackWithId:(NSString*)itemId setDelegate:(id) anObject
+{
+    [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithId delegate:anObject];
+}
+
+
+/**
+ *  Execute query in iTunes Store and return all album for an artist with this id to the delagate.
+ *
+ *  @param itemId   id of the music track to find
+ *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ */
+- (void) queryAlbumTrackWithArtistId:(NSString*)itemId setDelegate:(id) anObject
+{
+    [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithArtistId delegate:anObject];
 }
 
 /**
@@ -211,7 +201,8 @@
                        NSURLRequest *request;
                        if (type == MPQueryMusicTrackWithId ||
                            type == MPQueryArtistWithId ||
-                           type == MPQueryAlbumWithId ) {
+                           type == MPQueryAlbumWithId ||
+                           type == MPQueryAlbumWithArtistId) {
                            request = [NSURLRequest requestWithURL:[self createURLForCallWithId:searchTerm andFilter:filterTerm]];
                        }
                        else{
@@ -228,8 +219,9 @@
                            operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
                        }
                        else if ( MPQueryAlbumWithId == type ||
-                                 MPQueryAlbumWithSearchTerm == type ){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
+                                 MPQueryAlbumWithSearchTerm == type ||
+                                 MPQueryAlbumWithArtistId == type){
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdAlbum]];
                        }
                        else{
                            operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
@@ -303,18 +295,18 @@
  *
  *  @return searchTerm to find song.
  */
--(NSString*) buildSearchTermFromMediaItem:(MPMediaItem*) mediaitem
+-(NSString*) buildSearchTermForMusicTrackFromMediaItem:(MPMediaItem*) mediaitem
 {
     NSMutableString *retval = [[NSMutableString alloc] init];
     bool found = false;
     
     //artist name
-    if ( ![[mediaitem valueForProperty:MPMediaItemPropertyArtist]  isEqual: @""] )
+    if ( ![[mediaitem valueForProperty:MPMediaItemPropertyAlbumArtist]  isEqual: @""] )
     {
         if (found) {
             [retval appendString:@"+"];
         }
-        [retval appendString:[mediaitem valueForProperty:MPMediaItemPropertyArtist]];
+        [retval appendString:[mediaitem valueForProperty:MPMediaItemPropertyAlbumArtist]];
         found = true;
     }
     
