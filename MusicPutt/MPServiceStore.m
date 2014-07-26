@@ -16,8 +16,9 @@
 @interface MPServiceStore()
 {
     NSArray*                searchResult;
-    RKResponseDescriptor*   rdMusicTrack;
-    RKResponseDescriptor*   rdAlbum;
+    //RKResponseDescriptor*   rdMusicTrack;
+    //RKResponseDescriptor*   rdAlbum;
+    RKResponseDescriptor*   responsedescriptor;
     RKObjectManager*        objectManager;
 }
 
@@ -50,7 +51,7 @@
     // initialize RestKit
     objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
     
-    // define location object mapping
+    // define music track mapping
     RKObjectMapping *musicTrackMapping = [RKObjectMapping mappingForClass:[MPMusicTrack class]];
     [musicTrackMapping addAttributeMappingsFromArray:@[@"wrapperType",
                                                        @"kind",
@@ -81,6 +82,8 @@
                                                        @"primaryGenreName"
                                                        ]];
     
+   
+    /*
     // register mappings with the provider using a response descriptor
     rdMusicTrack = [RKResponseDescriptor responseDescriptorWithMapping:musicTrackMapping
                                                                       method:RKRequestMethodGET
@@ -89,8 +92,9 @@
                                                                  statusCodes:nil];
     
     [objectManager addResponseDescriptor:rdMusicTrack];
+    */
     
-    // define location object mapping
+    // define album mapping
     RKObjectMapping *albumMapping = [RKObjectMapping mappingForClass:[MPAlbum class]];
     [albumMapping addAttributeMappingsFromArray:@[@"wrapperType",
                                                   @"collectionType",
@@ -113,7 +117,51 @@
                                                   @"primaryGenreName"
                                                   ]];
     
+    // define album mapping
+    RKObjectMapping *artistMapping = [RKObjectMapping mappingForClass:[MPArtist class]];
+    [artistMapping addAttributeMappingsFromArray:@[@"wrapperType",
+                                                  @"artistType",
+                                                  @"artistName",
+                                                  @"artistLinkUrl",
+                                                  @"artistId",
+                                                  @"amgArtistId",
+                                                  @"primarygenrename",
+                                                  @"primarygenreid",
+                                                  @"radiostationurl"
+                                                  ]];
+    
+    
+    
+    RKDynamicMapping* dynamicMapping = [RKDynamicMapping new];
+    
+    // Connect a response descriptor for our dynamic mapping
+    responsedescriptor =
+        [RKResponseDescriptor responseDescriptorWithMapping:dynamicMapping
+                                                     method:RKRequestMethodAny
+                                                pathPattern:nil
+                                                    keyPath:@"results"
+                                                statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    [[RKObjectManager sharedManager] addResponseDescriptor:responsedescriptor];
+    
+    [dynamicMapping setObjectMappingForRepresentationBlock:^RKObjectMapping *(id representation) {
+        if ([[representation valueForKey:@"wrapperType"] isEqualToString:@"track"]) {
+            return musicTrackMapping;
+        } else if ([[representation valueForKey:@"wrapperType"] isEqualToString:@"collection"]) {
+            return albumMapping;
+        } else if ([[representation valueForKey:@"wrapperType"] isEqualToString:@"artist"]) {
+            return artistMapping;
+        }
+        return nil;
+    }];
+
+    
+    
+    
+
+    
     // register mappings with the provider using a response descriptor
+    /*
     rdAlbum = [RKResponseDescriptor responseDescriptorWithMapping:albumMapping
                                                                 method:RKRequestMethodGET
                                                            pathPattern:nil
@@ -121,6 +169,12 @@
                                                            statusCodes:nil];
     
     [objectManager addResponseDescriptor:rdAlbum];
+    */
+    
+    
+    
+    
+    
     
     [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class] forMIMEType:@"text/javascript"];
     
@@ -212,19 +266,19 @@
                        RKObjectRequestOperation *operation;
                        if ( MPQueryMusicTrackWithId == type ||
                             MPQueryMusicTrackWithSearchTerm == type){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]];
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]];
                        }
                        else if ( MPQueryArtistWithId == type ||
                                  MPQueryArtistWithSearchTerm == type ){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]]; //todo change rdMusicTrack
                        }
                        else if ( MPQueryAlbumWithId == type ||
                                  MPQueryAlbumWithSearchTerm == type ||
                                  MPQueryAlbumWithArtistId == type){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdAlbum]];
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]];
                        }
                        else{
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->rdMusicTrack]]; //todo change rdMusicTrack
+                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]]; //todo change rdMusicTrack
                        }
                        
                        operation.HTTPRequestOperation.acceptableContentTypes = [NSSet setWithObject:@"text/javascript"];

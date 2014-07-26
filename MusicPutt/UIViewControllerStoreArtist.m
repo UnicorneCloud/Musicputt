@@ -42,8 +42,8 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // query store for album information
-    //MPServiceStore *store = [[MPServiceStore alloc]init];
-    //[store queryAlbumTrackWithArtistId:@"51085835" setDelegate:self];
+    MPServiceStore *store = [[MPServiceStore alloc]init];
+    [store queryAlbumTrackWithArtistId:@"51085835" setDelegate:self];
     
     // add quit button
     //UIBarButtonItem *quitBtn = [[UIBarButtonItem alloc] initWithTitle:@"Quit" style:UIBarButtonItemStylePlain target:self action:@selector(quitStore)];

@@ -26,67 +26,67 @@
 /**
  *  collection type must be Album
  */
-@property (nonatomic, copy) NSString *collectiontype;
+@property (nonatomic, copy) NSString *collectionType;
 
 
 /**
  *  unique artist id
  */
-@property (nonatomic, copy) NSString *artistid;
+@property (nonatomic, copy) NSString *artistId;
 
 
 /**
  *  unique collection id (album)
  */
-@property (nonatomic, copy) NSString *collectionid;
+@property (nonatomic, copy) NSString *collectionId;
 
 
 /**
  *  Astist's name
  */
-@property (nonatomic, copy) NSString *artistname;
+@property (nonatomic, copy) NSString *artistName;
 
 
 /**
  *  Collection's name
  */
-@property (nonatomic, copy) NSString *collectionname;
+@property (nonatomic, copy) NSString *collectionName;
 
 
 /**
  *  Collection's censored name
  */
-@property (nonatomic, copy) NSString *collectioncensoredname;
+@property (nonatomic, copy) NSString *collectionCensoredName;
 
 
 /**
  *  Artist view url
  */
-@property (nonatomic, copy) NSString *artistviewurl;
+@property (nonatomic, copy) NSString *artistViewUrl;
 
 
 /**
  *  Collection view url
  */
-@property (nonatomic, copy) NSString *collectionviewurl;
+@property (nonatomic, copy) NSString *collectionViewUrl;
 
 
 /**
  *  Album artwork 60 px.
  */
-@property (nonatomic, copy) NSString *artworkurl60;
+@property (nonatomic, copy) NSString *artworkUrl60;
 
 
 /**
  *  Album artwork 100 px.
  */
-@property (nonatomic, copy) NSString *artworkurl100;
+@property (nonatomic, copy) NSString *artworkUrl100;
 
 
 /**
  *  Collection price
  */
-@property (nonatomic, copy) NSString *collectionprice;
+@property (nonatomic, copy) NSString *collectionPrice;
 
 
 /**
@@ -94,12 +94,12 @@
  *
  *  For more information, see http://itunes.apple.com/WebObjects/MZStore.woa/wa/parentalAdvisory.
  */
-@property (nonatomic, copy) NSString *collectionexplicitness;
+@property (nonatomic, copy) NSString *collectionExplicitness;
 
 /**
  *  Nb track on album
  */
-@property (nonatomic, copy) NSString *trackcount;
+@property (nonatomic, copy) NSString *trackCount;
 
 /**
  *  Copyright
@@ -119,12 +119,12 @@
 /**
  *  Release date
  */
-@property (nonatomic, copy) NSString *releasedate;
+@property (nonatomic, copy) NSString *releaseDate;
 
 
 /**
  *  Primary genre for this album collection
  */
-@property (nonatomic, copy) NSString *primarygenrename;
+@property (nonatomic, copy) NSString *primaryGenreName;
 
 @end

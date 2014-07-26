@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MPMusicTrack.h"
 #import "MPAlbum.h"
+#import "MPArtist.h"
 
 
 /**
