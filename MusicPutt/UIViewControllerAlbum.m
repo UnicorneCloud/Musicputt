@@ -79,6 +79,13 @@
     return indexPath;
 }
 
+#pragma mark - AMWaveViewController
+
+- (NSArray*)visibleCells
+{
+    return [self.tableView visibleCells];
+}
+
 /*
 #pragma mark - Navigation
 
