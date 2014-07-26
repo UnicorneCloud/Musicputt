@@ -1221,6 +1221,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Albums" id="qEa-cp-Bf4"/>
+                    <connections>
+                        <outlet property="tableView" destination="oZS-XV-z7f" id="xXH-mi-NI4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSb-OB-4iG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
