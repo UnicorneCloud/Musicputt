@@ -196,6 +196,58 @@
 {
     return [self.tableView visibleCells];
 }
+
+#pragma mark - UITableViewDelegate
+
+/**
+ *  This function add the songs to play in a list when user click the first song.
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCellMediaItem* cell = (UITableViewCellMediaItem*)[self tableView:_tableView cellForRowAtIndexPath:indexPath];
+    
+    NSMutableArray* list = [[NSMutableArray alloc] init];
+    NSInteger step       = 0;
+    NSInteger maxstep    = [albumCollection items].count;
+    NSUInteger pos       = indexPath.row;
+    
+    while (step<maxstep) {
+        [list addObject: [[albumCollection items] objectAtIndex:pos]];
+        //NSLog(@"%@", [list[step] valueForProperty:MPMediaItemPropertyTitle]);
+        step++;
+        pos++;
+        
+        if(pos == maxstep)
+        {
+            pos=0;
+        }
+    }
+    
+    [[[self.del mpdatamanager] musicplayer] stop];
+    
+    BOOL shuffleWasOn = NO;
+    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+        [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
+    {
+        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
+        shuffleWasOn = YES;
+    }
+    [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
+    [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[cell getMediaItem]];
+    if (shuffleWasOn)
+        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+    
+    [[[self.del mpdatamanager] musicplayer] play];
+    
+    self.del.mpdatamanager.currentSonglist = list;
+    
+    return indexPath;
+}
 /*
 #pragma mark - Navigation
 
