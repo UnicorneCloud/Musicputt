@@ -19,6 +19,7 @@
     MPMediaQuery* everything;                   // result of current query
     NSNumber *fullLength;
     MPMediaItem* currentplayingitem;
+    NSString* storeArtistId;
 }
 
 @property AppDelegate* del;
@@ -113,8 +114,9 @@
     
     // query store for album information
     MPServiceStore *store = [[MPServiceStore alloc]init];
+    [store setDelegate:self];
     NSString* searchTerm = [store buildSearchTermForMusicTrackFromMediaItem:currentplayingitem];
-    [store queryMusicTrackWithSearchTerm:searchTerm setDelegate:self];
+    [store queryMusicTrackWithSearchTerm:searchTerm asynchronizationMode:true];
     
     // query album media on device
     everything = [MPMediaQuery albumsQuery];
@@ -293,6 +295,7 @@
     
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewControllerStoreArtist *storeView = [sb instantiateViewControllerWithIdentifier:@"StoreArtist"];
+    [storeView setStoreArtistId:storeArtistId];
     [self.navigationController pushViewController:storeView animated:YES];
 }
 
@@ -322,7 +325,7 @@
     {
         MPMusicTrack* result = results[0];
         
-        // year
+        // releasedate
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"MMM yyyy"];
         _year.text = [[formatter stringFromDate:[result releaseDate]] capitalizedString];
@@ -332,6 +335,9 @@
         
         // price
         _price.text = [NSString stringWithFormat:@"%@$", [result collectionPrice]];
+        
+        // set store artist id
+        storeArtistId = [result artistId];
     }
 }
 

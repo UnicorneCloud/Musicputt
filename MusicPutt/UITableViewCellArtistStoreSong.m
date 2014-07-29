@@ -1,17 +1,16 @@
 //
-//  UITableViewCellAlbumPageSong.m
+//  UITableViewCellArtistStoreSong.m
 //  MusicPutt
 //
-//  Created by Eric Pinet on 2014-07-19.
+//  Created by Eric Pinet on 2014-07-29.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "UITableViewCellAlbumPageSong.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "UITableViewCellArtistStoreSong.h"
 
-@interface UITableViewCellAlbumPageSong ()
+@interface UITableViewCellArtistStoreSong ()
 {
-    MPMediaItem* _mediaitem;
+    MPMusicTrack* _mediaitem;
 }
 
 /**
@@ -29,7 +28,7 @@
 
 @end
 
-@implementation UITableViewCellAlbumPageSong
+@implementation UITableViewCellArtistStoreSong
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -52,20 +51,21 @@
     // Configure the view for the selected state
 }
 
+
 /**
  *  Set the information of the media item (name, track no. and duration).
  *
  *  @param artistAlbumItem : The media item to set.
  */
-- (void)setMediaItem:(MPMediaItem *)mediaitem
+- (void)setMediaItem:(MPMusicTrack *)mediaitem
 {
-    _songName.text = [mediaitem valueForProperty:MPMediaItemPropertyTitle];
-    _trackNo.text  = [[mediaitem valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
+    _songName.text = [mediaitem trackName];
+    _trackNo.text  = [mediaitem trackNumber];
     
-    NSNumber *durationtime = [mediaitem valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    NSNumber *durationtime = [NSNumber numberWithInteger:[[mediaitem trackTimeMillis] integerValue]/1000];
     _songDuration.text = [NSString stringWithFormat: @"%02d:%02d",
-                              [durationtime intValue]/60,
-                              [durationtime intValue]%60];
+                          [durationtime intValue]/60,
+                          [durationtime intValue]%60];
     
     _mediaitem = mediaitem;
 }
@@ -75,7 +75,7 @@
  *
  *  @return mediaItem attach with this cell.
  */
--(MPMediaItem*) getMediaItem
+-(MPMusicTrack*) getMediaItem
 {
     return _mediaitem;
 }

@@ -18,6 +18,7 @@
 typedef enum {
     MPQueryMusicTrackWithSearchTerm,
     MPQueryMusicTrackWithId,
+    MPQueryMusicTrackWithAlbumId,
     MPQueryAlbumWithSearchTerm,
     MPQueryAlbumWithId,
     MPQueryAlbumWithArtistId,
@@ -62,54 +63,65 @@ typedef enum {
 @interface MPServiceStore : NSObject
 
 
+/**
+ *  Set delegate to recieve result of query.
+ *
+ *  @param anObject delegate object with MPServiceStoreDelegate protocol.
+ */
+- (void) setDelegate:(id) anObject;
 
 /**
  *  Execute query for return musics tracks from iTunes Store and return results to the delagate.
  *
  *  @param searchTerm see itunes api doc
- *  @param anObject   Delagate to receive the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryMusicTrackWithSearchTerm:(NSString*)searchTerm setDelegate:(id) anObject;
+- (void) queryMusicTrackWithSearchTerm:(NSString*)searchTerm asynchronizationMode:(BOOL) async;
 
 /**
  *  Execute query in iTunes Store and return music track with this id to the delagate.
  *
  *  @param itemId   id of the music track to find
- *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryMusicTrackWithId:(NSString*)itemId setDelegate:(id) anObject;
+- (void) queryMusicTrackWithId:(NSString*)itemId asynchronizationMode:(BOOL) async;
 
+/**
+ *  Execute query in iTunes Store and return music track with this album id to the delagate.
+ *
+ *  @param itemId   id of the album to find
+ *  @param async true if you want asynchronization mode
+ */
+- (void) queryMusicTrackWithAlbumId:(NSString*)itemId asynchronizationMode:(BOOL) async;
 
 /**
  *  Execute query for return albums from iTunes Store and return results to the delagate.
  *
  *  @param searchTerm see itunes api doc
- *  @param anObject   Delagate to receive the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryAlbumWithSearchTerm:(NSString*)searchTerm setDelegate:(id) anObject;
+- (void) queryAlbumWithSearchTerm:(NSString*)searchTerm asynchronizationMode:(BOOL) async;
 
 /**
  *  Execute query in iTunes Store and return music track with this id to the delagate.
  *
  *  @param itemId   id of the music track to find
- *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryAlbumTrackWithId:(NSString*)itemId setDelegate:(id) anObject;
+- (void) queryAlbumWithId:(NSString*)itemId asynchronizationMode:(BOOL) async;
 
 /**
  *  Execute query in iTunes Store and return all album for an artist with this id to the delagate.
  *
  *  @param itemId   id of the music track to find
- *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryAlbumTrackWithArtistId:(NSString*)itemId setDelegate:(id) anObject;
-
+- (void) queryAlbumWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async;
 
 /**
  *  Build searchterm for find song in iTunes Store.
  *
  *  @param mediaitem MediaItem that you expect find in store.
- *
  *  @return searchTerm to find song.
  */
 -(NSString*) buildSearchTermForMusicTrackFromMediaItem:(MPMediaItem*) mediaitem;

@@ -7,18 +7,36 @@
 //
 
 #import "UIViewControllerStoreArtist.h"
+#import "UITableViewCellArtistStoreSong.h"
 #import "iCarousel.h"
-#import "AsyncImageView.h"
 #import "MPServiceStore.h"
 #import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface UIViewControllerStoreArtist () <MPServiceStoreDelegate>
+@interface UIViewControllerStoreArtist () <MPServiceStoreDelegate, iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
 {
+    NSArray* result;
+    NSArray* currentAlbumSongs;
+    AVAudioPlayer* audioPlayer;
 }
 
 @property AppDelegate* del;
 
 @property (nonatomic, strong) IBOutlet iCarousel *albumlist;
+
+@property (nonatomic, weak) IBOutlet UILabel* artistname;
+
+@property (nonatomic, weak) IBOutlet UILabel* albumname;
+
+@property (nonatomic, weak) IBOutlet UILabel* tracks;
+
+@property (nonatomic, weak) IBOutlet UILabel* genre;
+
+@property (nonatomic, weak) IBOutlet UILabel* releasedate;
+
+@property (nonatomic, weak) IBOutlet UILabel* price;
+
+@property (nonatomic, weak) IBOutlet UITableView* songstable;
 
 @end
 
@@ -43,11 +61,15 @@
     
     // query store for album information
     MPServiceStore *store = [[MPServiceStore alloc]init];
-    [store queryAlbumTrackWithArtistId:@"51085835" setDelegate:self];
+    [store setDelegate:self];
+    [store queryAlbumWithArtistId:_storeArtistId asynchronizationMode:true];
     
-    // add quit button
-    //UIBarButtonItem *quitBtn = [[UIBarButtonItem alloc] initWithTitle:@"Quit" style:UIBarButtonItemStylePlain target:self action:@selector(quitStore)];
-    //self.navigationItem.rightBarButtonItem = quitBtn;
+    // setup album carousel
+    _albumlist.type = iCarouselTypeCoverFlow;
+    
+    // display first album informations
+    //[self updateCurrentAlbumShow:0];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,9 +78,15 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) quitStore
+
+/**
+ *  Click on itunes button.
+ *
+ *  @param sender <#sender description#>
+ */
+- (IBAction)itunesButtonPressed:(id)sender
 {
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[result objectAtIndex:0] artistLinkUrl]]];
 }
 
 #pragma mark iCarousel methods
@@ -67,27 +95,66 @@
 {
     //return the total number of items in the carousel
     //return [items 3];
-    return 0;
+    return result.count-1;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
-    //create new view if no view is available for recycling
-    if (view == nil)
-    {
-        view = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 200.0f)] autorelease];
-        view.contentMode = UIViewContentModeScaleAspectFit;
-    }
+    id path = [[result objectAtIndex:index+1] artworkUrl100];
+    NSURL *url = [NSURL URLWithString:path];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [[UIImage alloc] initWithData:data];
     
-    //cancel any previously loading images for this view
-    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:view];
-    
-    //set image URL. AsyncImageView class will then dynamically load the image
-    //((AsyncImageView *)view).imageURL = [items objectAtIndex:index];
-    
-    return view;
+    UIImageView* imageview = [[UIImageView alloc] initWithImage:img];
+    imageview.frame = CGRectMake(0, 0, 100.0f, 100.0f);
+    return imageview;
 }
 
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+{
+    NSNumber *item = (result)[index+1];
+    NSLog(@"Tapped view number: %@", item);
+}
+
+- (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel
+{
+    [self updateCurrentAlbumShow:carousel.currentItemIndex];
+}
+
+-(void) updateCurrentAlbumShow:(NSInteger) index
+{
+    // update display of the current album selected
+    _artistname.text = [result[index+1] artistName];
+    _albumname.text = [result[index+1] collectionName];
+    
+    NSInteger nbTracks = [[result[index+1] trackCount] integerValue];
+    if (nbTracks > 1)
+    {
+        _tracks.text = [NSString stringWithFormat: @"%lu tracks", (unsigned long)nbTracks];
+    }
+    else if(nbTracks > 0)
+    {
+        _tracks.text = [NSString stringWithFormat: @"%lu track", (unsigned long)nbTracks];
+    }
+    
+    _genre.text = [result[index+1] primaryGenreName];
+    
+    // releasedate
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM yyyy"];
+    _releasedate.text = [[formatter stringFromDate:[result[index+1] releaseDate]] capitalizedString];
+    
+    _price.text = [NSString stringWithFormat:@"%@$", [result[index+1] collectionPrice]];
+    
+    
+    // query store for album songs
+    MPServiceStore *store = [[MPServiceStore alloc]init];
+    [store setDelegate:self];
+    [store queryMusicTrackWithAlbumId:[result[index+1] collectionId] asynchronizationMode:true];
+}
+
+
+#pragma mark MPServiceStoreDelegate
 /**
  *  Implement this methode for recieve result after query.
  *
@@ -97,8 +164,8 @@
  */
 -(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results
 {
-    if (status!=MPServiceStoreStatusSucceed || [results count]==0) {
-        
+    if (status!=MPServiceStoreStatusSucceed || [results count]==0)
+    {
         /*
          UIAlertView *message = [[UIAlertView alloc]
          initWithTitle:@"Not found!"
@@ -112,10 +179,98 @@
     }
     else
     {
-        MPAlbum* result = results[0];
-        
+        if (type == MPQueryAlbumWithArtistId)
+        {
+            result = results;
+            [_albumlist reloadData];
+            [self updateCurrentAlbumShow:0];
+        }
+        else if (type == MPQueryMusicTrackWithAlbumId)
+        {
+            currentAlbumSongs = results;
+            
+            // reload table data
+            [_songstable reloadData];
+        }
     }
 }
+
+
+#pragma mark - UITableViewDataSource
+/**
+ *  Number of section in the table view.
+ *
+ *  @param tableView :
+ *
+ *  @return          : Number of section.
+ */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1; // always 1 section for the current album display
+}
+
+/**
+ *  The number of rows in the specified section.
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   : Section's index.
+ *
+ *  @return          : Number of row of this section.
+ */
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // get current album select
+    if (currentAlbumSongs!=nil && currentAlbumSongs.count>0) {
+        return currentAlbumSongs.count-1;
+    }
+    return 0;
+}
+
+/**
+ *  Return the cell at a specified location in the talbe view.
+ *
+ *  @param tableView :
+ *  @param indexPath : The path to the cell.
+ *
+ *  @return
+ */
+- (UITableViewCellArtistStoreSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCellArtistStoreSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellStoreSong"];
+    [cell setMediaItem:[currentAlbumSongs objectAtIndex:indexPath.row+1]];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSURL *url = [NSURL URLWithString: [[currentAlbumSongs objectAtIndex:indexPath.row+1] previewUrl]];
+    NSData *soundData = [NSData dataWithContentsOfURL:url];
+    audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData  error:NULL];
+    audioPlayer.delegate = self;
+    [audioPlayer play];
+    
+    return indexPath;
+}
+
+
+#pragma mark - AVAudioPlayerDelegate
+
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [audioPlayer stop];
+    NSLog(@"Finished Playing");
+}
+
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
+{
+    NSLog(@"Error occured");
+}
+
+
+
 
 /*
 #pragma mark - Navigation

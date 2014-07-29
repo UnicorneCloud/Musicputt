@@ -16,6 +16,10 @@
     NSArray* resultArray;
     BOOL queryMusicTrackWithSearchTerm;
     BOOL queryMusicTrackWithSearchTId;
+    BOOL queryAlbumWithSearchTerm;
+    BOOL queryAlbumWithId;
+    BOOL queryAlbumWithArtistId;
+    
     BOOL testResult;
 }
 
@@ -23,29 +27,85 @@
 
 @implementation MPServiceStoreTest
 
-- (void)setUp
+- (void) setUp
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     iTunes = [[MPServiceStore alloc] init];
+    [iTunes setDelegate:self];
     resultArray = [[NSArray alloc]init];
     testResult = false;
     
+    queryMusicTrackWithSearchTerm = false;
+    queryMusicTrackWithSearchTId = false;
+    queryAlbumWithSearchTerm = false;
+    queryAlbumWithId = false;
+    queryAlbumWithArtistId = false;
 }
 
-- (void)tearDown
+- (void) tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
 
-- (void)testQueryMusicTrackWithSearchTerm
+- (void) testQueryMusicTrackWithSearchTerm
 {
-    [iTunes queryMusicTrackWithSearchTerm:@"london+grammar+strong" setDelegate:self];
+    [iTunes queryMusicTrackWithSearchTerm:@"london+grammar+strong" asynchronizationMode:false];
+    if(resultArray.count>0 && queryMusicTrackWithSearchTerm){
+        testResult = true;
+    }
+    XCTAssert(testResult);
+}
+
+
+- (void) testQueryMusicTrackWithId
+{
+    [iTunes queryMusicTrackWithId:@"695806055" asynchronizationMode:false];
+    if (resultArray.count==1 && queryMusicTrackWithSearchTId) {
+        testResult = true;
+    }
+    XCTAssert(testResult);
     
-    NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:5.0];
-    [[NSRunLoop currentRunLoop] runUntilDate:fiveSecondsFromNow];
+}
+
+- (void) testqueryAlbumWithSearchTerm
+{
+    [iTunes queryAlbumWithSearchTerm:@"london+grammar" asynchronizationMode:false];
+    if (resultArray.count>0 && queryAlbumWithSearchTerm) {
+        testResult = true;
+    }
+    XCTAssert(testResult);
+}
+
+
+- (void) testQueryAlbumWithId
+{
+    [iTunes queryAlbumWithId:@"695805771" asynchronizationMode:false];
+    if (resultArray.count==1 && queryAlbumWithId) {
+        testResult = true;
+    }
+    XCTAssert(testResult);
+    
+}
+
+-(void) testQueryAlbumWithArtistId
+{
+    [iTunes queryAlbumWithArtistId:@"604064576" asynchronizationMode:false];
+    if (resultArray.count>0 && queryAlbumWithArtistId) {
+        testResult = true;
+    }
+    XCTAssert(testResult);
+    
+}
+
+- (void) testQueryMusicTrackWithSearchTermAsync
+{
+    [iTunes queryMusicTrackWithSearchTerm:@"london+grammar+strong" asynchronizationMode:true];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
     
     if(resultArray.count>0 && queryMusicTrackWithSearchTerm){
         testResult = true;
@@ -54,21 +114,61 @@
 }
 
 
-- (void)testQueryMusicTrackWithId
+- (void) testQueryMusicTrackWithIdAsync
 {
-    [iTunes queryMusicTrackWithId:@"695806055" setDelegate:self];
+    [iTunes queryMusicTrackWithId:@"695806055" asynchronizationMode:true];
     
-    NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:5.0];
-    [[NSRunLoop currentRunLoop] runUntilDate:fiveSecondsFromNow];
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
     
     if (resultArray.count==1 && queryMusicTrackWithSearchTId) {
         testResult = true;
     }
-    
     XCTAssert(testResult);
     
 }
 
+- (void) testqueryAlbumWithSearchTermAsync
+{
+    [iTunes queryAlbumWithSearchTerm:@"london+grammar" asynchronizationMode:true];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count>0 && queryAlbumWithSearchTerm) {
+        testResult = true;
+    }
+    XCTAssert(testResult);
+}
+
+
+- (void) testQueryAlbumWithIdAsync
+{
+    [iTunes queryAlbumWithId:@"695805771" asynchronizationMode:true];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==1 && queryAlbumWithId) {
+        testResult = true;
+    }
+    XCTAssert(testResult);
+    
+}
+
+-(void) testQueryAlbumWithArtistIdAsync
+{
+    [iTunes queryAlbumWithArtistId:@"604064576" asynchronizationMode:true];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count>0 && queryAlbumWithArtistId) {
+        testResult = true;
+    }
+    XCTAssert(testResult);
+    
+}
 
 -(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results
 {
@@ -79,6 +179,16 @@
         else if ( type == MPQueryMusicTrackWithId ){
             queryMusicTrackWithSearchTId = true;
         }
+        else if (type == MPQueryAlbumWithSearchTerm){
+            queryAlbumWithSearchTerm = true;
+        }
+        else if (type == MPQueryAlbumWithId){
+            queryAlbumWithId = true;
+        }
+        else if (type == MPQueryAlbumWithArtistId){
+            queryAlbumWithArtistId = true;
+        }
+            
         resultArray = results;
     }
 }

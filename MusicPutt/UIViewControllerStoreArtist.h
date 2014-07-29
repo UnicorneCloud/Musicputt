@@ -10,4 +10,17 @@
 
 @interface UIViewControllerStoreArtist : UIViewController
 
+/**
+ *  ArtistId
+ */
+@property (nonatomic, weak) NSString* storeArtistId;
+
+
+/**
+ *  Click on itunes button.
+ *
+ *  @param sender <#sender description#>
+ */
+- (IBAction)itunesButtonPressed:(id)sender;
+
 @end

@@ -16,10 +16,9 @@
 @interface MPServiceStore()
 {
     NSArray*                searchResult;
-    //RKResponseDescriptor*   rdMusicTrack;
-    //RKResponseDescriptor*   rdAlbum;
     RKResponseDescriptor*   responsedescriptor;
     RKObjectManager*        objectManager;
+    id                      delegate;
 }
 
 @end
@@ -36,6 +35,16 @@
     self = [super init];
     [self configureConnection];
     return self;
+}
+
+/**
+ *  Set delegate to recieve result of query.
+ *
+ *  @param anObject delegate object with MPServiceStoreDelegate protocol.
+ */
+- (void) setDelegate:(id) anObject
+{
+    delegate = anObject;
 }
 
 
@@ -81,18 +90,6 @@
                                                        @"currency",
                                                        @"primaryGenreName"
                                                        ]];
-    
-   
-    /*
-    // register mappings with the provider using a response descriptor
-    rdMusicTrack = [RKResponseDescriptor responseDescriptorWithMapping:musicTrackMapping
-                                                                      method:RKRequestMethodGET
-                                                                 pathPattern:nil
-                                                                     keyPath:@"results"
-                                                                 statusCodes:nil];
-    
-    [objectManager addResponseDescriptor:rdMusicTrack];
-    */
     
     // define album mapping
     RKObjectMapping *albumMapping = [RKObjectMapping mappingForClass:[MPAlbum class]];
@@ -154,31 +151,8 @@
         }
         return nil;
     }];
-
-    
-    
-    
-
-    
-    // register mappings with the provider using a response descriptor
-    /*
-    rdAlbum = [RKResponseDescriptor responseDescriptorWithMapping:albumMapping
-                                                                method:RKRequestMethodGET
-                                                           pathPattern:nil
-                                                               keyPath:@"results"
-                                                           statusCodes:nil];
-    
-    [objectManager addResponseDescriptor:rdAlbum];
-    */
-    
-    
-    
-    
-    
-    
+ 
     [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class] forMIMEType:@"text/javascript"];
-    
-    
 }
 
 
@@ -187,44 +161,81 @@
  *  Execute query in iTunes Store and return results to the delagate.
  *
  *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
- *  @param anObject   Delagate to receive the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryMusicTrackWithSearchTerm:(NSString*)searchTerm setDelegate:(id) anObject
+- (void) queryMusicTrackWithSearchTerm:(NSString*)searchTerm asynchronizationMode:(BOOL) async
 {
-    [self executeSearch:searchTerm addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithSearchTerm delegate:anObject];
+    if (async) {
+        [self executeSearchAsync:searchTerm addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithSearchTerm];
+    }
+    else {
+        [self executeSearch:searchTerm addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithSearchTerm];
+    }
+    
 }
 
 /**
  *  Execute query in iTunes Store and return music track with this id to the delagate.
  *
  *  @param id       id of the music track to find
- *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryMusicTrackWithId:(NSString*)itemId setDelegate:(id) anObject
+- (void) queryMusicTrackWithId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
-    [self executeSearch:itemId addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithId delegate:anObject];
+    if (async) {
+        [self executeSearchAsync:itemId addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithId];
+    }
+    else {
+        [self executeSearch:itemId addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithId];
+    }
+}
+
+/**
+ *  Execute query in iTunes Store and return music track with this album id to the delagate.
+ *
+ *  @param itemId   id of the album to find
+ *  @param async true if you want asynchronization mode
+ */
+- (void) queryMusicTrackWithAlbumId:(NSString*)itemId asynchronizationMode:(BOOL) async
+{
+    if (async) {
+        [self executeSearchAsync:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithAlbumId];
+    }
+    else {
+        [self executeSearch:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithAlbumId];
+    }
+    
 }
 
 /**
  *  Execute query for return albums from iTunes Store and return results to the delagate.
  *
  *  @param searchTerm see itunes api doc
- *  @param anObject   Delagate to receive the result. Must respect MPServiceStoreDelegate.
  */
-- (void) queryAlbumWithSearchTerm:(NSString*)searchTerm setDelegate:(id) anObject
+- (void) queryAlbumWithSearchTerm:(NSString*)searchTerm asynchronizationMode:(BOOL) async
 {
-    [self executeSearch:searchTerm addFilter:@"album" queryType:MPQueryAlbumWithSearchTerm delegate:anObject];
+    if (async) {
+        [self executeSearchAsync:searchTerm addFilter:@"album" queryType:MPQueryAlbumWithSearchTerm];
+    }
+    else {
+        [self executeSearch:searchTerm addFilter:@"album" queryType:MPQueryAlbumWithSearchTerm];
+    }
 }
 
 /**
  *  Execute query in iTunes Store and return music track with this id to the delagate.
  *
  *  @param itemId   id of the music track to find
- *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryAlbumTrackWithId:(NSString*)itemId setDelegate:(id) anObject
+- (void) queryAlbumWithId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
-    [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithId delegate:anObject];
+    if (async) {
+        [self executeSearchAsync:itemId addFilter:@"album" queryType:MPQueryAlbumWithId];
+    }
+    else {
+        [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithId];
+    }
 }
 
 
@@ -232,28 +243,34 @@
  *  Execute query in iTunes Store and return all album for an artist with this id to the delagate.
  *
  *  @param itemId   id of the music track to find
- *  @param anObject Delegate who recieve the result. Must respect MPServiceStoreDelegate.
+ *  @param async true if you want asynchronization mode
  */
-- (void) queryAlbumTrackWithArtistId:(NSString*)itemId setDelegate:(id) anObject
+- (void) queryAlbumWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
-    [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithArtistId delegate:anObject];
+    if (async) {
+        [self executeSearchAsync:itemId addFilter:@"album" queryType:MPQueryAlbumWithArtistId];
+    }
+    else {
+        [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithArtistId];
+    }
 }
 
 /**
- *  Make request to the iTunes Store with searchTerm and filterTerm.
+ *  Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.
  *
  *  @warning Call configureConnection before this function.
  *
  *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  */
--(void) executeSearch:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type delegate:anObject;
+-(void) executeSearchAsync:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
 {
     //Let's get this on a background thread.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                    ^{
                        NSURLRequest *request;
                        if (type == MPQueryMusicTrackWithId ||
+                           type == MPQueryMusicTrackWithAlbumId ||
                            type == MPQueryArtistWithId ||
                            type == MPQueryAlbumWithId ||
                            type == MPQueryAlbumWithArtistId) {
@@ -263,32 +280,15 @@
                            request = [NSURLRequest requestWithURL:[self createURLForCallWithSearchTerm:searchTerm andFilter:filterTerm]];
                        }
                        
-                       RKObjectRequestOperation *operation;
-                       if ( MPQueryMusicTrackWithId == type ||
-                            MPQueryMusicTrackWithSearchTerm == type){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]];
-                       }
-                       else if ( MPQueryArtistWithId == type ||
-                                 MPQueryArtistWithSearchTerm == type ){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]]; //todo change rdMusicTrack
-                       }
-                       else if ( MPQueryAlbumWithId == type ||
-                                 MPQueryAlbumWithSearchTerm == type ||
-                                 MPQueryAlbumWithArtistId == type){
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]];
-                       }
-                       else{
-                           operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]]; //todo change rdMusicTrack
-                       }
-                       
+                       RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]];
                        operation.HTTPRequestOperation.acceptableContentTypes = [NSSet setWithObject:@"text/javascript"];
                        [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
                            
                            //About to update the UI, so jump back to the main/UI thread
                            dispatch_async(dispatch_get_main_queue(), ^{
                                NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request completed.");
-                               if ( [anObject respondsToSelector:@selector(queryResult:type:results:)]){
-                                   [anObject queryResult:MPServiceStoreStatusSucceed type:type results:[result array]];
+                               if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
+                                   [delegate queryResult:MPServiceStoreStatusSucceed type:type results:[result array]];
                                }
                            });
                            
@@ -297,14 +297,51 @@
                            //About to update the UI, so jump back to the main/UI thread
                            dispatch_async(dispatch_get_main_queue(), ^{
                                NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request failed.");
-                               if ( [anObject respondsToSelector:@selector(queryResult:type:results:)] ){
-                                   [anObject queryResult:MPServiceStoreStatusFailed type:type results:nil];
+                               if ( [delegate respondsToSelector:@selector(queryResult:type:results:)] ){
+                                   [delegate queryResult:MPServiceStoreStatusFailed type:type results:nil];
                                }
                            });
                        }];
                        [operation start];
                    });
 }
+
+/**
+ *  Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.
+ *
+ *  @warning Call configureConnection before this function.
+ *
+ *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ */
+-(void) executeSearch:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
+{
+    NSURLRequest *request;
+    if (type == MPQueryMusicTrackWithId ||
+        type == MPQueryMusicTrackWithAlbumId ||
+        type == MPQueryArtistWithId ||
+        type == MPQueryAlbumWithId ||
+        type == MPQueryAlbumWithArtistId) {
+        request = [NSURLRequest requestWithURL:[self createURLForCallWithId:searchTerm andFilter:filterTerm]];
+    }
+    else{
+        request = [NSURLRequest requestWithURL:[self createURLForCallWithSearchTerm:searchTerm andFilter:filterTerm]];
+    }
+    
+    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[self->responsedescriptor]];
+    
+    operation.HTTPRequestOperation.acceptableContentTypes = [NSSet setWithObject:@"text/javascript"];
+
+    [operation start];
+    [operation waitUntilFinished];
+    
+    if (!operation.error) {
+        if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
+            [delegate queryResult:MPServiceStoreStatusSucceed type:type results: [[operation mappingResult] array]];
+        }
+    }
+}
+
 
 
 /**
