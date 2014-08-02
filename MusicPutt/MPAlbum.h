@@ -119,7 +119,7 @@
 /**
  *  Release date
  */
-@property (nonatomic, copy) NSString *releaseDate;
+@property (nonatomic, copy) NSDate *releaseDate;
 
 
 /**

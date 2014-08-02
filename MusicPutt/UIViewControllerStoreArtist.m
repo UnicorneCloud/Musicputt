@@ -32,7 +32,7 @@
 
 @property (nonatomic, weak) IBOutlet UILabel* genre;
 
-@property (nonatomic, weak) IBOutlet UILabel* releasedate;
+@property (nonatomic, weak) IBOutlet UILabel* date;
 
 @property (nonatomic, weak) IBOutlet UILabel* price;
 
@@ -142,8 +142,8 @@
     // releasedate
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM yyyy"];
-    _releasedate.text = [[formatter stringFromDate:[result[index+1] releaseDate]] capitalizedString];
-    
+    _date.text = [[formatter stringFromDate:[result[index+1] releaseDate]] capitalizedString];
+
     _price.text = [NSString stringWithFormat:@"%@$", [result[index+1] collectionPrice]];
     
     

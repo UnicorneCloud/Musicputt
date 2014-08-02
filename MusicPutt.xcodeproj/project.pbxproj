@@ -33,7 +33,6 @@
 		976687E0194FBB4D00B5A843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687DF194FBB4D00B5A843 /* main.m */; };
 		976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687E3194FBB4D00B5A843 /* AppDelegate.m */; };
 		976687E7194FBB4D00B5A843 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 976687E5194FBB4D00B5A843 /* Main.storyboard */; };
-		976687EA194FBB4D00B5A843 /* UIMusicViewLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687E9194FBB4D00B5A843 /* UIMusicViewLoadingController.m */; };
 		976687EC194FBB4D00B5A843 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 976687EB194FBB4D00B5A843 /* Images.xcassets */; };
 		976687F3194FBB4D00B5A843 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687F2194FBB4D00B5A843 /* XCTest.framework */; };
 		976687F4194FBB4D00B5A843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D3194FBB4D00B5A843 /* Foundation.framework */; };
@@ -110,8 +109,6 @@
 		976687E2194FBB4D00B5A843 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		976687E3194FBB4D00B5A843 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		976687E6194FBB4D00B5A843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		976687E8194FBB4D00B5A843 /* UIMusicViewLoadingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMusicViewLoadingController.h; sourceTree = "<group>"; };
-		976687E9194FBB4D00B5A843 /* UIMusicViewLoadingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIMusicViewLoadingController.m; sourceTree = "<group>"; };
 		976687EB194FBB4D00B5A843 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		976687F1194FBB4D00B5A843 /* MusicPuttTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicPuttTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		976687F2194FBB4D00B5A843 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -259,7 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				9711FF911981DE4A00421CF4 /* Store */,
-				97AC0C35195A419500BA60E6 /* LoadingScreen */,
 				97A36CD9195F55E000AF6AF8 /* CurrentPlayingToolBar */,
 				9799978A1960F60500360BF8 /* Songlist */,
 				97A36CC7195F37C800AF6AF8 /* Playlist */,
@@ -443,15 +439,6 @@
 				97901B1B1979F1F700526A04 /* UIButton+Extensions.m */,
 			);
 			name = tools;
-			sourceTree = "<group>";
-		};
-		97AC0C35195A419500BA60E6 /* LoadingScreen */ = {
-			isa = PBXGroup;
-			children = (
-				976687E8194FBB4D00B5A843 /* UIMusicViewLoadingController.h */,
-				976687E9194FBB4D00B5A843 /* UIMusicViewLoadingController.m */,
-			);
-			name = LoadingScreen;
 			sourceTree = "<group>";
 		};
 		97AC0C36195A419E00BA60E6 /* Song */ = {
@@ -669,7 +656,6 @@
 				97AC0C3C195A493800BA60E6 /* UIViewControllerMusic.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
-				976687EA194FBB4D00B5A843 /* UIMusicViewLoadingController.m in Sources */,
 				97901B191978B65400526A04 /* UIViewControllerLyricsPage.m in Sources */,
 				D5B6DE58197594240042F072 /* UITableViewCellHeaderSection.m in Sources */,
 				D5B2413B1982A3BE00233953 /* UIViewControllerAlbumSongs.m in Sources */,
@@ -849,7 +835,7 @@
 				INFOPLIST_FILE = "MusicPutt/MusicPutt-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "DD7AC0CD-756E-49D7-B51A-FFC12B9541B2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -868,7 +854,7 @@
 				INFOPLIST_FILE = "MusicPutt/MusicPutt-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "DD7AC0CD-756E-49D7-B51A-FFC12B9541B2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

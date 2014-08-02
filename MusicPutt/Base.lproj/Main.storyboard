@@ -1,40 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="g3G-Qe-Rih">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Music View Loading Controller-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController id="vXZ-lx-hvc" customClass="UIMusicViewLoadingController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="beU-er-L1a"/>
-                        <viewControllerLayoutGuide type="bottom" id="nzT-pO-rkK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="82O-4N-WXt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_clear" translatesAutoresizingMaskIntoConstraints="NO" id="eda-Jb-xIr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-3b-bZo">
-                                <rect key="frame" x="150" y="482" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="g3G-Qe-Rih" kind="modal" identifier="loading_completed" modalTransitionStyle="crossDissolve" id="6e2-qG-6wx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="401" y="100"/>
-        </scene>
         <!--View Controller Music - Song name-->
         <scene sceneID="DNC-a1-kIR">
             <objects>
@@ -621,9 +590,9 @@
                         <outlet property="albumlist" destination="fzP-5L-7Y7" id="iCa-lB-Mgc"/>
                         <outlet property="albumname" destination="L5W-id-ecT" id="N1V-OF-kkh"/>
                         <outlet property="artistname" destination="ha2-Jd-W4p" id="BR0-HJ-0OH"/>
+                        <outlet property="date" destination="7NC-0s-LNH" id="iJQ-Lp-LOc"/>
                         <outlet property="genre" destination="Ro4-XC-Z87" id="PUJ-xy-Bun"/>
                         <outlet property="price" destination="i4A-C2-aDw" id="aTG-IC-QoA"/>
-                        <outlet property="releasedate" destination="7NC-0s-LNH" id="iDU-J0-hfs"/>
                         <outlet property="songstable" destination="Y5k-aG-Hjy" id="kIZ-V2-yH7"/>
                         <outlet property="tracks" destination="GU9-xi-tyC" id="eKR-65-KkX"/>
                     </connections>
@@ -1542,7 +1511,6 @@
     <resources>
         <image name="album" width="25" height="25"/>
         <image name="artist" width="25" height="25"/>
-        <image name="bg_clear" width="320" height="568"/>
         <image name="empty" width="60" height="60"/>
         <image name="fast_forward" width="64" height="64"/>
         <image name="itunes_big" width="55" height="20"/>
