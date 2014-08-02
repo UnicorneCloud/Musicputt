@@ -77,7 +77,7 @@
                           [durationtime intValue]/60,
                           [durationtime intValue]%60];
     
-    id path = [mediaitem artworkUrl100];
+    id path = [mediaitem artworkUrl60];
     NSURL *url = [NSURL URLWithString:path];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *img = [[UIImage alloc] initWithData:data];
