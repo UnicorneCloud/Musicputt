@@ -8,6 +8,7 @@ pod 'DZNEmptyDataSet'
 pod 'UAProgressView'
 pod 'BFNavigationBarDrawer'
 pod 'RestKit'
+pod 'MONActivityIndicatorView'
 
 end
 

@@ -32,8 +32,6 @@
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 
 
-
-
 @end
 
 
@@ -67,6 +65,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/**
+ *  Ensure that playing preview song is ended
+ */
+- (void) stopPlaying
+{
+    [audioPlayer stop];
 }
 
 
@@ -153,12 +159,18 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSURL *url = [NSURL URLWithString: [[result objectAtIndex:indexPath.row+1] previewUrl]];
+//    NSData *soundData = [NSData dataWithContentsOfURL:url];
+//    audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData  error:NULL];
+//    audioPlayer.delegate = self;
+//    [audioPlayer play];
     
     NSURL *url = [NSURL URLWithString: [[result objectAtIndex:indexPath.row+1] previewUrl]];
-    NSData *soundData = [NSData dataWithContentsOfURL:url];
-    audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData  error:NULL];
-    audioPlayer.delegate = self;
-    [audioPlayer play];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+        [audioPlayer play];
+    }];
+    [task resume];
     
     return indexPath;
 }

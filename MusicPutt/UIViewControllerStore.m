@@ -72,6 +72,14 @@
     
 }
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [storealbum stopPlaying];
+    [storesongs stopPlaying];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -87,13 +95,15 @@
 -(void)displayView:(NSString*)viewName
 {
     if ([viewName isEqual:@"Albums"]) {
-        storealbum.view.alpha = 1.0;
-        storesongs.view.alpha = 0.0;
+        storealbum.view.hidden = FALSE;
+        storesongs.view.hidden = TRUE;
     }
     else{
-        storealbum.view.alpha = 0.0;
-        storesongs.view.alpha = 1.0;
+        storealbum.view.hidden = TRUE;
+        storesongs.view.hidden = FALSE;
     }
+    [storealbum stopPlaying];
+    [storesongs stopPlaying];
 }
 
 /*

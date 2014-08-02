@@ -10,14 +10,24 @@
 #import "UITableViewCellAlbumStoreSong.h"
 #import "iCarousel.h"
 #import "MPServiceStore.h"
+#import "MONActivityIndicatorView.h"
+#import "UIColor+CreateMethods.h"
 #import "AppDelegate.h"
+
 #import <AVFoundation/AVFoundation.h>
 
-@interface UIViewControllerStoreAlbum () <MPServiceStoreDelegate, iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
+@interface UIViewControllerStoreAlbum () <  MPServiceStoreDelegate,
+                                            iCarouselDataSource,
+                                            iCarouselDelegate,
+                                            UITableViewDataSource,
+                                            UITableViewDelegate,
+                                            AVAudioPlayerDelegate,
+                                            MONActivityIndicatorViewDelegate>
 {
     NSArray* result;
     NSArray* currentAlbumSongs;
     AVAudioPlayer* audioPlayer;
+    MONActivityIndicatorView *indicatorView;
 }
 
 /**
@@ -61,6 +71,11 @@
 @property (nonatomic, weak) IBOutlet UILabel* price;
 
 /**
+ *  View content album information
+ */
+@property (nonatomic, weak) IBOutlet UIView* viewalbum;
+
+/**
  *  tableview of the songs of the current selected album
  */
 @property (nonatomic, weak) IBOutlet UITableView* songstable;
@@ -88,6 +103,23 @@
     
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
+    
+    // start loading annimations
+    indicatorView = [[MONActivityIndicatorView alloc] init];
+    indicatorView.delegate = self;
+    indicatorView.numberOfCircles = 5;
+    indicatorView.radius = 15;
+    indicatorView.internalSpacing = 3;
+    indicatorView.duration = 0.5;
+    indicatorView.delay = 0.2;
+    indicatorView.center = self.view.center;
+    _viewalbum.hidden = TRUE;
+    _songstable.hidden = TRUE;
+    
+    [self.view addSubview:indicatorView];
+    [indicatorView startAnimating];
+    
+    
     
     // query store for album information
     MPServiceStore *store = [[MPServiceStore alloc]init];
@@ -180,6 +212,14 @@
     [store queryMusicTrackWithAlbumId:[result[index+1] collectionId] asynchronizationMode:true];
 }
 
+/**
+ *  Ensure that playing preview song is ended
+ */
+- (void) stopPlaying
+{
+    [audioPlayer stop];
+}
+
 
 #pragma mark MPServiceStoreDelegate
 /**
@@ -218,6 +258,11 @@
             
             // reload table data
             [_songstable reloadData];
+            
+            // stop annimation
+            _viewalbum.hidden = FALSE;
+            _songstable.hidden = FALSE;
+            [indicatorView stopAnimating];
         }
     }
 }
@@ -272,12 +317,12 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSURL *url = [NSURL URLWithString: [[currentAlbumSongs objectAtIndex:indexPath.row+1] previewUrl]];
-    NSData *soundData = [NSData dataWithContentsOfURL:url];
-    audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData  error:NULL];
-    audioPlayer.delegate = self;
-    [audioPlayer play];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+        [audioPlayer play];
+    }];
+    [task resume];
     
     return indexPath;
 }
@@ -296,6 +341,13 @@
     NSLog(@"Error occured");
 }
 
+
+#pragma mark - MONActivityIndicatorViewDelegate
+
+- (UIColor *)activityIndicatorView:(MONActivityIndicatorView *)activityIndicatorView circleBackgroundColorAtIndex:(NSUInteger)index {
+
+    return [UIColor colorWithHex:@"#750300" alpha:1.0];
+}
 
 
 

@@ -118,7 +118,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NG6-Vl-CxW">
-                                        <rect key="frame" x="289" y="22" width="20" height="20"/>
+                                        <rect key="frame" x="285" y="10" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="share">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -593,6 +593,7 @@
                         <outlet property="price" destination="i4A-C2-aDw" id="aTG-IC-QoA"/>
                         <outlet property="songstable" destination="Y5k-aG-Hjy" id="jr5-2Q-a1X"/>
                         <outlet property="tracks" destination="GU9-xi-tyC" id="eKR-65-KkX"/>
+                        <outlet property="viewalbum" destination="oY5-g1-y43" id="8rp-Dh-w3J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVu-xm-slh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1635,7 +1636,7 @@
         <image name="playlist" width="25" height="25"/>
         <image name="repeat" width="64" height="64"/>
         <image name="rewind" width="64" height="64"/>
-        <image name="share" width="64" height="64"/>
+        <image name="share" width="25" height="25"/>
         <image name="shuffle" width="64" height="64"/>
         <image name="songlist" width="25" height="25"/>
     </resources>

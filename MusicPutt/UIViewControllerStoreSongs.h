@@ -15,5 +15,10 @@
  */
 @property (nonatomic, weak) NSString* storeArtistId;
 
+/**
+ *  Ensure that playing preview song is ended
+ */
+- (void) stopPlaying;
+
 
 @end

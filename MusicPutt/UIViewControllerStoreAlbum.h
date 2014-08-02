@@ -23,4 +23,10 @@
  */
 - (IBAction)itunesButtonPressed:(id)sender;
 
+
+/**
+ *  Ensure that playing preview song is ended
+ */
+- (void) stopPlaying;
+
 @end
