@@ -27,6 +27,7 @@
 		9711FFA01982ED4E00421CF4 /* MPAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 9711FF9F1982ED4E00421CF4 /* MPAlbum.m */; };
 		97570B78198D406F00A542DA /* UIViewControllerStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B77198D406F00A542DA /* UIViewControllerStore.m */; };
 		97570B7B198D5D1700A542DA /* UIViewControllerStoreSongs.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B7A198D5D1700A542DA /* UIViewControllerStoreSongs.m */; };
+		97570B7E198D6B7300A542DA /* UITableViewCellSongStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B7D198D6B7300A542DA /* UITableViewCellSongStore.m */; };
 		975EB2331983380C0025DD5D /* MPArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 975EB2321983380C0025DD5D /* MPArtist.m */; };
 		976687D4194FBB4D00B5A843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D3194FBB4D00B5A843 /* Foundation.framework */; };
 		976687D6194FBB4D00B5A843 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D5194FBB4D00B5A843 /* CoreGraphics.framework */; };
@@ -102,6 +103,8 @@
 		97570B77198D406F00A542DA /* UIViewControllerStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerStore.m; sourceTree = "<group>"; };
 		97570B79198D5D1700A542DA /* UIViewControllerStoreSongs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerStoreSongs.h; sourceTree = "<group>"; };
 		97570B7A198D5D1700A542DA /* UIViewControllerStoreSongs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerStoreSongs.m; sourceTree = "<group>"; };
+		97570B7C198D6B7300A542DA /* UITableViewCellSongStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellSongStore.h; sourceTree = "<group>"; };
+		97570B7D198D6B7300A542DA /* UITableViewCellSongStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellSongStore.m; sourceTree = "<group>"; };
 		975EB2311983380C0025DD5D /* MPArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArtist.h; sourceTree = "<group>"; };
 		975EB2321983380C0025DD5D /* MPArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPArtist.m; sourceTree = "<group>"; };
 		976687D0194FBB4D00B5A843 /* MusicPutt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPutt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,6 +244,8 @@
 				97570B77198D406F00A542DA /* UIViewControllerStore.m */,
 				97570B79198D5D1700A542DA /* UIViewControllerStoreSongs.h */,
 				97570B7A198D5D1700A542DA /* UIViewControllerStoreSongs.m */,
+				97570B7C198D6B7300A542DA /* UITableViewCellSongStore.h */,
+				97570B7D198D6B7300A542DA /* UITableViewCellSongStore.m */,
 			);
 			name = Artist;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 		976687D9194FBB4D00B5A843 /* MusicPutt */ = {
 			isa = PBXGroup;
 			children = (
+				97ECDFB21972E9F5007889E3 /* Services */,
 				97A36CDD195F592500AF6AF8 /* DataManager */,
 				971D8C90194FCA2200A348A3 /* UI */,
 				976687E2194FBB4D00B5A843 /* AppDelegate.h */,
@@ -431,7 +437,6 @@
 		97A36CDD195F592500AF6AF8 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				97ECDFB21972E9F5007889E3 /* Services */,
 				97A36CDE195F593200AF6AF8 /* MPDataManager.h */,
 				97A36CDF195F593200AF6AF8 /* MPDataManager.m */,
 			);
@@ -697,6 +702,7 @@
 				D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */,
 				D5B6DE55196D83040042F072 /* UITableViewCellArtistAlbum.m in Sources */,
 				97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */,
+				97570B7E198D6B7300A542DA /* UITableViewCellSongStore.m in Sources */,
 				D5B241381981E9A300233953 /* UITableViewCellAlbum.m in Sources */,
 				97A36CBF195D1A9B00AF6AF8 /* UIImageViewArtwork.m in Sources */,
 			);

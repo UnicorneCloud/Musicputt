@@ -204,7 +204,22 @@
     else {
         [self executeSearch:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithAlbumId];
     }
-    
+}
+
+/**
+ *  Execute query in iTunes Store and return music track with this artist id to the delagate.
+ *
+ *  @param itemId   id of the artist to find
+ *  @param async true if you want asynchronization mode
+ */
+- (void) queryMusicTrackWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async
+{
+    if (async) {
+        [self executeSearchAsync:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithArtistId];
+    }
+    else {
+        [self executeSearch:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithArtistId];
+    }
 }
 
 /**
@@ -271,6 +286,7 @@
                        NSURLRequest *request;
                        if (type == MPQueryMusicTrackWithId ||
                            type == MPQueryMusicTrackWithAlbumId ||
+                           type == MPQueryMusicTrackWithArtistId ||
                            type == MPQueryArtistWithId ||
                            type == MPQueryAlbumWithId ||
                            type == MPQueryAlbumWithArtistId) {
@@ -319,6 +335,7 @@
     NSURLRequest *request;
     if (type == MPQueryMusicTrackWithId ||
         type == MPQueryMusicTrackWithAlbumId ||
+        type == MPQueryMusicTrackWithArtistId ||
         type == MPQueryArtistWithId ||
         type == MPQueryAlbumWithId ||
         type == MPQueryAlbumWithArtistId) {

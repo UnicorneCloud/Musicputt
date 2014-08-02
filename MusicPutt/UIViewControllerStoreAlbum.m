@@ -20,59 +20,56 @@
     AVAudioPlayer* audioPlayer;
 }
 
+/**
+ *  App delegate
+ */
 @property AppDelegate* del;
 
+/**
+ *  Album list in carousel view
+ */
 @property (nonatomic, strong) IBOutlet iCarousel *albumlist;
 
+/**
+ *  Artist name of the current selected album
+ */
 @property (nonatomic, weak) IBOutlet UILabel* artistname;
 
+/**
+ *  Album name of the current selected album
+ */
 @property (nonatomic, weak) IBOutlet UILabel* albumname;
 
+/**
+ *  Nb tracks on the current selected album
+ */
 @property (nonatomic, weak) IBOutlet UILabel* tracks;
 
+/**
+ *  Primary genre of the current selected album
+ */
 @property (nonatomic, weak) IBOutlet UILabel* genre;
 
+/**
+ *  Release date of the current selected album
+ */
 @property (nonatomic, weak) IBOutlet UILabel* date;
 
+/**
+ *  Price of the current selected album
+ */
 @property (nonatomic, weak) IBOutlet UILabel* price;
 
+/**
+ *  tableview of the songs of the current selected album
+ */
 @property (nonatomic, weak) IBOutlet UITableView* songstable;
 
 @end
 
-@implementation UIViewControllerStoreAlbum
 
-/*
-- (id)initWithFrame:(CGRect)aRect
-{
-    self = [super initWithFrame:aRect];
-    if (self) {
-        // Custom initialization
-        
-        // setup app delegate
-        self.del = [[UIApplication sharedApplication] delegate];
-        
-        // query store for album information
-        MPServiceStore *store = [[MPServiceStore alloc]init];
-        [store setDelegate:self];
-        [store queryAlbumWithArtistId:_storeArtistId asynchronizationMode:true];
-        
-        // setup album carousel
-        _albumlist.delegate = self;
-        _albumlist.dataSource = self;
-        _albumlist.type = iCarouselTypeCoverFlow;
-        
-        // song table
-        _songstable.delegate = self;
-        _songstable.dataSource = self;
-        
-        // display first album informations
-        //[self updateCurrentAlbumShow:0];
-        
-    }
-    return self;
-}
- */
+
+@implementation UIViewControllerStoreAlbum
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -98,16 +95,7 @@
     [store queryAlbumWithArtistId:_storeArtistId asynchronizationMode:true];
     
     // setup album carousel
-    _albumlist.delegate = self;
-    _albumlist.dataSource = self;
     _albumlist.type = iCarouselTypeCoverFlow;
-    
-    // song table
-    _songstable.delegate = self;
-    _songstable.dataSource = self;
-    
-    // display first album informations
-    //[self updateCurrentAlbumShow:0];
     
 }
 

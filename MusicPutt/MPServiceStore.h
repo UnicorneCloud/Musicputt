@@ -19,6 +19,7 @@ typedef enum {
     MPQueryMusicTrackWithSearchTerm,
     MPQueryMusicTrackWithId,
     MPQueryMusicTrackWithAlbumId,
+    MPQueryMusicTrackWithArtistId,
     MPQueryAlbumWithSearchTerm,
     MPQueryAlbumWithId,
     MPQueryAlbumWithArtistId,
@@ -93,6 +94,14 @@ typedef enum {
  *  @param async true if you want asynchronization mode
  */
 - (void) queryMusicTrackWithAlbumId:(NSString*)itemId asynchronizationMode:(BOOL) async;
+
+/**
+ *  Execute query in iTunes Store and return music track with this artist id to the delagate.
+ *
+ *  @param itemId   id of the artist to find
+ *  @param async true if you want asynchronization mode
+ */
+- (void) queryMusicTrackWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async;
 
 /**
  *  Execute query for return albums from iTunes Store and return results to the delagate.

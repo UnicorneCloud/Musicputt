@@ -48,6 +48,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // setup title
+    [self setTitle:@"Store"];
+    
     // setup segmented control menu
     [_segcontrol addTarget:self
                    action:@selector(menuPressed:)

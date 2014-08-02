@@ -473,6 +473,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Uo5-41-eMX" id="LGz-fB-BXy"/>
+                                    <outlet property="delegate" destination="Uo5-41-eMX" id="UIc-gy-3Cs"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oY5-g1-y43">
                                 <rect key="frame" x="0.0" y="103" width="320" height="101"/>
@@ -572,6 +576,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Uo5-41-eMX" id="EZb-X3-HPS"/>
+                                    <outlet property="delegate" destination="Uo5-41-eMX" id="NTF-gs-VjU"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -608,14 +616,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="V3r-He-oXW">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="SongStore" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongStore" rowHeight="50" id="V3r-He-oXW" customClass="UITableViewCellSongStore">
                                         <rect key="frame" x="0.0" y="22" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V3r-He-oXW" id="aif-8Y-8jd">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IoI-1h-NmM">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="IoI-1h-NmM">
                                                     <rect key="frame" x="14" y="5" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
@@ -640,8 +648,18 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="albumName" destination="WVW-Bn-Wzn" id="vO5-IN-jhH"/>
+                                            <outlet property="artWork" destination="IoI-1h-NmM" id="B3a-Ra-XXV"/>
+                                            <outlet property="songDuration" destination="srD-hq-lpS" id="OzX-95-0hl"/>
+                                            <outlet property="songName" destination="cCf-nw-cpj" id="qvT-dK-ZNj"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8xe-Ar-JBB" id="hcp-Qq-HrV"/>
+                                    <outlet property="delegate" destination="8xe-Ar-JBB" id="4MA-aY-Lsf"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Top songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGx-pu-Xjd">
                                 <rect key="frame" x="8" y="6" width="257" height="21"/>
@@ -653,6 +671,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="NAB-S9-xpa" id="eI7-mI-FGr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7f-vy-zjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
