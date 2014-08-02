@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "UITableViewCellAlbumPageSong.h"
 #import "MPServiceStore.h"
-#import "UIViewControllerStoreArtist.h"
+#import "UIViewControllerStore.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -294,7 +294,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerStoreArtist *storeView = [sb instantiateViewControllerWithIdentifier:@"StoreArtist"];
+    UIViewControllerStore *storeView = [sb instantiateViewControllerWithIdentifier:@"Store"];
     [storeView setStoreArtistId:storeArtistId];
     [self.navigationController pushViewController:storeView animated:YES];
 }

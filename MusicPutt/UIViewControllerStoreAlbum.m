@@ -1,19 +1,19 @@
 //
-//  UIViewControllerStoreArtist.m
+//  UIViewControllerStoreAlbum.m
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-24.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "UIViewControllerStoreArtist.h"
-#import "UITableViewCellArtistStoreSong.h"
+#import "UIViewControllerStoreAlbum.h"
+#import "UITableViewCellAlbumStoreSong.h"
 #import "iCarousel.h"
 #import "MPServiceStore.h"
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface UIViewControllerStoreArtist () <MPServiceStoreDelegate, iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
+@interface UIViewControllerStoreAlbum () <MPServiceStoreDelegate, iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
 {
     NSArray* result;
     NSArray* currentAlbumSongs;
@@ -40,7 +40,40 @@
 
 @end
 
-@implementation UIViewControllerStoreArtist
+@implementation UIViewControllerStoreAlbum
+
+/*
+- (id)initWithFrame:(CGRect)aRect
+{
+    self = [super initWithFrame:aRect];
+    if (self) {
+        // Custom initialization
+        
+        // setup app delegate
+        self.del = [[UIApplication sharedApplication] delegate];
+        
+        // query store for album information
+        MPServiceStore *store = [[MPServiceStore alloc]init];
+        [store setDelegate:self];
+        [store queryAlbumWithArtistId:_storeArtistId asynchronizationMode:true];
+        
+        // setup album carousel
+        _albumlist.delegate = self;
+        _albumlist.dataSource = self;
+        _albumlist.type = iCarouselTypeCoverFlow;
+        
+        // song table
+        _songstable.delegate = self;
+        _songstable.dataSource = self;
+        
+        // display first album informations
+        //[self updateCurrentAlbumShow:0];
+        
+    }
+    return self;
+}
+ */
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,7 +98,13 @@
     [store queryAlbumWithArtistId:_storeArtistId asynchronizationMode:true];
     
     // setup album carousel
+    _albumlist.delegate = self;
+    _albumlist.dataSource = self;
     _albumlist.type = iCarouselTypeCoverFlow;
+    
+    // song table
+    _songstable.delegate = self;
+    _songstable.dataSource = self;
     
     // display first album informations
     //[self updateCurrentAlbumShow:0];
@@ -234,9 +273,9 @@
  *
  *  @return
  */
-- (UITableViewCellArtistStoreSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellAlbumStoreSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCellArtistStoreSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellStoreSong"];
+    UITableViewCellAlbumStoreSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellStoreSong"];
     [cell setMediaItem:[currentAlbumSongs objectAtIndex:indexPath.row+1]];
     return cell;
 }

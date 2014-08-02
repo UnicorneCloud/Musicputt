@@ -1,5 +1,5 @@
 //
-//  UIViewControllerStoreArtist.h
+//  UIViewControllerStoreAlbum.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-24.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewControllerStoreArtist : UIViewController
+@interface UIViewControllerStoreAlbum : UIViewController
 
 /**
  *  ArtistId
