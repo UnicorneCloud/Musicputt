@@ -12,6 +12,330 @@
 		</Token>
 		
 		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setWrapperType:</TokenIdentifier>
+			<Abstract type="html">wrapper Type.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
+			
+			
+			<Anchor>//api/name/wrapperType</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/wrapperType</TokenIdentifier>
+			<Abstract type="html">wrapper Type.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
+			
+			
+			<Anchor>//api/name/wrapperType</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/wrapperType</TokenIdentifier>
+			<Abstract type="html">wrapper Type.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
+			
+			
+			<Anchor>//api/name/wrapperType</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistType:</TokenIdentifier>
+			<Abstract type="html">Artist Type.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistType</Declaration>
+			
+			
+			<Anchor>//api/name/artistType</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistType</TokenIdentifier>
+			<Abstract type="html">Artist Type.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistType</Declaration>
+			
+			
+			<Anchor>//api/name/artistType</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistType</TokenIdentifier>
+			<Abstract type="html">Artist Type.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistType</Declaration>
+			
+			
+			<Anchor>//api/name/artistType</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistName:</TokenIdentifier>
+			<Abstract type="html">Artist Name.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
+			
+			
+			<Anchor>//api/name/artistName</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistName</TokenIdentifier>
+			<Abstract type="html">Artist Name.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
+			
+			
+			<Anchor>//api/name/artistName</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistName</TokenIdentifier>
+			<Abstract type="html">Artist Name.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
+			
+			
+			<Anchor>//api/name/artistName</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistLinkUrl:</TokenIdentifier>
+			<Abstract type="html">Artist link url in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistLinkUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistLinkUrl</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistLinkUrl</TokenIdentifier>
+			<Abstract type="html">Artist link url in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistLinkUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistLinkUrl</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistLinkUrl</TokenIdentifier>
+			<Abstract type="html">Artist link url in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistLinkUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistLinkUrl</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistId:</TokenIdentifier>
+			<Abstract type="html">Artist Id in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
+			
+			
+			<Anchor>//api/name/artistId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistId</TokenIdentifier>
+			<Abstract type="html">Artist Id in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
+			
+			
+			<Anchor>//api/name/artistId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistId</TokenIdentifier>
+			<Abstract type="html">Artist Id in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
+			
+			
+			<Anchor>//api/name/artistId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setAmgArtistId:</TokenIdentifier>
+			<Abstract type="html">Artist AMG ID in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *amgArtistId</Declaration>
+			
+			
+			<Anchor>//api/name/amgArtistId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/amgArtistId</TokenIdentifier>
+			<Abstract type="html">Artist AMG ID in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *amgArtistId</Declaration>
+			
+			
+			<Anchor>//api/name/amgArtistId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/amgArtistId</TokenIdentifier>
+			<Abstract type="html">Artist AMG ID in the iTunes Store.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *amgArtistId</Declaration>
+			
+			
+			<Anchor>//api/name/amgArtistId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setPrimaryGenreName:</TokenIdentifier>
+			<Abstract type="html">Artist primary genre name.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/primaryGenreName</TokenIdentifier>
+			<Abstract type="html">Artist primary genre name.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/primaryGenreName</TokenIdentifier>
+			<Abstract type="html">Artist primary genre name.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setPrimaryGenreId:</TokenIdentifier>
+			<Abstract type="html">Artist primary genre id.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreId</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/primaryGenreId</TokenIdentifier>
+			<Abstract type="html">Artist primary genre id.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreId</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/primaryGenreId</TokenIdentifier>
+			<Abstract type="html">Artist primary genre id.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreId</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreId</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setRadioStationUrl:</TokenIdentifier>
+			<Abstract type="html">Artist radio url.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *radioStationUrl</Declaration>
+			
+			
+			<Anchor>//api/name/radioStationUrl</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/radioStationUrl</TokenIdentifier>
+			<Abstract type="html">Artist radio url.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *radioStationUrl</Declaration>
+			
+			
+			<Anchor>//api/name/radioStationUrl</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/radioStationUrl</TokenIdentifier>
+			<Abstract type="html">Artist radio url.</Abstract>
+			<DeclaredIn>MPArtist.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *radioStationUrl</Declaration>
+			
+			
+			<Anchor>//api/name/radioStationUrl</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
         
         
 	</File>

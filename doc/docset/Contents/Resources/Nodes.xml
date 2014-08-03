@@ -133,6 +133,28 @@
             <Name>MPArtist</Name>
             <Path>Classes/MPArtist.html</Path>
             
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MPArtist.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MPArtist.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MPArtist.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
         </Node>
 		<Node id="4" type="file" documentType="reference">
             <Name>MPDataManager</Name>

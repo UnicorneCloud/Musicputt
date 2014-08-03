@@ -63,7 +63,7 @@ the current execution.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlayingToolbar</TokenIdentifier>
-			<Abstract type="html">&lt;TokenIdentifier&gt;//apple_ref/occ/instm/MPDataManager/currentPlayingToolbar&lt;/TokenIdentifier&gt;</Abstract>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
 			<DeclaredIn>MPDataManager.h</DeclaredIn>
 			
 			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
@@ -75,7 +75,7 @@ the current execution.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlayingToolbar</TokenIdentifier>
-			<Abstract type="html">&lt;TokenIdentifier&gt;//apple_ref/occ/instp/MPDataManager/currentPlayingToolbar&lt;/TokenIdentifier&gt;</Abstract>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
 			<DeclaredIn>MPDataManager.h</DeclaredIn>
 			
 			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
