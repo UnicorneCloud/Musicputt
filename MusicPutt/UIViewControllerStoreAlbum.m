@@ -29,6 +29,7 @@
     AVAudioPlayer* audioPlayer;
     MONActivityIndicatorView *indicatorView;
     MPAlbum* currentAlbum;
+    NSInteger currentAlbumIndex;
 }
 
 /**
@@ -114,13 +115,12 @@
     indicatorView.duration = 0.5;
     indicatorView.delay = 0.2;
     indicatorView.center = self.view.center;
-    _viewalbum.hidden = TRUE;
-    _songstable.hidden = TRUE;
+    _albumlist.alpha = 0.1;
+    _viewalbum.alpha = 0.1;
+    _songstable.alpha = 0.1;
     
     [self.view addSubview:indicatorView];
     [indicatorView startAnimating];
-    
-    
     
     // query store for album information
     MPServiceStore *store = [[MPServiceStore alloc]init];
@@ -205,6 +205,7 @@
 -(void) updateCurrentAlbumShow:(NSInteger) index
 {
     currentAlbum = result[index+1];
+    currentAlbumIndex = index + 1;
     
     // update display of the current album selected
     _artistname.text = [result[index+1] artistName];
@@ -242,6 +243,32 @@
 - (void) stopPlaying
 {
     [audioPlayer stop];
+}
+
+/**
+ *  Start playing item a this index
+ *
+ *  @param index <#index description#>
+ */
+- (void) startPlayingAtIndex:(NSInteger) index
+{
+    if (currentAlbumSongs.count>index) {
+        currentAlbumIndex = index;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentAlbumIndex-1 inSection:0];
+        [_songstable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        //[self.songstable.delegate tableView:self.songstable didSelectRowAtIndexPath:indexPath];
+        
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing ", (long)currentAlbumIndex);
+        
+        NSURL *url = [NSURL URLWithString: [[currentAlbumSongs objectAtIndex:index] previewUrl]];
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+            audioPlayer.delegate = self;
+            [audioPlayer play];
+        }];
+        [task resume];
+    }
 }
 
 
@@ -284,8 +311,9 @@
             [_songstable reloadData];
             
             // stop annimation
-            _viewalbum.hidden = FALSE;
-            _songstable.hidden = FALSE;
+            _albumlist.alpha = 1.0;
+            _viewalbum.alpha = 1.0;
+            _songstable.alpha = 1.0;
             [indicatorView stopAnimating];
         }
     }
@@ -341,13 +369,17 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSURL *url = [NSURL URLWithString: [[currentAlbumSongs objectAtIndex:indexPath.row+1] previewUrl]];
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
-        [audioPlayer play];
-    }];
-    [task resume];
-    
+    if (indexPath.row+1 == currentAlbumIndex && [audioPlayer isPlaying]) {
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop playing ", (long)currentAlbumIndex);
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentAlbumIndex-1 inSection:0];
+        [self.songstable deselectRowAtIndexPath:indexPath animated:YES];
+        
+        [audioPlayer stop];
+    }
+    else{
+        [self startPlayingAtIndex:indexPath.row+1];
+    }
     return indexPath;
 }
 
@@ -356,8 +388,13 @@
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
+    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentAlbumIndex);
     [audioPlayer stop];
-    NSLog(@"Finished Playing");
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentAlbumIndex-1 inSection:0];
+    [self.songstable deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self startPlayingAtIndex:currentAlbumIndex+1];
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error

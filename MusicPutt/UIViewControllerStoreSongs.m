@@ -17,9 +17,10 @@
 
 @interface UIViewControllerStoreSongs () <MPServiceStoreDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
 {
-    NSArray* result;
+    NSArray* songResults;
     AVAudioPlayer* audioPlayer;
     MPMusicTrack* currentPlaying;
+    NSInteger currentPlayingIndex;
 }
 
 /**
@@ -104,7 +105,34 @@
  */
 - (IBAction)itunesButtonPressed:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[result objectAtIndex:0] artistLinkUrl]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[songResults objectAtIndex:0] artistLinkUrl]]];
+}
+
+/**
+ *  Start playing song
+ *
+ *  @param index <#index description#>
+ */
+- (void) startPlayingAtIndex:(NSInteger) index
+{
+    if (songResults.count>index) {
+        currentPlayingIndex = index;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentPlayingIndex-1 inSection:0];
+        [_tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        //[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+        
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing ", (long)currentPlayingIndex);
+        
+        NSURL *url = [NSURL URLWithString: [[songResults objectAtIndex:index] previewUrl]];
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+            audioPlayer.delegate = self;
+            [audioPlayer play];
+        }];
+        [task resume];
+    }
+    
 }
 
 
@@ -116,7 +144,7 @@
  *  @param type    Type of query sender
  *  @param results resultset of the query
  */
--(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results
+-(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*) results
 {
     if (status!=MPServiceStoreStatusSucceed || [results count]==0)
     {
@@ -135,10 +163,11 @@
     {
         if (type == MPQueryMusicTrackWithArtistId)
         {
-            result = results;
-            if (result.count>0)
+            songResults = results;
+            if (results.count>0)
             {
-                currentPlaying = [result objectAtIndex:1];
+                currentPlaying = [results objectAtIndex:1];
+                currentPlayingIndex = 1;
             }
             [_tableView reloadData];
         }
@@ -170,8 +199,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // get current album select
-    if (result!=nil && result.count>0) {
-        return result.count-1;
+    if (songResults!=nil && songResults.count>0) {
+        return songResults.count-1;
     }
     return 0;
 }
@@ -187,7 +216,7 @@
 - (UITableViewCellSongStore*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellSongStore* cell = [tableView dequeueReusableCellWithIdentifier:@"SongStore"];
-    [cell setMediaItem:[result objectAtIndex:indexPath.row+1]];
+    [cell setMediaItem:[songResults objectAtIndex:indexPath.row+1]];
     return cell;
 }
 
@@ -195,13 +224,18 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    currentPlaying = [result objectAtIndex:indexPath.row+1];
-    NSURL *url = [NSURL URLWithString: [[result objectAtIndex:indexPath.row+1] previewUrl]];
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
-        [audioPlayer play];
-    }];
-    [task resume];
+    if (indexPath.row+1 == currentPlayingIndex && [audioPlayer isPlaying])
+    {
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop playing ", (long)currentPlayingIndex);
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentPlayingIndex-1 inSection:0];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [audioPlayer stop];
+    }
+    else
+    {
+        [self startPlayingAtIndex:indexPath.row+1];
+    }
     
     return indexPath;
 }
@@ -211,8 +245,13 @@
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
+    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentPlayingIndex);
     [audioPlayer stop];
-    NSLog(@"Finished Playing");
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentPlayingIndex-1 inSection:0];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self startPlayingAtIndex:currentPlayingIndex+1];
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
