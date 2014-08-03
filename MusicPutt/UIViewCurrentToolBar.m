@@ -142,30 +142,42 @@
 
 -(void) updateCurrentTime
 {
-    // update current time with progress round
-    NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
-    NSTimeInterval playbackDuration;
-    double progressValue = 0;
-    
-    if ([[[self.del mpdatamanager] musicplayer] nowPlayingItem]!=NULL) {
-        NSNumber* duration = [[[[self.del mpdatamanager] musicplayer] nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
-        playbackDuration = [duration doubleValue];
+    // do action only if media player is ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        // update current time with progress round
+        NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
+        NSTimeInterval playbackDuration;
+        double progressValue = 0;
         
-        if (playbackDuration>0 && currentTime>0) {
-            progressValue = currentTime / playbackDuration;
+        if ([[[self.del mpdatamanager] musicplayer] nowPlayingItem]!=NULL)
+        {
+            NSNumber* duration = [[[[self.del mpdatamanager] musicplayer] nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
+            playbackDuration = [duration doubleValue];
+            
+            if (playbackDuration>0 && currentTime>0)
+            {
+                progressValue = currentTime / playbackDuration;
+            }
         }
+        
+        [_progress setProgress:progressValue animated:false];
+        
+        // update icon play/pause
+        
+        //MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        //if([player playbackState] == MPMoviePlaybackStatePlaying)
+        if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
+            _progress.centralView =  pauseView;
+        else
+            _progress.centralView =  playView;
+    }
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
     }
     
-    [_progress setProgress:progressValue animated:false];
     
-    // update icon play/pause
-    
-    //MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    //if([player playbackState] == MPMoviePlaybackStatePlaying)
-    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
-        _progress.centralView =  pauseView;
-    else
-        _progress.centralView =  playView;
 }
 
 /**
@@ -281,7 +293,15 @@
  */
 -(void) updateCurrentPlayingItem
 {
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    // do action only if media player is ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    }
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
+    }
 }
 
 
@@ -291,14 +311,31 @@
 -(void) handle_PlaybackStateChanged:(id) notification
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    // do action only if media player is ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    }
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
+    }
     
 }
 
 -(void) handle_NowPlayingItemChanged:(id) notification
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    
+    // do action only if media player is ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    }
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
+    }
 }
 
 

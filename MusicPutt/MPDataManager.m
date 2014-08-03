@@ -11,7 +11,9 @@
 
 
 @interface MPDataManager()
-
+{
+    BOOL mediaplayerinit;
+}
 
 @end
 
@@ -42,6 +44,34 @@
     
     return retval;
 }
+
+/**
+ *  Prepare application to gone in background.
+ */
+- (void) prepareAppDidEnterBackground
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    // we lose link with media player
+    // we have to recreate media player when application return from background
+    mediaplayerinit = false;
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+
+/**
+ *  Prepare application to becone active
+ */
+-(void) prepareAppDidBecomeActive
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    [self initialiseMediaPlayer];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");
+}
+
 
 
 
@@ -86,7 +116,18 @@
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed.");
         retval = true;
     }
+    mediaplayerinit = retval;
     return retval;
+}
+
+/**
+ *  Return true if the mediaPlayer is initialized.
+ *
+ *  @return Return true if media player is initialized.
+ */
+-(bool) isMediaPlayerInitialized
+{
+    return mediaplayerinit;
 }
 
 

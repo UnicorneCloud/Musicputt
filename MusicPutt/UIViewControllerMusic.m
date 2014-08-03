@@ -146,49 +146,6 @@
 @property (weak, nonatomic) IBOutlet UIView*            menubar;
 
 
-/**
- *  Shuffle button pressed by the user.
- *
- *  @param sender sender of event.
- */
-//- (IBAction)shufflePressed:(id)sender;
-
-/**
- *  Repeat button pressed by the user.
- *
- *  @param sender sender of event.
- */
-//- (IBAction)repeatPressed:(id)sender;
-
-/**
- *  Rewind button pressed by the user.
- *
- *  @param sender send of event.
- */
-//- (IBAction)rewindPressed:(id)sender;
-
-/**
- *  Play/Pause button pressed by the user.
- *
- *  @param sender sender of event.
- */
-//- (IBAction)playpausePressed:(id)sender;
-
-/**
- *  Foward button pressed by the user.
- *
- *  @param sender sender of event.
- */
-//- (IBAction)fastFowardPressed:(id)sender;
-
-
-/**
- *  Share button was pressed by the user.
- *
- *  @param sender sender of event.
- */
-//- (IBAction)sharePressed:(id)sender;
-
 @end
 
 @implementation UIViewControllerMusic
@@ -411,69 +368,81 @@
  */
 -(void) updateDisplay
 {
-    // update current time with progress round
-    NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
-    NSTimeInterval playbackDuration;
-    double progressValue = 0;
-    
-    if ([[[self.del mpdatamanager] musicplayer] nowPlayingItem]!=NULL) {
-        NSNumber* duration = [[[[self.del mpdatamanager] musicplayer] nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
-        playbackDuration = [duration doubleValue];
+    // update display only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        // update current time with progress round
+        NSTimeInterval currentTime = 0;
+        NSTimeInterval playbackDuration;
+        double progressValue = 0;
         
-        if (playbackDuration>0 && currentTime>0) {
+        if ([[[self.del mpdatamanager] musicplayer] nowPlayingItem]!=NULL)
+        {
+            NSNumber* duration = [[[[self.del mpdatamanager] musicplayer] nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
+            playbackDuration = [duration doubleValue];
+            currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
             
-            // calcul progressvalue
-            progressValue = currentTime / playbackDuration;
-            
-            // set current time
-            long minutes = currentTime / 60;
-            long seconds = (int)currentTime % 60;
-            
-            NSString *strCurrentTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
-            [_curtime setText:strCurrentTime];
-            
-            // set endtime
-            double timerest = [duration integerValue] - currentTime;
-            minutes = timerest / 60;
-            seconds = (int)timerest % 60;
-            
-            NSString *enddingTime = [NSString stringWithFormat:@"-%ld:%02ld", minutes, seconds];
-            [_endtime setText:enddingTime];
+            if (playbackDuration>0 && currentTime>0)
+            {
+                // calcul progressvalue
+                progressValue = currentTime / playbackDuration;
+                
+                // set current time
+                long minutes = currentTime / 60;
+                long seconds = (int)currentTime % 60;
+                
+                NSString *strCurrentTime = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+                [_curtime setText:strCurrentTime];
+                
+                // set endtime
+                double timerest = [duration integerValue] - currentTime;
+                minutes = timerest / 60;
+                seconds = (int)timerest % 60;
+                
+                NSString *enddingTime = [NSString stringWithFormat:@"-%ld:%02ld", minutes, seconds];
+                [_endtime setText:enddingTime];
+            }
+        }
+        [_progresstime setProgress:progressValue animated:false];
+        
+        // update icon play/pause
+        //MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        //if([player playbackState] == MPMoviePlaybackStatePlaying)
+        if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
+            [_playpause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+        else
+            [_playpause setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        
+        
+        // update repeat button
+        if ([[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeDefault ||
+            [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeAll ||
+            [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeOne )
+        {
+            _repeat.opaque = false;
+            _repeat.alpha = 1.0;
+        }
+        else{
+            _repeat.opaque = false;
+            _repeat.alpha = 0.5;
+        }
+        
+        // update shuffle button
+        if ([[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeDefault ||
+            [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeSongs ||
+            [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeAlbums )
+        {
+            _shuffle.opaque = false;
+            _shuffle.alpha = 1.0;
+        }
+        else{
+            _shuffle.opaque = false;
+            _shuffle.alpha = 0.5;
         }
     }
-    [_progresstime setProgress:progressValue animated:false];
-    
-    // update icon play/pause
-    //MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    //if([player playbackState] == MPMoviePlaybackStatePlaying)
-    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
-        [_playpause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
     else
-        [_playpause setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
-
-    
-    // update repeat button
-    if ([[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeDefault ||
-        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeAll ||
-        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeOne ) {
-        _repeat.opaque = false;
-        _repeat.alpha = 1.0;
-    }
-    else{
-        _repeat.opaque = false;
-        _repeat.alpha = 0.5;
-    }
-    
-    // update shuffle button
-    if ([[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeDefault ||
-        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeSongs ||
-        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeAlbums ) {
-        _shuffle.opaque = false;
-        _shuffle.alpha = 1.0;
-    }
-    else{
-        _shuffle.opaque = false;
-        _shuffle.alpha = 0.5;
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
     }
 }
 
@@ -488,18 +457,29 @@
 - (IBAction)shufflePressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    if ([[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeDefault ||
-        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeSongs ||
-        [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeAlbums ) {
-        player.shuffleMode = MPMusicShuffleModeOff;
-        _shuffle.opaque = false;
-        _shuffle.alpha = 0.5;
+    
+    // do action only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        if ([[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeDefault ||
+            [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeSongs ||
+            [[[self.del mpdatamanager] musicplayer] shuffleMode] == MPMusicShuffleModeAlbums )
+        {
+            player.shuffleMode = MPMusicShuffleModeOff;
+            _shuffle.opaque = false;
+            _shuffle.alpha = 0.5;
+        }
+        else
+        {
+            player.shuffleMode = MPMusicShuffleModeSongs;
+            _shuffle.opaque = false;
+            _shuffle.alpha = 1.0;
+        }
     }
-    else{
-        player.shuffleMode = MPMusicShuffleModeSongs;
-        _shuffle.opaque = false;
-        _shuffle.alpha = 1.0;
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
     }
     
 }
@@ -513,18 +493,29 @@
 - (IBAction)repeatPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    if ([[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeDefault ||
-        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeAll ||
-        [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeOne ) {
-        player.repeatMode = MPMusicRepeatModeNone;
-        _repeat.opaque = false;
-        _repeat.alpha = 0.5;
+    
+    // do action only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        if ([[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeDefault ||
+            [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeAll ||
+            [[[self.del mpdatamanager] musicplayer] repeatMode] == MPMusicRepeatModeOne )
+        {
+            player.repeatMode = MPMusicRepeatModeNone;
+            _repeat.opaque = false;
+            _repeat.alpha = 0.5;
+        }
+        else
+        {
+            player.repeatMode = MPMusicRepeatModeAll;
+            _repeat.opaque = false;
+            _repeat.alpha = 1.0;
+        }
     }
-    else{
-        player.repeatMode = MPMusicRepeatModeAll;
-        _repeat.opaque = false;
-        _repeat.alpha = 1.0;
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
     }
 }
 
@@ -536,13 +527,22 @@
 - (IBAction)rewindPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
-    if (currentTime<=2.0) {
-        [player skipToPreviousItem];
+    
+    // do action only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        NSTimeInterval currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
+        if (currentTime<=2.0) {
+            [player skipToPreviousItem];
+        }
+        else{
+            [player skipToBeginning];
+        }
     }
-    else{
-        [player skipToBeginning];
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
     }
     
 }
@@ -557,17 +557,25 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    //if([player playbackState] == MPMoviePlaybackStatePlaying)
-    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
+    // do action only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
     {
-        [player pause];
-        [_playpause setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        //if([player playbackState] == MPMoviePlaybackStatePlaying)
+        if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
+        {
+            [player pause];
+            [_playpause setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        }
+        else
+        {
+            [player play];
+            [_playpause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+        }
     }
     else
     {
-        [player play];
-        [_playpause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
     }
 }
 
@@ -579,8 +587,17 @@
 - (IBAction)fastFowardPressed:(id)sender
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    [player skipToNextItem];
+    
+    // do action only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        [player skipToNextItem];
+    }
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
+    }
 }
 
 - (void) imageViewPressed
@@ -616,8 +633,16 @@
 -(void) handle_PlaybackStateChanged:(id) notification
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     
+    // do action only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    }
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
+    }
 }
 
 
@@ -629,7 +654,16 @@
 -(void) handle_NowPlayingItemChanged:(id) notification
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    
+    // do action only if mediaplayer if ready
+    if ([[self.del mpdatamanager] isMediaPlayerInitialized])
+    {
+        [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    }
+    else
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
+    }
 }
 
 

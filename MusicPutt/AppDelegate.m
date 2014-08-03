@@ -47,12 +47,21 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+    
+    if (_mpdatamanager!=NULL) {
+        [_mpdatamanager prepareAppDidEnterBackground];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+    
+    if (_mpdatamanager!=NULL) {
+        [_mpdatamanager prepareAppDidBecomeActive];
+    }
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

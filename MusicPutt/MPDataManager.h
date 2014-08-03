@@ -62,6 +62,23 @@
 - (bool) initialise;
 
 /**
+ *  Prepare application to gone in background.
+ */
+- (void) prepareAppDidEnterBackground;
+
+/**
+ *  Prepare application to becone active
+ */
+-(void) prepareAppDidBecomeActive;
+
+/**
+ *  Return true if the mediaPlayer is initialized.
+ *
+ *  @return Return true if media player is initialized.
+ */
+-(bool) isMediaPlayerInitialized;
+
+/**
  *  Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
  *  is displayed, UICurrentPlayingToolBar is hidden.
  *
