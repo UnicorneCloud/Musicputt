@@ -79,8 +79,6 @@
             [player play];
     };
     
-    
-    
     // Detect tapgesture
     _imageview.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureImageview = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewPressed)];
@@ -102,12 +100,10 @@
     UITapGestureRecognizer *tapGestureProgress = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(progressPressed)];
     [_progress addGestureRecognizer:tapGestureProgress];
     
+    // improve hittest for play/pause button.
+    [_progress setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
-    
-    //NSDictionary *mediaInfo = [[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
-    //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [mediaInfo valueForKey:MPNowPlayingInfoPropertyElapsedPlaybackTime]);
-    //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, [mediaInfo valueForKey:MPMediaItemPropertyPlaybackDuration]);
-    
 }
 
 -(void) displayMediaItem: (MPMediaItem*) aitem
