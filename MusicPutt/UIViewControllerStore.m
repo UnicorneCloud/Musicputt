@@ -57,13 +57,23 @@
          forControlEvents:UIControlEventValueChanged];
     
     // setup children view controller
+    CGRect framealbum = _pageview.frame;
+    framealbum.origin.x = 0;
+    framealbum.origin.y = 0;
+    
+    CGRect framesong = _pageview.frame;
+    framesong.origin.x = 0;
+    framesong.origin.y = 0;
+    
     storealbum = [self.storyboard instantiateViewControllerWithIdentifier:@"StoreAlbum"];
     [storealbum setStoreArtistId:_storeArtistId];
+    storealbum.view.frame = framealbum;
     [self addChildViewController:storealbum];
     [_pageview addSubview:storealbum.view];
     
     storesongs = [self.storyboard instantiateViewControllerWithIdentifier:@"StoreSongs"];
     [storesongs setStoreArtistId:_storeArtistId];
+    storesongs.view.frame = framesong;
     [self addChildViewController:storesongs];
     [_pageview addSubview:storesongs.view];
     

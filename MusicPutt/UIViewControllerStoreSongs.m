@@ -19,6 +19,7 @@
 {
     NSArray* result;
     AVAudioPlayer* audioPlayer;
+    MPMusicTrack* currentPlaying;
 }
 
 /**
@@ -75,6 +76,37 @@
     [audioPlayer stop];
 }
 
+/**
+ *  Share button was pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
+- (IBAction)sharePressed:(id)sender
+{
+    NSString* sharedString = [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", [currentPlaying trackName], [currentPlaying collectionName]];
+    NSURL* sharedUrl = [NSURL URLWithString:[currentPlaying trackViewUrl]];
+    
+    id path = [currentPlaying artworkUrl100];
+    NSURL *url = [NSURL URLWithString:path];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *sharedImage = [[UIImage alloc] initWithData:data];
+    
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[sharedString, sharedUrl, sharedImage] applicationActivities:nil];
+    controller.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+
+/**
+ *  Click on itunes button.
+ *
+ *  @param sender <#sender description#>
+ */
+- (IBAction)itunesButtonPressed:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[result objectAtIndex:0] artistLinkUrl]]];
+}
+
 
 #pragma mark MPServiceStoreDelegate
 /**
@@ -104,6 +136,10 @@
         if (type == MPQueryMusicTrackWithArtistId)
         {
             result = results;
+            if (result.count>0)
+            {
+                currentPlaying = [result objectAtIndex:1];
+            }
             [_tableView reloadData];
         }
     }
@@ -159,12 +195,7 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSURL *url = [NSURL URLWithString: [[result objectAtIndex:indexPath.row+1] previewUrl]];
-//    NSData *soundData = [NSData dataWithContentsOfURL:url];
-//    audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData  error:NULL];
-//    audioPlayer.delegate = self;
-//    [audioPlayer play];
-    
+    currentPlaying = [result objectAtIndex:indexPath.row+1];
     NSURL *url = [NSURL URLWithString: [[result objectAtIndex:indexPath.row+1] previewUrl]];
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];

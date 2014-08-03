@@ -276,7 +276,7 @@
 				97A36CC7195F37C800AF6AF8 /* Playlist */,
 				9799978B1960F61800360BF8 /* Artist */,
 				9799978C1960F62700360BF8 /* Album */,
-				97AC0C36195A419E00BA60E6 /* Song */,
+				97AC0C36195A419E00BA60E6 /* Music */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -456,7 +456,7 @@
 			name = tools;
 			sourceTree = "<group>";
 		};
-		97AC0C36195A419E00BA60E6 /* Song */ = {
+		97AC0C36195A419E00BA60E6 /* Music */ = {
 			isa = PBXGroup;
 			children = (
 				97AC0C3A195A493800BA60E6 /* UIViewControllerMusic.h */,
@@ -465,7 +465,7 @@
 				97A36CBE195D1A9B00AF6AF8 /* UIImageViewArtwork.m */,
 				97EC064A197ADDE50081E7E1 /* Pages */,
 			);
-			name = Song;
+			name = Music;
 			sourceTree = "<group>";
 		};
 		97EC064A197ADDE50081E7E1 /* Pages */ = {

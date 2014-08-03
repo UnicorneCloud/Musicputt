@@ -582,41 +582,12 @@
  */
 - (IBAction)sharePressed:(id)sender
 {
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-    {
-        SLComposeViewController *fbPost = [SLComposeViewController
-                                           composeViewControllerForServiceType:SLServiceTypeFacebook];
-        
-        
-        [fbPost setInitialText: [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", _songtitle.text, _artistalbum.text]];
-        [fbPost addImage:_imageview.image];
-        [self presentViewController:fbPost animated:YES completion:nil];
-        [fbPost setCompletionHandler:^(SLComposeViewControllerResult result) {
-            switch (result) {
-                case SLComposeViewControllerResultCancelled:
-                    NSLog(@"Post Canceled");
-                    break;
-                case SLComposeViewControllerResultDone:
-                    NSLog(@"Post Sucessful");
-                    break;
-                default:
-                    break;
-            }
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
-    }
-    else{
-        UIAlertView *message = [[UIAlertView alloc]
-                                initWithTitle:@"Error"
-                                message:@"Your facebook service account is not set up and reachable. Go to setting for setup your facebook account."
-                                delegate:nil
-                                cancelButtonTitle:@"OK"
-                                otherButtonTitles:nil];
-        
-        [message show];
+    NSString* sharedString = [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", _songtitle.text, _artistalbum.text];
+    UIImage* sharedImage = _imageview.image;
     
-    }
-
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[sharedString, sharedImage] applicationActivities:nil];
+    controller.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 
@@ -634,7 +605,6 @@
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     
 }
-
 
 
 /**

@@ -28,6 +28,7 @@
     NSArray* currentAlbumSongs;
     AVAudioPlayer* audioPlayer;
     MONActivityIndicatorView *indicatorView;
+    MPAlbum* currentAlbum;
 }
 
 /**
@@ -139,6 +140,27 @@
 
 
 /**
+ *  Share button was pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
+- (IBAction)sharePressed:(id)sender
+{
+    NSString* sharedString = [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", [currentAlbum artistName], [currentAlbum collectionName]];
+    NSURL* sharedUrl = [NSURL URLWithString:[currentAlbum collectionViewUrl]];
+    
+    id path = [currentAlbum artworkUrl100];
+    NSURL *url = [NSURL URLWithString:path];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *sharedImage = [[UIImage alloc] initWithData:data];
+
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[sharedString, sharedUrl, sharedImage] applicationActivities:nil];
+    controller.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+
+/**
  *  Click on itunes button.
  *
  *  @param sender <#sender description#>
@@ -182,6 +204,8 @@
 
 -(void) updateCurrentAlbumShow:(NSInteger) index
 {
+    currentAlbum = result[index+1];
+    
     // update display of the current album selected
     _artistname.text = [result[index+1] artistName];
     _albumname.text = [result[index+1] collectionName];

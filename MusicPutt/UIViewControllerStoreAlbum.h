@@ -15,13 +15,19 @@
  */
 @property (nonatomic, weak) NSString* storeArtistId;
 
+/**
+ *  Share button was pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
+//- (IBAction)sharePressed:(id)sender;
 
 /**
  *  Click on itunes button.
  *
  *  @param sender <#sender description#>
  */
-- (IBAction)itunesButtonPressed:(id)sender;
+//- (IBAction)itunesButtonPressed:(id)sender;
 
 
 /**
