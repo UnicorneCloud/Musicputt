@@ -232,12 +232,26 @@
     // Create page view content
     //_artistpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtistPage"];
     //_artistpage.pageIndex = 0;
+    
+    CGRect framealbum = _pageview.frame;
+    framealbum.origin.x = 0;
+    framealbum.origin.y = 0;
+    
+    CGRect framelyrics = _pageview.frame;
+    framelyrics.origin.x = 0;
+    framelyrics.origin.y = 0;
+    
     _albumpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicAlbumPage"];
     _albumpage.pageIndex = 0;
+    _albumpage.view.frame = framealbum;
+    
     _artworkpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtworkPage"];
     _artworkpage.pageIndex = 1;
     _artworkpage.view.backgroundColor = [UIColor clearColor];
+    
+    
     _lyricspage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicLyricsPage"];
+    _lyricspage.view.frame = framelyrics;
     _lyricspage.pageIndex = 2;
     
     _pagecontrol.numberOfPages = 3;
