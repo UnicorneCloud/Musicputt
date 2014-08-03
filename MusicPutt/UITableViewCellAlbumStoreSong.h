@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "MPMusicTrack.h"
 
+
+/**
+ *  Cell for the store album module
+ */
 @interface UITableViewCellAlbumStoreSong : UITableViewCell
 
 /**
  *  Set the information of the media item (name, track no. and duration).
  *
- *  @param artistAlbumItem : The media item to set.
+ *  @param mediaitem : The media item to set.
  */
 - (void)setMediaItem: (MPMusicTrack*)mediaitem;
 

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MPServiceStore.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MPServiceStore</TokenIdentifier>
+			<Abstract type="html">Service for access to iTunes Store.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+            
+			
+			<NodeRef refid="6"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/setDelegate:</TokenIdentifier>
+			<Abstract type="html">Set delegate to recieve result of query.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)setDelegate:(id)anObject</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>anObject</Name>
+					<Abstract type="html">delegate object with MPServiceStoreDelegate protocol.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setDelegate:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithSearchTerm:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Execute query for return musics tracks from iTunes Store and return results to the delagate.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)queryMusicTrackWithSearchTerm:(NSString *)searchTerm asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>searchTerm</Name>
+					<Abstract type="html">see itunes api doc</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">true if you want asynchronization mode</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryMusicTrackWithSearchTerm:asynchronizationMode:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithId:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Execute query in iTunes Store and return music track with this id to the delagate.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)queryMusicTrackWithId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemId</Name>
+					<Abstract type="html">id of the music track to find</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">true if you want asynchronization mode</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryMusicTrackWithId:asynchronizationMode:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithAlbumId:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Execute query in iTunes Store and return music track with this album id to the delagate.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)queryMusicTrackWithAlbumId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemId</Name>
+					<Abstract type="html">id of the album to find</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">true if you want asynchronization mode</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryMusicTrackWithAlbumId:asynchronizationMode:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithArtistId:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Execute query in iTunes Store and return music track with this artist id to the delagate.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)queryMusicTrackWithArtistId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemId</Name>
+					<Abstract type="html">id of the artist to find</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">true if you want asynchronization mode</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryMusicTrackWithArtistId:asynchronizationMode:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryAlbumWithSearchTerm:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Execute query for return albums from iTunes Store and return results to the delagate.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)queryAlbumWithSearchTerm:(NSString *)searchTerm asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>searchTerm</Name>
+					<Abstract type="html">see itunes api doc</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">true if you want asynchronization mode</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryAlbumWithSearchTerm:asynchronizationMode:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryAlbumWithId:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Execute query in iTunes Store and return music track with this id to the delagate.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)queryAlbumWithId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemId</Name>
+					<Abstract type="html">id of the music track to find</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">true if you want asynchronization mode</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryAlbumWithId:asynchronizationMode:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryAlbumWithArtistId:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Execute query in iTunes Store and return all album for an artist with this id to the delagate.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (void)queryAlbumWithArtistId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemId</Name>
+					<Abstract type="html">id of the music track to find</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">true if you want asynchronization mode</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryAlbumWithArtistId:asynchronizationMode:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/buildSearchTermForMusicTrackFromMediaItem:</TokenIdentifier>
+			<Abstract type="html">Build searchterm for find song in iTunes Store.</Abstract>
+			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)buildSearchTermForMusicTrackFromMediaItem:(MPMediaItem *)mediaitem</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mediaitem</Name>
+					<Abstract type="html">MediaItem that you expect find in store.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">searchTerm to find song.</Abstract></ReturnValue>
+			<Anchor>//api/name/buildSearchTermForMusicTrackFromMediaItem:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/init</TokenIdentifier>
+			<Abstract type="html">Constructor</Abstract>
+			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			
+			<Declaration>- (id)init</Declaration>
+			
+			<ReturnValue><Abstract type="html">return instance of this object</Abstract></ReturnValue>
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/configureConnection</TokenIdentifier>
+			<Abstract type="html">Configuration of the connection with the iTunes Store API.</Abstract>
+			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			
+			<Declaration>- (void)configureConnection</Declaration>
+			
+			
+			<Anchor>//api/name/configureConnection</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/executeSearchAsync:addFilter:queryType:</TokenIdentifier>
+			<Abstract type="html">Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.</Abstract>
+			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			
+			<Declaration>- (void)executeSearchAsync:(NSString *)searchTerm addFilter:(NSString *)filterTerm queryType:(MPServiceStoreQueryType)type</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>searchTerm</Name>
+					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
+				</Parameter><Parameter>
+					<Name>filterTerm</Name>
+					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">Type of query.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/executeSearchAsync:addFilter:queryType:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/executeSearch:addFilter:queryType:</TokenIdentifier>
+			<Abstract type="html">Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.</Abstract>
+			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			
+			<Declaration>- (void)executeSearch:(NSString *)searchTerm addFilter:(NSString *)filterTerm queryType:(MPServiceStoreQueryType)type</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>searchTerm</Name>
+					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
+				</Parameter><Parameter>
+					<Name>filterTerm</Name>
+					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">Type of query.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/executeSearch:addFilter:queryType:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/createURLForCallWithSearchTerm:andFilter:</TokenIdentifier>
+			<Abstract type="html">Build valid URL to search on itune store api.</Abstract>
+			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			
+			<Declaration>- (NSURL *)createURLForCallWithSearchTerm:(NSString *)searchTerm andFilter:(NSString *)filterTerm</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>searchTerm</Name>
+					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
+				</Parameter><Parameter>
+					<Name>filterTerm</Name>
+					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">valid url request to call RKObjectRequestOperation initWithRequest.</Abstract></ReturnValue>
+			<Anchor>//api/name/createURLForCallWithSearchTerm:andFilter:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/createURLForCallWithId:andFilter:</TokenIdentifier>
+			<Abstract type="html">Build valid URL to search on itune store api with a unique id of item.</Abstract>
+			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			
+			<Declaration>- (NSURL *)createURLForCallWithId:(NSString *)itemId andFilter:(NSString *)filterTerm</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemId</Name>
+					<Abstract type="html">id of a item in store</Abstract>
+				</Parameter><Parameter>
+					<Name>filterTerm</Name>
+					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">valid url request to call RKObjectRequestOperation initWithRequest.</Abstract></ReturnValue>
+			<Anchor>//api/name/createURLForCallWithId:andFilter:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

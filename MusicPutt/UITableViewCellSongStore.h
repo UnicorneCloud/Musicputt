@@ -15,7 +15,7 @@
 /**
  *  Set the information of the media item (name, track no. and duration).
  *
- *  @param artistAlbumItem : The media item to set.
+ *  @param mediaitem : The media item to set.
  */
 - (void)setMediaItem: (MPMusicTrack*)mediaitem;
 

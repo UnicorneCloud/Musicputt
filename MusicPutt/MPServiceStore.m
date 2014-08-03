@@ -277,6 +277,7 @@
  *
  *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param type Type of query.
  */
 -(void) executeSearchAsync:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
 {
@@ -329,6 +330,7 @@
  *
  *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param type Type of query.
  */
 -(void) executeSearch:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
 {
@@ -381,7 +383,7 @@
 /**
  *  Build valid URL to search on itune store api with a unique id of item.
  *
- *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param itemId id of a item in store
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *
  *  @return valid url request to call RKObjectRequestOperation initWithRequest.

@@ -20,6 +20,7 @@
 
 @property (weak) NSObject <MediaDataSource>* dataSource;
 
+
 -(BOOL) loadMediaByGroup;
 
 -(NSUInteger) getNbSection;
@@ -33,16 +34,29 @@
 
 
 
-//! Notification names
+/**
+ *  Notification of datas source.
+ */
 extern NSString *MediaDataSourceWillChangeValueNotification;
 
 
-//! Parameters GroupBy Options
+/**
+ *  Option for grouping media
+ */
 typedef NS_OPTIONS(NSInteger, MediaGroupByType) {
-    
-    MediaDataSourceLoadMediaGroupByAlbumArtist      = 0,        // Load media group by album
-    MediaDataSourceLoadMediaGroupByArtist           = 1 << 0,   // Load media group by artist
-    MediaDataSourceLoadMediaGroupByPlaylist         = 1 << 1    // Load media group by album
+    /**
+     *  Load media group by album
+     */
+    MediaDataSourceLoadMediaGroupByAlbumArtist      = 0,
+    /**
+     *  Load media group by artist
+     */
+    //
+    MediaDataSourceLoadMediaGroupByArtist           = 1 << 0,
+    /**
+     *  Load media group by playlist
+     */
+    MediaDataSourceLoadMediaGroupByPlaylist         = 1 << 1
 };
 
 

@@ -192,7 +192,7 @@
 /**
  *  Set the section header's height.
  *
- *  @param tableView
+ *  @param tableView : Table view for this section.
  *  @param section   : Section index.
  *
  *  @return          : Section hearder's height.
