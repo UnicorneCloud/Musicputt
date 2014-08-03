@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		971E736C19721707000B33DD /* Documentation */ = {
+		9707ADC7198DF14C0093F6F0 /* Documentation */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 971E736D19721707000B33DD /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildConfigurationList = 9707ADC8198DF14C0093F6F0 /* Build configuration list for PBXAggregateTarget "Documentation" */;
 			buildPhases = (
-				971E737819721826000B33DD /* ShellScript */,
+				9707ADCB198DF1580093F6F0 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -584,7 +584,7 @@
 			targets = (
 				976687CF194FBB4D00B5A843 /* MusicPutt */,
 				976687F0194FBB4D00B5A843 /* MusicPuttTests */,
-				971E736C19721707000B33DD /* Documentation */,
+				9707ADC7198DF14C0093F6F0 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -612,7 +612,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		971E737819721826000B33DD /* ShellScript */ = {
+		9707ADCB198DF1580093F6F0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -755,14 +755,14 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		971E736E19721707000B33DD /* Debug */ = {
+		9707ADC9198DF14C0093F6F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		971E736F19721707000B33DD /* Release */ = {
+		9707ADCA198DF14C0093F6F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -920,14 +920,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		971E736D19721707000B33DD /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+		9707ADC8198DF14C0093F6F0 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				971E736E19721707000B33DD /* Debug */,
-				971E736F19721707000B33DD /* Release */,
+				9707ADC9198DF14C0093F6F0 /* Debug */,
+				9707ADCA198DF14C0093F6F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		976687CB194FBB4D00B5A843 /* Build configuration list for PBXProject "MusicPutt" */ = {
 			isa = XCConfigurationList;

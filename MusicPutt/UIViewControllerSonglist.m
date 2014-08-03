@@ -57,6 +57,10 @@
     // setup right edit button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleDone target:self action:@selector(editPressed)];
     
+    
+    // setup menu button in tabbar
+    
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
