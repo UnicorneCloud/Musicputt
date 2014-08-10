@@ -42,6 +42,12 @@
 #define COCOAPODS_VERSION_MINOR_MONActivityIndicatorView 0
 #define COCOAPODS_VERSION_PATCH_MONActivityIndicatorView 1
 
+// REFrostedViewController
+#define COCOAPODS_POD_AVAILABLE_REFrostedViewController
+#define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
+#define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
+#define COCOAPODS_VERSION_PATCH_REFrostedViewController 6
+
 // RKValueTransformers
 #define COCOAPODS_POD_AVAILABLE_RKValueTransformers
 #define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1

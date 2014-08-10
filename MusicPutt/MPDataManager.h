@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "UICurrentPlayingToolBar.h"
+#import "UITabBarControllerMain.h"
 
 @class MPMusicPlayerController;
 
@@ -53,6 +54,16 @@
  *  Current selected artist for the artist navigation bar.
  */
 @property (strong, nonatomic) MPMediaItem* currentArtist;
+
+/**
+ *  Main tabbar controller
+ */
+@property (strong, nonatomic) UITabBarControllerMain* tabbar;
+
+/**
+ *  Current navigation controller. Use by the main tabbar and main menu to pop all view Controller when swith tabbar.
+ */
+@property (strong, nonatomic) UINavigationController* currentNavController;
 
 /**
  *  Initialise all data for the current execution of the application.

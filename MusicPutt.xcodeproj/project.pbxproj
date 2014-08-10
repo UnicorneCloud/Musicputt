@@ -24,6 +24,9 @@
 		9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9706486819510A0900FA877A /* MediaPlayer.framework */; };
 		9707ADBE198DED4A0093F6F0 /* UIButton+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADBD198DED4A0093F6F0 /* UIButton+Extensions.m */; };
 		9707ADCE198E837E0093F6F0 /* UIProgressView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADCD198E837E0093F6F0 /* UIProgressView+Extensions.m */; };
+		9707ADD1198E886D0093F6F0 /* UITabBarControllerMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADD0198E886D0093F6F0 /* UITabBarControllerMain.m */; };
+		9707ADD6198E98990093F6F0 /* REFrostedViewControllerMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADD5198E98990093F6F0 /* REFrostedViewControllerMain.m */; };
+		9707ADD9198E9FCE0093F6F0 /* UITableViewControllerMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADD8198E9FCE0093F6F0 /* UITableViewControllerMenu.m */; };
 		9711FF951981DFAD00421CF4 /* UIViewControllerStoreAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 9711FF941981DFAD00421CF4 /* UIViewControllerStoreAlbum.m */; };
 		9711FF9A1981EB2900421CF4 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9711FF991981EB2900421CF4 /* iCarousel.m */; };
 		9711FFA01982ED4E00421CF4 /* MPAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 9711FF9F1982ED4E00421CF4 /* MPAlbum.m */; };
@@ -44,6 +47,7 @@
 		976687F5194FBB4D00B5A843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D7194FBB4D00B5A843 /* UIKit.framework */; };
 		976687FD194FBB4D00B5A843 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 976687FB194FBB4D00B5A843 /* InfoPlist.strings */; };
 		976687FF194FBB4D00B5A843 /* MusicPuttTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687FE194FBB4D00B5A843 /* MusicPuttTests.m */; };
+		9787651B199805F80046D3F7 /* UIViewControllerAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9787651A199805F80046D3F7 /* UIViewControllerAbout.m */; };
 		97901B0D197742DC00526A04 /* UIPageViewControllerMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 97901B0C197742DC00526A04 /* UIPageViewControllerMusic.m */; };
 		97901B10197743E100526A04 /* UIViewControllerArtworkPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 97901B0F197743E100526A04 /* UIViewControllerArtworkPage.m */; };
 		97901B13197744F300526A04 /* UIViewControllerArtistPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 97901B12197744F300526A04 /* UIViewControllerArtistPage.m */; };
@@ -98,6 +102,12 @@
 		9707ADBD198DED4A0093F6F0 /* UIButton+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Extensions.m"; path = "MusicPutt/UIButton+Extensions.m"; sourceTree = "<group>"; };
 		9707ADCC198E831C0093F6F0 /* UAProgressView+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UAProgressView+Extensions.h"; path = "MusicPutt/tools/UAProgressView+Extensions.h"; sourceTree = "<group>"; };
 		9707ADCD198E837E0093F6F0 /* UIProgressView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+Extensions.m"; path = "MusicPutt/tools/UIProgressView+Extensions.m"; sourceTree = "<group>"; };
+		9707ADCF198E886D0093F6F0 /* UITabBarControllerMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerMain.h; sourceTree = "<group>"; };
+		9707ADD0198E886D0093F6F0 /* UITabBarControllerMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerMain.m; sourceTree = "<group>"; };
+		9707ADD4198E98990093F6F0 /* REFrostedViewControllerMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedViewControllerMain.h; sourceTree = "<group>"; };
+		9707ADD5198E98990093F6F0 /* REFrostedViewControllerMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedViewControllerMain.m; sourceTree = "<group>"; };
+		9707ADD7198E9FCE0093F6F0 /* UITableViewControllerMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerMenu.h; sourceTree = "<group>"; };
+		9707ADD8198E9FCE0093F6F0 /* UITableViewControllerMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewControllerMenu.m; sourceTree = "<group>"; };
 		9711FF931981DFAD00421CF4 /* UIViewControllerStoreAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerStoreAlbum.h; sourceTree = "<group>"; };
 		9711FF941981DFAD00421CF4 /* UIViewControllerStoreAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerStoreAlbum.m; sourceTree = "<group>"; };
 		9711FF981981EB2900421CF4 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = extern/iCarousel.h; sourceTree = "<group>"; };
@@ -129,6 +139,8 @@
 		976687FA194FBB4D00B5A843 /* MusicPuttTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MusicPuttTests-Info.plist"; sourceTree = "<group>"; };
 		976687FC194FBB4D00B5A843 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		976687FE194FBB4D00B5A843 /* MusicPuttTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPuttTests.m; sourceTree = "<group>"; };
+		97876519199805F80046D3F7 /* UIViewControllerAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerAbout.h; sourceTree = "<group>"; };
+		9787651A199805F80046D3F7 /* UIViewControllerAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAbout.m; sourceTree = "<group>"; };
 		97901B0B197742DC00526A04 /* UIPageViewControllerMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPageViewControllerMusic.h; sourceTree = "<group>"; };
 		97901B0C197742DC00526A04 /* UIPageViewControllerMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPageViewControllerMusic.m; sourceTree = "<group>"; };
 		97901B0E197743E100526A04 /* UIViewControllerArtworkPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerArtworkPage.h; sourceTree = "<group>"; };
@@ -228,6 +240,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9707ADD2198E88810093F6F0 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				9707ADCF198E886D0093F6F0 /* UITabBarControllerMain.h */,
+				9707ADD0198E886D0093F6F0 /* UITabBarControllerMain.m */,
+			);
+			name = TabBarController;
+			sourceTree = "<group>";
+		};
+		9707ADD3198E98740093F6F0 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				9707ADD4198E98990093F6F0 /* REFrostedViewControllerMain.h */,
+				9707ADD5198E98990093F6F0 /* REFrostedViewControllerMain.m */,
+				9707ADD7198E9FCE0093F6F0 /* UITableViewControllerMenu.h */,
+				9707ADD8198E9FCE0093F6F0 /* UITableViewControllerMenu.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
 		9711FF911981DE4A00421CF4 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +305,9 @@
 		971D8C90194FCA2200A348A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				97876518199805DF0046D3F7 /* About */,
+				9707ADD3198E98740093F6F0 /* Menu */,
+				9707ADD2198E88810093F6F0 /* TabBarController */,
 				9711FF911981DE4A00421CF4 /* Store */,
 				97A36CD9195F55E000AF6AF8 /* CurrentPlayingToolBar */,
 				9799978A1960F60500360BF8 /* Songlist */,
@@ -363,6 +398,15 @@
 				976687FB194FBB4D00B5A843 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		97876518199805DF0046D3F7 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				97876519199805F80046D3F7 /* UIViewControllerAbout.h */,
+				9787651A199805F80046D3F7 /* UIViewControllerAbout.m */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		9799978A1960F60500360BF8 /* Songlist */ = {
@@ -674,6 +718,7 @@
 				97570B78198D406F00A542DA /* UIViewControllerStore.m in Sources */,
 				D5B241411982AC8800233953 /* UITableViewCellMediaItemHeader.m in Sources */,
 				97AC0C3C195A493800BA60E6 /* UIViewControllerMusic.m in Sources */,
+				9707ADD9198E9FCE0093F6F0 /* UITableViewControllerMenu.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
 				9707ADBE198DED4A0093F6F0 /* UIButton+Extensions.m in Sources */,
@@ -691,7 +736,9 @@
 				9711FF9A1981EB2900421CF4 /* iCarousel.m in Sources */,
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				9711FFA01982ED4E00421CF4 /* MPAlbum.m in Sources */,
+				9707ADD6198E98990093F6F0 /* REFrostedViewControllerMain.m in Sources */,
 				97ECDFB61972EA4D007889E3 /* MPServiceStore.m in Sources */,
+				9707ADD1198E886D0093F6F0 /* UITabBarControllerMain.m in Sources */,
 				97EC0649197ABC580081E7E1 /* UIViewControllerAlbumPage.m in Sources */,
 				97570B7B198D5D1700A542DA /* UIViewControllerStoreSongs.m in Sources */,
 				97A36CDC195F560D00AF6AF8 /* UICurrentPlayingToolBar.m in Sources */,
@@ -706,6 +753,7 @@
 				97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */,
 				97ECDFB91972EAF6007889E3 /* UIViewControllerToolbar.m in Sources */,
 				D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */,
+				9787651B199805F80046D3F7 /* UIViewControllerAbout.m in Sources */,
 				D5B6DE55196D83040042F072 /* UITableViewCellArtistAlbum.m in Sources */,
 				97A36CCA195F37F000AF6AF8 /* UIViewControllerPlaylist.m in Sources */,
 				97570B7E198D6B7300A542DA /* UITableViewCellSongStore.m in Sources */,
@@ -933,6 +981,7 @@
 				9707ADCA198DF14C0093F6F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		976687CB194FBB4D00B5A843 /* Build configuration list for PBXProject "MusicPutt" */ = {
 			isa = XCConfigurationList;

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MPDataManager.h"
+#import "REFrostedViewController.h"
 
 @interface AppDelegate()
 {
@@ -75,6 +76,46 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [[_mpdatamanager musicplayer] stop];
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+/**
+ *  Return appVersion from project settings
+ *
+ *  @return <#return value description#>
+ */
+- (NSString *) appVersion
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+}
+
+/**
+ *  Return build from projects settings
+ *
+ *  @return <#return value description#>
+ */
+- (NSString *) build
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+}
+
+
+/**
+ *  Return the version and build from the project settings
+ *
+ *  @return <#return value description#>
+ */
+- (NSString *) versionBuild
+{
+    NSString * version = [self appVersion];
+    NSString * build = [self build];
+    
+    NSString * versionBuild = [NSString stringWithFormat: @"v%@", version];
+    
+    if (![version isEqualToString: build]) {
+        versionBuild = [NSString stringWithFormat: @"%@(%@)", versionBuild, build];
+    }
+    
+    return versionBuild;
 }
 
 @end
