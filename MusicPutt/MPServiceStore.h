@@ -128,6 +128,14 @@ typedef enum {
 - (void) queryAlbumWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async;
 
 /**
+ *  Execute query in iTunes Store and return all artist for an searchterm.
+ *
+ *  @param searchTerm see itunes api doc.
+ *  @param async      true if you want asynchronization mode.
+ */
+- (void) queryArtistWithSearchTerm:(NSString*) searchTerm  asynchronizationMode:(BOOL) async;
+
+/**
  *  Build searchterm for find song in iTunes Store.
  *
  *  @param mediaitem MediaItem that you expect find in store.

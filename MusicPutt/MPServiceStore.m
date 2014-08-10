@@ -271,6 +271,22 @@
 }
 
 /**
+ *  Execute query in iTunes Store and return all artist for an searchterm.
+ *
+ *  @param searchTerm see itunes api doc.
+ *  @param async      true if you want asynchronization mode.
+ */
+- (void) queryArtistWithSearchTerm:(NSString*) searchTerm  asynchronizationMode:(BOOL) async
+{
+    if (async) {
+        [self executeSearchAsync:searchTerm addFilter:@"musicArtist" queryType:MPQueryArtistWithSearchTerm];
+    }
+    else {
+        [self executeSearch:searchTerm addFilter:@"musicArtist" queryType:MPQueryArtistWithSearchTerm];
+    }
+}
+
+/**
  *  Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.
  *
  *  @warning Call configureConnection before this function.

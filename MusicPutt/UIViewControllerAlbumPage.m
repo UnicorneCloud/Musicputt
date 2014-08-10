@@ -118,6 +118,10 @@
     NSString* searchTerm = [store buildSearchTermForMusicTrackFromMediaItem:currentplayingitem];
     [store queryMusicTrackWithSearchTerm:searchTerm asynchronizationMode:true];
     
+    // query for the artist
+    [store queryArtistWithSearchTerm:[currentplayingitem valueForProperty:MPMediaItemPropertyAlbumArtist] asynchronizationMode:TRUE];
+    
+    
     // query album media on device
     everything = [MPMediaQuery albumsQuery];
     MPMediaPropertyPredicate *albumPredicate =  [MPMediaPropertyPredicate predicateWithValue:[currentplayingitem valueForProperty:MPMediaItemPropertyAlbumPersistentID]
@@ -323,21 +327,35 @@
     }
     else
     {
-        MPMusicTrack* result = results[0];
+        if (type == MPQueryMusicTrackWithSearchTerm)
+        {
+            MPMusicTrack* result = results[0];
+            
+            // releasedate
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM yyyy"];
+            _year.text = [[formatter stringFromDate:[result releaseDate]] capitalizedString];
+            
+            // genre
+            _genre.text = [result primaryGenreName];
+            
+            // price
+            _price.text = [NSString stringWithFormat:@"%@$", [result collectionPrice]];
+            
+            // set store artist id
+            if ([result artistId]!=nil) {
+                storeArtistId = [result artistId];
+            }
+            
+        }
+        else if (type == MPQueryArtistWithSearchTerm)
+        {
+            MPArtist* result = results[0];
+            
+            // set store artist id
+            storeArtistId = [result artistId];
+        }
         
-        // releasedate
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"MMM yyyy"];
-        _year.text = [[formatter stringFromDate:[result releaseDate]] capitalizedString];
-        
-        // genre
-        _genre.text = [result primaryGenreName];
-        
-        // price
-        _price.text = [NSString stringWithFormat:@"%@$", [result collectionPrice]];
-        
-        // set store artist id
-        storeArtistId = [result artistId];
     }
 }
 
