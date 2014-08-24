@@ -8,6 +8,8 @@ pod 'DZNEmptyDataSet'
 pod 'UAProgressView'
 pod 'BFNavigationBarDrawer'
 pod 'RestKit'
+pod 'MONActivityIndicatorView'
+pod 'REFrostedViewController', '~> 2.4.6'
 
 end
 

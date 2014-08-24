@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UITableViewCellHeaderSection.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UITableViewCellHeaderSection</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+            
+			
+			<NodeRef refid="14"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setAlbumName:</TokenIdentifier>
+			<Abstract type="html">Album&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumName</Declaration>
+			
+			
+			<Anchor>//api/name/albumName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/albumName</TokenIdentifier>
+			<Abstract type="html">Album&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumName</Declaration>
+			
+			
+			<Anchor>//api/name/albumName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/albumName</TokenIdentifier>
+			<Abstract type="html">Album&apos;s name.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumName</Declaration>
+			
+			
+			<Anchor>//api/name/albumName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setInfoAlbum:</TokenIdentifier>
+			<Abstract type="html">Album&apos;s information. There are tracks counte and the duration of the album at present.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *infoAlbum</Declaration>
+			
+			
+			<Anchor>//api/name/infoAlbum</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/infoAlbum</TokenIdentifier>
+			<Abstract type="html">Album&apos;s information. There are tracks counte and the duration of the album at present.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *infoAlbum</Declaration>
+			
+			
+			<Anchor>//api/name/infoAlbum</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/infoAlbum</TokenIdentifier>
+			<Abstract type="html">Album&apos;s information. There are tracks counte and the duration of the album at present.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *infoAlbum</Declaration>
+			
+			
+			<Anchor>//api/name/infoAlbum</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setAlbumYear:</TokenIdentifier>
+			<Abstract type="html">The year of the birth of the album.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumYear</Declaration>
+			
+			
+			<Anchor>//api/name/albumYear</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/albumYear</TokenIdentifier>
+			<Abstract type="html">The year of the birth of the album.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumYear</Declaration>
+			
+			
+			<Anchor>//api/name/albumYear</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/albumYear</TokenIdentifier>
+			<Abstract type="html">The year of the birth of the album.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *albumYear</Declaration>
+			
+			
+			<Anchor>//api/name/albumYear</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/setImageHeader:</TokenIdentifier>
+			<Abstract type="html">Album&apos;s cover.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *imageHeader</Declaration>
+			
+			
+			<Anchor>//api/name/imageHeader</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewCellHeaderSection/imageHeader</TokenIdentifier>
+			<Abstract type="html">Album&apos;s cover.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *imageHeader</Declaration>
+			
+			
+			<Anchor>//api/name/imageHeader</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewCellHeaderSection/imageHeader</TokenIdentifier>
+			<Abstract type="html">Album&apos;s cover.</Abstract>
+			<DeclaredIn>UITableViewCellHeaderSection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *imageHeader</Declaration>
+			
+			
+			<Anchor>//api/name/imageHeader</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

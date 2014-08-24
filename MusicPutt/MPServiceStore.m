@@ -204,7 +204,22 @@
     else {
         [self executeSearch:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithAlbumId];
     }
-    
+}
+
+/**
+ *  Execute query in iTunes Store and return music track with this artist id to the delagate.
+ *
+ *  @param itemId   id of the artist to find
+ *  @param async true if you want asynchronization mode
+ */
+- (void) queryMusicTrackWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async
+{
+    if (async) {
+        [self executeSearchAsync:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithArtistId];
+    }
+    else {
+        [self executeSearch:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithArtistId];
+    }
 }
 
 /**
@@ -256,12 +271,29 @@
 }
 
 /**
+ *  Execute query in iTunes Store and return all artist for an searchterm.
+ *
+ *  @param searchTerm see itunes api doc.
+ *  @param async      true if you want asynchronization mode.
+ */
+- (void) queryArtistWithSearchTerm:(NSString*) searchTerm  asynchronizationMode:(BOOL) async
+{
+    if (async) {
+        [self executeSearchAsync:searchTerm addFilter:@"musicArtist" queryType:MPQueryArtistWithSearchTerm];
+    }
+    else {
+        [self executeSearch:searchTerm addFilter:@"musicArtist" queryType:MPQueryArtistWithSearchTerm];
+    }
+}
+
+/**
  *  Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.
  *
  *  @warning Call configureConnection before this function.
  *
  *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param type Type of query.
  */
 -(void) executeSearchAsync:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
 {
@@ -271,6 +303,7 @@
                        NSURLRequest *request;
                        if (type == MPQueryMusicTrackWithId ||
                            type == MPQueryMusicTrackWithAlbumId ||
+                           type == MPQueryMusicTrackWithArtistId ||
                            type == MPQueryArtistWithId ||
                            type == MPQueryAlbumWithId ||
                            type == MPQueryAlbumWithArtistId) {
@@ -313,12 +346,14 @@
  *
  *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param type Type of query.
  */
 -(void) executeSearch:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
 {
     NSURLRequest *request;
     if (type == MPQueryMusicTrackWithId ||
         type == MPQueryMusicTrackWithAlbumId ||
+        type == MPQueryMusicTrackWithArtistId ||
         type == MPQueryArtistWithId ||
         type == MPQueryAlbumWithId ||
         type == MPQueryAlbumWithArtistId) {
@@ -364,7 +399,7 @@
 /**
  *  Build valid URL to search on itune store api with a unique id of item.
  *
- *  @param searchTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+ *  @param itemId id of a item in store
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *
  *  @return valid url request to call RKObjectRequestOperation initWithRequest.

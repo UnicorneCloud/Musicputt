@@ -1,5 +1,5 @@
 //
-//  UITableViewCellArtistStoreSong.h
+//  UITableViewCellAlbumStoreSong.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-29.
@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "MPMusicTrack.h"
 
-@interface UITableViewCellArtistStoreSong : UITableViewCell
+
+/**
+ *  Cell for the store album module
+ */
+@interface UITableViewCellAlbumStoreSong : UITableViewCell
 
 /**
  *  Set the information of the media item (name, track no. and duration).
  *
- *  @param artistAlbumItem : The media item to set.
+ *  @param mediaitem : The media item to set.
  */
 - (void)setMediaItem: (MPMusicTrack*)mediaitem;
 

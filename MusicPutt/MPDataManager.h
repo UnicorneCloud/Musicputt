@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "UICurrentPlayingToolBar.h"
+#import "UITabBarControllerMain.h"
 
 @class MPMusicPlayerController;
 
@@ -55,11 +56,38 @@
 @property (strong, nonatomic) MPMediaItem* currentArtist;
 
 /**
+ *  Main tabbar controller
+ */
+@property (strong, nonatomic) UITabBarControllerMain* tabbar;
+
+/**
+ *  Current navigation controller. Use by the main tabbar and main menu to pop all view Controller when swith tabbar.
+ */
+@property (strong, nonatomic) UINavigationController* currentNavController;
+
+/**
  *  Initialise all data for the current execution of the application.
  *
  *  @return True if the initialization succesed.
  */
 - (bool) initialise;
+
+/**
+ *  Prepare application to gone in background.
+ */
+- (void) prepareAppDidEnterBackground;
+
+/**
+ *  Prepare application to becone active
+ */
+-(void) prepareAppDidBecomeActive;
+
+/**
+ *  Return true if the mediaPlayer is initialized.
+ *
+ *  @return Return true if media player is initialized.
+ */
+-(bool) isMediaPlayerInitialized;
 
 /**
  *  Indicate if the UIMusicViewController is displayed. When the UIMusicViewController

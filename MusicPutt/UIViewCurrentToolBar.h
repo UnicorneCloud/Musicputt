@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UAProgressView.h"
+#import "UAProgressView+Extensions.h"
 
 
 /**

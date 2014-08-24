@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MPServiceStore.html">
+	<File path="Classes/MPDataManager.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MPServiceStore</TokenIdentifier>
-			<Abstract type="html">Service for access to iTunes Store.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MPDataManager</TokenIdentifier>
+			<Abstract type="html">MPDataManager is the main application data manager. This class maintain all data for
+the current execution.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
             
 			
 			<NodeRef refid="4"/>
@@ -13,166 +14,308 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithSearchTerm:setDelegate:</TokenIdentifier>
-			<Abstract type="html">Execute query in iTunes Store and return results to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicplayer:</TokenIdentifier>
+			<Abstract type="html">Main music player controller.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
 			
-			<Declaration>- (void)queryMusicTrackWithSearchTerm:(NSString *)searchTerm setDelegate:(id)anObject</Declaration>
+			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			
+			
+			<Anchor>//api/name/musicplayer</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/musicplayer</TokenIdentifier>
+			<Abstract type="html">Main music player controller.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			
+			
+			<Anchor>//api/name/musicplayer</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/musicplayer</TokenIdentifier>
+			<Abstract type="html">Main music player controller.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			
+			
+			<Anchor>//api/name/musicplayer</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlayingToolbar:</TokenIdentifier>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlayingToolbar</TokenIdentifier>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlayingToolbar</TokenIdentifier>
+			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlaylist:</TokenIdentifier>
+			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlaylist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlaylist</TokenIdentifier>
+			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlaylist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlaylist</TokenIdentifier>
+			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			
+			
+			<Anchor>//api/name/currentPlaylist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentSonglist:</TokenIdentifier>
+			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			
+			
+			<Anchor>//api/name/currentSonglist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentSonglist</TokenIdentifier>
+			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			
+			
+			<Anchor>//api/name/currentSonglist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentSonglist</TokenIdentifier>
+			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			
+			
+			<Anchor>//api/name/currentSonglist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtistCollection:</TokenIdentifier>
+			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtistCollection</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtistCollection</TokenIdentifier>
+			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtistCollection</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtistCollection</TokenIdentifier>
+			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtistCollection</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentAlbumCollection:</TokenIdentifier>
+			<Abstract type="html">Current selected album collection for the album navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentAlbumCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentAlbumCollection</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentAlbumCollection</TokenIdentifier>
+			<Abstract type="html">Current selected album collection for the album navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentAlbumCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentAlbumCollection</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentAlbumCollection</TokenIdentifier>
+			<Abstract type="html">Current selected album collection for the album navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentAlbumCollection</Declaration>
+			
+			
+			<Anchor>//api/name/currentAlbumCollection</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtist:</TokenIdentifier>
+			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtist</TokenIdentifier>
+			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtist</TokenIdentifier>
+			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			
+			
+			<Anchor>//api/name/currentArtist</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialise</TokenIdentifier>
+			<Abstract type="html">Initialise all data for the current execution of the application.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>- (bool)initialise</Declaration>
+			
+			<ReturnValue><Abstract type="html">True if the initialization succesed.</Abstract></ReturnValue>
+			<Anchor>//api/name/initialise</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/isMusicViewControllerVisible</TokenIdentifier>
+			<Abstract type="html">Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
+is displayed, UICurrentPlayingToolBar is hidden.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>- (bool)isMusicViewControllerVisible</Declaration>
+			
+			<ReturnValue><Abstract type="html">True if UIMusicViewController displayed</Abstract></ReturnValue>
+			<Anchor>//api/name/isMusicViewControllerVisible</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicViewControllerVisible:</TokenIdentifier>
+			<Abstract type="html">Set the status of the visibility of the UIMusicViewController.</Abstract>
+			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			
+			<Declaration>- (void)setMusicViewControllerVisible:(bool)visible</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>anObject</Name>
-					<Abstract type="html">Delagate to receive the result. Must respect MPServiceStoreDelegate.</Abstract>
+					<Name>visible</Name>
+					<Abstract type="html">True to indicate the UIMusicViewController displayed.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/queryMusicTrackWithSearchTerm:setDelegate:</Anchor>
+			<Anchor>//api/name/setMusicViewControllerVisible:</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithId:setDelegate:</TokenIdentifier>
-			<Abstract type="html">Execute query in iTunes Store and return music track with this id to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialiseMediaPlayer</TokenIdentifier>
+			<Abstract type="html">Initialization of the media player.</Abstract>
+			<DeclaredIn>MPDataManager.m</DeclaredIn>
 			
-			<Declaration>- (void)queryMusicTrackWithId:(NSString *)itemId setDelegate:(id)anObject</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>itemId</Name>
-					<Abstract type="html">id of the music track to find</Abstract>
-				</Parameter><Parameter>
-					<Name>anObject</Name>
-					<Abstract type="html">Delegate who recieve the result. Must respect MPServiceStoreDelegate.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (bool)initialiseMediaPlayer</Declaration>
 			
-			<Anchor>//api/name/queryMusicTrackWithId:setDelegate:</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/executeQuery:searchTerm:setDelegate:</TokenIdentifier>
-			<Abstract type="html">Execute asynchrone query in itunes store.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
-			
-			<Declaration>- (void)executeQuery:(MPServiceStoreQueryType)type searchTerm:(NSString *)searchTerm setDelegate:(id)anObject</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>type</Name>
-					<Abstract type="html">Indicate type of the query. See: MPServiceStoreQueryType</Abstract>
-				</Parameter><Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">searchTerm or itemId for query with item</Abstract>
-				</Parameter><Parameter>
-					<Name>anObject</Name>
-					<Abstract type="html">the object delegate that receive result</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/executeQuery:searchTerm:setDelegate:</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/buildSearchTermFromMediaItem:</TokenIdentifier>
-			<Abstract type="html">Build searchterm for find song in iTunes Store.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
-			
-			<Declaration>- (NSString *)buildSearchTermFromMediaItem:(MPMediaItem *)mediaitem</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>mediaitem</Name>
-					<Abstract type="html">MediaItem that you expect find in store.</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">searchTerm to find song.</Abstract></ReturnValue>
-			<Anchor>//api/name/buildSearchTermFromMediaItem:</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/init</TokenIdentifier>
-			<Abstract type="html">Constructor</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
-			
-			<Declaration>- (id)init</Declaration>
-			
-			<ReturnValue><Abstract type="html">return instance of this object</Abstract></ReturnValue>
-			<Anchor>//api/name/init</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/configureConnection</TokenIdentifier>
-			<Abstract type="html">Configuration of the connection with the iTunes Store API.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
-			
-			<Declaration>- (void)configureConnection</Declaration>
-			
-			
-			<Anchor>//api/name/configureConnection</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/executeSearch:addFilter:queryType:delegate:</TokenIdentifier>
-			<Abstract type="html">Make request to the iTunes Store with searchTerm and filterTerm.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
-			
-			<Declaration>- (void)executeSearch:(NSString *)searchTerm addFilter:(NSString *)filterTerm queryType:(MPServiceStoreQueryType)type delegate:(id)anObject</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>filterTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/executeSearch:addFilter:queryType:delegate:</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/createURLForCallWithSearchTerm:andFilter:</TokenIdentifier>
-			<Abstract type="html">Build valid URL to search on itune store api.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
-			
-			<Declaration>- (NSURL *)createURLForCallWithSearchTerm:(NSString *)searchTerm andFilter:(NSString *)filterTerm</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>filterTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">valid url request to call RKObjectRequestOperation initWithRequest.</Abstract></ReturnValue>
-			<Anchor>//api/name/createURLForCallWithSearchTerm:andFilter:</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/createURLForCallWithId:andFilter:</TokenIdentifier>
-			<Abstract type="html">Build valid URL to search on itune store api with a unique id of item.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
-			
-			<Declaration>- (NSURL *)createURLForCallWithId:(NSString *)itemId andFilter:(NSString *)filterTerm</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>filterTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">valid url request to call RKObjectRequestOperation initWithRequest.</Abstract></ReturnValue>
-			<Anchor>//api/name/createURLForCallWithId:andFilter:</Anchor>
+			<ReturnValue><Abstract type="html">True if initialization succesed.</Abstract></ReturnValue>
+			<Anchor>//api/name/initialiseMediaPlayer</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		

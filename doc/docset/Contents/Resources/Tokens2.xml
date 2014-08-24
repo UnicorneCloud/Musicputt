@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MPDataManager.html">
+	<File path="Classes/MPAlbum.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MPDataManager</TokenIdentifier>
-			<Abstract type="html">MPDataManager is the main application data manager. This class maintain all data for
-the current execution.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MPAlbum</TokenIdentifier>
+			<Abstract type="html">MusicTrack receive from the iTunes Search API.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
             
 			
 			<NodeRef refid="2"/>
@@ -14,272 +13,686 @@ the current execution.</Abstract>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicplayer:</TokenIdentifier>
-			<Abstract type="html">Main music player controller.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setWrapperType:</TokenIdentifier>
+			<Abstract type="html">The name of the object returned by the search request.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
 			
-			<Anchor>//api/name/musicplayer</Anchor>
+			<Anchor>//api/name/wrapperType</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/musicplayer</TokenIdentifier>
-			<Abstract type="html">Main music player controller.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/wrapperType</TokenIdentifier>
+			<Abstract type="html">The name of the object returned by the search request.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
 			
-			<Anchor>//api/name/musicplayer</Anchor>
+			<Anchor>//api/name/wrapperType</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/musicplayer</TokenIdentifier>
-			<Abstract type="html">Main music player controller.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/wrapperType</TokenIdentifier>
+			<Abstract type="html">The name of the object returned by the search request.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
 			
-			<Anchor>//api/name/musicplayer</Anchor>
+			<Anchor>//api/name/wrapperType</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlayingToolbar:</TokenIdentifier>
-			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCollectionType:</TokenIdentifier>
+			<Abstract type="html">collection type must be Album</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionType</Declaration>
 			
 			
-			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+			<Anchor>//api/name/collectionType</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlayingToolbar</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/collectionType</TokenIdentifier>
+			<Abstract type="html">collection type must be Album</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionType</Declaration>
 			
 			
-			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+			<Anchor>//api/name/collectionType</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlayingToolbar</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/collectionType</TokenIdentifier>
+			<Abstract type="html">collection type must be Album</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionType</Declaration>
 			
 			
-			<Anchor>//api/name/currentPlayingToolbar</Anchor>
+			<Anchor>//api/name/collectionType</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlaylist:</TokenIdentifier>
-			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setArtistId:</TokenIdentifier>
+			<Abstract type="html">unique artist id</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
 			
-			<Anchor>//api/name/currentPlaylist</Anchor>
+			<Anchor>//api/name/artistId</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlaylist</TokenIdentifier>
-			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/artistId</TokenIdentifier>
+			<Abstract type="html">unique artist id</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
 			
-			<Anchor>//api/name/currentPlaylist</Anchor>
+			<Anchor>//api/name/artistId</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlaylist</TokenIdentifier>
-			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/artistId</TokenIdentifier>
+			<Abstract type="html">unique artist id</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
 			
-			<Anchor>//api/name/currentPlaylist</Anchor>
+			<Anchor>//api/name/artistId</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentSonglist:</TokenIdentifier>
-			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCollectionId:</TokenIdentifier>
+			<Abstract type="html">unique collection id (album)</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionId</Declaration>
 			
 			
-			<Anchor>//api/name/currentSonglist</Anchor>
+			<Anchor>//api/name/collectionId</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentSonglist</TokenIdentifier>
-			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/collectionId</TokenIdentifier>
+			<Abstract type="html">unique collection id (album)</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionId</Declaration>
 			
 			
-			<Anchor>//api/name/currentSonglist</Anchor>
+			<Anchor>//api/name/collectionId</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentSonglist</TokenIdentifier>
-			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/collectionId</TokenIdentifier>
+			<Abstract type="html">unique collection id (album)</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionId</Declaration>
 			
 			
-			<Anchor>//api/name/currentSonglist</Anchor>
+			<Anchor>//api/name/collectionId</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtistCollection:</TokenIdentifier>
-			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setArtistName:</TokenIdentifier>
+			<Abstract type="html">Astist&apos;s name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
 			
 			
-			<Anchor>//api/name/currentArtistCollection</Anchor>
+			<Anchor>//api/name/artistName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtistCollection</TokenIdentifier>
-			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/artistName</TokenIdentifier>
+			<Abstract type="html">Astist&apos;s name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
 			
 			
-			<Anchor>//api/name/currentArtistCollection</Anchor>
+			<Anchor>//api/name/artistName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtistCollection</TokenIdentifier>
-			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/artistName</TokenIdentifier>
+			<Abstract type="html">Astist&apos;s name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
 			
 			
-			<Anchor>//api/name/currentArtistCollection</Anchor>
+			<Anchor>//api/name/artistName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtist:</TokenIdentifier>
-			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCollectionName:</TokenIdentifier>
+			<Abstract type="html">Collection&apos;s name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionName</Declaration>
 			
 			
-			<Anchor>//api/name/currentArtist</Anchor>
+			<Anchor>//api/name/collectionName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtist</TokenIdentifier>
-			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/collectionName</TokenIdentifier>
+			<Abstract type="html">Collection&apos;s name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionName</Declaration>
 			
 			
-			<Anchor>//api/name/currentArtist</Anchor>
+			<Anchor>//api/name/collectionName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtist</TokenIdentifier>
-			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/collectionName</TokenIdentifier>
+			<Abstract type="html">Collection&apos;s name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionName</Declaration>
 			
 			
-			<Anchor>//api/name/currentArtist</Anchor>
+			<Anchor>//api/name/collectionName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialise</TokenIdentifier>
-			<Abstract type="html">Initialise all data for the current execution of the application.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCollectionCensoredName:</TokenIdentifier>
+			<Abstract type="html">Collection&apos;s censored name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>- (bool)initialise</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionCensoredName</Declaration>
 			
-			<ReturnValue><Abstract type="html">True if the initialization succesed.</Abstract></ReturnValue>
-			<Anchor>//api/name/initialise</Anchor>
+			
+			<Anchor>//api/name/collectionCensoredName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/isMusicViewControllerVisible</TokenIdentifier>
-			<Abstract type="html">Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
-is displayed, UICurrentPlayingToolBar is hidden.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/collectionCensoredName</TokenIdentifier>
+			<Abstract type="html">Collection&apos;s censored name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>- (bool)isMusicViewControllerVisible</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionCensoredName</Declaration>
 			
-			<ReturnValue><Abstract type="html">True if UIMusicViewController displayed</Abstract></ReturnValue>
-			<Anchor>//api/name/isMusicViewControllerVisible</Anchor>
+			
+			<Anchor>//api/name/collectionCensoredName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicViewControllerVisible:</TokenIdentifier>
-			<Abstract type="html">Set the status of the visibility of the UIMusicViewController.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/collectionCensoredName</TokenIdentifier>
+			<Abstract type="html">Collection&apos;s censored name</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>- (void)setMusicViewControllerVisible:(bool)visible</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>visible</Name>
-					<Abstract type="html">True to indicate the UIMusicViewController displayed.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *collectionCensoredName</Declaration>
 			
-			<Anchor>//api/name/setMusicViewControllerVisible:</Anchor>
+			
+			<Anchor>//api/name/collectionCensoredName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialiseMediaPlayer</TokenIdentifier>
-			<Abstract type="html">Initialization of the media player.</Abstract>
-			<DeclaredIn>MPDataManager.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setArtistViewUrl:</TokenIdentifier>
+			<Abstract type="html">Artist view url</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
 			
-			<Declaration>- (bool)initialiseMediaPlayer</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *artistViewUrl</Declaration>
 			
-			<ReturnValue><Abstract type="html">True if initialization succesed.</Abstract></ReturnValue>
-			<Anchor>//api/name/initialiseMediaPlayer</Anchor>
+			
+			<Anchor>//api/name/artistViewUrl</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/artistViewUrl</TokenIdentifier>
+			<Abstract type="html">Artist view url</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistViewUrl</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/artistViewUrl</TokenIdentifier>
+			<Abstract type="html">Artist view url</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistViewUrl</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCollectionViewUrl:</TokenIdentifier>
+			<Abstract type="html">Collection view url</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/collectionViewUrl</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/collectionViewUrl</TokenIdentifier>
+			<Abstract type="html">Collection view url</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/collectionViewUrl</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/collectionViewUrl</TokenIdentifier>
+			<Abstract type="html">Collection view url</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/collectionViewUrl</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setArtworkUrl60:</TokenIdentifier>
+			<Abstract type="html">Album artwork 60 px.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl60</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl60</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/artworkUrl60</TokenIdentifier>
+			<Abstract type="html">Album artwork 60 px.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl60</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl60</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/artworkUrl60</TokenIdentifier>
+			<Abstract type="html">Album artwork 60 px.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl60</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl60</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setArtworkUrl100:</TokenIdentifier>
+			<Abstract type="html">Album artwork 100 px.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl100</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl100</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/artworkUrl100</TokenIdentifier>
+			<Abstract type="html">Album artwork 100 px.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl100</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl100</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/artworkUrl100</TokenIdentifier>
+			<Abstract type="html">Album artwork 100 px.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl100</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl100</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCollectionPrice:</TokenIdentifier>
+			<Abstract type="html">Collection price</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionPrice</Declaration>
+			
+			
+			<Anchor>//api/name/collectionPrice</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/collectionPrice</TokenIdentifier>
+			<Abstract type="html">Collection price</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionPrice</Declaration>
+			
+			
+			<Anchor>//api/name/collectionPrice</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/collectionPrice</TokenIdentifier>
+			<Abstract type="html">Collection price</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionPrice</Declaration>
+			
+			
+			<Anchor>//api/name/collectionPrice</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCollectionExplicitness:</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/collectionExplicitness</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/collectionExplicitness</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/collectionExplicitness</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/collectionExplicitness</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/collectionExplicitness</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setTrackCount:</TokenIdentifier>
+			<Abstract type="html">Nb track on album</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackCount</Declaration>
+			
+			
+			<Anchor>//api/name/trackCount</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/trackCount</TokenIdentifier>
+			<Abstract type="html">Nb track on album</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackCount</Declaration>
+			
+			
+			<Anchor>//api/name/trackCount</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/trackCount</TokenIdentifier>
+			<Abstract type="html">Nb track on album</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackCount</Declaration>
+			
+			
+			<Anchor>//api/name/trackCount</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCopyright:</TokenIdentifier>
+			<Abstract type="html">Copyright</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *copyright</Declaration>
+			
+			
+			<Anchor>//api/name/copyright</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/copyright</TokenIdentifier>
+			<Abstract type="html">Copyright</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *copyright</Declaration>
+			
+			
+			<Anchor>//api/name/copyright</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/copyright</TokenIdentifier>
+			<Abstract type="html">Copyright</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *copyright</Declaration>
+			
+			
+			<Anchor>//api/name/copyright</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCountry:</TokenIdentifier>
+			<Abstract type="html">Store country</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *country</Declaration>
+			
+			
+			<Anchor>//api/name/country</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/country</TokenIdentifier>
+			<Abstract type="html">Store country</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *country</Declaration>
+			
+			
+			<Anchor>//api/name/country</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/country</TokenIdentifier>
+			<Abstract type="html">Store country</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *country</Declaration>
+			
+			
+			<Anchor>//api/name/country</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setCurrency:</TokenIdentifier>
+			<Abstract type="html">Currency price</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/currency</TokenIdentifier>
+			<Abstract type="html">Currency price</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/currency</TokenIdentifier>
+			<Abstract type="html">Currency price</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setReleaseDate:</TokenIdentifier>
+			<Abstract type="html">Release date</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSDate *releaseDate</Declaration>
+			
+			
+			<Anchor>//api/name/releaseDate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/releaseDate</TokenIdentifier>
+			<Abstract type="html">Release date</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSDate *releaseDate</Declaration>
+			
+			
+			<Anchor>//api/name/releaseDate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/releaseDate</TokenIdentifier>
+			<Abstract type="html">Release date</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSDate *releaseDate</Declaration>
+			
+			
+			<Anchor>//api/name/releaseDate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/setPrimaryGenreName:</TokenIdentifier>
+			<Abstract type="html">Primary genre for this album collection</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MPAlbum/primaryGenreName</TokenIdentifier>
+			<Abstract type="html">Primary genre for this album collection</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MPAlbum/primaryGenreName</TokenIdentifier>
+			<Abstract type="html">Primary genre for this album collection</Abstract>
+			<DeclaredIn>MPAlbum.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		

@@ -1,14 +1,14 @@
 //
-//  UITableViewCellArtistStoreSong.m
+//  UITableViewCellAlbumStoreSong.m
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-29.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "UITableViewCellArtistStoreSong.h"
+#import "UITableViewCellAlbumStoreSong.h"
 
-@interface UITableViewCellArtistStoreSong ()
+@interface UITableViewCellAlbumStoreSong ()
 {
     MPMusicTrack* _mediaitem;
 }
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation UITableViewCellArtistStoreSong
+@implementation UITableViewCellAlbumStoreSong
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

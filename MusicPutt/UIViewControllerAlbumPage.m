@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "UITableViewCellAlbumPageSong.h"
 #import "MPServiceStore.h"
-#import "UIViewControllerStoreArtist.h"
+#import "UIViewControllerStore.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -117,6 +117,10 @@
     [store setDelegate:self];
     NSString* searchTerm = [store buildSearchTermForMusicTrackFromMediaItem:currentplayingitem];
     [store queryMusicTrackWithSearchTerm:searchTerm asynchronizationMode:true];
+    
+    // query for the artist
+    [store queryArtistWithSearchTerm:[currentplayingitem valueForProperty:MPMediaItemPropertyAlbumArtist] asynchronizationMode:TRUE];
+    
     
     // query album media on device
     everything = [MPMediaQuery albumsQuery];
@@ -294,7 +298,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerStoreArtist *storeView = [sb instantiateViewControllerWithIdentifier:@"StoreArtist"];
+    UIViewControllerStore *storeView = [sb instantiateViewControllerWithIdentifier:@"Store"];
     [storeView setStoreArtistId:storeArtistId];
     [self.navigationController pushViewController:storeView animated:YES];
 }
@@ -323,21 +327,35 @@
     }
     else
     {
-        MPMusicTrack* result = results[0];
+        if (type == MPQueryMusicTrackWithSearchTerm)
+        {
+            MPMusicTrack* result = results[0];
+            
+            // releasedate
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM yyyy"];
+            _year.text = [[formatter stringFromDate:[result releaseDate]] capitalizedString];
+            
+            // genre
+            _genre.text = [result primaryGenreName];
+            
+            // price
+            _price.text = [NSString stringWithFormat:@"%@$", [result collectionPrice]];
+            
+            // set store artist id
+            if ([result artistId]!=nil) {
+                storeArtistId = [result artistId];
+            }
+            
+        }
+        else if (type == MPQueryArtistWithSearchTerm)
+        {
+            MPArtist* result = results[0];
+            
+            // set store artist id
+            storeArtistId = [result artistId];
+        }
         
-        // releasedate
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"MMM yyyy"];
-        _year.text = [[formatter stringFromDate:[result releaseDate]] capitalizedString];
-        
-        // genre
-        _genre.text = [result primaryGenreName];
-        
-        // price
-        _price.text = [NSString stringWithFormat:@"%@$", [result collectionPrice]];
-        
-        // set store artist id
-        storeArtistId = [result artistId];
     }
 }
 
