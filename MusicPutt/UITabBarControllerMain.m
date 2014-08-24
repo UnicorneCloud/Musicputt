@@ -43,7 +43,9 @@
     self.del.mpdatamanager.currentNavController = (UINavigationController *) [self.viewControllers objectAtIndex:0];
     
     // setup PanGesture for the main menu
-    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
+    // WARNING: cause some strang effect with list. Sometimes the menu popup when we eant to go down in list.
+    // for this reason, I temporary disabled the panGesture for the main menu.
+    // [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
     
     self.delegate = self;
 }
