@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MPMediaQuery.h>
 
-@interface UIViewControllerArtist ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
+@interface UIViewControllerArtist ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 {
     MPMediaQuery* everything;             // result of current query
     NSArray*      artists;
@@ -19,6 +19,7 @@
 }
 @property AppDelegate* del;
 @property (weak, nonatomic) IBOutlet UITableView*  tableView;
+@property (nonatomic) NSMutableArray *searchResults;
 @end
 
 @implementation UIViewControllerArtist
@@ -51,6 +52,13 @@
 
     artists = [everything collections];
     
+    self.searchResults = [NSMutableArray arrayWithCapacity:[artists count]];
+    
+    // scroll the search bar off-screen
+    //[self hideSearchBar];
+    
+    self.tableView.tableHeaderView = self.searchDisplayController.searchBar;
+    
     // Initiate the dictionnairy and fill it.
     artistDictionary = [NSMutableDictionary dictionary];
     NSMutableSet *tempSet = [NSMutableSet set];
@@ -68,6 +76,11 @@
     }];
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView setContentOffset:CGPointMake(0, 44)];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -77,15 +90,90 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return artists.count;
+    
+    /*
+	 If the requesting table view is the search display controller's table view, return the count of
+     the filtered list, otherwise return the count of the main list.
+	 */
+	if (tableView == self.searchDisplayController.searchResultsTableView)
+	{
+        return [self.searchResults count];
+    }
+	else
+	{
+        return artists.count;
+    }
 }
 
 - (UITableViewCellArtist*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCellArtist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellArtist"];
-    [cell setArtistItem: artists[indexPath.row] withDictionnary:artistDictionary];
+    UITableViewCellArtist* cell = [self.tableView dequeueReusableCellWithIdentifier:@"CellArtist"];
 
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+	{
+        [cell setArtistItem: self.searchResults[indexPath.row] withDictionnary:artistDictionary];
+    }
+	else
+	{
+        [cell setArtistItem: artists[indexPath.row] withDictionnary:artistDictionary];
+    }
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+#pragma mark - Content Filtering
+
+- (void)updateFilteredContentForArtist:(NSString *)artistName
+{
+
+    [self.searchResults removeAllObjects]; // First clear the filtered array.
+	/*
+	 Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
+	 */
+    for (MPMediaItemCollection *artistCollection in artists)
+	{
+        NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
+        MPMediaItem* artistRepresentativeItem = [(MPMediaItemCollection*)artistCollection representativeItem];
+        NSString *name = [artistRepresentativeItem valueForProperty:MPMediaItemPropertyArtist];
+        NSRange artistNameRange = NSMakeRange(0, name.length);
+        NSRange foundRange = [name rangeOfString:artistName options:searchOptions range:artistNameRange];
+        if (foundRange.length > 0)
+        {
+            [self.searchResults addObject:artistCollection];
+        }
+	}
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self updateFilteredContentForArtist:searchString];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    //[self viewWillAppear:YES];
+    [self.tableView setContentOffset:CGPointMake(0, 44) animated:YES];
+    [self.searchDisplayController.searchBar resignFirstResponder];
+}
+
+-(IBAction)toggleSearch:(id)sender
+{
+    // hide the search bar when it's showed
+    if (self.tableView.bounds.origin.y == -64) {
+        [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.frame.size.height-70, 1, 1) animated:YES];
+    }
+    else
+    {
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    }
 }
 
 #pragma mark - AMWaveViewController

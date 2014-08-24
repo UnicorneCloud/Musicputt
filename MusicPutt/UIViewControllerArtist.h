@@ -10,5 +10,4 @@
 #import "UIViewControllerToolbar.h"
 
 @interface UIViewControllerArtist : UIViewControllerToolbar
-
 @end

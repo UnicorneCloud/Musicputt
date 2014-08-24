@@ -41,7 +41,7 @@
     
     // setup title
     [self setTitle:@"Albums"];
-    
+        
     // setup tableview
     toolbarTableView = _tableView;
     

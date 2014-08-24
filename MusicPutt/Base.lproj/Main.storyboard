@@ -955,9 +955,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" text="" id="b7Z-Ev-GWv">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="DMV-5q-SQk" id="54Y-sn-XGu"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CellArtist" rowHeight="60" id="QZb-6Y-TYo" customClass="UITableViewCellArtist">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="130" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QZb-6Y-TYo" id="R4I-kf-Z7t">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
@@ -1035,12 +1043,37 @@
                             <constraint firstAttribute="trailing" secondItem="Yk4-9v-8w2" secondAttribute="trailing" id="myF-MK-uXh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Artists" id="uv7-8s-kc1"/>
+                    <navigationItem key="navigationItem" title="Artists" id="uv7-8s-kc1">
+                        <barButtonItem key="rightBarButtonItem" image="search" id="ezE-NO-evB">
+                            <inset key="imageInsets" minX="44" minY="23" maxX="0.0" maxY="20"/>
+                            <connections>
+                                <action selector="toggleSearch:" destination="DMV-5q-SQk" id="Bat-QM-Fnk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="searchDisplayController" destination="rI4-1v-qVD" id="ORB-HT-dMg"/>
                         <outlet property="tableView" destination="Yk4-9v-8w2" id="OWv-JA-kxH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Fc-mf-ZO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="AEw-fs-e5x">
+                    <connections>
+                        <outlet property="delegate" destination="DMV-5q-SQk" id="ckM-KF-7Uj"/>
+                        <outlet property="searchContentsController" destination="DMV-5q-SQk" id="64e-Y9-FeM"/>
+                        <outlet property="searchResultsDataSource" destination="DMV-5q-SQk" id="C2Z-Jf-CDv"/>
+                        <outlet property="searchResultsDelegate" destination="DMV-5q-SQk" id="rBl-39-pD6"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="rI4-1v-qVD">
+                    <connections>
+                        <outlet property="delegate" destination="DMV-5q-SQk" id="z8b-DV-gK7"/>
+                        <outlet property="searchBar" destination="b7Z-Ev-GWv" id="GzE-SR-eyJ"/>
+                        <outlet property="searchContentsController" destination="DMV-5q-SQk" id="NuE-7d-dBv"/>
+                        <outlet property="searchResultsDataSource" destination="DMV-5q-SQk" id="oe9-QG-Iy9"/>
+                        <outlet property="searchResultsDelegate" destination="DMV-5q-SQk" id="mcD-Ry-4HV"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1997" y="774"/>
         </scene>
@@ -1518,6 +1551,7 @@
         <image name="playlist" width="25" height="25"/>
         <image name="repeat" width="64" height="64"/>
         <image name="rewind" width="64" height="64"/>
+        <image name="search" width="64" height="64"/>
         <image name="share" width="64" height="64"/>
         <image name="shuffle" width="64" height="64"/>
         <image name="songlist" width="25" height="25"/>
@@ -1528,6 +1562,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JhZ-jo-ybM"/>
+        <segue reference="DLh-Kj-oM3"/>
     </inferredMetricsTieBreakers>
 </document>
