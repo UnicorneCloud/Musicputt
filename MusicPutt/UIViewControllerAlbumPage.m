@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "UITableViewCellAlbumPageSong.h"
 #import "MPServiceStore.h"
-#import "UIViewControllerStore.h"
+#import "UIViewControllerArtistStore.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -282,8 +282,6 @@
     
     [[[self.del mpdatamanager] musicplayer] play];
     
-    self.del.mpdatamanager.currentSonglist = list;
-    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     return indexPath;
@@ -298,7 +296,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerStore *storeView = [sb instantiateViewControllerWithIdentifier:@"Store"];
+    UIViewControllerArtistStore *storeView = [sb instantiateViewControllerWithIdentifier:@"Store"];
     [storeView setStoreArtistId:storeArtistId];
     [self.navigationController pushViewController:storeView animated:YES];
 }

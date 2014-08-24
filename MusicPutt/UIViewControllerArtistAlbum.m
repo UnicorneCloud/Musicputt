@@ -305,8 +305,6 @@
         [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
     
     [[[self.del mpdatamanager] musicplayer] play];
-    
-    self.del.mpdatamanager.currentSonglist = list;
 
     return indexPath;
 }

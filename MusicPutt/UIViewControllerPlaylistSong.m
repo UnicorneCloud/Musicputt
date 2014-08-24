@@ -128,8 +128,6 @@
     
     [[[self.del mpdatamanager] musicplayer] play];
     
-    self.del.mpdatamanager.currentSonglist = list;
-    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     return indexPath;

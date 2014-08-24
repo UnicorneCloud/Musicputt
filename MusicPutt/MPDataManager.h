@@ -38,7 +38,7 @@
 /**
  *  Current song list for the songlist navigation bar.
  */
-@property (strong, nonatomic) NSMutableArray* currentSonglist;
+//@property (strong, nonatomic) NSMutableArray* currentSonglist;
 
 /**
  * Current selected artist collection for the artist navigation bar.

@@ -218,7 +218,6 @@
     
     while (step<maxstep) {
         [list addObject: [[albumCollection items] objectAtIndex:pos]];
-        //NSLog(@"%@", [list[step] valueForProperty:MPMediaItemPropertyTitle]);
         step++;
         pos++;
         
@@ -243,8 +242,6 @@
         [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
     
     [[[self.del mpdatamanager] musicplayer] play];
-    
-    self.del.mpdatamanager.currentSonglist = list;
     
     return indexPath;
 }

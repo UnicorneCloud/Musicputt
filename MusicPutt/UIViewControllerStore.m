@@ -2,33 +2,23 @@
 //  UIViewControllerStore.m
 //  MusicPutt
 //
-//  Created by Eric Pinet on 2014-08-02.
+//  Created by Eric Pinet on 2014-07-01.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
 #import "UIViewControllerStore.h"
+#import "UIScrollView+EmptyDataSet.h"
+#import "UIViewControllerPlaylist.h"
+#import "UITableViewCellSong.h"
+#import "AppDelegate.h"
 
-#import "UIViewControllerStoreAlbum.h"
-#import "UIViewControllerStoreSongs.h"
-
-@interface UIViewControllerStore ()
+@interface UIViewControllerStore ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 {
-    UIViewControllerStoreAlbum* storealbum;
-    UIViewControllerStoreSongs* storesongs;
+    UIBarButtonItem* editButton;
 }
 
-/**
- *  View that content page view controller for albums and songs.
- */
-@property (weak, nonatomic) IBOutlet UIView*            pageview;
-
-/**
- *  Control menu to display albums and songs view.
- */
-@property (weak, nonatomic) IBOutlet UISegmentedControl* segcontrol;
-
-
-
+@property (weak, nonatomic) IBOutlet UITableView*            tableView;
+@property AppDelegate* del;
 
 @end
 
@@ -48,46 +38,35 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // setup app delegate
+    self.del = [[UIApplication sharedApplication] delegate];
+    
     // setup title
     [self setTitle:@"Store"];
     
-    // setup segmented control menu
-    [_segcontrol addTarget:self
-                   action:@selector(menuPressed:)
-         forControlEvents:UIControlEventValueChanged];
+    // setup tableview
+    toolbarTableView = _tableView;
     
-    // setup children view controller
-    CGRect framealbum = _pageview.frame;
-    framealbum.origin.x = 0;
-    framealbum.origin.y = 0;
+    // setup empty view
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
-    CGRect framesong = _pageview.frame;
-    framesong.origin.x = 0;
-    framesong.origin.y = 0;
+    // A little trick for removing the cell separators
+    self.tableView.tableFooterView = [UIView new];
     
-    storealbum = [self.storyboard instantiateViewControllerWithIdentifier:@"StoreAlbum"];
-    [storealbum setStoreArtistId:_storeArtistId];
-    storealbum.view.frame = framealbum;
-    [self addChildViewController:storealbum];
-    [_pageview addSubview:storealbum.view];
-    
-    storesongs = [self.storyboard instantiateViewControllerWithIdentifier:@"StoreSongs"];
-    [storesongs setStoreArtistId:_storeArtistId];
-    storesongs.view.frame = framesong;
-    [self addChildViewController:storesongs];
-    [_pageview addSubview:storesongs.view];
+    // setup right edit button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleDone target:self action:@selector(editPressed)];
     
     
-    [self displayView:@"Albums"];
+    // setup menu button in tabbar
+    
     
 }
 
--(void) viewDidDisappear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
-    [storealbum stopPlaying];
-    [storesongs stopPlaying];
-    
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,25 +75,143 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) menuPressed:(id)sender{
-    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    [self displayView:[segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]]];
-}
-
-
--(void)displayView:(NSString*)viewName
+- (void) editPressed
 {
-    if ([viewName isEqual:@"Albums"]) {
-        storealbum.view.hidden = FALSE;
-        storesongs.view.hidden = TRUE;
-    }
-    else{
-        storealbum.view.hidden = TRUE;
-        storesongs.view.hidden = FALSE;
-    }
-    [storealbum stopPlaying];
-    [storesongs stopPlaying];
 }
+
+#pragma mark - UITableView - Move cell
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+
+}
+
+
+#pragma mark - AMWaveViewController
+
+- (NSArray*)visibleCells
+{
+    return [self.tableView visibleCells];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+
+- (UITableViewCellSong*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCellSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellSong"];
+    return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath;
+}
+
+#pragma mark - DZNEmptyDataSetSource
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = @"Empty Songlist!";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = @"You have to select songs to create your Songlist! Click continue to select song.";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
+{
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0]};
+    return [[NSAttributedString alloc] initWithString:@"Continue" attributes:attributes];
+}
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView 
+{
+    
+    return [UIImage imageNamed:@"treble_clef"];
+}
+
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
+{
+    
+    return [UIColor whiteColor];
+}
+/*
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+    
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
+{
+    
+    return YES;
+}
+*/
+
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    //UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //UIViewControllerPlaylist *playlistView = [sb instantiateViewControllerWithIdentifier:@"Playlist"]; // @"SettingsListViewController" is the string you have set in above picture
+    //[self.navigationController pushViewController:playlistView animated:YES];
+    self.tabBarController.selectedIndex = 1;
+}
+
+
+- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    //UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //UIViewControllerPlaylist *playlistView = [sb instantiateViewControllerWithIdentifier:@"Playlist"]; // @"SettingsListViewController" is the string you have set in above picture
+    //[self.navigationController pushViewController:playlistView animated:YES];
+    self.tabBarController.selectedIndex = 1;
+}
+
+
+
 
 /*
 #pragma mark - Navigation
