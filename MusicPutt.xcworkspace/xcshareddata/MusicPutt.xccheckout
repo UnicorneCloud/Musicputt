@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>046FAA43-2B70-4A42-90E8-349BAF3000C5</string>
+	<string>1E9CB0D8-2BA0-4D8C-B01F-F816436392C4</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MusicPutt</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B379226D-5559-4DCB-A876-7429323D716D</key>
-		<string>https://bitbucket.org/ericpinet/musicputt</string>
+		<key>F2A26DB4-ACC2-47FE-83E9-53855BAC24EE</key>
+		<string>https://github.com/ericpinet/musicputt</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MusicPutt.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B379226D-5559-4DCB-A876-7429323D716D</key>
+		<key>F2A26DB4-ACC2-47FE-83E9-53855BAC24EE</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://bitbucket.org/ericpinet/musicputt</string>
+	<string>https://github.com/ericpinet/musicputt</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B379226D-5559-4DCB-A876-7429323D716D</string>
+	<string>F2A26DB4-ACC2-47FE-83E9-53855BAC24EE</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B379226D-5559-4DCB-A876-7429323D716D</string>
+			<string>F2A26DB4-ACC2-47FE-83E9-53855BAC24EE</string>
 			<key>IDESourceControlWCCName</key>
 			<string>musicputt</string>
 		</dict>

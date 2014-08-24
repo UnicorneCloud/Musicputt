@@ -780,10 +780,10 @@
             </objects>
             <point key="canvasLocation" x="2398" y="3116"/>
         </scene>
-        <!--View Controller Artist Store-->
+        <!--View Controller Store-->
         <scene sceneID="Zjl-wy-lTi">
             <objects>
-                <viewController storyboardIdentifier="Store" id="DbG-uG-RhY" customClass="UIViewControllerArtistStore" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Store" id="DbG-uG-RhY" customClass="UIViewControllerStore" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zkz-y9-4kn"/>
                         <viewControllerLayoutGuide type="bottom" id="bZO-KS-6MW"/>
@@ -1119,10 +1119,10 @@
             </objects>
             <point key="canvasLocation" x="907" y="100"/>
         </scene>
-        <!--View Controller Store - Title-->
+        <!--View Controller Songlist - Title-->
         <scene sceneID="OAO-JX-xYe">
             <objects>
-                <viewController id="Dl7-vJ-VJv" customClass="UIViewControllerStore" sceneMemberID="viewController">
+                <viewController id="Dl7-vJ-VJv" customClass="UIViewControllerSonglist" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gtb-9A-d83"/>
                         <viewControllerLayoutGuide type="bottom" id="768-Sh-kkf"/>
@@ -1785,11 +1785,11 @@
             </objects>
             <point key="canvasLocation" x="2415" y="1460"/>
         </scene>
-        <!--Navigation Controller - Store-->
+        <!--Navigation Controller - Song list-->
         <scene sceneID="qq6-y1-RP4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Su-im-Pzc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Store" image="store" id="HCf-lI-NOG"/>
+                    <tabBarItem key="tabBarItem" title="Song list" image="songlist" id="HCf-lI-NOG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KMi-Em-Cxu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1873,10 +1873,14 @@
         <image name="playlist" width="25" height="25"/>
         <image name="repeat" width="64" height="64"/>
         <image name="rewind" width="64" height="64"/>
+<<<<<<< HEAD
         <image name="search" width="64" height="64"/>
         <image name="share" width="64" height="64"/>
+=======
+        <image name="share" width="25" height="25"/>
+>>>>>>> 916372631f338f9b04a3fda08e3ae4415c327bae
         <image name="shuffle" width="64" height="64"/>
-        <image name="store" width="64" height="64"/>
+        <image name="songlist" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1884,6 +1888,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="DLh-Kj-oM3"/>
+=======
+        <segue reference="bJo-x3-wXa"/>
+>>>>>>> 916372631f338f9b04a3fda08e3ae4415c327bae
     </inferredMetricsTieBreakers>
 </document>
