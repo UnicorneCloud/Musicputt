@@ -34,7 +34,7 @@ typedef enum {
 } ITunesSearchApiQueryStatus;
 
 /**
- *  Protocol for the delegate of the MPServiceStore.
+ *  Protocol for the delegate of the ITunesSearchApi.
  */
 @protocol ITunesSearchApiDelegate <NSObject>
 
@@ -67,7 +67,7 @@ typedef enum {
 /**
  *  Set delegate to recieve result of query.
  *
- *  @param anObject delegate object with MPServiceStoreDelegate protocol.
+ *  @param anObject delegate object with ITunesSearchApiDelegate protocol.
  */
 - (void) setDelegate:(id) anObject;
 
