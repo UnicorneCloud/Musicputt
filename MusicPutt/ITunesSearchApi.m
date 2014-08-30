@@ -1,19 +1,19 @@
 //
-//  MPServiceStore.m
+//  ITunesSearchApi.m
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-13.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "MPServiceStore.h"
+#import "ITunesSearchApi.h"
 #import "MPMusicTrack.h"
 #import "MPAlbum.h"
 
 #import <RestKit/RestKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface MPServiceStore()
+@interface ITunesSearchApi()
 {
     NSArray*                searchResult;
     RKResponseDescriptor*   responsedescriptor;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation MPServiceStore
+@implementation ITunesSearchApi
 
 /**
  *  Constructor
@@ -166,10 +166,10 @@
 - (void) queryMusicTrackWithSearchTerm:(NSString*)searchTerm asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:searchTerm addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithSearchTerm];
+        [self executeSearchAsync:searchTerm addFilter:@"musicTrack" queryType:QueryMusicTrackWithSearchTerm];
     }
     else {
-        [self executeSearch:searchTerm addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithSearchTerm];
+        [self executeSearch:searchTerm addFilter:@"musicTrack" queryType:QueryMusicTrackWithSearchTerm];
     }
     
 }
@@ -183,10 +183,10 @@
 - (void) queryMusicTrackWithId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:itemId addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithId];
+        [self executeSearchAsync:itemId addFilter:@"musicTrack" queryType:QueryMusicTrackWithId];
     }
     else {
-        [self executeSearch:itemId addFilter:@"musicTrack" queryType:MPQueryMusicTrackWithId];
+        [self executeSearch:itemId addFilter:@"musicTrack" queryType:QueryMusicTrackWithId];
     }
 }
 
@@ -199,10 +199,10 @@
 - (void) queryMusicTrackWithAlbumId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithAlbumId];
+        [self executeSearchAsync:itemId addFilter:@"song" queryType:QueryMusicTrackWithAlbumId];
     }
     else {
-        [self executeSearch:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithAlbumId];
+        [self executeSearch:itemId addFilter:@"song" queryType:QueryMusicTrackWithAlbumId];
     }
 }
 
@@ -215,10 +215,10 @@
 - (void) queryMusicTrackWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithArtistId];
+        [self executeSearchAsync:itemId addFilter:@"song" queryType:QueryMusicTrackWithArtistId];
     }
     else {
-        [self executeSearch:itemId addFilter:@"song" queryType:MPQueryMusicTrackWithArtistId];
+        [self executeSearch:itemId addFilter:@"song" queryType:QueryMusicTrackWithArtistId];
     }
 }
 
@@ -230,10 +230,10 @@
 - (void) queryAlbumWithSearchTerm:(NSString*)searchTerm asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:searchTerm addFilter:@"album" queryType:MPQueryAlbumWithSearchTerm];
+        [self executeSearchAsync:searchTerm addFilter:@"album" queryType:QueryAlbumWithSearchTerm];
     }
     else {
-        [self executeSearch:searchTerm addFilter:@"album" queryType:MPQueryAlbumWithSearchTerm];
+        [self executeSearch:searchTerm addFilter:@"album" queryType:QueryAlbumWithSearchTerm];
     }
 }
 
@@ -246,10 +246,10 @@
 - (void) queryAlbumWithId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:itemId addFilter:@"album" queryType:MPQueryAlbumWithId];
+        [self executeSearchAsync:itemId addFilter:@"album" queryType:QueryAlbumWithId];
     }
     else {
-        [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithId];
+        [self executeSearch:itemId addFilter:@"album" queryType:QueryAlbumWithId];
     }
 }
 
@@ -263,10 +263,10 @@
 - (void) queryAlbumWithArtistId:(NSString*)itemId asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:itemId addFilter:@"album" queryType:MPQueryAlbumWithArtistId];
+        [self executeSearchAsync:itemId addFilter:@"album" queryType:QueryAlbumWithArtistId];
     }
     else {
-        [self executeSearch:itemId addFilter:@"album" queryType:MPQueryAlbumWithArtistId];
+        [self executeSearch:itemId addFilter:@"album" queryType:QueryAlbumWithArtistId];
     }
 }
 
@@ -279,10 +279,10 @@
 - (void) queryArtistWithSearchTerm:(NSString*) searchTerm  asynchronizationMode:(BOOL) async
 {
     if (async) {
-        [self executeSearchAsync:searchTerm addFilter:@"musicArtist" queryType:MPQueryArtistWithSearchTerm];
+        [self executeSearchAsync:searchTerm addFilter:@"musicArtist" queryType:QueryArtistWithSearchTerm];
     }
     else {
-        [self executeSearch:searchTerm addFilter:@"musicArtist" queryType:MPQueryArtistWithSearchTerm];
+        [self executeSearch:searchTerm addFilter:@"musicArtist" queryType:QueryArtistWithSearchTerm];
     }
 }
 
@@ -295,18 +295,18 @@
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  @param type Type of query.
  */
--(void) executeSearchAsync:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
+-(void) executeSearchAsync:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(ITunesSearchApiQueryType)type;
 {
     //Let's get this on a background thread.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                    ^{
                        NSURLRequest *request;
-                       if (type == MPQueryMusicTrackWithId ||
-                           type == MPQueryMusicTrackWithAlbumId ||
-                           type == MPQueryMusicTrackWithArtistId ||
-                           type == MPQueryArtistWithId ||
-                           type == MPQueryAlbumWithId ||
-                           type == MPQueryAlbumWithArtistId) {
+                       if (type == QueryMusicTrackWithId ||
+                           type == QueryMusicTrackWithAlbumId ||
+                           type == QueryMusicTrackWithArtistId ||
+                           type == QueryArtistWithId ||
+                           type == QueryAlbumWithId ||
+                           type == QueryAlbumWithArtistId) {
                            request = [NSURLRequest requestWithURL:[self createURLForCallWithId:searchTerm andFilter:filterTerm]];
                        }
                        else{
@@ -321,7 +321,7 @@
                            dispatch_async(dispatch_get_main_queue(), ^{
                                NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request completed.");
                                if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
-                                   [delegate queryResult:MPServiceStoreStatusSucceed type:type results:[result array]];
+                                   [delegate queryResult:ITunesSearchApiStatusSucceed type:type results:[result array]];
                                }
                            });
                            
@@ -331,7 +331,7 @@
                            dispatch_async(dispatch_get_main_queue(), ^{
                                NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Request failed.");
                                if ( [delegate respondsToSelector:@selector(queryResult:type:results:)] ){
-                                   [delegate queryResult:MPServiceStoreStatusFailed type:type results:nil];
+                                   [delegate queryResult:ITunesSearchApiStatusFailed type:type results:nil];
                                }
                            });
                        }];
@@ -348,15 +348,15 @@
  *  @param filterTerm see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  @param type Type of query.
  */
--(void) executeSearch:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(MPServiceStoreQueryType)type;
+-(void) executeSearch:(NSString*)searchTerm addFilter:(NSString*)filterTerm queryType:(ITunesSearchApiQueryType)type;
 {
     NSURLRequest *request;
-    if (type == MPQueryMusicTrackWithId ||
-        type == MPQueryMusicTrackWithAlbumId ||
-        type == MPQueryMusicTrackWithArtistId ||
-        type == MPQueryArtistWithId ||
-        type == MPQueryAlbumWithId ||
-        type == MPQueryAlbumWithArtistId) {
+    if (type == QueryMusicTrackWithId ||
+        type == QueryMusicTrackWithAlbumId ||
+        type == QueryMusicTrackWithArtistId ||
+        type == QueryArtistWithId ||
+        type == QueryAlbumWithId ||
+        type == QueryAlbumWithArtistId) {
         request = [NSURLRequest requestWithURL:[self createURLForCallWithId:searchTerm andFilter:filterTerm]];
     }
     else{
@@ -372,7 +372,7 @@
     
     if (!operation.error) {
         if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
-            [delegate queryResult:MPServiceStoreStatusSucceed type:type results: [[operation mappingResult] array]];
+            [delegate queryResult:ITunesSearchApiStatusSucceed type:type results: [[operation mappingResult] array]];
         }
     }
 }

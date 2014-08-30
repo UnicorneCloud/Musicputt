@@ -1,5 +1,5 @@
 //
-//  MPServiceStoreTest.m
+//  ITunesSearchApiTest.m
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-13.
@@ -7,11 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "MPServiceStore.h"
+#import "ITunesSearchApi.h"
 
-@interface MPServiceStoreTest : XCTestCase <MPServiceStoreDelegate>
+@interface ITunesSearchApiTest : XCTestCase <ITunesSearchApiDelegate>
 {
-    MPServiceStore *iTunes;
+    ITunesSearchApi *iTunes;
     
     NSArray* resultArray;
     BOOL queryMusicTrackWithSearchTerm;
@@ -25,13 +25,13 @@
 
 @end
 
-@implementation MPServiceStoreTest
+@implementation ITunesSearchApiTest
 
 - (void) setUp
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    iTunes = [[MPServiceStore alloc] init];
+    iTunes = [[ITunesSearchApi alloc] init];
     [iTunes setDelegate:self];
     resultArray = [[NSArray alloc]init];
     testResult = false;
@@ -170,22 +170,22 @@
     
 }
 
--(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results
+-(void) queryResult:(ITunesSearchApiQueryStatus)status type:(ITunesSearchApiQueryType)type results:(NSArray*)results
 {
-    if (status==MPServiceStoreStatusSucceed) {
-        if (type == MPQueryMusicTrackWithSearchTerm){
+    if (status==ITunesSearchApiStatusSucceed) {
+        if (type == QueryMusicTrackWithSearchTerm){
             queryMusicTrackWithSearchTerm = true;
         }
-        else if ( type == MPQueryMusicTrackWithId ){
+        else if ( type == QueryMusicTrackWithId ){
             queryMusicTrackWithSearchTId = true;
         }
-        else if (type == MPQueryAlbumWithSearchTerm){
+        else if (type == QueryAlbumWithSearchTerm){
             queryAlbumWithSearchTerm = true;
         }
-        else if (type == MPQueryAlbumWithId){
+        else if (type == QueryAlbumWithId){
             queryAlbumWithId = true;
         }
-        else if (type == MPQueryAlbumWithArtistId){
+        else if (type == QueryAlbumWithArtistId){
             queryAlbumWithArtistId = true;
         }
             

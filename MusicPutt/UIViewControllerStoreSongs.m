@@ -9,13 +9,13 @@
 #import "UIViewControllerStoreSongs.h"
 
 #import "AppDelegate.h"
-#import "MPServiceStore.h"
+#import "ITunesSearchApi.h"
 #import "UITableViewCellSongStore.h"
 #import <AVFoundation/AVFoundation.h>
 
 
 
-@interface UIViewControllerStoreSongs () <MPServiceStoreDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
+@interface UIViewControllerStoreSongs () <ITunesSearchApiDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
 {
     NSArray* songResults;
     AVAudioPlayer* audioPlayer;
@@ -58,7 +58,7 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // query store for top song of artist
-    MPServiceStore *store = [[MPServiceStore alloc]init];
+    ITunesSearchApi *store = [[ITunesSearchApi alloc]init];
     [store setDelegate:self];
     [store queryMusicTrackWithArtistId:_storeArtistId asynchronizationMode:true];
 }
@@ -144,9 +144,9 @@
  *  @param type    Type of query sender
  *  @param results resultset of the query
  */
--(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*) results
+-(void) queryResult:(ITunesSearchApiQueryStatus)status type:(ITunesSearchApiQueryType)type results:(NSArray*) results
 {
-    if (status!=MPServiceStoreStatusSucceed || [results count]==0)
+    if (status!=ITunesSearchApiStatusSucceed || [results count]==0)
     {
         /*
          UIAlertView *message = [[UIAlertView alloc]
@@ -161,7 +161,7 @@
     }
     else
     {
-        if (type == MPQueryMusicTrackWithArtistId)
+        if (type == QueryMusicTrackWithArtistId)
         {
             songResults = results;
             if (results.count>0)

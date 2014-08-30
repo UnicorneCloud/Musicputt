@@ -9,14 +9,14 @@
 #import "UIViewControllerStoreAlbum.h"
 #import "UITableViewCellAlbumStoreSong.h"
 #import "iCarousel.h"
-#import "MPServiceStore.h"
+#import "ITunesSearchApi.h"
 #import "MONActivityIndicatorView.h"
 #import "UIColor+CreateMethods.h"
 #import "AppDelegate.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface UIViewControllerStoreAlbum () <  MPServiceStoreDelegate,
+@interface UIViewControllerStoreAlbum () <  ITunesSearchApiDelegate,
                                             iCarouselDataSource,
                                             iCarouselDelegate,
                                             UITableViewDataSource,
@@ -123,7 +123,7 @@
     [indicatorView startAnimating];
     
     // query store for album information
-    MPServiceStore *store = [[MPServiceStore alloc]init];
+    ITunesSearchApi *store = [[ITunesSearchApi alloc]init];
     [store setDelegate:self];
     [store queryAlbumWithArtistId:_storeArtistId asynchronizationMode:true];
     
@@ -232,7 +232,7 @@
     
     
     // query store for album songs
-    MPServiceStore *store = [[MPServiceStore alloc]init];
+    ITunesSearchApi *store = [[ITunesSearchApi alloc]init];
     [store setDelegate:self];
     [store queryMusicTrackWithAlbumId:[result[index+1] collectionId] asynchronizationMode:true];
 }
@@ -280,9 +280,9 @@
  *  @param type    Type of query sender
  *  @param results resultset of the query
  */
--(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results
+-(void) queryResult:(ITunesSearchApiQueryStatus)status type:(ITunesSearchApiQueryType)type results:(NSArray*)results
 {
-    if (status!=MPServiceStoreStatusSucceed || [results count]==0)
+    if (status!=ITunesSearchApiStatusSucceed || [results count]==0)
     {
         /*
          UIAlertView *message = [[UIAlertView alloc]
@@ -297,13 +297,13 @@
     }
     else
     {
-        if (type == MPQueryAlbumWithArtistId)
+        if (type == QueryAlbumWithArtistId)
         {
             result = results;
             [_albumlist reloadData];
             [self updateCurrentAlbumShow:0];
         }
-        else if (type == MPQueryMusicTrackWithAlbumId)
+        else if (type == QueryMusicTrackWithAlbumId)
         {
             currentAlbumSongs = results;
             

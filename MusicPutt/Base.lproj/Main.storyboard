@@ -1874,9 +1874,9 @@
         <image name="repeat" width="64" height="64"/>
         <image name="rewind" width="64" height="64"/>
         <image name="search" width="64" height="64"/>
-        <image name="share" width="64" height="64"/>
+        <image name="share" width="25" height="25"/>
         <image name="shuffle" width="64" height="64"/>
-        <image name="store" width="64" height="64"/>
+        <image name="store" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

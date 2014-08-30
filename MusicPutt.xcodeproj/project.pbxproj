@@ -69,10 +69,10 @@
 		97C9A2121988414300BB3B8C /* UITableViewCellAlbumStoreSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C9A2111988414300BB3B8C /* UITableViewCellAlbumStoreSong.m */; };
 		97EC0649197ABC580081E7E1 /* UIViewControllerAlbumPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 97EC0648197ABC580081E7E1 /* UIViewControllerAlbumPage.m */; };
 		97EC064D197ADE700081E7E1 /* UITableViewCellAlbumPageSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 97EC064C197ADE700081E7E1 /* UITableViewCellAlbumPageSong.m */; };
-		97ECDFB61972EA4D007889E3 /* MPServiceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ECDFB51972EA4D007889E3 /* MPServiceStore.m */; };
+		97ECDFB61972EA4D007889E3 /* ITunesSearchApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ECDFB51972EA4D007889E3 /* ITunesSearchApi.m */; };
 		97ECDFB91972EAF6007889E3 /* UIViewControllerToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ECDFB81972EAF6007889E3 /* UIViewControllerToolbar.m */; };
 		97ECDFBC1972F042007889E3 /* MPMusicTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ECDFBB1972F042007889E3 /* MPMusicTrack.m */; };
-		97ECDFBE1973747F007889E3 /* MPServiceStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ECDFBD1973747F007889E3 /* MPServiceStoreTest.m */; };
+		97ECDFBE1973747F007889E3 /* ITunesSearchApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ECDFBD1973747F007889E3 /* ITunesSearchApiTest.m */; };
 		BBB27CA7FF3A48CFA03F0003 /* libPods-MusicPutt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F007E19973FA4492B118CA24 /* libPods-MusicPutt.a */; };
 		D537F13E1964E84400DC9EE7 /* UIViewControllerArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */; };
 		D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = D537F1431964FF7900DC9EE7 /* UITableViewCellArtist.m */; };
@@ -183,13 +183,13 @@
 		97EC0648197ABC580081E7E1 /* UIViewControllerAlbumPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAlbumPage.m; sourceTree = "<group>"; };
 		97EC064B197ADE700081E7E1 /* UITableViewCellAlbumPageSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellAlbumPageSong.h; sourceTree = "<group>"; };
 		97EC064C197ADE700081E7E1 /* UITableViewCellAlbumPageSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellAlbumPageSong.m; sourceTree = "<group>"; };
-		97ECDFB41972EA4D007889E3 /* MPServiceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPServiceStore.h; sourceTree = "<group>"; };
-		97ECDFB51972EA4D007889E3 /* MPServiceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPServiceStore.m; sourceTree = "<group>"; };
+		97ECDFB41972EA4D007889E3 /* ITunesSearchApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITunesSearchApi.h; sourceTree = "<group>"; };
+		97ECDFB51972EA4D007889E3 /* ITunesSearchApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITunesSearchApi.m; sourceTree = "<group>"; };
 		97ECDFB71972EAF6007889E3 /* UIViewControllerToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewControllerToolbar.h; path = MusicPutt/UIViewControllerToolbar.h; sourceTree = "<group>"; };
 		97ECDFB81972EAF6007889E3 /* UIViewControllerToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewControllerToolbar.m; path = MusicPutt/UIViewControllerToolbar.m; sourceTree = "<group>"; };
 		97ECDFBA1972F042007889E3 /* MPMusicTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMusicTrack.h; sourceTree = "<group>"; };
 		97ECDFBB1972F042007889E3 /* MPMusicTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMusicTrack.m; sourceTree = "<group>"; };
-		97ECDFBD1973747F007889E3 /* MPServiceStoreTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPServiceStoreTest.m; sourceTree = "<group>"; };
+		97ECDFBD1973747F007889E3 /* ITunesSearchApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITunesSearchApiTest.m; sourceTree = "<group>"; };
 		CFD43261F33545EDA9F7277A /* Pods-MusicPutt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPutt.xcconfig"; path = "Pods/Pods-MusicPutt.xcconfig"; sourceTree = "<group>"; };
 		D537F13C1964E84400DC9EE7 /* UIViewControllerArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerArtist.h; sourceTree = "<group>"; };
 		D537F13D1964E84400DC9EE7 /* UIViewControllerArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerArtist.m; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 		976687F8194FBB4D00B5A843 /* MusicPuttTests */ = {
 			isa = PBXGroup;
 			children = (
-				97ECDFBD1973747F007889E3 /* MPServiceStoreTest.m */,
+				97ECDFBD1973747F007889E3 /* ITunesSearchApiTest.m */,
 				976687FE194FBB4D00B5A843 /* MusicPuttTests.m */,
 				976687F9194FBB4D00B5A843 /* Supporting Files */,
 			);
@@ -549,8 +549,8 @@
 		97ECDFB31972E9FC007889E3 /* itunes */ = {
 			isa = PBXGroup;
 			children = (
-				97ECDFB41972EA4D007889E3 /* MPServiceStore.h */,
-				97ECDFB51972EA4D007889E3 /* MPServiceStore.m */,
+				97ECDFB41972EA4D007889E3 /* ITunesSearchApi.h */,
+				97ECDFB51972EA4D007889E3 /* ITunesSearchApi.m */,
 				97ECDFBA1972F042007889E3 /* MPMusicTrack.h */,
 				97ECDFBB1972F042007889E3 /* MPMusicTrack.m */,
 				9711FF9E1982ED4E00421CF4 /* MPAlbum.h */,
@@ -737,7 +737,7 @@
 				976687E4194FBB4D00B5A843 /* AppDelegate.m in Sources */,
 				9711FFA01982ED4E00421CF4 /* MPAlbum.m in Sources */,
 				9707ADD6198E98990093F6F0 /* REFrostedViewControllerMain.m in Sources */,
-				97ECDFB61972EA4D007889E3 /* MPServiceStore.m in Sources */,
+				97ECDFB61972EA4D007889E3 /* ITunesSearchApi.m in Sources */,
 				9707ADD1198E886D0093F6F0 /* UITabBarControllerMain.m in Sources */,
 				97EC0649197ABC580081E7E1 /* UIViewControllerAlbumPage.m in Sources */,
 				97570B7B198D5D1700A542DA /* UIViewControllerStoreSongs.m in Sources */,
@@ -766,7 +766,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97ECDFBE1973747F007889E3 /* MPServiceStoreTest.m in Sources */,
+				97ECDFBE1973747F007889E3 /* ITunesSearchApiTest.m in Sources */,
 				976687FF194FBB4D00B5A843 /* MusicPuttTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

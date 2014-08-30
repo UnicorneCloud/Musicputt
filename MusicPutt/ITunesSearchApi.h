@@ -1,5 +1,5 @@
 //
-//  MPServiceStore.h
+//  ITunesSearchApi.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-13.
@@ -16,27 +16,27 @@
  *  Enum of queryResult type.
  */
 typedef enum {
-    MPQueryMusicTrackWithSearchTerm,
-    MPQueryMusicTrackWithId,
-    MPQueryMusicTrackWithAlbumId,
-    MPQueryMusicTrackWithArtistId,
-    MPQueryAlbumWithSearchTerm,
-    MPQueryAlbumWithId,
-    MPQueryAlbumWithArtistId,
-    MPQueryArtistWithSearchTerm,
-    MPQueryArtistWithId,
-    MPQueryAll
-} MPServiceStoreQueryType;
+    QueryMusicTrackWithSearchTerm,
+    QueryMusicTrackWithId,
+    QueryMusicTrackWithAlbumId,
+    QueryMusicTrackWithArtistId,
+    QueryAlbumWithSearchTerm,
+    QueryAlbumWithId,
+    QueryAlbumWithArtistId,
+    QueryArtistWithSearchTerm,
+    QueryArtistWithId,
+    QueryAll
+} ITunesSearchApiQueryType;
 
 typedef enum {
-    MPServiceStoreStatusSucceed,
-    MPServiceStoreStatusFailed
-} MPServiceStoreQueryStatus;
+    ITunesSearchApiStatusSucceed,
+    ITunesSearchApiStatusFailed
+} ITunesSearchApiQueryStatus;
 
 /**
  *  Protocol for the delegate of the MPServiceStore.
  */
-@protocol MPServiceStoreDelegate <NSObject>
+@protocol ITunesSearchApiDelegate <NSObject>
 
 @optional
 
@@ -47,7 +47,7 @@ typedef enum {
  *  @param type    Type of query sender
  *  @param results resultset of the query
  */
--(void) queryResult:(MPServiceStoreQueryStatus)status type:(MPServiceStoreQueryType)type results:(NSArray*)results;
+-(void) queryResult:(ITunesSearchApiQueryStatus)status type:(ITunesSearchApiQueryType)type results:(NSArray*)results;
 
 @end
 
@@ -61,7 +61,7 @@ typedef enum {
  *  This class is a wrapper on the iTunes Store Search API. Looking at: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
  *  for details of the API.
  */
-@interface MPServiceStore : NSObject
+@interface ITunesSearchApi : NSObject
 
 
 /**
