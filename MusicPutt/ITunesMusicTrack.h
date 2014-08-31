@@ -1,5 +1,5 @@
 //
-//  MPMusicTrack.h
+//  ITunesMusicTrack.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-13.
@@ -12,7 +12,7 @@
 /**
  *  MusicTrack receive from the iTunes Search API. 
  */
-@interface MPMusicTrack : NSObject
+@interface ITunesMusicTrack : NSObject
 
 
 

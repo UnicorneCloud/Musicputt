@@ -14,12 +14,11 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-
 @interface UIViewControllerStoreSongs () <ITunesSearchApiDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
 {
     NSArray* songResults;
     AVAudioPlayer* audioPlayer;
-    MPMusicTrack* currentPlaying;
+    ITunesMusicTrack* currentPlaying;
     NSInteger currentPlayingIndex;
 }
 

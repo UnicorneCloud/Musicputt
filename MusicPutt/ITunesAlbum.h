@@ -1,5 +1,5 @@
 //
-//  MPAlbum.h
+//  ITunesAlbumAlbum.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-25.
@@ -12,7 +12,7 @@
 /**
  *  MusicTrack receive from the iTunes Search API.
  */
-@interface MPAlbum : NSObject
+@interface ITunesAlbum : NSObject
 
 /**
  *  The name of the object returned by the search request.

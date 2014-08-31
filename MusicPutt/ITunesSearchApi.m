@@ -7,8 +7,8 @@
 //
 
 #import "ITunesSearchApi.h"
-#import "MPMusicTrack.h"
-#import "MPAlbum.h"
+#import "ITunesMusicTrack.h"
+#import "ITunesAlbum.h"
 
 #import <RestKit/RestKit.h>
 #import <MediaPlayer/MediaPlayer.h>
@@ -61,7 +61,7 @@
     objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
     
     // define music track mapping
-    RKObjectMapping *musicTrackMapping = [RKObjectMapping mappingForClass:[MPMusicTrack class]];
+    RKObjectMapping *musicTrackMapping = [RKObjectMapping mappingForClass:[ITunesMusicTrack class]];
     [musicTrackMapping addAttributeMappingsFromArray:@[@"wrapperType",
                                                        @"kind",
                                                        @"artistId",
@@ -92,7 +92,7 @@
                                                        ]];
     
     // define album mapping
-    RKObjectMapping *albumMapping = [RKObjectMapping mappingForClass:[MPAlbum class]];
+    RKObjectMapping *albumMapping = [RKObjectMapping mappingForClass:[ITunesAlbum class]];
     [albumMapping addAttributeMappingsFromArray:@[@"wrapperType",
                                                   @"collectionType",
                                                   @"artistId",
@@ -115,7 +115,7 @@
                                                   ]];
     
     // define album mapping
-    RKObjectMapping *artistMapping = [RKObjectMapping mappingForClass:[MPArtist class]];
+    RKObjectMapping *artistMapping = [RKObjectMapping mappingForClass:[ITunesArtist class]];
     [artistMapping addAttributeMappingsFromArray:@[@"wrapperType",
                                                   @"artistType",
                                                   @"artistName",

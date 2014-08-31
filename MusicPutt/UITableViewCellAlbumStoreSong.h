@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MPMusicTrack.h"
+#import "ITunesMusicTrack.h"
 
 
 /**
@@ -20,7 +20,7 @@
  *
  *  @param mediaitem : The media item to set.
  */
-- (void)setMediaItem: (MPMusicTrack*)mediaitem;
+- (void)setMediaItem: (ITunesMusicTrack*)mediaitem;
 
 
 /**
@@ -28,7 +28,7 @@
  *
  *  @return mediaItem attach with this cell.
  */
--(MPMusicTrack*) getMediaItem;
+-(ITunesMusicTrack*) getMediaItem;
 
 
 

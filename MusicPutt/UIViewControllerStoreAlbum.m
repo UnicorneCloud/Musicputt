@@ -28,7 +28,7 @@
     NSArray* currentAlbumSongs;
     AVAudioPlayer* audioPlayer;
     MONActivityIndicatorView *indicatorView;
-    MPAlbum* currentAlbum;
+    ITunesAlbum* currentAlbum;
     NSInteger currentAlbumIndex;
 }
 

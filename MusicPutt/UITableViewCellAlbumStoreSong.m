@@ -10,7 +10,7 @@
 
 @interface UITableViewCellAlbumStoreSong ()
 {
-    MPMusicTrack* _mediaitem;
+    ITunesMusicTrack* _mediaitem;
 }
 
 /**
@@ -57,7 +57,7 @@
  *
  *  @param artistAlbumItem : The media item to set.
  */
-- (void)setMediaItem:(MPMusicTrack *)mediaitem
+- (void)setMediaItem:(ITunesMusicTrack *)mediaitem
 {
     _songName.text = [mediaitem trackName];
     _trackNo.text  = [mediaitem trackNumber];
@@ -75,7 +75,7 @@
  *
  *  @return mediaItem attach with this cell.
  */
--(MPMusicTrack*) getMediaItem
+-(ITunesMusicTrack*) getMediaItem
 {
     return _mediaitem;
 }

@@ -327,7 +327,7 @@
     {
         if (type == QueryMusicTrackWithSearchTerm)
         {
-            MPMusicTrack* result = results[0];
+            ITunesMusicTrack* result = results[0];
             
             // releasedate
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -348,7 +348,7 @@
         }
         else if (type == QueryArtistWithSearchTerm)
         {
-            MPArtist* result = results[0];
+            ITunesArtist* result = results[0];
             
             // set store artist id
             storeArtistId = [result artistId];

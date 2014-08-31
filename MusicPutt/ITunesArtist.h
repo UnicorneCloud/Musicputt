@@ -1,5 +1,5 @@
 //
-//  MPArtist.h
+//  ITunesArtist.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-25.
@@ -12,7 +12,7 @@
 /**
  *  Artist receieved from iTunes Store
  */
-@interface MPArtist : NSObject
+@interface ITunesArtist : NSObject
 
 /**
  *  wrapper Type.

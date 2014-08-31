@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MPMusicTrack.h"
-#import "MPAlbum.h"
-#import "MPArtist.h"
+#import "ITunesMusicTrack.h"
+#import "ITunesAlbum.h"
+#import "ITunesArtist.h"
 
 
 /**
