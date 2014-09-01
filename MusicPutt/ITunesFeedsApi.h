@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ITunesAlbumEntry.h"
+
 
 /**
  *  Enum of queryResult type.
@@ -47,7 +49,7 @@ typedef enum {
 /**
  *  ITunesFeedsApi class permit to request at iTunes the top songs and top album.
  */
-@interface ITunesFeedsApi : NSObject
+@interface ITunesFeedsApi : NSObject <NSURLConnectionDataDelegate>
 
 
 /**
