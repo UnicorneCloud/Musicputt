@@ -27,6 +27,7 @@
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
     iTunes = [[ITunesFeedsApi alloc] init];
+    [iTunes setDelegate:self];
     resultArray = [[NSArray alloc]init];
     testResult = false;
 }
@@ -37,19 +38,103 @@
     [super tearDown];
 }
 
-- (void)testQueryTop10Album
+- (void)testQueryTop10AlbumUS
 {
-    [iTunes queryFeedType:QueryTopAlbums forCountry:@"us" size:10 genre:nil asynchronizationMode:FALSE];
+    [iTunes queryFeedType:QueryTopAlbums forCountry:@"us" size:10 genre:0 asynchronizationMode:FALSE];
     
     NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
     [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
     
-    //NSLog(resultArray);
+    if (resultArray.count==10) {
+        testResult = true;
+    }
     
-    testResult = true;
     XCTAssert(testResult);
 }
 
+- (void)testQueryTop10AlbumCA
+{
+    [iTunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:10 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==10) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop25AlbumCA
+{
+    [iTunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:25 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==25) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop50AlbumCA
+{
+    [iTunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:50 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==50) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop100AlbumCA
+{
+    [iTunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:100 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==100) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop10AlbumCAGenreChinese
+{
+    [iTunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:10 genre:GENRE_CHINESE asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==10) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop10SongsUS
+{
+    [iTunes queryFeedType:QueryTopSongs forCountry:@"us" size:10 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==10) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
 
 -(void) queryResult:(ITunesFeedsApiQueryStatus)status type:(ITunesFeedsQueryType)type results:(NSArray*)results
 {

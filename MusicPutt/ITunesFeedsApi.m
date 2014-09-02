@@ -8,7 +8,8 @@
 
 #import "ITunesFeedsApi.h"
 
-#import "ITUnesAlbum.h"
+#import "ITunesAlbum.h"
+#import "ITunesMusicTrack.h"
 
 @interface ITunesFeedsApi()
 {
@@ -16,7 +17,10 @@
     
     NSMutableData*          webData;
     NSMutableArray*         albums;
+    NSMutableArray*         tracks;
     NSURLConnection*        connection;
+    
+    ITunesFeedsQueryType    currentQueryType;
 }
 
 @end
@@ -67,7 +71,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Error");
     
     if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
-        [delegate queryResult:StatusFailed type:QueryTopAlbums results: nil];
+        [delegate queryResult:StatusFailed type:currentQueryType results: nil];
     }
 }
 
@@ -78,72 +82,129 @@
  */
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSDictionary* allDataDictionary = [NSJSONSerialization JSONObjectWithData:webData options:0 error:nil];
-    NSDictionary* feed = [allDataDictionary objectForKey:@"feed"];
-    NSArray* entries = [feed objectForKey:@"entry"];
-    
-    // create new albums array
-    albums = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary *entry in entries)
+   
+    if (currentQueryType==QueryTopAlbums)
     {
-        // create new album
-        ITunesAlbum* album = [[ITunesAlbum alloc] init];
+        // if query is for top albums
+        NSDictionary* allDataDictionary = [NSJSONSerialization JSONObjectWithData:webData options:0 error:nil];
+        NSDictionary* feed = [allDataDictionary objectForKey:@"feed"];
+        NSArray* entries = [feed objectForKey:@"entry"];
         
-        // load album title
-        NSDictionary* title = [entry objectForKey:@"im:name"];
-        NSString* strTitle = [title objectForKey:@"label"];
-        [album setCollectionName:strTitle];
+        // create new albums array
+        albums = [[NSMutableArray alloc] init];
         
-        // load artist name
-        NSDictionary* artist = [entry objectForKey:@"im:artist"];
-        NSString* strArtist = [artist objectForKey:@"label"];
-        [album setArtistName:strArtist];
+        for (NSDictionary *entry in entries)
+        {
+            // create new album
+            ITunesAlbum* album = [[ITunesAlbum alloc] init];
+            
+            // load album title
+            NSDictionary* title = [entry objectForKey:@"im:name"];
+            NSString* strTitle = [title objectForKey:@"label"];
+            [album setCollectionName:strTitle];
+            
+            // load artist name
+            NSDictionary* artist = [entry objectForKey:@"im:artist"];
+            NSString* strArtist = [artist objectForKey:@"label"];
+            [album setArtistName:strArtist];
+            
+            // load album artwork
+            NSArray* artworks = [entry objectForKey:@"im:image"];
+            NSDictionary* artwork = [artworks objectAtIndex:2];
+            NSString* strArtwork = [artwork objectForKey:@"label"];
+            [album setArtworkUrl100:strArtwork];
+            
+            // load track count
+            NSDictionary* count = [entry objectForKey:@"im:itemCount"];
+            NSString* strItemCount = [count objectForKey:@"label"];
+            [album setTrackCount:strItemCount];
+            
+            // load price
+            NSDictionary* price = [entry objectForKey:@"im:price"];
+            NSString* strPrice = [price objectForKey:@"label"];
+            [album setCollectionPrice:strPrice];
+            
+            // load link
+            NSDictionary* link = [entry objectForKey:@"link"];
+            NSDictionary* attributes = [link objectForKey:@"attributes"];
+            NSString* strLink = [attributes objectForKey:@"href"];
+            [album setCollectionViewUrl:strLink];
+            
+            // load collection id
+            NSDictionary* collectionId = [entry objectForKey:@"id"];
+            NSDictionary* attributes2 = [collectionId objectForKey:@"attributes"];
+            NSString* strCollectionId = [attributes2 objectForKey:@"im:id"];
+            [album setCollectionId:strCollectionId];
+            
+            // load release date
+            NSDictionary* releaseDate = [entry objectForKey:@"im:releaseDate"];
+            NSDictionary* attributes3 = [releaseDate objectForKey:@"attributes"];
+            NSString* strReleaseDate = [attributes3 objectForKey:@"label"];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMMM dd, yyyy"];
+            NSDate* date = [[NSDate alloc] init];
+            date = [formatter dateFromString:strReleaseDate]; //TODO: ReleaseDate format doesn't work!
+            [album setReleaseDate:date];
+            
+            [albums addObject:album];
+        }
         
-        // load album artwork
-        NSArray* artworks = [entry objectForKey:@"im:image"];
-        NSDictionary* artwork = [artworks objectAtIndex:2];
-        NSString* strArtwork = [artwork objectForKey:@"label"];
-        [album setArtworkUrl100:strArtwork];
+        if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
+            [delegate queryResult:StatusSucceed type:currentQueryType results: albums];
+        }
+    }
+    else if (currentQueryType == QueryTopSongs)
+    {
+        // if query is top songs
+        NSDictionary* allDataDictionary = [NSJSONSerialization JSONObjectWithData:webData options:0 error:nil];
+        NSDictionary* feed = [allDataDictionary objectForKey:@"feed"];
+        NSArray* entries = [feed objectForKey:@"entry"];
         
-        // load track count
-        NSDictionary* count = [entry objectForKey:@"im:itemCount"];
-        NSString* strItemCount = [count objectForKey:@"label"];
-        [album setTrackCount:strItemCount];
+        // create new albums array
+        tracks = [[NSMutableArray alloc] init];
         
-        // load price
-        NSDictionary* price = [entry objectForKey:@"im:price"];
-        NSString* strPrice = [price objectForKey:@"label"];
-        [album setCollectionPrice:strPrice];
+        for (NSDictionary *entry in entries)
+        {
+            ITunesMusicTrack* track = [[ITunesMusicTrack alloc]init];
         
-        // load link
-        NSDictionary* link = [entry objectForKey:@"link"];
-        NSDictionary* attributes = [link objectForKey:@"attributes"];
-        NSString* strLink = [attributes objectForKey:@"href"];
-        [album setCollectionViewUrl:strLink];
+            // load track title
+            NSDictionary* title = [entry objectForKey:@"im:name"];
+            NSString* strTitle = [title objectForKey:@"label"];
+            [track setTrackName:strTitle];
+            
+            // load artist name
+            NSDictionary* artist = [entry objectForKey:@"im:artist"];
+            NSString* strArtist = [artist objectForKey:@"label"];
+            [track setArtistName:strArtist];
+            
+            // load collection name
+            NSDictionary* collection = [entry objectForKey:@"im:collection"];
+            NSDictionary* collectionName = [collection objectForKey:@"im:name"];
+            NSString* strCollectionName = [collectionName objectForKey:@"label"];
+            [track setCollectionName:strCollectionName];
+            
+            // load album artwork
+            NSArray* artworks = [entry objectForKey:@"im:image"];
+            NSDictionary* artwork = [artworks objectAtIndex:2];
+            NSString* strArtwork = [artwork objectForKey:@"label"];
+            [track setArtworkUrl100:strArtwork];
+            
+            // load preview
+            NSArray* link = [entry objectForKey:@"link"];
+            NSDictionary* link1 = [link objectAtIndex:1];
+            NSDictionary* attributes = [link1 objectForKey:@"attributes"];
+            NSString* strPreview = [attributes objectForKey:@"href"];
+            [track setPreviewUrl:strPreview];
+            
+            [tracks addObject:track];
+        }
         
-        // load collection id
-        NSDictionary* collectionId = [entry objectForKey:@"id"];
-        NSDictionary* attributes2 = [collectionId objectForKey:@"attributes"];
-        NSString* strCollectionId = [attributes2 objectForKey:@"im:id"];
-        [album setCollectionId:strCollectionId];
+        if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
+            [delegate queryResult:StatusSucceed type:currentQueryType results: tracks];
+        }
         
-        // load release date
-        NSDictionary* releaseDate = [entry objectForKey:@"im:releaseDate"];
-        NSDictionary* attributes3 = [releaseDate objectForKey:@"attributes"];
-        NSString* strReleaseDate = [attributes3 objectForKey:@"label"];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"MMMM dd, yyyy"];
-        NSDate* date = [[NSDate alloc] init];
-        date = [formatter dateFromString:strReleaseDate]; //TODO: ReleaseDate format doesn't work!
-        [album setReleaseDate:date];
-        
-        [albums addObject:album];
     }
     
-    if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
-        [delegate queryResult:StatusSucceed type:QueryTopAlbums results: albums];
-    }
     
     
 }
@@ -156,18 +217,30 @@
  *  @param type    ITunesFeedsQueryType are QueryTopSongs or QueryTopAlbums.
  *  @param country Enter the country code. (United State:us, Canada:ca, etc...)
  *  @param size    Enter the size of result. (Must be: 10, 25,50 or 100)
- *  @param genre   Enter the genre: (nil for all) See: http://www.apple.com/itunes/affiliates/resources/documentation/genre-mapping.html for more details.
+ *  @param genre   Enter the genre: (0 for all) See: http://www.apple.com/itunes/affiliates/resources/documentation/genre-mapping.html for more details.
  *  @param async   <#async description#>
  */
-- (void) queryFeedType:(ITunesFeedsQueryType)type forCountry:(NSString*)country size:(NSInteger)size genre:(NSString*)genre asynchronizationMode:(BOOL)async
+- (void) queryFeedType:(ITunesFeedsQueryType)type forCountry:(NSString*)country size:(NSInteger)size genre:(NSInteger)genre asynchronizationMode:(BOOL)async
 {
-    if ([self validateParameters:type forCountry:country size:size genre:genre asynchronizationMode:async]) {
-        
+    // start by validating parameters.
+    if ([self validateParameters:type forCountry:country size:size genre:genre asynchronizationMode:async])
+    {
+        // parameters are valid.
+        // start request.
         NSString* queryType = @"topsongs";
+        currentQueryType = QueryTopSongs;
         if (type == QueryTopAlbums) {
             queryType = @"topalbums";
+            currentQueryType = QueryTopAlbums;
         }
-        NSString* strUrl = [NSString stringWithFormat:@"https://itunes.apple.com/%@/rss/%@/limit=%ld/explicit=true/json",country, queryType, size];
+        
+        // genre
+        NSString* strGenre = @"";
+        if (genre!=0) {
+            strGenre = [NSString stringWithFormat:@"genre=%ld/", (long)genre];
+        }
+        
+        NSString* strUrl = [NSString stringWithFormat:@"https://itunes.apple.com/%@/rss/%@/limit=%ld/%@explicit=true/json",country, queryType, size, strGenre];
         NSURL* url = [NSURL URLWithString:strUrl];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         connection = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -195,7 +268,7 @@
  *  @param async   <#async description#>
  *  @return true if all parameters are valid
  */
-- (BOOL) validateParameters:(ITunesFeedsQueryType)type forCountry:(NSString*)country size:(NSInteger)size genre:(NSString*)genre asynchronizationMode:(BOOL)async
+- (BOOL) validateParameters:(ITunesFeedsQueryType)type forCountry:(NSString*)country size:(NSInteger)size genre:(NSInteger)genre asynchronizationMode:(BOOL)async
 {
     return TRUE;
 }
