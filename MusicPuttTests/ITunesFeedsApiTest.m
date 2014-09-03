@@ -136,6 +136,62 @@
     XCTAssert(testResult);
 }
 
+- (void)testQueryTop25SongsUS
+{
+    [iTunes queryFeedType:QueryTopSongs forCountry:@"us" size:25 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==25) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop50SongsUS
+{
+    [iTunes queryFeedType:QueryTopSongs forCountry:@"us" size:50 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==50) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop100SongsUS
+{
+    [iTunes queryFeedType:QueryTopSongs forCountry:@"us" size:100 genre:0 asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==100) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
+- (void)testQueryTop100SongsUSGenreChinese
+{
+    [iTunes queryFeedType:QueryTopSongs forCountry:@"us" size:100 genre:GENRE_CHINESE asynchronizationMode:FALSE];
+    
+    NSDate *SecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:SecondsFromNow];
+    
+    if (resultArray.count==100) {
+        testResult = true;
+    }
+    
+    XCTAssert(testResult);
+}
+
 -(void) queryResult:(ITunesFeedsApiQueryStatus)status type:(ITunesFeedsQueryType)type results:(NSArray*)results
 {
     resultArray = results;
