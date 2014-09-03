@@ -111,7 +111,7 @@
     // setup currentPlayingToolBar
     if ([[self.del mpdatamanager] isMusicViewControllerVisible]) {
         currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
-        [currentPlayingToolBar hideAnimated:YES];
+        [self hideTabbar];
     }
     
 }
