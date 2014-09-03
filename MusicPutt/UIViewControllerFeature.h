@@ -1,5 +1,5 @@
 //
-//  UIViewControllerStore.h
+//  UIViewControllerFeature.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-01.
@@ -12,6 +12,6 @@
 /**
  *  Songlist view controller
  */
-@interface UIViewControllerStore: UIViewControllerToolbar
+@interface UIViewControllerFeature: UIViewControllerToolbar
 
 @end

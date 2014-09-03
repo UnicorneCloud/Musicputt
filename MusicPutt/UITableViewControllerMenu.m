@@ -216,7 +216,7 @@
     
     if (indexPath.section == 0)
     {
-        NSArray *titles = @[@"Store", @"Playlists", @"Albums", @"Artists"];
+        NSArray *titles = @[@"Feature", @"Playlists", @"Albums", @"Artists"];
         cell.textLabel.text = titles[indexPath.row];
     }
     else

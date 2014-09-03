@@ -1,14 +1,14 @@
 //
-//  UITableViewCellSong.m
+//  UITableViewCellFeature.m
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-07-02.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "UITableViewCellSong.h"
+#import "UITableViewCellFeature.h"
 
-@implementation UITableViewCellSong
+@implementation UITableViewCellFeature
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
