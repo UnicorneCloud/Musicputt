@@ -8,6 +8,12 @@
 
 #import "UITableViewCellFeature.h"
 
+@interface UITableViewCellFeature()
+
+
+
+@end
+
 @implementation UITableViewCellFeature
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
