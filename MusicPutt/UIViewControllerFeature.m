@@ -13,7 +13,16 @@
 #import "ITunesFeedsApi.h"
 #import "AppDelegate.h"
 
-@interface UIViewControllerFeature ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, ITunesFeedsApiDelegate>
+#define MUSICPUTT_PLAY_PREFERED         @"Play with my prefered"
+#define MUSICPUTT_PLAY_LASTEST          @"Play lastest playlist"
+#define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create new playlist"
+
+#define DISCOVER_SEE_WHATS_NEW          @"See what's hot"
+#define DISCOVER_PLAY_WHATS_NEW         @"Play what's hot"
+
+
+
+@interface UIViewControllerFeature ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, ITunesFeedsApiDelegate, UIActionSheetDelegate>
 {
     UIBarButtonItem* editButton;
     NSArray *sortedSongsArray;
@@ -188,6 +197,28 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0)
+    {
+        // Musicputt row
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:MUSICPUTT_PLAY_PREFERED, MUSICPUTT_PLAY_LASTEST, MUSICPUTT_CREATE_NEW_PLAYLIST, nil];
+        [actionSheet showInView:self.view];
+    }
+    else if (indexPath.row == 1)
+    {
+        // Discover row
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:DISCOVER_SEE_WHATS_NEW, DISCOVER_PLAY_WHATS_NEW, nil];
+        [actionSheet showInView:self.view];
+    }
+    
+    
     return indexPath;
 }
 
@@ -235,6 +266,16 @@
         }
         
     }
+}
+
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"You have pressed the %@ button", [actionSheet buttonTitleAtIndex:buttonIndex]);
+    
+    
 }
 
 
