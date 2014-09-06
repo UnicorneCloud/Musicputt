@@ -74,12 +74,12 @@
     [super viewWillAppear:animated];
     
     // load most recent songs
-    [self loadMostRecentSongs];
+    //[self loadMostRecentSongs];
     
     // itunes feeds load
-    [_itunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:10 genre:0 asynchronizationMode:true];
+    //[_itunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:10 genre:0 asynchronizationMode:true];
     
-    [_tableView reloadData];
+    //[_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,6 +135,10 @@
     {
         [[cell title] setText:@"+ musicputt"];
         [[cell desc] setText:@"Create custom playlist based on your preference"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.parentView = self.view;
+        cell.parentNavCtrl = self.navigationController;
+        
         
         // image 1
         MPMediaItem* song1 = [sortedSongsArray objectAtIndex:0];
@@ -147,6 +151,9 @@
         else
             [[cell image1] setImage:[UIImage imageNamed:@"empty"]];
         
+        // albumUid 1
+        cell.albumUid1 = [song1 valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+        
         // image 2
         MPMediaItem* song2 = [sortedSongsArray objectAtIndex:1];
         UIImage* image2;
@@ -157,6 +164,9 @@
             [[cell image2] setImage:image2];
         else
             [[cell image2] setImage:[UIImage imageNamed:@"empty"]];
+        
+        // albumUid 2
+        cell.albumUid2 = [song2 valueForProperty:MPMediaItemPropertyAlbumPersistentID];
         
         // image 3
         MPMediaItem* song3 = [sortedSongsArray objectAtIndex:2];
@@ -169,6 +179,9 @@
         else
             [[cell image3] setImage:[UIImage imageNamed:@"empty"]];
         
+        // albumUid 3
+        cell.albumUid3 = [song3 valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+        
         // image 4
         MPMediaItem* song4 = [sortedSongsArray objectAtIndex:3];
         UIImage* image4;
@@ -180,11 +193,17 @@
         else
             [[cell image4] setImage:[UIImage imageNamed:@"empty"]];
         
+        // albumUid 4
+        cell.albumUid4 = [song4 valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+        
     }
     else if (indexPath.row==1)
     {
         [[cell title] setText:@"Discover"];
         [[cell desc] setText:@"Music popular right now in the world"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.parentView = self.view;
+        cell.parentNavCtrl = self.navigationController;
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End cellForRowAtIndexPath");
@@ -197,28 +216,6 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
-    {
-        // Musicputt row
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:MUSICPUTT_PLAY_PREFERED, MUSICPUTT_PLAY_LASTEST, MUSICPUTT_CREATE_NEW_PLAYLIST, nil];
-        [actionSheet showInView:self.view];
-    }
-    else if (indexPath.row == 1)
-    {
-        // Discover row
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:DISCOVER_SEE_WHATS_NEW, DISCOVER_PLAY_WHATS_NEW, nil];
-        [actionSheet showInView:self.view];
-    }
-    
-    
     return indexPath;
 }
 
@@ -264,19 +261,11 @@
             UIImage *sharedImage4 = [[UIImage alloc] initWithData:data4];
             [[cell image4] setImage:sharedImage4];
         }
-        
     }
 }
 
 
-#pragma mark - UIActionSheetDelegate
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSLog(@"You have pressed the %@ button", [actionSheet buttonTitleAtIndex:buttonIndex]);
-    
-    
-}
 
 
 /*

@@ -8,7 +8,29 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  Enum of query status.
+ */
+typedef enum {
+    TypeMusicPutt,
+    TypeDiscover
+} CellFeatureType;
+
 @interface UITableViewCellFeature : UITableViewCell
+
+@property CellFeatureType type;
+
+@property (weak, nonatomic) UINavigationController* parentNavCtrl;
+
+@property (weak,nonatomic) NSNumber*                albumUid1;
+
+@property (weak,nonatomic) NSNumber*                albumUid2;
+
+@property (weak,nonatomic) NSNumber*                albumUid3;
+
+@property (weak,nonatomic) NSNumber*                albumUid4;
+
+@property (weak, nonatomic) IBOutlet UIView*        parentView;
 
 @property (weak, nonatomic) IBOutlet UIImageView*   image1;
 
