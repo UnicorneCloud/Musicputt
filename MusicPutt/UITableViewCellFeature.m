@@ -108,27 +108,50 @@
 
 - (void)onClickImage1
 {
-    NSLog(@"You have click album: %@", _albumUid1);
-    [self playAlbum:_albumUid1];
-    
+    if (_type == TypeMusicPutt) {
+        // click on album in musicputt (local device album)
+        [self playAlbum:_albumUid1];
+        NSLog(@"You have click album: %@", _albumUid1);
+    }
+    else if (_type == TypeDiscover){
+        // click on album in TopRate
+    }
 }
 
 - (void)onClickImage2
 {
-    NSLog(@"You have click album: %@", _albumUid2);
-    [self playAlbum:_albumUid2];
+    if (_type == TypeMusicPutt) {
+        // click on album in musicputt (local device album)
+        [self playAlbum:_albumUid2];
+        NSLog(@"You have click album: %@", _albumUid2);
+    }
+    else if (_type == TypeDiscover){
+        // click on album in TopRate
+    }
 }
 
 - (void)onClickImage3
 {
-    NSLog(@"You have click album: %@", _albumUid3);
-    [self playAlbum:_albumUid3];
+    if (_type == TypeMusicPutt) {
+        // click on album in musicputt (local device album)
+        [self playAlbum:_albumUid3];
+        NSLog(@"You have click album: %@", _albumUid3);
+    }
+    else if (_type == TypeDiscover){
+        // click on album in TopRate
+    }
 }
 
 - (void)onClickImage4
 {
-    NSLog(@"You have click album: %@", _albumUid4);
-    [self playAlbum:_albumUid4];
+    if (_type == TypeMusicPutt) {
+        // click on album in musicputt (local device album)
+        [self playAlbum:_albumUid4];
+        NSLog(@"You have click album: %@", _albumUid4);
+    }
+    else if (_type == TypeDiscover){
+        // click on album in TopRate
+    }
 }
 
 -(void) playAlbum:(NSNumber*)albumUid

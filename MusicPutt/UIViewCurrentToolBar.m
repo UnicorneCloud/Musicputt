@@ -306,7 +306,7 @@
 
 -(void) handle_PlaybackStateChanged:(id) notification
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     // do action only if media player is ready
     if ([[self.del mpdatamanager] isMediaPlayerInitialized])
     {
@@ -321,7 +321,7 @@
 
 -(void) handle_NowPlayingItemChanged:(id) notification
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // do action only if media player is ready
     if ([[self.del mpdatamanager] isMediaPlayerInitialized])

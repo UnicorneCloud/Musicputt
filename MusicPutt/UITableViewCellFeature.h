@@ -30,6 +30,14 @@ typedef enum {
 
 @property (weak,nonatomic) NSNumber*                albumUid4;
 
+@property (weak,nonatomic) NSString*                collectionId1;
+
+@property (weak,nonatomic) NSString*                collectionId2;
+
+@property (weak,nonatomic) NSString*                collectionId3;
+
+@property (weak,nonatomic) NSString*                collectionId4;
+
 @property (weak, nonatomic) IBOutlet UIView*        parentView;
 
 @property (weak, nonatomic) IBOutlet UIImageView*   image1;

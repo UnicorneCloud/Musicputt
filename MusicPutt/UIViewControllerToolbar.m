@@ -75,10 +75,9 @@
     
     // setup currentPlayingToolBar
     currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
+    [self hideTabbar];
     [currentPlayingToolBar setNavigationController:self.navigationController];
     currentPlayingToolBar.scrollView = self->toolbarTableView;
-    [self hideTabbar];
-    
     
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
@@ -141,7 +140,7 @@
 
 -(void) handle_PlaybackStateChanged:(id) notification
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
     if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
@@ -155,7 +154,7 @@
 
 -(void) handle_NowPlayingItemChanged:(id) notification
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
     if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
@@ -171,8 +170,10 @@
 
 -(void) showTabbar
 {
-    if (![currentPlayingToolBar isVisible]) {
-        [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+    if ([[self.del mpdatamanager] isMusicViewControllerVisible] == false){
+        if (![currentPlayingToolBar isVisible]) {
+            [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+        }
     }
 }
 

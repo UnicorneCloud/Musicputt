@@ -206,7 +206,6 @@
     _artworkpage.pageIndex = 1;
     _artworkpage.view.backgroundColor = [UIColor clearColor];
     
-    
     _lyricspage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicLyricsPage"];
     _lyricspage.view.frame = framelyrics;
     _lyricspage.pageIndex = 2;
@@ -222,7 +221,6 @@
     NSArray *viewControllers = @[startingViewController];
     [_pageviewcontroller setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [_pageviewcontroller setDelegate:self];
-    
     
     // Change the size of page view controller
     _pageviewcontroller.view.frame = CGRectMake(0, 0, _pageview.frame.size.width, _pageview.frame.size.height);
@@ -241,7 +239,6 @@
     
     // improve hittest for share button.
     [_share setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
-    
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
