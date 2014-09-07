@@ -47,7 +47,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 180.0f)];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 30, 100, 100)];
         imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        imageView.image = [UIImage imageNamed:@"empty"];
+        imageView.image = [UIImage imageNamed:@"musicputt"];
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 50.0;
         imageView.layer.borderColor = [UIColor whiteColor].CGColor;

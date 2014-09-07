@@ -72,7 +72,7 @@
     // init itunes feeds api
     _itunes = [[ITunesFeedsApi alloc] init];
     [_itunes setDelegate:self];
-    [_itunes queryFeedType:QueryTopAlbums forCountry:@"ca" size:25 genre:0 asynchronizationMode:true];
+    [_itunes queryFeedType:QueryTopAlbums forCountry:[[NSLocale currentLocale] objectForKey: NSLocaleCountryCode] size:25 genre:0 asynchronizationMode:true];
     
     // load most recent songs
     sortedSongsArray = [[NSArray alloc] init];
@@ -83,13 +83,13 @@
 {
     [super viewWillAppear:animated];
     
-    timerMusicPutt = [NSTimer scheduledTimerWithTimeInterval:2.5
+    timerMusicPutt = [NSTimer scheduledTimerWithTimeInterval:4.5
                                              target:self
                                            selector:@selector(nextMusicputt)
                                            userInfo: nil
                                             repeats:YES];
     
-    timerTopRate = [NSTimer scheduledTimerWithTimeInterval:4.0
+    timerTopRate = [NSTimer scheduledTimerWithTimeInterval:10
                                                       target:self
                                                     selector:@selector(nextTopRate)
                                                     userInfo: nil
@@ -216,7 +216,7 @@
     UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     if(cell)
     {
-        if(currentMusicPuttUpdate == 16){
+        if(currentMusicPuttUpdate == 64){
             currentMusicPuttUpdate = 4;
         }
         
@@ -228,10 +228,7 @@
             currentMusicPuttStep++;
         }
         
-        if (currentMusicPuttUpdate + currentMusicPuttStep <= sortedSongsArray.count) {
-            
-        }
-        else{
+        if (currentMusicPuttUpdate + currentMusicPuttStep > sortedSongsArray.count) {
             currentMusicPuttUpdate = 4;
             currentMusicPuttStep = 1;
         }
@@ -389,7 +386,7 @@
     if (indexPath.row==0)
     {
         [[cell title] setText:@"+ musicputt"];
-        [[cell desc] setText:@"Create custom playlist based on your preference"];
+        [[cell desc] setText:@"Click here for more action ...\nYou can create custom playlist."];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.parentView = self.view;
         cell.parentNavCtrl = self.navigationController;
@@ -400,8 +397,8 @@
     }
     else if (indexPath.row==1)
     {
-        [[cell title] setText:@"Discover"];
-        [[cell desc] setText:@"Music popular right now in the world"];
+        [[cell title] setText:@"+ discover"];
+        [[cell desc] setText:@"Click here for more action ...\nYou can listen what's hot today."];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.parentView = self.view;
         cell.parentNavCtrl = self.navigationController;
