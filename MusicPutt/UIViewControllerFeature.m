@@ -100,7 +100,6 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [timerMusicPutt invalidate];
-    
     [timerTopRate invalidate];
 }
 
@@ -152,6 +151,9 @@
         
         if (cell)
         {
+            int nbtry = 0;
+            int nbtrymax = 64;
+            bool accept = false;
             // image 1
             MPMediaItem* song1 = [sortedSongsArray objectAtIndex:0];
             UIImage* image1;
@@ -168,6 +170,35 @@
             
             // image 2
             MPMediaItem* song2 = [sortedSongsArray objectAtIndex:1];
+            do {
+                // check if album artwork is already display in other image
+                // in this cell. If album is already display, skip the songs
+                if ([cell.albumUid1 isEqualToNumber: [song2 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid2 isEqualToNumber: [song2 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid3 isEqualToNumber: [song2 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid4 isEqualToNumber: [song2 valueForProperty:MPMediaItemPropertyAlbumPersistentID]])
+                {
+                    // skip songs
+                    nbtry++;
+                    if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
+                        song2 = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                    }
+                    else{
+                        // accept song because no more
+                        // song in the array
+                        accept = true;
+                    }
+                }
+                else
+                {
+                    // accept song
+                    accept =true;
+                }
+            } while (accept == false && nbtry<=nbtrymax);
+            
+            accept = false;
+            nbtry = 0;
+            
             UIImage* image2;
             MPMediaItemArtwork *artwork2 = [song2 valueForProperty:MPMediaItemPropertyArtwork];
             if (artwork2)
@@ -182,6 +213,35 @@
             
             // image 3
             MPMediaItem* song3 = [sortedSongsArray objectAtIndex:2];
+            do {
+                // check if album artwork is already display in other image
+                // in this cell. If album is already display, skip the songs
+                if ([cell.albumUid1 isEqualToNumber: [song3 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid2 isEqualToNumber: [song3 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid3 isEqualToNumber: [song3 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid4 isEqualToNumber: [song3 valueForProperty:MPMediaItemPropertyAlbumPersistentID]])
+                {
+                    // skip songs
+                    nbtry++;
+                    if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
+                        song3 = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                    }
+                    else{
+                        // accept song because no more
+                        // song in the array
+                        accept = true;
+                    }
+                }
+                else
+                {
+                    // accept song
+                    accept =true;
+                }
+            } while (accept == false && nbtry<=nbtrymax);
+            
+            accept = false;
+            nbtry = 0;
+        
             UIImage* image3;
             MPMediaItemArtwork *artwork3 = [song3 valueForProperty:MPMediaItemPropertyArtwork];
             if (artwork3)
@@ -196,6 +256,35 @@
             
             // image 4
             MPMediaItem* song4 = [sortedSongsArray objectAtIndex:3];
+            do {
+                // check if album artwork is already display in other image
+                // in this cell. If album is already display, skip the songs
+                if ([cell.albumUid1 isEqualToNumber: [song4 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid2 isEqualToNumber: [song4 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid3 isEqualToNumber: [song4 valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                    [cell.albumUid4 isEqualToNumber: [song4 valueForProperty:MPMediaItemPropertyAlbumPersistentID]])
+                {
+                    // skip songs
+                    nbtry++;
+                    if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
+                        song4 = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                    }
+                    else{
+                        // accept song because no more
+                        // song in the array
+                        accept = true;
+                    }
+                }
+                else
+                {
+                    // accept song
+                    accept =true;
+                }
+            } while (accept == false && nbtry<=nbtrymax);
+            
+            accept = false;
+            nbtry = 0;
+            
             UIImage* image4;
             MPMediaItemArtwork *artwork4 = [song4 valueForProperty:MPMediaItemPropertyArtwork];
             if (artwork4)
@@ -214,8 +303,12 @@
 - (void) nextMusicputt
 {
     UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    if(cell)
+    if(cell && sortedSongsArray.count>=4)
     {
+        bool accept = false;
+        int nbtry = 0;
+        int nbtrymax = 64;
+        
         if(currentMusicPuttUpdate == 64){
             currentMusicPuttUpdate = 4;
         }
@@ -232,6 +325,37 @@
             currentMusicPuttUpdate = 4;
             currentMusicPuttStep = 1;
         }
+        MPMediaItem* song = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep];
+        UIImage* image;
+        MPMediaItemArtwork *artwork = nil;
+        
+        do {
+            // check if album artwork is already display in other image
+            // in this cell. If album is already display, skip the songs
+            if ([cell.albumUid1 isEqualToNumber: [song valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                [cell.albumUid2 isEqualToNumber: [song valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                [cell.albumUid3 isEqualToNumber: [song valueForProperty:MPMediaItemPropertyAlbumPersistentID]] ||
+                [cell.albumUid4 isEqualToNumber: [song valueForProperty:MPMediaItemPropertyAlbumPersistentID]])
+            {
+                // skip songs
+                nbtry++;
+                if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
+                    song = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                }
+                else{
+                    // accept song because no more
+                    // song in the array
+                    accept = true;
+                }
+            }
+            else
+            {
+                // accept song
+                accept =true;
+            }
+        } while (accept == false && nbtry<=nbtrymax);
+        
+        
         
         // cell update
         UIImageView* imageToUpdate = nil;
@@ -248,9 +372,7 @@
             imageToUpdate = cell.image4;
         }
         
-        MPMediaItem* song = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep];
-        UIImage* image;
-        MPMediaItemArtwork *artwork = [song valueForProperty:MPMediaItemPropertyArtwork];
+        artwork = [song valueForProperty:MPMediaItemPropertyArtwork];
         if (artwork)
             image = [artwork imageWithSize:[imageToUpdate frame].size];
         
@@ -285,6 +407,7 @@
         else if (currentMusicPuttStep==4){
             cell.albumUid4 = [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
         }
+        
     }
 }
 
@@ -426,7 +549,7 @@
         
         // load images from itunes store
         UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        if (cell) {
+        if (cell && results.count>=4) {
             
             currentTopRateUpdate = 4;
             currentTopRateStep = 0;

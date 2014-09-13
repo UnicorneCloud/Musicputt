@@ -16,6 +16,8 @@ typedef enum {
     TypeDiscover
 } CellFeatureType;
 
+
+
 @interface UITableViewCellFeature : UITableViewCell
 
 @property CellFeatureType type;
