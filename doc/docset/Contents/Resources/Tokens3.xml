@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MPArtist.html">
+	<File path="Classes/ITunesArtist.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MPArtist</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ITunesArtist</TokenIdentifier>
 			<Abstract type="html">Artist receieved from iTunes Store</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
             
 			
 			<NodeRef refid="3"/>
@@ -13,9 +13,9 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setWrapperType:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setWrapperType:</TokenIdentifier>
 			<Abstract type="html">wrapper Type.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
@@ -25,9 +25,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/wrapperType</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/wrapperType</TokenIdentifier>
 			<Abstract type="html">wrapper Type.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
@@ -37,9 +37,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/wrapperType</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/wrapperType</TokenIdentifier>
 			<Abstract type="html">wrapper Type.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
@@ -49,9 +49,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistType:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setArtistType:</TokenIdentifier>
 			<Abstract type="html">Artist Type.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistType</Declaration>
 			
@@ -61,9 +61,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistType</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/artistType</TokenIdentifier>
 			<Abstract type="html">Artist Type.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistType</Declaration>
 			
@@ -73,9 +73,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistType</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/artistType</TokenIdentifier>
 			<Abstract type="html">Artist Type.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistType</Declaration>
 			
@@ -85,9 +85,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistName:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setArtistName:</TokenIdentifier>
 			<Abstract type="html">Artist Name.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
 			
@@ -97,9 +97,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistName</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/artistName</TokenIdentifier>
 			<Abstract type="html">Artist Name.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
 			
@@ -109,9 +109,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistName</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/artistName</TokenIdentifier>
 			<Abstract type="html">Artist Name.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
 			
@@ -121,9 +121,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistLinkUrl:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setArtistLinkUrl:</TokenIdentifier>
 			<Abstract type="html">Artist link url in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistLinkUrl</Declaration>
 			
@@ -133,9 +133,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistLinkUrl</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/artistLinkUrl</TokenIdentifier>
 			<Abstract type="html">Artist link url in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistLinkUrl</Declaration>
 			
@@ -145,9 +145,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistLinkUrl</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/artistLinkUrl</TokenIdentifier>
 			<Abstract type="html">Artist link url in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistLinkUrl</Declaration>
 			
@@ -157,9 +157,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setArtistId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setArtistId:</TokenIdentifier>
 			<Abstract type="html">Artist Id in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
@@ -169,9 +169,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/artistId</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/artistId</TokenIdentifier>
 			<Abstract type="html">Artist Id in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
@@ -181,9 +181,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/artistId</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/artistId</TokenIdentifier>
 			<Abstract type="html">Artist Id in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
@@ -193,9 +193,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setAmgArtistId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setAmgArtistId:</TokenIdentifier>
 			<Abstract type="html">Artist AMG ID in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *amgArtistId</Declaration>
 			
@@ -205,9 +205,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/amgArtistId</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/amgArtistId</TokenIdentifier>
 			<Abstract type="html">Artist AMG ID in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *amgArtistId</Declaration>
 			
@@ -217,9 +217,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/amgArtistId</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/amgArtistId</TokenIdentifier>
 			<Abstract type="html">Artist AMG ID in the iTunes Store.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *amgArtistId</Declaration>
 			
@@ -229,9 +229,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setPrimaryGenreName:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setPrimaryGenreName:</TokenIdentifier>
 			<Abstract type="html">Artist primary genre name.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
 			
@@ -241,9 +241,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/primaryGenreName</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/primaryGenreName</TokenIdentifier>
 			<Abstract type="html">Artist primary genre name.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
 			
@@ -253,9 +253,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/primaryGenreName</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/primaryGenreName</TokenIdentifier>
 			<Abstract type="html">Artist primary genre name.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
 			
@@ -265,9 +265,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setPrimaryGenreId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setPrimaryGenreId:</TokenIdentifier>
 			<Abstract type="html">Artist primary genre id.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *primaryGenreId</Declaration>
 			
@@ -277,9 +277,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/primaryGenreId</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/primaryGenreId</TokenIdentifier>
 			<Abstract type="html">Artist primary genre id.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *primaryGenreId</Declaration>
 			
@@ -289,9 +289,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/primaryGenreId</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/primaryGenreId</TokenIdentifier>
 			<Abstract type="html">Artist primary genre id.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *primaryGenreId</Declaration>
 			
@@ -301,9 +301,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/setRadioStationUrl:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/setRadioStationUrl:</TokenIdentifier>
 			<Abstract type="html">Artist radio url.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *radioStationUrl</Declaration>
 			
@@ -313,9 +313,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPArtist/radioStationUrl</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesArtist/radioStationUrl</TokenIdentifier>
 			<Abstract type="html">Artist radio url.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *radioStationUrl</Declaration>
 			
@@ -325,9 +325,9 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPArtist/radioStationUrl</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesArtist/radioStationUrl</TokenIdentifier>
 			<Abstract type="html">Artist radio url.</Abstract>
-			<DeclaredIn>MPArtist.h</DeclaredIn>
+			<DeclaredIn>ITunesArtist.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, copy) NSString *radioStationUrl</Declaration>
 			

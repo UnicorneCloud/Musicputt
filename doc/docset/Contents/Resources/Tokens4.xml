@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MPDataManager.html">
+	<File path="Classes/ITunesFeedsApi.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MPDataManager</TokenIdentifier>
-			<Abstract type="html">MPDataManager is the main application data manager. This class maintain all data for
-the current execution.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/ITunesFeedsApi</TokenIdentifier>
+			<Abstract type="html">ITunesFeedsApi class permit to request at iTunes the top songs and top album.</Abstract>
+			<DeclaredIn>ITunesFeedsApi.h</DeclaredIn>
             
 			
 			<NodeRef refid="4"/>
@@ -14,308 +13,155 @@ the current execution.</Abstract>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicplayer:</TokenIdentifier>
-			<Abstract type="html">Main music player controller.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
-			
-			
-			<Anchor>//api/name/musicplayer</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/musicplayer</TokenIdentifier>
-			<Abstract type="html">Main music player controller.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
-			
-			
-			<Anchor>//api/name/musicplayer</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/musicplayer</TokenIdentifier>
-			<Abstract type="html">Main music player controller.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</Declaration>
-			
-			
-			<Anchor>//api/name/musicplayer</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlayingToolbar:</TokenIdentifier>
-			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
-			
-			
-			<Anchor>//api/name/currentPlayingToolbar</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlayingToolbar</TokenIdentifier>
-			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
-			
-			
-			<Anchor>//api/name/currentPlayingToolbar</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlayingToolbar</TokenIdentifier>
-			<Abstract type="html">Toolbar displayed when music playing and the UIMusicViewController is not displayed.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) UICurrentPlayingToolBar *currentPlayingToolbar</Declaration>
-			
-			
-			<Anchor>//api/name/currentPlayingToolbar</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentPlaylist:</TokenIdentifier>
-			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
-			
-			
-			<Anchor>//api/name/currentPlaylist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentPlaylist</TokenIdentifier>
-			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
-			
-			
-			<Anchor>//api/name/currentPlaylist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentPlaylist</TokenIdentifier>
-			<Abstract type="html">Current selected playlist select in the playlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</Declaration>
-			
-			
-			<Anchor>//api/name/currentPlaylist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentSonglist:</TokenIdentifier>
-			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
-			
-			
-			<Anchor>//api/name/currentSonglist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentSonglist</TokenIdentifier>
-			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
-			
-			
-			<Anchor>//api/name/currentSonglist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentSonglist</TokenIdentifier>
-			<Abstract type="html">Current song list for the songlist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) NSMutableArray *currentSonglist</Declaration>
-			
-			
-			<Anchor>//api/name/currentSonglist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtistCollection:</TokenIdentifier>
-			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
-			
-			
-			<Anchor>//api/name/currentArtistCollection</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtistCollection</TokenIdentifier>
-			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
-			
-			
-			<Anchor>//api/name/currentArtistCollection</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtistCollection</TokenIdentifier>
-			<Abstract type="html">Current selected artist collection for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</Declaration>
-			
-			
-			<Anchor>//api/name/currentArtistCollection</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentAlbumCollection:</TokenIdentifier>
-			<Abstract type="html">Current selected album collection for the album navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentAlbumCollection</Declaration>
-			
-			
-			<Anchor>//api/name/currentAlbumCollection</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentAlbumCollection</TokenIdentifier>
-			<Abstract type="html">Current selected album collection for the album navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentAlbumCollection</Declaration>
-			
-			
-			<Anchor>//api/name/currentAlbumCollection</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentAlbumCollection</TokenIdentifier>
-			<Abstract type="html">Current selected album collection for the album navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItemCollection *currentAlbumCollection</Declaration>
-			
-			
-			<Anchor>//api/name/currentAlbumCollection</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setCurrentArtist:</TokenIdentifier>
-			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
-			
-			
-			<Anchor>//api/name/currentArtist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/currentArtist</TokenIdentifier>
-			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
-			
-			
-			<Anchor>//api/name/currentArtist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MPDataManager/currentArtist</TokenIdentifier>
-			<Abstract type="html">Current selected artist for the artist navigation bar.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic) MPMediaItem *currentArtist</Declaration>
-			
-			
-			<Anchor>//api/name/currentArtist</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialise</TokenIdentifier>
-			<Abstract type="html">Initialise all data for the current execution of the application.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>- (bool)initialise</Declaration>
-			
-			<ReturnValue><Abstract type="html">True if the initialization succesed.</Abstract></ReturnValue>
-			<Anchor>//api/name/initialise</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/isMusicViewControllerVisible</TokenIdentifier>
-			<Abstract type="html">Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
-is displayed, UICurrentPlayingToolBar is hidden.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>- (bool)isMusicViewControllerVisible</Declaration>
-			
-			<ReturnValue><Abstract type="html">True if UIMusicViewController displayed</Abstract></ReturnValue>
-			<Anchor>//api/name/isMusicViewControllerVisible</Anchor>
-            <NodeRef refid="4"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/setMusicViewControllerVisible:</TokenIdentifier>
-			<Abstract type="html">Set the status of the visibility of the UIMusicViewController.</Abstract>
-			<DeclaredIn>MPDataManager.h</DeclaredIn>
-			
-			<Declaration>- (void)setMusicViewControllerVisible:(bool)visible</Declaration>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/setDelegate:</TokenIdentifier>
+			<Abstract type="html">Set delegate to recieve result of query.</Abstract>
+			<DeclaredIn>ITunesFeedsApi.h</DeclaredIn>
+			
+			<Declaration>- (void)setDelegate:(id)anObject</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>visible</Name>
-					<Abstract type="html">True to indicate the UIMusicViewController displayed.</Abstract>
+					<Name>anObject</Name>
+					<Abstract type="html">delegate object with ITunesFeedsApiDelegate protocol.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/setMusicViewControllerVisible:</Anchor>
+			<Anchor>//api/name/setDelegate:</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPDataManager/initialiseMediaPlayer</TokenIdentifier>
-			<Abstract type="html">Initialization of the media player.</Abstract>
-			<DeclaredIn>MPDataManager.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/queryFeedType:forCountry:size:genre:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Query iTunes feeds. When to result are ready, results are sends to ITunesFeedsApiDelegate queryResult.
+See: http://www.apple.com/itunes/affiliates/resources/blog/introduction---rss-feed-generator.html for more details</Abstract>
+			<DeclaredIn>ITunesFeedsApi.h</DeclaredIn>
 			
-			<Declaration>- (bool)initialiseMediaPlayer</Declaration>
+			<Declaration>- (void)queryFeedType:(ITunesFeedsQueryType)type forCountry:(NSString *)country size:(NSInteger)size genre:(NSInteger)genre asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>type</Name>
+					<Abstract type="html">ITunesFeedsQueryType are QueryTopSongs or QueryTopAlbums.</Abstract>
+				</Parameter><Parameter>
+					<Name>country</Name>
+					<Abstract type="html">Enter the country code. (United State:us, Canada:ca, etc...)</Abstract>
+				</Parameter><Parameter>
+					<Name>size</Name>
+					<Abstract type="html">Enter the size of result. (Must be: 10, 25,50 or 100)</Abstract>
+				</Parameter><Parameter>
+					<Name>genre</Name>
+					<Abstract type="html">Enter the genre: (0 for all) See: http://www.apple.com/itunes/affiliates/resources/documentation/genre-mapping.html for more details.</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">&lt;#async description#&gt;</Abstract>
+				</Parameter>
+			</Parameters>
 			
-			<ReturnValue><Abstract type="html">True if initialization succesed.</Abstract></ReturnValue>
-			<Anchor>//api/name/initialiseMediaPlayer</Anchor>
+			<Anchor>//api/name/queryFeedType:forCountry:size:genre:asynchronizationMode:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/connection:didReceiveResponse:</TokenIdentifier>
+			<Abstract type="html">Receive response from web json api.</Abstract>
+			<DeclaredIn>ITunesFeedsApi.m</DeclaredIn>
+			
+			<Declaration>- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>connection</Name>
+					<Abstract type="html">&lt;#connection description#&gt;</Abstract>
+				</Parameter><Parameter>
+					<Name>response</Name>
+					<Abstract type="html">&lt;#data description#&gt;</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/connection:didReceiveResponse:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/connection:didReceiveData:</TokenIdentifier>
+			<Abstract type="html">Receive data from web api</Abstract>
+			<DeclaredIn>ITunesFeedsApi.m</DeclaredIn>
+			
+			<Declaration>- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>connection</Name>
+					<Abstract type="html">&lt;#connection description#&gt;</Abstract>
+				</Parameter><Parameter>
+					<Name>data</Name>
+					<Abstract type="html">&lt;#data description#&gt;</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/connection:didReceiveData:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/connection:didFailWithError:</TokenIdentifier>
+			<Abstract type="html">Connection error.</Abstract>
+			<DeclaredIn>ITunesFeedsApi.m</DeclaredIn>
+			
+			<Declaration>- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>connection</Name>
+					<Abstract type="html">&lt;#connection description#&gt;</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">&lt;#error description#&gt;</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/connection:didFailWithError:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/connectionDidFinishLoading:</TokenIdentifier>
+			<Abstract type="html">Connection is finish loading</Abstract>
+			<DeclaredIn>ITunesFeedsApi.m</DeclaredIn>
+			
+			<Declaration>- (void)connectionDidFinishLoading:(NSURLConnection *)connection</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>connection</Name>
+					<Abstract type="html">&lt;#connection description#&gt;</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/connectionDidFinishLoading:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/validateParameters:forCountry:size:genre:asynchronizationMode:</TokenIdentifier>
+			<Abstract type="html">Validate parameters for querry</Abstract>
+			<DeclaredIn>ITunesFeedsApi.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)validateParameters:(ITunesFeedsQueryType)type forCountry:(NSString *)country size:(NSInteger)size genre:(NSInteger)genre asynchronizationMode:(BOOL)async</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>type</Name>
+					<Abstract type="html">&lt;#type description#&gt;</Abstract>
+				</Parameter><Parameter>
+					<Name>country</Name>
+					<Abstract type="html">&lt;#country description#&gt;</Abstract>
+				</Parameter><Parameter>
+					<Name>size</Name>
+					<Abstract type="html">&lt;#size description#&gt;</Abstract>
+				</Parameter><Parameter>
+					<Name>genre</Name>
+					<Abstract type="html">&lt;#genre description#&gt;</Abstract>
+				</Parameter><Parameter>
+					<Name>async</Name>
+					<Abstract type="html">&lt;#async description#&gt;</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">true if all parameters are valid</Abstract></ReturnValue>
+			<Anchor>//api/name/validateParameters:forCountry:size:genre:asynchronizationMode:</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		

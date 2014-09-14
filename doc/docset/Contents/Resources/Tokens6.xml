@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MPServiceStore.html">
+	<File path="Classes/ITunesMusicTrack.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MPServiceStore</TokenIdentifier>
-			<Abstract type="html">Service for access to iTunes Store.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/ITunesMusicTrack</TokenIdentifier>
+			<Abstract type="html">MusicTrack receive from the iTunes Search API.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
             
 			
 			<NodeRef refid="6"/>
@@ -13,286 +13,974 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/setDelegate:</TokenIdentifier>
-			<Abstract type="html">Set delegate to recieve result of query.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setWrapperType:</TokenIdentifier>
+			<Abstract type="html">The name of the object returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)setDelegate:(id)anObject</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>anObject</Name>
-					<Abstract type="html">delegate object with MPServiceStoreDelegate protocol.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
-			<Anchor>//api/name/setDelegate:</Anchor>
+			
+			<Anchor>//api/name/wrapperType</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithSearchTerm:asynchronizationMode:</TokenIdentifier>
-			<Abstract type="html">Execute query for return musics tracks from iTunes Store and return results to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/wrapperType</TokenIdentifier>
+			<Abstract type="html">The name of the object returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)queryMusicTrackWithSearchTerm:(NSString *)searchTerm asynchronizationMode:(BOOL)async</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc</Abstract>
-				</Parameter><Parameter>
-					<Name>async</Name>
-					<Abstract type="html">true if you want asynchronization mode</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
-			<Anchor>//api/name/queryMusicTrackWithSearchTerm:asynchronizationMode:</Anchor>
+			
+			<Anchor>//api/name/wrapperType</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithId:asynchronizationMode:</TokenIdentifier>
-			<Abstract type="html">Execute query in iTunes Store and return music track with this id to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/wrapperType</TokenIdentifier>
+			<Abstract type="html">The name of the object returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)queryMusicTrackWithId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>itemId</Name>
-					<Abstract type="html">id of the music track to find</Abstract>
-				</Parameter><Parameter>
-					<Name>async</Name>
-					<Abstract type="html">true if you want asynchronization mode</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *wrapperType</Declaration>
 			
-			<Anchor>//api/name/queryMusicTrackWithId:asynchronizationMode:</Anchor>
+			
+			<Anchor>//api/name/wrapperType</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithAlbumId:asynchronizationMode:</TokenIdentifier>
-			<Abstract type="html">Execute query in iTunes Store and return music track with this album id to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setKind:</TokenIdentifier>
+			<Abstract type="html">The kind of content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)queryMusicTrackWithAlbumId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>itemId</Name>
-					<Abstract type="html">id of the album to find</Abstract>
-				</Parameter><Parameter>
-					<Name>async</Name>
-					<Abstract type="html">true if you want asynchronization mode</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *kind</Declaration>
 			
-			<Anchor>//api/name/queryMusicTrackWithAlbumId:asynchronizationMode:</Anchor>
+			
+			<Anchor>//api/name/kind</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryMusicTrackWithArtistId:asynchronizationMode:</TokenIdentifier>
-			<Abstract type="html">Execute query in iTunes Store and return music track with this artist id to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/kind</TokenIdentifier>
+			<Abstract type="html">The kind of content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)queryMusicTrackWithArtistId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>itemId</Name>
-					<Abstract type="html">id of the artist to find</Abstract>
-				</Parameter><Parameter>
-					<Name>async</Name>
-					<Abstract type="html">true if you want asynchronization mode</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *kind</Declaration>
 			
-			<Anchor>//api/name/queryMusicTrackWithArtistId:asynchronizationMode:</Anchor>
+			
+			<Anchor>//api/name/kind</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryAlbumWithSearchTerm:asynchronizationMode:</TokenIdentifier>
-			<Abstract type="html">Execute query for return albums from iTunes Store and return results to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/kind</TokenIdentifier>
+			<Abstract type="html">The kind of content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)queryAlbumWithSearchTerm:(NSString *)searchTerm asynchronizationMode:(BOOL)async</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc</Abstract>
-				</Parameter><Parameter>
-					<Name>async</Name>
-					<Abstract type="html">true if you want asynchronization mode</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *kind</Declaration>
 			
-			<Anchor>//api/name/queryAlbumWithSearchTerm:asynchronizationMode:</Anchor>
+			
+			<Anchor>//api/name/kind</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryAlbumWithId:asynchronizationMode:</TokenIdentifier>
-			<Abstract type="html">Execute query in iTunes Store and return music track with this id to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setArtistId:</TokenIdentifier>
+			<Abstract type="html">Unique identifier of artist.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)queryAlbumWithId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>itemId</Name>
-					<Abstract type="html">id of the music track to find</Abstract>
-				</Parameter><Parameter>
-					<Name>async</Name>
-					<Abstract type="html">true if you want asynchronization mode</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
-			<Anchor>//api/name/queryAlbumWithId:asynchronizationMode:</Anchor>
+			
+			<Anchor>//api/name/artistId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/queryAlbumWithArtistId:asynchronizationMode:</TokenIdentifier>
-			<Abstract type="html">Execute query in iTunes Store and return all album for an artist with this id to the delagate.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/artistId</TokenIdentifier>
+			<Abstract type="html">Unique identifier of artist.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)queryAlbumWithArtistId:(NSString *)itemId asynchronizationMode:(BOOL)async</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>itemId</Name>
-					<Abstract type="html">id of the music track to find</Abstract>
-				</Parameter><Parameter>
-					<Name>async</Name>
-					<Abstract type="html">true if you want asynchronization mode</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
 			
-			<Anchor>//api/name/queryAlbumWithArtistId:asynchronizationMode:</Anchor>
+			
+			<Anchor>//api/name/artistId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/buildSearchTermForMusicTrackFromMediaItem:</TokenIdentifier>
-			<Abstract type="html">Build searchterm for find song in iTunes Store.</Abstract>
-			<DeclaredIn>MPServiceStore.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/artistId</TokenIdentifier>
+			<Abstract type="html">Unique identifier of artist.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (NSString *)buildSearchTermForMusicTrackFromMediaItem:(MPMediaItem *)mediaitem</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>mediaitem</Name>
-					<Abstract type="html">MediaItem that you expect find in store.</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">searchTerm to find song.</Abstract></ReturnValue>
-			<Anchor>//api/name/buildSearchTermForMusicTrackFromMediaItem:</Anchor>
+			<Declaration>@property (nonatomic, copy) NSString *artistId</Declaration>
+			
+			
+			<Anchor>//api/name/artistId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/init</TokenIdentifier>
-			<Abstract type="html">Constructor</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setCollectionId:</TokenIdentifier>
+			<Abstract type="html">Unique identifier of collection.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (id)init</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionId</Declaration>
 			
-			<ReturnValue><Abstract type="html">return instance of this object</Abstract></ReturnValue>
-			<Anchor>//api/name/init</Anchor>
+			
+			<Anchor>//api/name/collectionId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/configureConnection</TokenIdentifier>
-			<Abstract type="html">Configuration of the connection with the iTunes Store API.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/collectionId</TokenIdentifier>
+			<Abstract type="html">Unique identifier of collection.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)configureConnection</Declaration>
+			<Declaration>@property (nonatomic, copy) NSString *collectionId</Declaration>
 			
 			
-			<Anchor>//api/name/configureConnection</Anchor>
+			<Anchor>//api/name/collectionId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/executeSearchAsync:addFilter:queryType:</TokenIdentifier>
-			<Abstract type="html">Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/collectionId</TokenIdentifier>
+			<Abstract type="html">Unique identifier of collection.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)executeSearchAsync:(NSString *)searchTerm addFilter:(NSString *)filterTerm queryType:(MPServiceStoreQueryType)type</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>filterTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>type</Name>
-					<Abstract type="html">Type of query.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *collectionId</Declaration>
 			
-			<Anchor>//api/name/executeSearchAsync:addFilter:queryType:</Anchor>
+			
+			<Anchor>//api/name/collectionId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/executeSearch:addFilter:queryType:</TokenIdentifier>
-			<Abstract type="html">Make request to the iTunes Store with searchTerm and filterTerm in Asych mode.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackId:</TokenIdentifier>
+			<Abstract type="html">Unique identifier of music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (void)executeSearch:(NSString *)searchTerm addFilter:(NSString *)filterTerm queryType:(MPServiceStoreQueryType)type</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>filterTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>type</Name>
-					<Abstract type="html">Type of query.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *trackId</Declaration>
 			
-			<Anchor>//api/name/executeSearch:addFilter:queryType:</Anchor>
+			
+			<Anchor>//api/name/trackId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/createURLForCallWithSearchTerm:andFilter:</TokenIdentifier>
-			<Abstract type="html">Build valid URL to search on itune store api.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackId</TokenIdentifier>
+			<Abstract type="html">Unique identifier of music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (NSURL *)createURLForCallWithSearchTerm:(NSString *)searchTerm andFilter:(NSString *)filterTerm</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>searchTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter><Parameter>
-					<Name>filterTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">valid url request to call RKObjectRequestOperation initWithRequest.</Abstract></ReturnValue>
-			<Anchor>//api/name/createURLForCallWithSearchTerm:andFilter:</Anchor>
+			<Declaration>@property (nonatomic, copy) NSString *trackId</Declaration>
+			
+			
+			<Anchor>//api/name/trackId</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MPServiceStore/createURLForCallWithId:andFilter:</TokenIdentifier>
-			<Abstract type="html">Build valid URL to search on itune store api with a unique id of item.</Abstract>
-			<DeclaredIn>MPServiceStore.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackId</TokenIdentifier>
+			<Abstract type="html">Unique identifier of music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
 			
-			<Declaration>- (NSURL *)createURLForCallWithId:(NSString *)itemId andFilter:(NSString *)filterTerm</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>itemId</Name>
-					<Abstract type="html">id of a item in store</Abstract>
-				</Parameter><Parameter>
-					<Name>filterTerm</Name>
-					<Abstract type="html">see itunes api doc: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">valid url request to call RKObjectRequestOperation initWithRequest.</Abstract></ReturnValue>
-			<Anchor>//api/name/createURLForCallWithId:andFilter:</Anchor>
+			<Declaration>@property (nonatomic, copy) NSString *trackId</Declaration>
+			
+			
+			<Anchor>//api/name/trackId</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setArtistName:</TokenIdentifier>
+			<Abstract type="html">The name of the artist returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
+			
+			
+			<Anchor>//api/name/artistName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/artistName</TokenIdentifier>
+			<Abstract type="html">The name of the artist returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
+			
+			
+			<Anchor>//api/name/artistName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/artistName</TokenIdentifier>
+			<Abstract type="html">The name of the artist returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistName</Declaration>
+			
+			
+			<Anchor>//api/name/artistName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setCollectionName:</TokenIdentifier>
+			<Abstract type="html">The name of the album, TV season, audiobook, and so on returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionName</Declaration>
+			
+			
+			<Anchor>//api/name/collectionName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/collectionName</TokenIdentifier>
+			<Abstract type="html">The name of the album, TV season, audiobook, and so on returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionName</Declaration>
+			
+			
+			<Anchor>//api/name/collectionName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/collectionName</TokenIdentifier>
+			<Abstract type="html">The name of the album, TV season, audiobook, and so on returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionName</Declaration>
+			
+			
+			<Anchor>//api/name/collectionName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackName:</TokenIdentifier>
+			<Abstract type="html">The name of the track, song, video, TV episode, and so on returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackName</Declaration>
+			
+			
+			<Anchor>//api/name/trackName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackName</TokenIdentifier>
+			<Abstract type="html">The name of the track, song, video, TV episode, and so on returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackName</Declaration>
+			
+			
+			<Anchor>//api/name/trackName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackName</TokenIdentifier>
+			<Abstract type="html">The name of the track, song, video, TV episode, and so on returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackName</Declaration>
+			
+			
+			<Anchor>//api/name/trackName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setArtistViewUrl:</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/artistViewUrl</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/artistViewUrl</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artistViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/artistViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setCollectionViewUrl:</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/collectionViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/collectionViewUrl</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/collectionViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/collectionViewUrl</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/collectionViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackViewUrl:</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/trackViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackViewUrl</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/trackViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackViewUrl</TokenIdentifier>
+			<Abstract type="html">A URL for the content associated with the returned media type. You can click the URL to view the content in the iTunes Store.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackViewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/trackViewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setPreviewUrl:</TokenIdentifier>
+			<Abstract type="html">A URL referencing the 30-second preview file for the content associated with the returned media type.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *previewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/previewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/previewUrl</TokenIdentifier>
+			<Abstract type="html">A URL referencing the 30-second preview file for the content associated with the returned media type.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *previewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/previewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/previewUrl</TokenIdentifier>
+			<Abstract type="html">A URL referencing the 30-second preview file for the content associated with the returned media type.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *previewUrl</Declaration>
+			
+			
+			<Anchor>//api/name/previewUrl</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setArtworkUrl60:</TokenIdentifier>
+			<Abstract type="html">A URL for the artwork associated with the returned media type, sized to 100x100 pixels or 60x60 pixels.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl60</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl60</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/artworkUrl60</TokenIdentifier>
+			<Abstract type="html">A URL for the artwork associated with the returned media type, sized to 100x100 pixels or 60x60 pixels.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl60</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl60</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/artworkUrl60</TokenIdentifier>
+			<Abstract type="html">A URL for the artwork associated with the returned media type, sized to 100x100 pixels or 60x60 pixels.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl60</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl60</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setArtworkUrl100:</TokenIdentifier>
+			<Abstract type="html">A URL for the artwork associated with the returned media type, sized to 100x100 pixels or 60x60 pixels.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl100</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl100</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/artworkUrl100</TokenIdentifier>
+			<Abstract type="html">A URL for the artwork associated with the returned media type, sized to 100x100 pixels or 60x60 pixels.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl100</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl100</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/artworkUrl100</TokenIdentifier>
+			<Abstract type="html">A URL for the artwork associated with the returned media type, sized to 100x100 pixels or 60x60 pixels.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *artworkUrl100</Declaration>
+			
+			
+			<Anchor>//api/name/artworkUrl100</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setCollectionPrice:</TokenIdentifier>
+			<Abstract type="html">Price of the collection. Exemple 7,99$ price of the album.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionPrice</Declaration>
+			
+			
+			<Anchor>//api/name/collectionPrice</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/collectionPrice</TokenIdentifier>
+			<Abstract type="html">Price of the collection. Exemple 7,99$ price of the album.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionPrice</Declaration>
+			
+			
+			<Anchor>//api/name/collectionPrice</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/collectionPrice</TokenIdentifier>
+			<Abstract type="html">Price of the collection. Exemple 7,99$ price of the album.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionPrice</Declaration>
+			
+			
+			<Anchor>//api/name/collectionPrice</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackPrice:</TokenIdentifier>
+			<Abstract type="html">Price of the music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackPrice</Declaration>
+			
+			
+			<Anchor>//api/name/trackPrice</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackPrice</TokenIdentifier>
+			<Abstract type="html">Price of the music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackPrice</Declaration>
+			
+			
+			<Anchor>//api/name/trackPrice</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackPrice</TokenIdentifier>
+			<Abstract type="html">Price of the music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackPrice</Declaration>
+			
+			
+			<Anchor>//api/name/trackPrice</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setReleaseDate:</TokenIdentifier>
+			<Abstract type="html">Release date of the music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSDate *releaseDate</Declaration>
+			
+			
+			<Anchor>//api/name/releaseDate</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/releaseDate</TokenIdentifier>
+			<Abstract type="html">Release date of the music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSDate *releaseDate</Declaration>
+			
+			
+			<Anchor>//api/name/releaseDate</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/releaseDate</TokenIdentifier>
+			<Abstract type="html">Release date of the music track.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSDate *releaseDate</Declaration>
+			
+			
+			<Anchor>//api/name/releaseDate</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setCollectionExplicitness:</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/collectionExplicitness</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/collectionExplicitness</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/collectionExplicitness</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/collectionExplicitness</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *collectionExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/collectionExplicitness</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackExplicitness:</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/trackExplicitness</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackExplicitness</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/trackExplicitness</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackExplicitness</TokenIdentifier>
+			<Abstract type="html">The Recording Industry Association of America (RIAA) parental advisory for the content returned by the search request.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackExplicitness</Declaration>
+			
+			
+			<Anchor>//api/name/trackExplicitness</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setDiscCount:</TokenIdentifier>
+			<Abstract type="html">Count of disk in the collection.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *discCount</Declaration>
+			
+			
+			<Anchor>//api/name/discCount</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/discCount</TokenIdentifier>
+			<Abstract type="html">Count of disk in the collection.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *discCount</Declaration>
+			
+			
+			<Anchor>//api/name/discCount</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/discCount</TokenIdentifier>
+			<Abstract type="html">Count of disk in the collection.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *discCount</Declaration>
+			
+			
+			<Anchor>//api/name/discCount</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setDiscNumber:</TokenIdentifier>
+			<Abstract type="html">Disc nomber where the music track is on.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *discNumber</Declaration>
+			
+			
+			<Anchor>//api/name/discNumber</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/discNumber</TokenIdentifier>
+			<Abstract type="html">Disc nomber where the music track is on.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *discNumber</Declaration>
+			
+			
+			<Anchor>//api/name/discNumber</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/discNumber</TokenIdentifier>
+			<Abstract type="html">Disc nomber where the music track is on.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *discNumber</Declaration>
+			
+			
+			<Anchor>//api/name/discNumber</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackCount:</TokenIdentifier>
+			<Abstract type="html">Track count on the disk.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackCount</Declaration>
+			
+			
+			<Anchor>//api/name/trackCount</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackCount</TokenIdentifier>
+			<Abstract type="html">Track count on the disk.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackCount</Declaration>
+			
+			
+			<Anchor>//api/name/trackCount</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackCount</TokenIdentifier>
+			<Abstract type="html">Track count on the disk.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackCount</Declaration>
+			
+			
+			<Anchor>//api/name/trackCount</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackNumber:</TokenIdentifier>
+			<Abstract type="html">Track number of the music track on album.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackNumber</Declaration>
+			
+			
+			<Anchor>//api/name/trackNumber</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackNumber</TokenIdentifier>
+			<Abstract type="html">Track number of the music track on album.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackNumber</Declaration>
+			
+			
+			<Anchor>//api/name/trackNumber</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackNumber</TokenIdentifier>
+			<Abstract type="html">Track number of the music track on album.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackNumber</Declaration>
+			
+			
+			<Anchor>//api/name/trackNumber</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setTrackTimeMillis:</TokenIdentifier>
+			<Abstract type="html">The returned track&apos;s time in milliseconds.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackTimeMillis</Declaration>
+			
+			
+			<Anchor>//api/name/trackTimeMillis</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/trackTimeMillis</TokenIdentifier>
+			<Abstract type="html">The returned track&apos;s time in milliseconds.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackTimeMillis</Declaration>
+			
+			
+			<Anchor>//api/name/trackTimeMillis</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/trackTimeMillis</TokenIdentifier>
+			<Abstract type="html">The returned track&apos;s time in milliseconds.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *trackTimeMillis</Declaration>
+			
+			
+			<Anchor>//api/name/trackTimeMillis</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setCountry:</TokenIdentifier>
+			<Abstract type="html">The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *country</Declaration>
+			
+			
+			<Anchor>//api/name/country</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/country</TokenIdentifier>
+			<Abstract type="html">The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *country</Declaration>
+			
+			
+			<Anchor>//api/name/country</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/country</TokenIdentifier>
+			<Abstract type="html">The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *country</Declaration>
+			
+			
+			<Anchor>//api/name/country</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setCurrency:</TokenIdentifier>
+			<Abstract type="html">Devise user for price. (Exemple: USD)</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/currency</TokenIdentifier>
+			<Abstract type="html">Devise user for price. (Exemple: USD)</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/currency</TokenIdentifier>
+			<Abstract type="html">Devise user for price. (Exemple: USD)</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/setPrimaryGenreName:</TokenIdentifier>
+			<Abstract type="html">Genre name of the music track. Exemple: Alternative.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesMusicTrack/primaryGenreName</TokenIdentifier>
+			<Abstract type="html">Genre name of the music track. Exemple: Alternative.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ITunesMusicTrack/primaryGenreName</TokenIdentifier>
+			<Abstract type="html">Genre name of the music track. Exemple: Alternative.</Abstract>
+			<DeclaredIn>ITunesMusicTrack.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *primaryGenreName</Declaration>
+			
+			
+			<Anchor>//api/name/primaryGenreName</Anchor>
             <NodeRef refid="6"/>
 		</Token>
 		
