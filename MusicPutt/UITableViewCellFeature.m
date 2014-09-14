@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "UIViewControllerMusic.h"
+#import "UIViewControllerAlbumStore.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 #define MUSICPUTT_PLAY_PREFERED         @"Play my favorites"
@@ -115,6 +116,8 @@
     }
     else if (_type == TypeDiscover){
         // click on album in TopRate
+        [self displayStoreAlbum:_collectionId1];
+        NSLog(@"You have click album: %@", _collectionId1);
     }
 }
 
@@ -127,6 +130,8 @@
     }
     else if (_type == TypeDiscover){
         // click on album in TopRate
+        [self displayStoreAlbum:_collectionId2];
+        NSLog(@"You have click album: %@", _collectionId2);
     }
 }
 
@@ -139,6 +144,8 @@
     }
     else if (_type == TypeDiscover){
         // click on album in TopRate
+        [self displayStoreAlbum:_collectionId3];
+        NSLog(@"You have click album: %@", _collectionId3);
     }
 }
 
@@ -151,6 +158,8 @@
     }
     else if (_type == TypeDiscover){
         // click on album in TopRate
+        [self displayStoreAlbum:_collectionId4];
+        NSLog(@"You have click album: %@", _collectionId4);
     }
 }
 
@@ -183,6 +192,14 @@
     UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
     [_parentNavCtrl pushViewController:musicView animated:YES];
     
+}
+
+-(void) displayStoreAlbum:(NSString*) collectionId
+{
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewControllerAlbumStore *albumStore = [sb instantiateViewControllerWithIdentifier:@"AlbumStore"];
+    [albumStore setCollectionId:collectionId];
+    [_parentNavCtrl pushViewController:albumStore animated:YES];
 }
 
 #pragma mark - UIActionSheetDelegate

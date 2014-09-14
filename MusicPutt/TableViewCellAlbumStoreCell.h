@@ -1,8 +1,8 @@
 //
-//  UITableViewCellSongStore.h
+//  TableViewCellAlbumStoreCell.h
 //  MusicPutt
 //
-//  Created by Eric Pinet on 2014-08-02.
+//  Created by Eric Pinet on 2014-09-13.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @class ITunesMusicTrack;
 
-@interface UITableViewCellSongStore : UITableViewCell
+@interface TableViewCellAlbumStoreCell : UITableViewCell
 
 /**
  *  Set the information of the media item (name, track no. and duration).
@@ -26,6 +26,5 @@
  *  @return mediaItem attach with this cell.
  */
 -(ITunesMusicTrack*) getMediaItem;
-
 
 @end

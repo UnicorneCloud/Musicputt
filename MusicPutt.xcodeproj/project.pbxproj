@@ -47,6 +47,10 @@
 		976687F5194FBB4D00B5A843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976687D7194FBB4D00B5A843 /* UIKit.framework */; };
 		976687FD194FBB4D00B5A843 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 976687FB194FBB4D00B5A843 /* InfoPlist.strings */; };
 		976687FF194FBB4D00B5A843 /* MusicPuttTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 976687FE194FBB4D00B5A843 /* MusicPuttTests.m */; };
+		977268C819C508EC006648AB /* MOStoreButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 977268C719C508EC006648AB /* MOStoreButton.m */; };
+		977268CC19C516B3006648AB /* UIViewControllerAlbumStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 977268CB19C516B3006648AB /* UIViewControllerAlbumStore.m */; };
+		977268D019C52B06006648AB /* TableViewCellAlbumStoreHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 977268CF19C52B06006648AB /* TableViewCellAlbumStoreHeader.m */; };
+		977268D319C52B42006648AB /* TableViewCellAlbumStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 977268D219C52B42006648AB /* TableViewCellAlbumStoreCell.m */; };
 		9787651B199805F80046D3F7 /* UIViewControllerAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9787651A199805F80046D3F7 /* UIViewControllerAbout.m */; };
 		97901B0D197742DC00526A04 /* UIPageViewControllerMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 97901B0C197742DC00526A04 /* UIPageViewControllerMusic.m */; };
 		97901B10197743E100526A04 /* UIViewControllerArtworkPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 97901B0F197743E100526A04 /* UIViewControllerArtworkPage.m */; };
@@ -142,6 +146,14 @@
 		976687FA194FBB4D00B5A843 /* MusicPuttTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MusicPuttTests-Info.plist"; sourceTree = "<group>"; };
 		976687FC194FBB4D00B5A843 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		976687FE194FBB4D00B5A843 /* MusicPuttTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPuttTests.m; sourceTree = "<group>"; };
+		977268C619C508EC006648AB /* MOStoreButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOStoreButton.h; path = extern/MOStoreButton.h; sourceTree = "<group>"; };
+		977268C719C508EC006648AB /* MOStoreButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MOStoreButton.m; path = extern/MOStoreButton.m; sourceTree = "<group>"; };
+		977268CA19C516B3006648AB /* UIViewControllerAlbumStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerAlbumStore.h; sourceTree = "<group>"; };
+		977268CB19C516B3006648AB /* UIViewControllerAlbumStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAlbumStore.m; sourceTree = "<group>"; };
+		977268CE19C52B06006648AB /* TableViewCellAlbumStoreHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellAlbumStoreHeader.h; sourceTree = "<group>"; };
+		977268CF19C52B06006648AB /* TableViewCellAlbumStoreHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellAlbumStoreHeader.m; sourceTree = "<group>"; };
+		977268D119C52B42006648AB /* TableViewCellAlbumStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellAlbumStoreCell.h; sourceTree = "<group>"; };
+		977268D219C52B42006648AB /* TableViewCellAlbumStoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellAlbumStoreCell.m; sourceTree = "<group>"; };
 		97876519199805F80046D3F7 /* UIViewControllerAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerAbout.h; sourceTree = "<group>"; };
 		9787651A199805F80046D3F7 /* UIViewControllerAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAbout.m; sourceTree = "<group>"; };
 		97901B0B197742DC00526A04 /* UIPageViewControllerMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPageViewControllerMusic.h; sourceTree = "<group>"; };
@@ -271,6 +283,7 @@
 		9711FF911981DE4A00421CF4 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				977268CD19C516BD006648AB /* Album */,
 				9711FF921981DE5A00421CF4 /* Artist */,
 			);
 			name = Store;
@@ -296,6 +309,7 @@
 		9711FF961981EAE900421CF4 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				977268C919C508F1006648AB /* MOStoreButton */,
 				9711FF971981EAF100421CF4 /* icarousel */,
 			);
 			name = extern;
@@ -407,6 +421,28 @@
 				976687FB194FBB4D00B5A843 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		977268C919C508F1006648AB /* MOStoreButton */ = {
+			isa = PBXGroup;
+			children = (
+				977268C619C508EC006648AB /* MOStoreButton.h */,
+				977268C719C508EC006648AB /* MOStoreButton.m */,
+			);
+			name = MOStoreButton;
+			sourceTree = "<group>";
+		};
+		977268CD19C516BD006648AB /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				977268CA19C516B3006648AB /* UIViewControllerAlbumStore.h */,
+				977268CB19C516B3006648AB /* UIViewControllerAlbumStore.m */,
+				977268CE19C52B06006648AB /* TableViewCellAlbumStoreHeader.h */,
+				977268CF19C52B06006648AB /* TableViewCellAlbumStoreHeader.m */,
+				977268D119C52B42006648AB /* TableViewCellAlbumStoreCell.h */,
+				977268D219C52B42006648AB /* TableViewCellAlbumStoreCell.m */,
+			);
+			name = Album;
 			sourceTree = "<group>";
 		};
 		97876518199805DF0046D3F7 /* About */ = {
@@ -726,7 +762,10 @@
 			files = (
 				D5B241351981E4C600233953 /* UIViewControllerAlbum.m in Sources */,
 				979DED28196500E50055AD39 /* UITableViewCellFeature.m in Sources */,
+				977268CC19C516B3006648AB /* UIViewControllerAlbumStore.m in Sources */,
 				97AF57B61960A53A002978E8 /* UITableViewCellPlaylist.m in Sources */,
+				977268D019C52B06006648AB /* TableViewCellAlbumStoreHeader.m in Sources */,
+				977268C819C508EC006648AB /* MOStoreButton.m in Sources */,
 				97ECDFBC1972F042007889E3 /* ITunesMusicTrack.m in Sources */,
 				97570B78198D406F00A542DA /* UIViewControllerArtistStore.m in Sources */,
 				D5B241411982AC8800233953 /* UITableViewCellMediaItemHeader.m in Sources */,
@@ -736,6 +775,7 @@
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
 				9707ADBE198DED4A0093F6F0 /* UIButton+Extensions.m in Sources */,
 				97901B191978B65400526A04 /* UIViewControllerLyricsPage.m in Sources */,
+				977268D319C52B42006648AB /* TableViewCellAlbumStoreCell.m in Sources */,
 				D5B6DE58197594240042F072 /* UITableViewCellHeaderSection.m in Sources */,
 				D5B2413B1982A3BE00233953 /* UIViewControllerAlbumSongs.m in Sources */,
 				97D8030319B2DFF100D70820 /* ITunesAlbumEntry.m in Sources */,

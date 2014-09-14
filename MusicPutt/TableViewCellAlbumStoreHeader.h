@@ -1,23 +1,23 @@
 //
-//  UITableViewCellSongStore.h
+//  TableViewCellAlbumStoreHeader.h
 //  MusicPutt
 //
-//  Created by Eric Pinet on 2014-08-02.
+//  Created by Eric Pinet on 2014-09-13.
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@class ITunesMusicTrack;
+@class ITunesAlbum;
 
-@interface UITableViewCellSongStore : UITableViewCell
+@interface TableViewCellAlbumStoreHeader : UITableViewCell
 
 /**
  *  Set the information of the media item (name, track no. and duration).
  *
  *  @param mediaitem : The media item to set.
  */
-- (void)setMediaItem: (ITunesMusicTrack*)mediaitem;
+- (void)setMediaItem: (ITunesAlbum*)mediaitem;
 
 
 /**
@@ -25,7 +25,6 @@
  *
  *  @return mediaItem attach with this cell.
  */
--(ITunesMusicTrack*) getMediaItem;
-
+-(ITunesAlbum*) getMediaItem;
 
 @end
