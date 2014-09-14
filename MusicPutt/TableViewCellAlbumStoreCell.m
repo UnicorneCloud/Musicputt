@@ -18,7 +18,7 @@
 /**
  *  Song's album name
  */
-@property (weak, nonatomic) IBOutlet UILabel* albumName;
+@property (weak, nonatomic) IBOutlet UILabel* songNumber;
 
 /**
  *  Song's name.
@@ -29,11 +29,6 @@
  *  Song's duration.
  */
 @property (weak, nonatomic) IBOutlet UILabel* songDuration;
-
-/**
- *  Artwork of the songs.
- */
-@property (weak, nonatomic) IBOutlet UIImageView* artWork;
 
 
 @end
@@ -57,21 +52,15 @@
  */
 - (void)setMediaItem:(ITunesMusicTrack *)mediaitem
 {
+    _songNumber.text = [mediaitem trackNumber];
+    
     _songName.text = [mediaitem trackName];
-    _albumName.text  = [mediaitem collectionName];
     
     NSNumber *durationtime = [NSNumber numberWithInteger:[[mediaitem trackTimeMillis] integerValue]/1000];
     _songDuration.text = [NSString stringWithFormat: @"%02d:%02d",
                           [durationtime intValue]/60,
                           [durationtime intValue]%60];
-    
-    id path = [mediaitem artworkUrl60];
-    NSURL *url = [NSURL URLWithString:path];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img = [[UIImage alloc] initWithData:data];
-    
-    _artWork.image = img;
-    
+        
     _mediaitem = mediaitem;
 }
 

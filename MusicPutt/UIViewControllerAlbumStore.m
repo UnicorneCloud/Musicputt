@@ -9,8 +9,9 @@
 #import "UIViewControllerAlbumStore.h"
 
 #import "AppDelegate.h"
+#import "TableViewCellAlbumStoreHeader.h"
 
-@interface UIViewControllerAlbumStore ()
+@interface UIViewControllerAlbumStore () <UITableViewDelegate, UITableViewDataSource>
 
 @property AppDelegate* del;
 
@@ -33,6 +34,9 @@
     
     // setup title
     [self setTitle:@"Feature"];
+    
+    // setup tableview
+    toolbarTableView = _songstable;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,6 +49,71 @@
 - (NSArray*)visibleCells
 {
     return [self.songstable visibleCells];
+}
+
+
+/**
+ *  Number of section in the table view.
+ *
+ *  @param tableView :
+ *
+ *  @return          : Number of section.
+ */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+/**
+ *  The number of rows in the specified section.
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   : Section's index.
+ *
+ *  @return          : Number of row of this section.
+ */
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+/**
+ *  Return the cell at a specified location in the talbe view.
+ *
+ *  @param tableView :
+ *  @param indexPath : The path to the cell.
+ *
+ *  @return
+ */
+- (TableViewCellAlbumStoreHeader*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TableViewCellAlbumStoreHeader * headerCell = [tableView dequeueReusableCellWithIdentifier:@"AlbumStoreHeaderCell"];
+    return headerCell;
+}
+
+/**
+ *  Create the header cell of the section in the table view.
+ *
+ *  @param tableView :
+ *  @param section   : The section index.
+ *  @return          : The header cell.
+ */
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    TableViewCellAlbumStoreHeader * headerCell = [tableView dequeueReusableCellWithIdentifier:@"AlbumStoreHeaderCell"];
+    return headerCell;
+}
+/**
+ *  Set the section header's height.
+ *
+ *  @param tableView : Table view for this section.
+ *  @param section   : Section index.
+ *
+ *  @return          : Section hearder's height.
+ */
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 80.0f;
 }
 
 /*

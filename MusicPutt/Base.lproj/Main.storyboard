@@ -1133,7 +1133,7 @@
         <!--AlbumStore-->
         <scene sceneID="LZK-rw-jUs">
             <objects>
-                <viewController storyboardIdentifier="AlbumStore" title="AlbumStore" hidesBottomBarWhenPushed="YES" id="cPY-yP-ZSE" customClass="UIViewControllerAlbumStore" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlbumStore" title="AlbumStore" modalTransitionStyle="crossDissolve" hidesBottomBarWhenPushed="YES" id="cPY-yP-ZSE" customClass="UIViewControllerAlbumStore" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ELC-wY-r3x"/>
                         <viewControllerLayoutGuide type="bottom" id="DY9-Fd-FO9"/>
@@ -1146,7 +1146,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MediaItemHeaderCell" rowHeight="80" id="pHu-02-dBr" customClass="UITableViewCellMediaItemHeader">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumStoreHeaderCell" rowHeight="80" id="pHu-02-dBr" customClass="TableViewCellAlbumStoreHeader">
                                         <rect key="frame" x="10" y="10" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pHu-02-dBr" id="Maa-3A-IDQ">
@@ -1177,7 +1177,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4g-AT-o20">
-                                                    <rect key="frame" x="10" y="6" width="74" height="66"/>
+                                                    <rect key="frame" x="17" y="7" width="66" height="66"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZX-Eg-D1i">
                                                     <rect key="frame" x="259" y="49" width="46" height="30"/>
@@ -1189,13 +1189,15 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="albumName" destination="HhV-WB-K8M" id="G2O-BV-KfN"/>
-                                            <outlet property="artistName" destination="Im5-5J-3Ww" id="UMG-We-wnN"/>
-                                            <outlet property="imageHeader" destination="p4g-AT-o20" id="mGL-4d-0fU"/>
-                                            <outlet property="infoAlbum" destination="GSh-xj-2fR" id="1or-xU-U8Z"/>
+                                            <outlet property="albumname" destination="HhV-WB-K8M" id="VR4-XL-9pf"/>
+                                            <outlet property="artistname" destination="Im5-5J-3Ww" id="1JP-Qh-prD"/>
+                                            <outlet property="genre" destination="GSh-xj-2fR" id="Rr5-GF-b9i"/>
+                                            <outlet property="imageview" destination="p4g-AT-o20" id="phk-se-t4E"/>
+                                            <outlet property="price" destination="UZX-Eg-D1i" id="jd6-fZ-IHp"/>
+                                            <outlet property="year" destination="V22-EQ-P7H" id="mbx-mZ-nF5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MediaItemCell" rowHeight="53" id="jMd-XT-Zxx" customClass="UITableViewCellMediaItem">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MediaItemCell" rowHeight="53" id="jMd-XT-Zxx" customClass="TableViewCellAlbumStoreCell">
                                         <rect key="frame" x="10" y="90" width="320" height="53"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jMd-XT-Zxx" id="q8u-zc-tJD">
@@ -1222,21 +1224,27 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="songDuration" destination="dzu-y3-eYl" id="wNY-uI-IBQ"/>
-                                            <outlet property="songName" destination="16B-Az-CFD" id="d89-xg-rIR"/>
-                                            <outlet property="trackNo" destination="wK2-1R-PTM" id="n5g-vS-S4f"/>
+                                            <outlet property="songDuration" destination="dzu-y3-eYl" id="5Bx-0P-FtL"/>
+                                            <outlet property="songName" destination="16B-Az-CFD" id="hit-ZY-ttD"/>
+                                            <outlet property="songNumber" destination="wK2-1R-PTM" id="OEz-jo-aaR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="cPY-yP-ZSE" id="l4g-bo-t4m"/>
+                                    <outlet property="delegate" destination="cPY-yP-ZSE" id="xC7-Oc-Fa0"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="songstable" destination="5I3-Td-248" id="v3o-Wn-0nS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8E-wZ-gpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2452" y="-612"/>
+            <point key="canvasLocation" x="2452" y="-613"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="mcw-CP-zbF">

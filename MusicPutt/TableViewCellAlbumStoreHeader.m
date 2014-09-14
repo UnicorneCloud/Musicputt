@@ -9,6 +9,7 @@
 #import "TableViewCellAlbumStoreHeader.h"
 
 #import "ITunesAlbum.h"
+#import "MOStoreButton.h"
 
 @interface TableViewCellAlbumStoreHeader()
 {
@@ -21,13 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* albumname;
 
-@property (weak, nonatomic) IBOutlet UILabel* albumlink;
-
-@property (weak, nonatomic) IBOutlet UILabel* trackandduration;
-
 @property (weak, nonatomic) IBOutlet UILabel* year;
 
-@property (weak, nonatomic) IBOutlet UILabel* price;
+@property (weak, nonatomic) IBOutlet UIButton* price;
 
 @property (weak, nonatomic) IBOutlet UILabel* genre;
 
@@ -52,24 +49,17 @@
  */
 - (void)setMediaItem:(ITunesAlbum *)mediaitem
 {
-    /*
-    _songName.text = [mediaitem trackName];
-    _albumName.text  = [mediaitem collectionName];
+    _albumname.text  = [mediaitem collectionName];
+    _artistname.text = [mediaitem artistName];
     
-    NSNumber *durationtime = [NSNumber numberWithInteger:[[mediaitem trackTimeMillis] integerValue]/1000];
-    _songDuration.text = [NSString stringWithFormat: @"%02d:%02d",
-                          [durationtime intValue]/60,
-                          [durationtime intValue]%60];
-    
-    id path = [mediaitem artworkUrl60];
+    id path = [mediaitem artworkUrl100];
     NSURL *url = [NSURL URLWithString:path];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *img = [[UIImage alloc] initWithData:data];
     
-    _artWork.image = img;
+    _imageview.image = img;
     
     _mediaitem = mediaitem;
-     */
 }
 
 /**
