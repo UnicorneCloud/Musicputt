@@ -60,6 +60,12 @@
     // initialize RestKit
     objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
     
+    // initialize country
+    _country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
+    if ([_country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
+        _country = @"US";
+    }
+    
     // define music track mapping
     RKObjectMapping *musicTrackMapping = [RKObjectMapping mappingForClass:[ITunesMusicTrack class]];
     [musicTrackMapping addAttributeMappingsFromArray:@[@"wrapperType",
@@ -389,9 +395,10 @@
  */
 -(NSURL *)createURLForCallWithSearchTerm:(NSString *)searchTerm andFilter:(NSString *)filterTerm {
     
-    NSString *urlAsString = [NSString stringWithFormat:@"https://itunes.apple.com/search?entity=%@&limit=25&term=%@",
+    NSString *urlAsString = [NSString stringWithFormat:@"https://itunes.apple.com/search?entity=%@&limit=25&term=%@&country=%@",
                             filterTerm,
-                            [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                            _country];
     NSURL *url = [NSURL URLWithString:urlAsString];
     return url;
 }
@@ -406,9 +413,10 @@
  */
 -(NSURL *)createURLForCallWithId:(NSString *)itemId andFilter:(NSString *)filterTerm {
     
-    NSString *urlAsString = [NSString stringWithFormat:@"https://itunes.apple.com/lookup?entity=%@&id=%@",
+    NSString *urlAsString = [NSString stringWithFormat:@"https://itunes.apple.com/lookup?entity=%@&id=%@&country=%@",
                              filterTerm,
-                             [itemId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                             [itemId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                             _country];
     NSURL *url = [NSURL URLWithString:urlAsString];
     return url;
 }

@@ -51,6 +51,13 @@
 {
     _albumname.text  = [mediaitem collectionName];
     _artistname.text = [mediaitem artistName];
+    _genre.text = [mediaitem primaryGenreName];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM yyyy"];
+    _year.text = [[formatter stringFromDate:[mediaitem releaseDate]] capitalizedString];
+    
+    _price.titleLabel.text = [NSString stringWithFormat:@"%@$", [mediaitem collectionPrice]];
     
     id path = [mediaitem artworkUrl100];
     NSURL *url = [NSURL URLWithString:path];

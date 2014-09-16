@@ -130,6 +130,13 @@
     // setup album carousel
     _albumlist.type = iCarouselTypeCoverFlow;
     
+    // Initialize AVAudioPLayer
+    [AVAudioSession sharedInstance];
+    NSError *setCategoryError = nil;
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &setCategoryError];
+    if (setCategoryError)
+        NSLog(@"Error setting category! %@", setCategoryError);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -265,6 +272,7 @@
         NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
             audioPlayer.delegate = self;
+            [audioPlayer prepareToPlay];
             [audioPlayer play];
         }];
         [task resume];

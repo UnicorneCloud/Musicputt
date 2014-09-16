@@ -64,6 +64,10 @@ typedef enum {
 @interface ITunesSearchApi : NSObject
 
 
+
+@property (weak,nonatomic) NSString* country;
+
+
 /**
  *  Set delegate to recieve result of query.
  *

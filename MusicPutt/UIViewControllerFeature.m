@@ -72,7 +72,12 @@
     // init itunes feeds api
     _itunes = [[ITunesFeedsApi alloc] init];
     [_itunes setDelegate:self];
-    [_itunes queryFeedType:QueryTopAlbums forCountry:[[NSLocale currentLocale] objectForKey: NSLocaleCountryCode] size:25 genre:0 asynchronizationMode:true];
+    
+    NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
+    if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
+        country = @"US";
+    }
+    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:25 genre:0 asynchronizationMode:true];
     
     // load most recent songs
     sortedSongsArray = [[NSArray alloc] init];
@@ -473,13 +478,13 @@
             cell.collectionId1 = [album collectionId];
         }
         else if (currentTopRateStep==2){
-            cell.collectionId1 = [album collectionId];
+            cell.collectionId2 = [album collectionId];
         }
         else if (currentTopRateStep==3){
-            cell.collectionId1 = [album collectionId];
+            cell.collectionId3 = [album collectionId];
         }
         else if (currentTopRateStep==4){
-            cell.collectionId1 = [album collectionId];
+            cell.collectionId4 = [album collectionId];
         }
     }
 }
@@ -503,8 +508,6 @@
 
 - (UITableViewCellFeature*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start cellForRowAtIndexPath");
-    
     UITableViewCellFeature* cell = [tableView dequeueReusableCellWithIdentifier:@"CellFeature"];
     if (indexPath.row==0)
     {
