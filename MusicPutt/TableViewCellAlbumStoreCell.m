@@ -9,10 +9,14 @@
 #import "TableViewCellAlbumStoreCell.h"
 
 #import "ITunesMusicTrack.h"
+#import "UAProgressView.h"
+#import "UIColor+CreateMethods.h"
 
 @interface TableViewCellAlbumStoreCell ()
 {
     ITunesMusicTrack* _mediaitem;
+    NSTimer *timerDownload;
+    float currentProgress;
 }
 
 /**
@@ -37,6 +41,17 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    // init download progress
+    currentProgress = 0;
+    [_downloadProgress setHidden:true];
+    _downloadProgress.borderWidth = 1.0;
+    _downloadProgress.lineWidth = 3.0;
+    _downloadProgress.animationDuration = 0.1;
+    _downloadProgress.tintColor = [UIColor colorWithHex:@"#8E8E93" alpha:1.0];
+
+    // hide song durration
+    [_songDuration setHidden:true];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -56,11 +71,12 @@
     
     _songName.text = [mediaitem trackName];
     
+    /*
     NSNumber *durationtime = [NSNumber numberWithInteger:[[mediaitem trackTimeMillis] integerValue]/1000];
     _songDuration.text = [NSString stringWithFormat: @"%02d:%02d",
                           [durationtime intValue]/60,
                           [durationtime intValue]%60];
-        
+    */
     _mediaitem = mediaitem;
 }
 
@@ -73,5 +89,41 @@
 {
     return _mediaitem;
 }
+
+-(void) startDownloadProgress
+{
+    //[_songDuration setHidden:true];
+    [_downloadProgress setHidden:false];
+    
+    currentProgress = 0;
+    
+    timerDownload = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                      target:self
+                                                    selector:@selector(stepDownload)
+                                                    userInfo: nil
+                                                     repeats:YES];
+    
+}
+
+-(void) stopDownloadProgress
+{
+    [timerDownload invalidate];
+    
+    [_downloadProgress setHidden:true];
+    //[_songDuration setHidden:false];
+}
+
+
+-(void) stepDownload
+{
+    if (currentProgress<1) {
+        currentProgress = currentProgress + 0.05;
+    }
+    else{
+        currentProgress = 0;
+    }
+    [_downloadProgress setProgress:currentProgress animated:true];
+}
+
 
 @end

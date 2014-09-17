@@ -20,6 +20,7 @@
     NSArray* songs;
     AVAudioPlayer* audioPlayer;
     NSInteger currentSongIndex;
+    NSInteger currentDownloadingIndex;
 }
 @property AppDelegate* del;
 
@@ -59,6 +60,9 @@
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &setCategoryError];
     if (setCategoryError)
         NSLog(@"Error setting category! %@", setCategoryError);
+    
+    // init current downloading displaying
+    currentDownloadingIndex = -1;
     
 }
 
@@ -214,12 +218,19 @@
         
         NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing ", (long)currentSongIndex);
         
+        [self startDownloadProgress:currentSongIndex-1];
+        
         NSURL *url = [NSURL URLWithString: [[songs objectAtIndex:index] previewUrl]];
         NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
             audioPlayer.delegate = self;
             [audioPlayer prepareToPlay];
             [audioPlayer play];
+            
+            NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
+            [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
+            
+            //[self stopDownloadProgress:currentDownloadingIndex];
         }];
         [task resume];
     }
@@ -239,6 +250,34 @@
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
 {
     NSLog(@"Error occured");
+}
+
+-(void) startDownloadProgress:(NSInteger) index
+{
+    if (currentDownloadingIndex != -1) {
+        // stop already downloding progress
+        [self stopDownloadProgress:[NSNumber numberWithInteger:index]];
+    }
+    
+    currentDownloadingIndex = index;
+    
+    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start downloading progress ", (long)index);
+    
+    TableViewCellAlbumStoreCell *cell = (TableViewCellAlbumStoreCell*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    if (cell) {
+        [cell startDownloadProgress];
+    }
+}
+
+-(void) stopDownloadProgress:(NSNumber*) index
+{
+    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    
+    TableViewCellAlbumStoreCell *cell = (TableViewCellAlbumStoreCell*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue] inSection:0]];
+    if (cell) {
+        [cell stopDownloadProgress];
+    }
+    currentDownloadingIndex = -1;
 }
 
 /*

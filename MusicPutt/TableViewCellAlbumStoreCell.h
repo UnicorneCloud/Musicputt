@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class UAProgressView;
 @class ITunesMusicTrack;
 
 @interface TableViewCellAlbumStoreCell : UITableViewCell
+
+
+@property (strong, nonatomic) IBOutlet UAProgressView* downloadProgress;
 
 /**
  *  Set the information of the media item (name, track no. and duration).
@@ -26,5 +31,13 @@
  *  @return mediaItem attach with this cell.
  */
 -(ITunesMusicTrack*) getMediaItem;
+
+
+
+-(void) startDownloadProgress;
+
+
+-(void) stopDownloadProgress;
+
 
 @end

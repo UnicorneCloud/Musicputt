@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MyV-EH-EqI">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -1221,9 +1220,14 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nuk-yI-3QK" customClass="UAProgressView">
+                                                    <rect key="frame" x="281" y="9" width="26" height="26"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="downloadProgress" destination="Nuk-yI-3QK" id="b42-cl-2to"/>
                                             <outlet property="songDuration" destination="dzu-y3-eYl" id="5Bx-0P-FtL"/>
                                             <outlet property="songName" destination="16B-Az-CFD" id="hit-ZY-ttD"/>
                                             <outlet property="songNumber" destination="wK2-1R-PTM" id="OEz-jo-aaR"/>
@@ -1244,7 +1248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8E-wZ-gpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2452" y="-618"/>
+            <point key="canvasLocation" x="2452" y="-619"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="mcw-CP-zbF">
