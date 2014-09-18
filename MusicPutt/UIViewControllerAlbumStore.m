@@ -261,7 +261,7 @@
     
     currentDownloadingIndex = index;
     
-    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start downloading progress ", (long)index);
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start downloading progress ", (long)index);
     
     TableViewCellAlbumStoreCell *cell = (TableViewCellAlbumStoreCell*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     if (cell) {
@@ -271,13 +271,47 @@
 
 -(void) stopDownloadProgress:(NSNumber*) index
 {
-    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
     
     TableViewCellAlbumStoreCell *cell = (TableViewCellAlbumStoreCell*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue] inSection:0]];
     if (cell) {
         [cell stopDownloadProgress];
     }
     currentDownloadingIndex = -1;
+}
+
+/**
+ *  Share button was pressed by the user.
+ *
+ *  @param sender sender of event.
+ */
+- (IBAction)sharePressed:(id)sender
+{
+    if(songs[0])
+    {
+        NSString* sharedString = [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", [songs[0] artistName], [songs[0] collectionName]];
+        NSURL* sharedUrl = [NSURL URLWithString:[songs[0] collectionViewUrl]];
+        
+        id path = [songs[0] artworkUrl100];
+        NSURL *url = [NSURL URLWithString:path];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *sharedImage = [[UIImage alloc] initWithData:data];
+        
+        UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[sharedString, sharedUrl, sharedImage] applicationActivities:nil];
+        controller.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact];
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+}
+
+
+/**
+ *  Click on itunes button.
+ *
+ *  @param sender <#sender description#>
+ */
+- (IBAction)itunesButtonPressed:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[songs[0] artistViewUrl]]];
 }
 
 /*
