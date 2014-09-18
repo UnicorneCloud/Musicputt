@@ -237,7 +237,7 @@
             strGenre = [NSString stringWithFormat:@"genre=%ld/", (long)genre];
         }
         
-        NSString* strUrl = [NSString stringWithFormat:@"https://itunes.apple.com/%@/rss/%@/limit=%ld/%@explicit=true/json",country, queryType, size, strGenre];
+        NSString* strUrl = [NSString stringWithFormat:@"https://itunes.apple.com/%@/rss/%@/limit=%ld/%@explicit=true/json",country, queryType, (long)size, strGenre];
         NSURL* url = [NSURL URLWithString:strUrl];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         connection = [NSURLConnection connectionWithRequest:request delegate:self];
