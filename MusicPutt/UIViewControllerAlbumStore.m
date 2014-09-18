@@ -311,7 +311,7 @@
  */
 - (IBAction)itunesButtonPressed:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[songs[0] artistViewUrl]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[songs[0] collectionViewUrl]]];
 }
 
 /*
