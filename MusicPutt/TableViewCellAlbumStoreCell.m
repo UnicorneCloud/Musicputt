@@ -51,7 +51,7 @@
     _downloadProgress.tintColor = [UIColor colorWithHex:@"#8E8E93" alpha:1.0];
 
     // hide song durration
-    [_songDuration setHidden:true];
+    //[_songDuration setHidden:true];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -67,16 +67,19 @@
  */
 - (void)setMediaItem:(ITunesMusicTrack *)mediaitem
 {
+    // song number
     _songNumber.text = [mediaitem trackNumber];
     
+    // song name
     _songName.text = [mediaitem trackName];
     
-    /*
+    // song duration
     NSNumber *durationtime = [NSNumber numberWithInteger:[[mediaitem trackTimeMillis] integerValue]/1000];
     _songDuration.text = [NSString stringWithFormat: @"%02d:%02d",
                           [durationtime intValue]/60,
                           [durationtime intValue]%60];
-    */
+    
+    // media item link with song
     _mediaitem = mediaitem;
 }
 
@@ -92,7 +95,7 @@
 
 -(void) startDownloadProgress
 {
-    //[_songDuration setHidden:true];
+    [_songDuration setHidden:true];
     [_downloadProgress setHidden:false];
     
     currentProgress = 0;
@@ -110,7 +113,7 @@
     [timerDownload invalidate];
     
     [_downloadProgress setHidden:true];
-    //[_songDuration setHidden:false];
+    [_songDuration setHidden:false];
 }
 
 
