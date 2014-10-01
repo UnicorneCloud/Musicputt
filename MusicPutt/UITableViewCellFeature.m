@@ -19,6 +19,7 @@
 
 #define DISCOVER_SEE_WHATS_NEW          @"See what's hot"
 #define DISCOVER_PLAY_WHATS_NEW         @"Play what's hot"
+#define DISCOVER_SELECT_PREFERED_GENDER @"Select your prefered gender"
 
 @interface UITableViewCellFeature() <UIActionSheetDelegate>
 {
@@ -102,7 +103,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:DISCOVER_SEE_WHATS_NEW, DISCOVER_PLAY_WHATS_NEW, nil];
+                                                        otherButtonTitles:DISCOVER_SEE_WHATS_NEW, DISCOVER_PLAY_WHATS_NEW, DISCOVER_SELECT_PREFERED_GENDER, nil];
         [actionSheet showInView:_parentView];
     }
 }

@@ -149,9 +149,14 @@
             [albums addObject:album];
         }
         
-        if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
-            [delegate queryResult:StatusSucceed type:currentQueryType results: albums];
-        }
+        
+        //About to update the UI, so jump back to the main/UI thread
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"send delegate message");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
+                [delegate queryResult:StatusSucceed type:currentQueryType results: albums];
+            }
+        });
     }
     else if (currentQueryType == QueryTopSongs)
     {
@@ -199,9 +204,14 @@
             [tracks addObject:track];
         }
         
-        if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
-            [delegate queryResult:StatusSucceed type:currentQueryType results: tracks];
-        }
+        
+        //About to update the UI, so jump back to the main/UI thread
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"send delegate message");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ( [delegate respondsToSelector:@selector(queryResult:type:results:)]){
+                [delegate queryResult:StatusSucceed type:currentQueryType results: tracks];
+            }
+        });
         
     }
 }
@@ -240,10 +250,44 @@
         NSString* strUrl = [NSString stringWithFormat:@"https://itunes.apple.com/%@/rss/%@/limit=%ld/%@explicit=true/json",country, queryType, (long)size, strGenre];
         NSURL* url = [NSURL URLWithString:strUrl];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
-        connection = [NSURLConnection connectionWithRequest:request delegate:self];
-        if (connection) {
-            webData = [[NSMutableData alloc]init];
+        
+        if (async) {
+            
+            NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin request");
+            
+            [NSURLConnection
+             sendAsynchronousRequest:request
+             queue:[[NSOperationQueue alloc] init]
+             completionHandler:^(NSURLResponse *response,
+                                 NSData *data,
+                                 NSError *error)
+             {
+                 
+                 if ([data length] >0 && error == nil)
+                 {
+                     webData = (NSMutableData*)data;
+                     
+                     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"unpack request");
+                     [self connectionDidFinishLoading:nil];
+                 }
+                 else if ([data length] == 0 && error == nil)
+                 {
+                     NSLog(@"Nothing was downloaded.");
+                 }
+                 else if (error != nil){
+                     NSLog(@"Error = %@", error);
+                 }
+                 
+             }];
         }
+        else{
+            connection = [NSURLConnection connectionWithRequest:request delegate:self];
+            if (connection) {
+                webData = [[NSMutableData alloc]init];
+            }
+        }
+        
+        
     }
     else{
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Error - Invalid parameters");

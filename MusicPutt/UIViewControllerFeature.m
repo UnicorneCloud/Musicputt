@@ -13,12 +13,6 @@
 #import "ITunesFeedsApi.h"
 #import "AppDelegate.h"
 
-#define MUSICPUTT_PLAY_PREFERED         @"Play with my prefered"
-#define MUSICPUTT_PLAY_LASTEST          @"Play lastest playlist"
-#define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create new playlist"
-
-#define DISCOVER_SEE_WHATS_NEW          @"See what's hot"
-#define DISCOVER_PLAY_WHATS_NEW         @"Play what's hot"
 
 
 
@@ -69,6 +63,10 @@
     // setup tableview
     toolbarTableView = _tableView;
     
+    // load most recent songs
+    sortedSongsArray = [[NSArray alloc] init];
+    [self loadMostRecentSongs];
+    
     // init itunes feeds api
     _itunes = [[ITunesFeedsApi alloc] init];
     [_itunes setDelegate:self];
@@ -78,10 +76,6 @@
         country = @"US";
     }
     [_itunes queryFeedType:QueryTopAlbums forCountry:country size:25 genre:0 asynchronizationMode:true];
-    
-    // load most recent songs
-    sortedSongsArray = [[NSArray alloc] init];
-    [self loadMostRecentSongs];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -94,7 +88,7 @@
                                            userInfo: nil
                                             repeats:YES];
     
-    timerTopRate = [NSTimer scheduledTimerWithTimeInterval:10
+    timerTopRate = [NSTimer scheduledTimerWithTimeInterval:5
                                                       target:self
                                                     selector:@selector(nextTopRate)
                                                     userInfo: nil
@@ -553,6 +547,8 @@
         // load images from itunes store
         UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         if (cell && results.count>=4) {
+            
+            NSLog(@" %s - %@:%ld\n", __PRETTY_FUNCTION__, @"queryResult", results.count);
             
             currentTopRateUpdate = 4;
             currentTopRateStep = 0;
