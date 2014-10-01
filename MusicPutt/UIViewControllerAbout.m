@@ -128,7 +128,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 175;
+    return 125;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionIndex
@@ -166,6 +166,8 @@
         NSArray *titles = @[@"This application is an creation of Qiaomei Wang and Eric Pinet. We use many api from a lot of great people.",
                             @"Thank you very much developpers for your creation: AFNetworking, AMWaveTransition, BFNavigationBarDrawer, MONActivityIndicatorView, ReFrostedViewController, RestKit, UAProgressView, iCarousel."];
         
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.textLabel.text = titles[indexPath.row];
         cell.textLabel.numberOfLines = 8;
         [cell.textLabel sizeToFit];
