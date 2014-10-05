@@ -43,12 +43,15 @@
     // Initialization code
     
     // init download progress
-    currentProgress = 0;
     [_downloadProgress setHidden:true];
-    _downloadProgress.borderWidth = 1.0;
-    _downloadProgress.lineWidth = 3.0;
-    _downloadProgress.animationDuration = 0.1;
-    _downloadProgress.tintColor = [UIColor colorWithHex:@"#8E8E93" alpha:1.0];
+    
+    // init playing progress
+    currentProgress = 0;
+    [_playingProgress setHidden:true];
+    _playingProgress.borderWidth = 1.0;
+    _playingProgress.lineWidth = 3.0;
+    _playingProgress.animationDuration = 0.1;
+    _playingProgress.tintColor = [UIColor colorWithHex:@"#8E8E93" alpha:1.0];
 
     // hide song durration
     //[_songDuration setHidden:true];
@@ -96,36 +99,26 @@
 -(void) startDownloadProgress
 {
     [_songDuration setHidden:true];
+    [_playingProgress setHidden:true];
+    
     [_downloadProgress setHidden:false];
-    
-    currentProgress = 0;
-    
-    timerDownload = [NSTimer scheduledTimerWithTimeInterval:0.1
-                                                      target:self
-                                                    selector:@selector(stepDownload)
-                                                    userInfo: nil
-                                                     repeats:YES];
-    
+    [_downloadProgress startAnimating];
 }
 
 -(void) stopDownloadProgress
 {
-    [timerDownload invalidate];
     
+    [_downloadProgress startAnimating];
     [_downloadProgress setHidden:true];
+    
+    [_playingProgress setHidden:true];
     [_songDuration setHidden:false];
 }
 
 
 -(void) stepDownload
 {
-    if (currentProgress<1) {
-        currentProgress = currentProgress + 0.05;
-    }
-    else{
-        currentProgress = 0;
-    }
-    [_downloadProgress setProgress:currentProgress animated:true];
+
 }
 
 

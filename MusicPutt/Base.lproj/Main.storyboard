@@ -1313,10 +1313,14 @@
                                                     <rect key="frame" x="281" y="9" width="26" height="26"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-sq-JsQ">
+                                                    <rect key="frame" x="284" y="13" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="downloadProgress" destination="Nuk-yI-3QK" id="b42-cl-2to"/>
+                                            <outlet property="downloadProgress" destination="nnL-sq-JsQ" id="wRe-WD-12D"/>
+                                            <outlet property="playingProgress" destination="Nuk-yI-3QK" id="aOW-HJ-zwX"/>
                                             <outlet property="songDuration" destination="dzu-y3-eYl" id="5Bx-0P-FtL"/>
                                             <outlet property="songName" destination="16B-Az-CFD" id="hit-ZY-ttD"/>
                                             <outlet property="songNumber" destination="wK2-1R-PTM" id="OEz-jo-aaR"/>

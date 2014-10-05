@@ -15,7 +15,11 @@
 @interface TableViewCellAlbumStoreCell : UITableViewCell
 
 
-@property (strong, nonatomic) IBOutlet UAProgressView* downloadProgress;
+@property (strong, nonatomic) IBOutlet UAProgressView* playingProgress;
+
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView* downloadProgress;
+
+
 
 /**
  *  Set the information of the media item (name, track no. and duration).
