@@ -272,6 +272,7 @@
 		9707ADD3198E98740093F6F0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9707ADD2198E88810093F6F0 /* TabBarController */,
 				9707ADD4198E98990093F6F0 /* REFrostedViewControllerMain.h */,
 				9707ADD5198E98990093F6F0 /* REFrostedViewControllerMain.m */,
 				9707ADD7198E9FCE0093F6F0 /* UITableViewControllerMenu.h */,
@@ -329,14 +330,13 @@
 			children = (
 				97876518199805DF0046D3F7 /* About */,
 				9707ADD3198E98740093F6F0 /* Menu */,
-				9707ADD2198E88810093F6F0 /* TabBarController */,
-				9711FF911981DE4A00421CF4 /* Store */,
 				97A36CD9195F55E000AF6AF8 /* CurrentPlayingToolBar */,
 				9799978A1960F60500360BF8 /* Feature */,
 				97A36CC7195F37C800AF6AF8 /* Playlist */,
 				9799978B1960F61800360BF8 /* Artist */,
 				9799978C1960F62700360BF8 /* Album */,
 				97AC0C36195A419E00BA60E6 /* Music */,
+				9711FF911981DE4A00421CF4 /* Store */,
 			);
 			name = UI;
 			sourceTree = "<group>";
