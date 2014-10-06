@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_BFNavigationBarDrawer 0
 #define COCOAPODS_VERSION_PATCH_BFNavigationBarDrawer 2
 
+// DLAlertView
+#define COCOAPODS_POD_AVAILABLE_DLAlertView
+#define COCOAPODS_VERSION_MAJOR_DLAlertView 1
+#define COCOAPODS_VERSION_MINOR_DLAlertView 2
+#define COCOAPODS_VERSION_PATCH_DLAlertView 4
+
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1

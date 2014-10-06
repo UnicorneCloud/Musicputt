@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "UIViewControllerMusic.h"
 #import "UIViewControllerAlbumStore.h"
+#import "DLAVAlertView.h"
+#import "ITunesFeedsApi.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 #define MUSICPUTT_PLAY_PREFERED         @"Play my favorites"
@@ -21,7 +23,7 @@
 #define DISCOVER_PLAY_WHATS_NEW         @"Play what's hot"
 #define DISCOVER_SELECT_PREFERED_GENDER @"Select your prefered gender"
 
-@interface UITableViewCellFeature() <UIActionSheetDelegate>
+@interface UITableViewCellFeature() <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     MPMediaQuery* everything;                   // result of current query
 }
@@ -209,7 +211,133 @@
 {
     NSLog(@"You have pressed the %@ button", [actionSheet buttonTitleAtIndex:buttonIndex]);
     
+    // DISCOVER_SELECT_PREFERED_GENDER
+    //
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER]) {
+        DLAVAlertView *alertView = [[DLAVAlertView alloc] initWithTitle:@"Select your prefered gender!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UITableView *tableview;
+        tableview = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 400.0, 270.0)];
+        tableview.delegate = self;
+        tableview.dataSource = self;
+        tableview.editing = true;
+        tableview.allowsMultipleSelectionDuringEditing = YES;
+        
+        alertView.contentView = tableview;
+        
+        [alertView showWithCompletion:^(DLAVAlertView *alertView, NSInteger buttonIndex) {
+            NSLog(@"Tapped button '%@' at index: %ld", [alertView buttonTitleAtIndex:buttonIndex], (long)buttonIndex);
+        }];
+    }
     
 }
+
+#pragma mark - UITableViewDataSource
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 41;
+}
+
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell* cell = [[UITableViewCell alloc] init];
+
+    if (indexPath.row==0)
+        cell.textLabel.text = GENRE_ALTERNATIVE_TXT;
+    else if (indexPath.row == 1)
+        cell.textLabel.text = GENRE_ANIME_TXT;
+    else if (indexPath.row == 2)
+        cell.textLabel.text = GENRE_BLUES_TXT;
+    else if (indexPath.row == 3)
+        cell.textLabel.text = GENRE_BRAZILIAN_TXT;
+    else if (indexPath.row == 4)
+        cell.textLabel.text = GENRE_CHILDRENSMUSIC_TXT;
+    else if (indexPath.row == 5)
+        cell.textLabel.text = GENRE_CHINESE_TXT;
+    else if (indexPath.row == 6)
+        cell.textLabel.text = GENRE_CHRISTIANGOSPEL_TXT;
+    else if (indexPath.row == 7)
+        cell.textLabel.text = GENRE_CLASSICAL_TXT;
+    else if (indexPath.row == 8)
+        cell.textLabel.text = GENRE_COMEDY_TXT;
+    else if (indexPath.row == 9)
+        cell.textLabel.text = GENRE_COUNTRY_TXT;
+    else if (indexPath.row == 10)
+        cell.textLabel.text = GENRE_DANCE_TXT;
+    else if (indexPath.row == 11)
+        cell.textLabel.text = GENRE_DISNEY_TXT;
+    else if (indexPath.row == 12)
+        cell.textLabel.text = GENRE_EASYLISTENING_TXT;
+    else if (indexPath.row == 13)
+        cell.textLabel.text = GENRE_ELECTRONIC_TXT;
+    else if (indexPath.row == 14)
+        cell.textLabel.text = GENRE_ENKA_TXT;
+    else if (indexPath.row == 15)
+        cell.textLabel.text = GENRE_FITNESSWORKOUT_TXT;
+    else if (indexPath.row == 16)
+        cell.textLabel.text = GENRE_FRENCHPOP_TXT;
+    else if (indexPath.row == 17)
+        cell.textLabel.text = GENRE_GERMANFOLK_TXT;
+    else if (indexPath.row == 18)
+        cell.textLabel.text = GENRE_GERMANPOP_TXT;
+    else if (indexPath.row == 19)
+        cell.textLabel.text = GENRE_HIPHOPRAP_TXT;
+    else if (indexPath.row == 20)
+        cell.textLabel.text = GENRE_HOLIDAY_TXT;
+    else if (indexPath.row == 21)
+        cell.textLabel.text = GENRE_INDIAN_TXT;
+    else if (indexPath.row == 22)
+        cell.textLabel.text = GENRE_INSTRUMENTAL_TXT;
+    else if (indexPath.row == 23)
+        cell.textLabel.text = GENRE_JPOP_TXT;
+    else if (indexPath.row == 24)
+        cell.textLabel.text = GENRE_JAZZ_TXT;
+    else if (indexPath.row == 25)
+        cell.textLabel.text = GENRE_KPOP_TXT;
+    else if (indexPath.row == 26)
+        cell.textLabel.text = GENRE_KARAOKE_TXT;
+    else if (indexPath.row == 27)
+        cell.textLabel.text = GENRE_KAYOKYOKU_TXT;
+    else if (indexPath.row == 28)
+        cell.textLabel.text = GENRE_KOREAN_TXT;
+    else if (indexPath.row == 29)
+        cell.textLabel.text = GENRE_LATINO_TXT;
+    else if (indexPath.row == 30)
+        cell.textLabel.text = GENRE_NEWAGE_TXT;
+    else if (indexPath.row == 31)
+        cell.textLabel.text = GENRE_OPERA_TXT;
+    else if (indexPath.row == 32)
+        cell.textLabel.text = GENRE_POP_TXT;
+    else if (indexPath.row == 33)
+        cell.textLabel.text = GENRE_RBSOUL_TXT;
+    else if (indexPath.row == 34)
+        cell.textLabel.text = GENRE_REGGAE_TXT;
+    else if (indexPath.row == 35)
+        cell.textLabel.text = GENRE_ROCK_TXT;
+    else if (indexPath.row == 36)
+        cell.textLabel.text = GENRE_SINGERSONGWRITER_TXT;
+    else if (indexPath.row == 37)
+        cell.textLabel.text = GENRE_SOUNDTRACK_TXT;
+    else if (indexPath.row == 38)
+        cell.textLabel.text = GENRE_SPOKENWORD_TXT;
+    else if (indexPath.row == 39)
+        cell.textLabel.text = GENRE_VOCAL_TXT;
+    else if (indexPath.row == 40)
+        cell.textLabel.text = GENRE_WORLD_TXT;
+    
+    return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath;
+}
+
+
 
 @end

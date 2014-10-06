@@ -21,6 +21,7 @@
     AVAudioPlayer* audioPlayer;
     NSInteger currentSongIndex;
     NSInteger currentDownloadingIndex;
+    UIActivityIndicatorView *activityIndicator;
 }
 @property AppDelegate* del;
 
@@ -46,6 +47,15 @@
     
     // setup tableview
     toolbarTableView = _songstable;
+    
+    // init loaging activity indicator
+    activityIndicator= [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    activityIndicator.opaque = YES;
+    activityIndicator.backgroundColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
+    activityIndicator.center = self.view.center;
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    [self.view addSubview: activityIndicator];
+    [activityIndicator startAnimating];
     
     // prepare itunes service for query
     ITunesSearchApi *itunes = [[ITunesSearchApi alloc] init];
@@ -171,7 +181,8 @@
         [_songstable reloadData];
     }
     
-    
+    // stop activity indicator
+    [activityIndicator stopAnimating];
 }
 
 #pragma mark - UITableViewDelegate

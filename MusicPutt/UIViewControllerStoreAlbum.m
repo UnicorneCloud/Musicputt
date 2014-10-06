@@ -27,9 +27,10 @@
     NSArray* result;
     NSArray* currentAlbumSongs;
     AVAudioPlayer* audioPlayer;
-    MONActivityIndicatorView *indicatorView;
+    //MONActivityIndicatorView *indicatorView;
     ITunesAlbum* currentAlbum;
     NSInteger currentAlbumIndex;
+    UIActivityIndicatorView *activityIndicator;
 }
 
 /**
@@ -107,6 +108,14 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // start loading annimations
+    activityIndicator= [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    activityIndicator.opaque = YES;
+    activityIndicator.backgroundColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
+    activityIndicator.center = self.view.center;
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    [self.view addSubview: activityIndicator];
+    [activityIndicator startAnimating];
+    /*
     indicatorView = [[MONActivityIndicatorView alloc] init];
     indicatorView.delegate = self;
     indicatorView.numberOfCircles = 5;
@@ -121,7 +130,8 @@
     
     [self.view addSubview:indicatorView];
     [indicatorView startAnimating];
-    
+    */
+     
     // query store for album information
     ITunesSearchApi *store = [[ITunesSearchApi alloc]init];
     [store setDelegate:self];
@@ -322,7 +332,7 @@
             _albumlist.alpha = 1.0;
             _viewalbum.alpha = 1.0;
             _songstable.alpha = 1.0;
-            [indicatorView stopAnimating];
+            [activityIndicator stopAnimating];
         }
     }
 }
