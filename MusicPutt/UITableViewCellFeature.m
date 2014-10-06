@@ -21,7 +21,7 @@
 
 #define DISCOVER_SEE_WHATS_NEW          @"See what's hot"
 #define DISCOVER_PLAY_WHATS_NEW         @"Play what's hot"
-#define DISCOVER_SELECT_PREFERED_GENDER @"Select your prefered gender"
+#define DISCOVER_SELECT_PREFERED_GENDER @"Select your preferred gender"
 
 @interface UITableViewCellFeature() <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
 {
@@ -214,7 +214,7 @@
     // DISCOVER_SELECT_PREFERED_GENDER
     //
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER]) {
-        DLAVAlertView *alertView = [[DLAVAlertView alloc] initWithTitle:@"Select your prefered gender!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        DLAVAlertView *alertView = [[DLAVAlertView alloc] initWithTitle:@"Select your preferred gender!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         UITableView *tableview;
         tableview = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 400.0, 270.0)];
         tableview.delegate = self;
