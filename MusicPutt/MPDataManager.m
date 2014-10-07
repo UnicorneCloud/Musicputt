@@ -42,6 +42,10 @@
     // the initial state of the musicviewcontroller is hidden.
     musicviewcontrollervisible = false;
     
+    // init magic record
+    [MagicalRecord setupCoreDataStack];
+    
+    
     return retval;
 }
 
@@ -72,6 +76,22 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");
 }
 
+
+/**
+ *  Prepare application to terminate
+ */
+-(void) prepareAppWillTerminate
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    // terminate mediaplayer
+    [[self musicplayer] stop];
+    
+    // terminate magicrecord
+    [MagicalRecord cleanUp];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");
+}
 
 
 

@@ -329,8 +329,6 @@
 
 - (void) nextMusicputt
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start");
-    
     UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     if(cell && sortedSongsArray.count>=4)
     {
@@ -437,13 +435,10 @@
             cell.albumUid4 = [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
         }
     }
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End");
 }
 
 - (void) nextTopRate
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start");
-    
     UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     if(cell)
     {
@@ -482,21 +477,14 @@
             imageToUpdate = cell.image4;
         }
         
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start image request");
-        
         ITunesAlbum* album = [topRates objectAtIndex:currentTopRateUpdate + currentTopRateStep];
         id path = [album artworkUrl100];
         NSURL *url = [NSURL URLWithString:path];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *newImage = [[UIImage alloc] initWithData:data];
         
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End image request");
-        
-        
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start image flip");
             
             [UIView transitionWithView:imageToUpdate
                               duration:0.6
@@ -509,7 +497,6 @@
                                 //  Do whatever when the animation is finished
                             }];
             
-            NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End image flip");
             
             // albumUid
             if (currentTopRateStep==1) {
@@ -527,8 +514,6 @@
             
         });
     }
-    
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End");
 }
 
 

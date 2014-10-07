@@ -11,6 +11,7 @@ pod 'RestKit'
 pod 'MONActivityIndicatorView'
 pod 'REFrostedViewController', '~> 2.4.6'
 pod 'DLAlertView'
+pod 'MagicalRecord'
 
 end
 

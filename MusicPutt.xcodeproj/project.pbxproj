@@ -27,6 +27,8 @@
 		9707ADD1198E886D0093F6F0 /* UITabBarControllerMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADD0198E886D0093F6F0 /* UITabBarControllerMain.m */; };
 		9707ADD6198E98990093F6F0 /* REFrostedViewControllerMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADD5198E98990093F6F0 /* REFrostedViewControllerMain.m */; };
 		9707ADD9198E9FCE0093F6F0 /* UITableViewControllerMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADD8198E9FCE0093F6F0 /* UITableViewControllerMenu.m */; };
+		970E649A19E364CC001393B7 /* musicputt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 970E649819E364CC001393B7 /* musicputt.xcdatamodeld */; };
+		970E649D19E365CD001393B7 /* PreferredGender.m in Sources */ = {isa = PBXBuildFile; fileRef = 970E649C19E365CD001393B7 /* PreferredGender.m */; };
 		9711FF951981DFAD00421CF4 /* UIViewControllerStoreAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 9711FF941981DFAD00421CF4 /* UIViewControllerStoreAlbum.m */; };
 		9711FF9A1981EB2900421CF4 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9711FF991981EB2900421CF4 /* iCarousel.m */; };
 		9711FFA01982ED4E00421CF4 /* ITunesAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 9711FF9F1982ED4E00421CF4 /* ITunesAlbum.m */; };
@@ -115,6 +117,9 @@
 		9707ADD5198E98990093F6F0 /* REFrostedViewControllerMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedViewControllerMain.m; sourceTree = "<group>"; };
 		9707ADD7198E9FCE0093F6F0 /* UITableViewControllerMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerMenu.h; sourceTree = "<group>"; };
 		9707ADD8198E9FCE0093F6F0 /* UITableViewControllerMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewControllerMenu.m; sourceTree = "<group>"; };
+		970E649919E364CC001393B7 /* musicputt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = musicputt.xcdatamodel; sourceTree = "<group>"; };
+		970E649B19E365CD001393B7 /* PreferredGender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferredGender.h; sourceTree = "<group>"; };
+		970E649C19E365CD001393B7 /* PreferredGender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferredGender.m; sourceTree = "<group>"; };
 		9711FF931981DFAD00421CF4 /* UIViewControllerStoreAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerStoreAlbum.h; sourceTree = "<group>"; };
 		9711FF941981DFAD00421CF4 /* UIViewControllerStoreAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerStoreAlbum.m; sourceTree = "<group>"; };
 		9711FF981981EB2900421CF4 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = extern/iCarousel.h; sourceTree = "<group>"; };
@@ -281,6 +286,16 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
+		970E649E19E365D8001393B7 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				970E649819E364CC001393B7 /* musicputt.xcdatamodeld */,
+				970E649B19E365CD001393B7 /* PreferredGender.h */,
+				970E649C19E365CD001393B7 /* PreferredGender.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		9711FF911981DE4A00421CF4 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +395,7 @@
 		976687D9194FBB4D00B5A843 /* MusicPutt */ = {
 			isa = PBXGroup;
 			children = (
+				970E649E19E365D8001393B7 /* Database */,
 				97ECDFB21972E9F5007889E3 /* Services */,
 				97A36CDD195F592500AF6AF8 /* DataManager */,
 				971D8C90194FCA2200A348A3 /* UI */,
@@ -776,6 +792,7 @@
 				9707ADBE198DED4A0093F6F0 /* UIButton+Extensions.m in Sources */,
 				97901B191978B65400526A04 /* UIViewControllerLyricsPage.m in Sources */,
 				977268D319C52B42006648AB /* TableViewCellAlbumStoreCell.m in Sources */,
+				970E649A19E364CC001393B7 /* musicputt.xcdatamodeld in Sources */,
 				D5B6DE58197594240042F072 /* UITableViewCellHeaderSection.m in Sources */,
 				D5B2413B1982A3BE00233953 /* UIViewControllerAlbumSongs.m in Sources */,
 				97D8030319B2DFF100D70820 /* ITunesAlbumEntry.m in Sources */,
@@ -807,6 +824,7 @@
 				9711FF951981DFAD00421CF4 /* UIViewControllerStoreAlbum.m in Sources */,
 				97A36D0219609F5B00AF6AF8 /* UIColor+CreateMethods.m in Sources */,
 				97ECDFB91972EAF6007889E3 /* UIViewControllerToolbar.m in Sources */,
+				970E649D19E365CD001393B7 /* PreferredGender.m in Sources */,
 				D537F1441964FF7900DC9EE7 /* UITableViewCellArtist.m in Sources */,
 				9787651B199805F80046D3F7 /* UIViewControllerAbout.m in Sources */,
 				D5B6DE55196D83040042F072 /* UITableViewCellArtistAlbum.m in Sources */,
@@ -1067,6 +1085,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		970E649819E364CC001393B7 /* musicputt.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				970E649919E364CC001393B7 /* musicputt.xcdatamodel */,
+			);
+			currentVersion = 970E649919E364CC001393B7 /* musicputt.xcdatamodel */;
+			name = musicputt.xcdatamodeld;
+			path = ../musicputt.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 976687C8194FBB4D00B5A843 /* Project object */;
 }

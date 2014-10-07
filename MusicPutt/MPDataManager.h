@@ -78,9 +78,14 @@
 - (void) prepareAppDidEnterBackground;
 
 /**
- *  Prepare application to becone active
+ *  Prepare application to become active
  */
 -(void) prepareAppDidBecomeActive;
+
+/**
+ *  Prepare application to terminate
+ */
+-(void) prepareAppWillTerminate;
 
 /**
  *  Return true if the mediaPlayer is initialized.

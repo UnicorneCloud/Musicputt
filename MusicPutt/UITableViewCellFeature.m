@@ -13,7 +13,9 @@
 #import "UIViewControllerAlbumStore.h"
 #import "DLAVAlertView.h"
 #import "ITunesFeedsApi.h"
+#import "PreferredGender.h"
 #import <MediaPlayer/MediaPlayer.h>
+
 
 #define MUSICPUTT_PLAY_PREFERED         @"Play my favorites"
 #define MUSICPUTT_PLAY_LASTEST          @"Play lastest playlist"
@@ -26,6 +28,7 @@
 @interface UITableViewCellFeature() <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     MPMediaQuery* everything;                   // result of current query
+    UITableView *tableview;
 }
 
 @property AppDelegate* del;
@@ -79,6 +82,13 @@
     _image4.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureImage4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickImage4)];
     [_image4 addGestureRecognizer:tapGestureImage4];
+    
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 400.0, 270.0)];
+    tableview.delegate = self;
+    tableview.dataSource = self;
+    tableview.editing = true;
+    tableview.allowsMultipleSelectionDuringEditing = YES;
+    tableview.allowsSelectionDuringEditing = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -215,12 +225,6 @@
     //
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER]) {
         DLAVAlertView *alertView = [[DLAVAlertView alloc] initWithTitle:@"Select your preferred gender!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        UITableView *tableview;
-        tableview = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 400.0, 270.0)];
-        tableview.delegate = self;
-        tableview.dataSource = self;
-        tableview.editing = true;
-        tableview.allowsMultipleSelectionDuringEditing = YES;
         
         alertView.contentView = tableview;
         
@@ -242,8 +246,8 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [[UITableViewCell alloc] init];
-
+    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
     if (indexPath.row==0)
         cell.textLabel.text = GENRE_ALTERNATIVE_TXT;
     else if (indexPath.row == 1)
@@ -327,15 +331,157 @@
     else if (indexPath.row == 40)
         cell.textLabel.text = GENRE_WORLD_TXT;
     
+    // find gender
+    PreferredGender* preferredGender = [PreferredGender MR_findFirstByAttribute:@"genderid" withValue:[NSNumber numberWithInteger:[self convertRowId2GenderId:indexPath.row]]];
+    if (preferredGender!=nil) {
+        // if preferred gender is found select the cell
+        [cell setSelected:TRUE];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else{
+        [cell setSelected:FALSE];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
 }
 
 
 #pragma mark - UITableViewDelegate
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /*
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(cell.accessoryType == UITableViewCellAccessoryCheckmark){
+        [cell setSelected:FALSE];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    */
+    
+    // witch gender we have to delete
+    NSInteger genderid = 0;
+    genderid = [self convertRowId2GenderId:indexPath.row];
+    
+    // find gender
+    PreferredGender* preferredGender = [PreferredGender MR_findFirstByAttribute:@"genderid" withValue:[NSNumber numberWithInteger:genderid]];
+    if (preferredGender!=nil) {
+        [preferredGender MR_deleteEntity];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /*
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(cell.accessoryType == UITableViewCellAccessoryCheckmark){
+        NSLog(@"Checkmark did select");
+        [cell setSelected:TRUE];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }*/
+    
+    // find gender to add
+    NSInteger genderid = 0;
+    genderid = [self convertRowId2GenderId:indexPath.row];
+    
+    // add to preferred gender
+    PreferredGender* preferredGender = [PreferredGender MR_createEntity];
+    preferredGender.genderid = [NSNumber numberWithInteger:genderid];
+}
+
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return indexPath;
+}
+
+- (NSInteger) convertRowId2GenderId: (NSInteger) rowId
+{
+    NSInteger genderid = 0;
+    
+    if (rowId==0)
+        genderid = GENRE_ALTERNATIVE;
+    else if (rowId == 1)
+        genderid = GENRE_ANIME;
+    else if (rowId == 2)
+        genderid = GENRE_BLUES;
+    else if (rowId == 3)
+        genderid = GENRE_BRAZILIAN;
+    else if (rowId == 4)
+        genderid = GENRE_CHILDRENSMUSIC;
+    else if (rowId == 5)
+        genderid = GENRE_CHINESE;
+    else if (rowId == 6)
+        genderid = GENRE_CHRISTIANGOSPEL;
+    else if (rowId == 7)
+        genderid = GENRE_CLASSICAL;
+    else if (rowId == 8)
+        genderid = GENRE_COMEDY;
+    else if (rowId == 9)
+        genderid = GENRE_COUNTRY;
+    else if (rowId == 10)
+        genderid = GENRE_DANCE;
+    else if (rowId == 11)
+        genderid = GENRE_DISNEY;
+    else if (rowId == 12)
+        genderid = GENRE_EASYLISTENING;
+    else if (rowId == 13)
+        genderid = GENRE_ELECTRONIC;
+    else if (rowId == 14)
+        genderid = GENRE_ENKA;
+    else if (rowId == 15)
+        genderid = GENRE_FITNESSWORKOUT;
+    else if (rowId == 16)
+        genderid = GENRE_FRENCHPOP;
+    else if (rowId == 17)
+        genderid = GENRE_GERMANFOLK;
+    else if (rowId == 18)
+        genderid = GENRE_GERMANPOP;
+    else if (rowId == 19)
+        genderid = GENRE_HIPHOPRAP;
+    else if (rowId == 20)
+        genderid = GENRE_HOLIDAY;
+    else if (rowId == 21)
+        genderid = GENRE_INDIAN;
+    else if (rowId == 22)
+        genderid = GENRE_INSTRUMENTAL;
+    else if (rowId == 23)
+        genderid = GENRE_JPOP;
+    else if (rowId == 24)
+        genderid = GENRE_JAZZ;
+    else if (rowId == 25)
+        genderid = GENRE_KPOP;
+    else if (rowId == 26)
+        genderid = GENRE_KARAOKE;
+    else if (rowId == 27)
+        genderid = GENRE_KAYOKYOKU;
+    else if (rowId == 28)
+        genderid = GENRE_KOREAN;
+    else if (rowId == 29)
+        genderid = GENRE_LATINO;
+    else if (rowId == 30)
+        genderid = GENRE_NEWAGE;
+    else if (rowId == 31)
+        genderid = GENRE_OPERA;
+    else if (rowId == 32)
+        genderid = GENRE_POP;
+    else if (rowId == 33)
+        genderid = GENRE_RBSOUL;
+    else if (rowId == 34)
+        genderid = GENRE_REGGAE;
+    else if (rowId == 35)
+        genderid = GENRE_ROCK;
+    else if (rowId == 36)
+        genderid = GENRE_SINGERSONGWRITER;
+    else if (rowId == 37)
+        genderid = GENRE_SOUNDTRACK;
+    else if (rowId == 38)
+        genderid = GENRE_SPOKENWORD;
+    else if (rowId == 39)
+        genderid = GENRE_VOCAL;
+    else if (rowId == 40)
+        genderid = GENRE_WORLD;
+    
+    return genderid;
 }
 
 
