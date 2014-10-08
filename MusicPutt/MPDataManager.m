@@ -60,6 +60,9 @@
     // we have to recreate media player when application return from background
     mediaplayerinit = false;
     
+    // save magical record
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
@@ -88,6 +91,7 @@
     [[self musicplayer] stop];
     
     // terminate magicrecord
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [MagicalRecord cleanUp];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");

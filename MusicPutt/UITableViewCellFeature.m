@@ -231,8 +231,6 @@
         
         [alertView showWithCompletion:^(DLAVAlertView *alertView, NSInteger buttonIndex) {
             NSLog(@"Tapped button '%@' at index: %ld", [alertView buttonTitleAtIndex:buttonIndex], (long)buttonIndex);
-            
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         }];
     }
     
