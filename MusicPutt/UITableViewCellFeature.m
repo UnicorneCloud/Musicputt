@@ -178,41 +178,42 @@
 
 -(void) playAlbum:(NSNumber*)albumUid
 {
-    // query album media on device
-    everything = [MPMediaQuery albumsQuery];
-    MPMediaPropertyPredicate *albumPredicate =  [MPMediaPropertyPredicate predicateWithValue:albumUid
-                                                                                 forProperty:MPMediaItemPropertyAlbumPersistentID
-                                                                              comparisonType:MPMediaPredicateComparisonEqualTo];
-    [everything addFilterPredicate:albumPredicate];
-    
-    
-    
-    BOOL shuffleWasOn = NO;
-    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
-        [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
-    {
-        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
-        shuffleWasOn = YES;
+    if (albumUid != nil) {
+        // query album media on device
+        everything = [MPMediaQuery albumsQuery];
+        MPMediaPropertyPredicate *albumPredicate =  [MPMediaPropertyPredicate predicateWithValue:albumUid
+                                                                                     forProperty:MPMediaItemPropertyAlbumPersistentID
+                                                                                  comparisonType:MPMediaPredicateComparisonEqualTo];
+        [everything addFilterPredicate:albumPredicate];
+        
+        BOOL shuffleWasOn = NO;
+        if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+            [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
+        {
+            [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
+            shuffleWasOn = YES;
+        }
+        [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:[everything.collections[0] items]]];
+        [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[[everything.collections[0] items ]objectAtIndex:0]];
+        if (shuffleWasOn)
+            [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+        
+        [[[self.del mpdatamanager] musicplayer] play];
+        
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
+        [_parentNavCtrl pushViewController:musicView animated:YES];
     }
-    [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:[everything.collections[0] items]]];
-    [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[[everything.collections[0] items ]objectAtIndex:0]];
-    if (shuffleWasOn)
-        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
-    
-    [[[self.del mpdatamanager] musicplayer] play];
-    
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
-    [_parentNavCtrl pushViewController:musicView animated:YES];
-    
 }
 
 -(void) displayStoreAlbum:(NSString*) collectionId
 {
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerAlbumStore *albumStore = [sb instantiateViewControllerWithIdentifier:@"AlbumStore"];
-    [albumStore setCollectionId:collectionId];
-    [_parentNavCtrl pushViewController:albumStore animated:YES];
+    if (collectionId != nil && [collectionId isEqualToString:@""]!=true ) {
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewControllerAlbumStore *albumStore = [sb instantiateViewControllerWithIdentifier:@"AlbumStore"];
+        [albumStore setCollectionId:collectionId];
+        [_parentNavCtrl pushViewController:albumStore animated:YES];
+    }
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -230,6 +231,8 @@
         
         [alertView showWithCompletion:^(DLAVAlertView *alertView, NSInteger buttonIndex) {
             NSLog(@"Tapped button '%@' at index: %ld", [alertView buttonTitleAtIndex:buttonIndex], (long)buttonIndex);
+            
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         }];
     }
     
