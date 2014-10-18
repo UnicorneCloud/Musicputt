@@ -11,6 +11,7 @@
 #import "UITableViewCellFeature.h"
 #import "ITunesAlbum.h"
 #import "ITunesFeedsApi.h"
+#import "PreferredGender.h"
 #import "AppDelegate.h"
 
 
@@ -54,6 +55,10 @@
     return self;
 }
 
+
+/**
+ *  viewDidLoad init scene
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -84,9 +89,15 @@
     if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
         country = @"US";
     }
-    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:25 genre:0 asynchronizationMode:true];
+    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
 }
 
+
+/**
+ *  viewWillAppear start timer to flip feature image.
+ *
+ *  @param animated <#animated description#>
+ */
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -98,10 +109,16 @@
                                             repeats:YES];
 }
 
+/**
+ *  Stop timer of flip image.
+ *
+ *  @param animated <#animated description#>
+ */
 - (void) viewWillDisappear:(BOOL)animated
 {
     [timerFlip invalidate];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -109,6 +126,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  Load most recent songs in sortedSOngsArray.
+ */
 - (void) loadMostRecentSongs
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start order");
@@ -131,6 +151,12 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End order");
 }
 
+
+/**
+ *  Update initial 4 images for musicputt cell with most recents songs.
+ *
+ *  @param currentLoadingCell <#currentLoadingCell description#>
+ */
 -(void) updateMusicPuttImage:(UITableViewCellFeature*)currentLoadingCell
 {
     UITableViewCellFeature* cell = nil;
@@ -301,6 +327,10 @@
     }
 }
 
+
+/**
+ *  Timer reatch and flip image are needed.
+ */
 -(void) nextFlip
 {
     nextFlip++;
@@ -327,6 +357,10 @@
     
 }
 
+
+/**
+ *  Flip musicputt image.
+ */
 - (void) nextMusicputt
 {
     UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -437,6 +471,10 @@
     }
 }
 
+
+/**
+ *  Flip next top rate image
+ */
 - (void) nextTopRate
 {
     UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
@@ -583,6 +621,9 @@
             
             NSLog(@" %s - %@:%ld\n", __PRETTY_FUNCTION__, @"queryResult", results.count);
             
+            // filter results
+            topRates = [self filterTopRatesWithPreferred:results];
+            
             currentTopRateUpdate = 4;
             currentTopRateStep = 0;
             
@@ -640,7 +681,34 @@
     }
 }
 
-
+/**
+ *  Filter a array of album top rates with preferred gender
+ *
+ *  @param arrayToFilter array to filtered
+ *
+ *  @return array filtered
+ */
+-(NSArray*) filterTopRatesWithPreferred:(NSArray*)arrayToFilter
+{
+    // check if the user have preferred gender
+    NSArray* preferredGenders = [PreferredGender MR_findAll];
+    if ([preferredGenders count]>0) {
+        NSMutableArray* filteredArray = [[NSMutableArray alloc] init];
+        
+        for (int i=0; i<preferredGenders.count; i++) {
+            
+            // TODO
+            
+            
+        }
+        return arrayToFilter;
+    }
+    else{
+        // if the user do not have preferred gender
+        // return array without filter
+        return arrayToFilter;
+    }
+}
 
 
 

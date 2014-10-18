@@ -83,7 +83,7 @@
     UITapGestureRecognizer *tapGestureImage4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickImage4)];
     [_image4 addGestureRecognizer:tapGestureImage4];
     
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 400.0, 270.0)];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 400.0, 260.0)];
     tableview.delegate = self;
     tableview.dataSource = self;
     tableview.editing = true;
@@ -352,14 +352,6 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(cell.accessoryType == UITableViewCellAccessoryCheckmark){
-        [cell setSelected:FALSE];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    */
-    
     // witch gender we have to delete
     NSInteger genderid = 0;
     genderid = [self convertRowId2GenderId:indexPath.row];
@@ -373,14 +365,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(cell.accessoryType == UITableViewCellAccessoryCheckmark){
-        NSLog(@"Checkmark did select");
-        [cell setSelected:TRUE];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }*/
-    
     // find gender to add
     NSInteger genderid = 0;
     genderid = [self convertRowId2GenderId:indexPath.row];
