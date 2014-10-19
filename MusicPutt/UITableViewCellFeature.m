@@ -214,9 +214,35 @@
 {
     NSLog(@"You have pressed the %@ button", [actionSheet buttonTitleAtIndex:buttonIndex]);
     
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerGender *gender = [sb instantiateViewControllerWithIdentifier:@"PreferredGender"];
-    [_parentNavCtrl pushViewController:gender animated:YES];
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_PREFERED])
+    {
+       
+    }
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST])
+    {
+    
+    }
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_CREATE_NEW_PLAYLIST])
+    {
+        
+    }
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SEE_WHATS_NEW])
+    {
+        
+    }
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_PLAY_WHATS_NEW])
+    {
+        
+    }
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER])
+    {
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewControllerGender *gender = [sb instantiateViewControllerWithIdentifier:@"PreferredGender"];
+        [_parentNavCtrl pushViewController:gender animated:YES];
+    }
+    
+    
+    
 }
 
 
