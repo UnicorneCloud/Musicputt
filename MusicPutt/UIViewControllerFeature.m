@@ -492,7 +492,7 @@
             currentTopRateStep++;
         }
         
-        if (currentTopRateUpdate + currentTopRateStep <= sortedSongsArray.count) {
+        if (currentTopRateUpdate + currentTopRateStep <= topRates.count) {
             
         }
         else{
@@ -515,42 +515,44 @@
             imageToUpdate = cell.image4;
         }
         
-        ITunesAlbum* album = [topRates objectAtIndex:currentTopRateUpdate + currentTopRateStep];
-        id path = [album artworkUrl100];
-        NSURL *url = [NSURL URLWithString:path];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *newImage = [[UIImage alloc] initWithData:data];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+        if (topRates.count > currentTopRateUpdate + currentTopRateStep) {
+            ITunesAlbum* album = [topRates objectAtIndex:currentTopRateUpdate + currentTopRateStep];
+            id path = [album artworkUrl100];
+            NSURL *url = [NSURL URLWithString:path];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *newImage = [[UIImage alloc] initWithData:data];
             
-            
-            [UIView transitionWithView:imageToUpdate
-                              duration:0.6
-                               options:UIViewAnimationOptionTransitionFlipFromRight
-                            animations:^{
-                                //  Set the new image
-                                //  Since its done in animation block, the change will be animated
-                                imageToUpdate.image = newImage;
-                            } completion:^(BOOL finished) {
-                                //  Do whatever when the animation is finished
-                            }];
-            
-            
-            // albumUid
-            if (currentTopRateStep==1) {
-                cell.collectionId1 = [album collectionId];
-            }
-            else if (currentTopRateStep==2){
-                cell.collectionId2 = [album collectionId];
-            }
-            else if (currentTopRateStep==3){
-                cell.collectionId3 = [album collectionId];
-            }
-            else if (currentTopRateStep==4){
-                cell.collectionId4 = [album collectionId];
-            }
-            
-        });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                
+                [UIView transitionWithView:imageToUpdate
+                                  duration:0.6
+                                   options:UIViewAnimationOptionTransitionFlipFromRight
+                                animations:^{
+                                    //  Set the new image
+                                    //  Since its done in animation block, the change will be animated
+                                    imageToUpdate.image = newImage;
+                                } completion:^(BOOL finished) {
+                                    //  Do whatever when the animation is finished
+                                }];
+                
+                
+                // albumUid
+                if (currentTopRateStep==1) {
+                    cell.collectionId1 = [album collectionId];
+                }
+                else if (currentTopRateStep==2){
+                    cell.collectionId2 = [album collectionId];
+                }
+                else if (currentTopRateStep==3){
+                    cell.collectionId3 = [album collectionId];
+                }
+                else if (currentTopRateStep==4){
+                    cell.collectionId4 = [album collectionId];
+                }
+                
+            });
+        }
     }
 }
 
@@ -619,7 +621,7 @@
         UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         if (cell && results.count>=4) {
             
-            NSLog(@" %s - %@:%ld\n", __PRETTY_FUNCTION__, @"queryResult", results.count);
+            NSLog(@" %s - %@:%ld\n", __PRETTY_FUNCTION__, @"queryResult", (unsigned long)results.count);
             
             // filter results
             topRates = [self filterTopRatesWithPreferred:results];
@@ -627,7 +629,7 @@
             currentTopRateUpdate = 4;
             currentTopRateStep = 0;
             
-            topRates = results;
+            results = topRates;
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
                            ^{
@@ -690,18 +692,36 @@
  */
 -(NSArray*) filterTopRatesWithPreferred:(NSArray*)arrayToFilter
 {
+    NSTimeInterval start  = [[NSDate date] timeIntervalSince1970];
+    NSMutableArray* filteredArray = [[NSMutableArray alloc] init];
+    BOOL keepThisItem =  false;
+    
     // check if the user have preferred gender
     NSArray* preferredGenders = [PreferredGender MR_findAll];
     if ([preferredGenders count]>0) {
-        NSMutableArray* filteredArray = [[NSMutableArray alloc] init];
         
-        for (int i=0; i<preferredGenders.count; i++) {
+        // check items and keep if if it's in preferred gender
+        for (int i=0; i<arrayToFilter.count; i++)
+        {
+            keepThisItem = false;
             
-            // TODO
+            // check if this item is in preferred gender
+            for (int y=0; y<preferredGenders.count; y++)
+            {
+                if ([[[arrayToFilter objectAtIndex:i] primaryGenreName] isEqualToString:[_itunes getGenderName:[[[preferredGenders objectAtIndex:y] genderid] integerValue]]]) {
+                    keepThisItem = true;
+                    break;
+                }
+            }
             
-            
+            if (keepThisItem) {
+                [filteredArray addObject:[arrayToFilter objectAtIndex:i]];
+            }
         }
-        return arrayToFilter;
+        
+        NSTimeInterval finish = [[NSDate date] timeIntervalSince1970];
+        NSLog(@" %s - %@ %f secondes\n", __PRETTY_FUNCTION__, @"Finish filtering preferred gender took", finish - start);
+        return filteredArray;
     }
     else{
         // if the user do not have preferred gender

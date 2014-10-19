@@ -147,6 +147,12 @@
             date = [formatter dateFromString:strReleaseDate]; //TODO: ReleaseDate format doesn't work!
             [album setReleaseDate:date];
             
+            // load gender
+            NSDictionary* category = [entry objectForKey:@"category"];
+            NSDictionary* attributes4 = [category objectForKey:@"attributes"];
+            NSString* strGender = [attributes4 objectForKey:@"term"];
+            [album setPrimaryGenreName:strGender];
+            
             [albums addObject:album];
         }
         
@@ -313,6 +319,104 @@
 - (BOOL) validateParameters:(ITunesFeedsQueryType)type forCountry:(NSString*)country size:(NSInteger)size genre:(NSInteger)genre asynchronizationMode:(BOOL)async
 {
     return TRUE;
+}
+
+
+/**
+ *  Return the gender name from the gender id.
+ *
+ *  @param genderId GenderID in the iTunes Store.
+ *
+ *  @return Gender name.
+ */
+- (NSString*) getGenderName:(NSInteger)genderId
+{
+    NSString* retGender = @"";
+    
+    if (genderId==GENRE_ALTERNATIVE)
+        retGender = GENRE_ALTERNATIVE_TXT;
+    else if (genderId == GENRE_ANIME)
+        retGender = GENRE_ANIME_TXT;
+    else if (genderId == GENRE_BLUES)
+        retGender = GENRE_BLUES_TXT;
+    else if (genderId == GENRE_BRAZILIAN)
+        retGender = GENRE_BRAZILIAN_TXT;
+    else if (genderId == GENRE_CHILDRENSMUSIC)
+        retGender = GENRE_CHILDRENSMUSIC_TXT;
+    else if (genderId == GENRE_CHINESE)
+        retGender = GENRE_CHINESE_TXT;
+    else if (genderId == GENRE_CHRISTIANGOSPEL)
+        retGender = GENRE_CHRISTIANGOSPEL_TXT;
+    else if (genderId == GENRE_CLASSICAL)
+        retGender = GENRE_CLASSICAL_TXT;
+    else if (genderId == GENRE_COMEDY)
+        retGender = GENRE_COMEDY_TXT;
+    else if (genderId == GENRE_COUNTRY)
+        retGender = GENRE_COUNTRY_TXT;
+    else if (genderId == GENRE_DANCE)
+        retGender = GENRE_DANCE_TXT;
+    else if (genderId == GENRE_DISNEY)
+        retGender = GENRE_DISNEY_TXT;
+    else if (genderId == GENRE_EASYLISTENING)
+        retGender = GENRE_EASYLISTENING_TXT;
+    else if (genderId == GENRE_ELECTRONIC)
+        retGender = GENRE_ELECTRONIC_TXT;
+    else if (genderId == GENRE_ENKA)
+        retGender = GENRE_ENKA_TXT;
+    else if (genderId == GENRE_FITNESSWORKOUT)
+        retGender = GENRE_FITNESSWORKOUT_TXT;
+    else if (genderId == GENRE_FRENCHPOP)
+        retGender = GENRE_FRENCHPOP_TXT;
+    else if (genderId == GENRE_GERMANFOLK)
+        retGender = GENRE_GERMANFOLK_TXT;
+    else if (genderId == GENRE_GERMANPOP)
+        retGender = GENRE_GERMANPOP_TXT;
+    else if (genderId == GENRE_HIPHOPRAP)
+        retGender = GENRE_HIPHOPRAP_TXT;
+    else if (genderId == GENRE_HOLIDAY)
+        retGender = GENRE_HOLIDAY_TXT;
+    else if (genderId == GENRE_INDIAN)
+        retGender = GENRE_INDIAN_TXT;
+    else if (genderId == GENRE_INSTRUMENTAL)
+        retGender = GENRE_INSTRUMENTAL_TXT;
+    else if (genderId == GENRE_JPOP)
+        retGender = GENRE_JPOP_TXT;
+    else if (genderId == GENRE_JAZZ)
+        retGender = GENRE_JAZZ_TXT;
+    else if (genderId == GENRE_KPOP)
+        retGender = GENRE_KPOP_TXT;
+    else if (genderId == GENRE_KARAOKE)
+        retGender = GENRE_KARAOKE_TXT;
+    else if (genderId == GENRE_KAYOKYOKU)
+        retGender = GENRE_KAYOKYOKU_TXT;
+    else if (genderId == GENRE_KOREAN)
+        retGender = GENRE_KOREAN_TXT;
+    else if (genderId == GENRE_LATINO)
+        retGender = GENRE_LATINO_TXT;
+    else if (genderId == GENRE_NEWAGE)
+        retGender = GENRE_NEWAGE_TXT;
+    else if (genderId == GENRE_OPERA)
+        retGender = GENRE_OPERA_TXT;
+    else if (genderId == GENRE_POP)
+        retGender = GENRE_POP_TXT;
+    else if (genderId == GENRE_RBSOUL)
+        retGender = GENRE_RBSOUL_TXT;
+    else if (genderId == GENRE_REGGAE)
+        retGender = GENRE_REGGAE_TXT;
+    else if (genderId == GENRE_ROCK)
+        retGender = GENRE_ROCK_TXT;
+    else if (genderId == GENRE_SINGERSONGWRITER)
+        retGender = GENRE_SINGERSONGWRITER_TXT;
+    else if (genderId == GENRE_SOUNDTRACK)
+        retGender = GENRE_SOUNDTRACK_TXT;
+    else if (genderId == GENRE_SPOKENWORD)
+        retGender = GENRE_SPOKENWORD_TXT;
+    else if (genderId == GENRE_VOCAL)
+        retGender = GENRE_VOCAL_TXT;
+    else if (genderId == GENRE_WORLD)
+        retGender = GENRE_WORLD_TXT;
+    
+    return retGender;
 }
 
 @end

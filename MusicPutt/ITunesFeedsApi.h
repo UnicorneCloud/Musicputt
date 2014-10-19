@@ -159,4 +159,14 @@ typedef enum {
  */
 - (void) queryFeedType:(ITunesFeedsQueryType)type forCountry:(NSString*) country size:(NSInteger) size genre:(NSInteger) genre asynchronizationMode:(BOOL) async;
 
+
+/**
+ *  Return the gender name from the gender id.
+ *
+ *  @param genderId GenderID in the iTunes Store.
+ *
+ *  @return Gender name.
+ */
+- (NSString*) getGenderName:(NSInteger)genderId;
+
 @end
