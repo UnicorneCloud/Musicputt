@@ -62,14 +62,6 @@
     pauseView.alpha = .30;
     _progress.centralView =  playView;
     
-    /*
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self
-                                   selector:@selector(updateCurrentTime)
-                                   userInfo: nil
-                                    repeats:YES];
-     */
-    
     _progress.didSelectBlock = ^(UAProgressView *progressView){
         MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
         //if([player playbackState] == MPMoviePlaybackStatePlaying)
@@ -104,6 +96,11 @@
     [_progress setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+- (void)viewWillUnload
+{
+    [timer invalidate];
 }
 
 -(void) displayMediaItem: (MPMediaItem*) aitem

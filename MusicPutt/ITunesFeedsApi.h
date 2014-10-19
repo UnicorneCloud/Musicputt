@@ -40,14 +40,14 @@ typedef enum {
 #define GENRE_COMEDY            3
 #define GENRE_COUNTRY           6
 #define GENRE_DANCE             17
-#define GENRE_DISNEY            50000063
+//#define GENRE_DISNEY            50000063
 #define GENRE_EASYLISTENING     25
 #define GENRE_ELECTRONIC        7
 #define GENRE_ENKA              28
 #define GENRE_FITNESSWORKOUT    50
-#define GENRE_FRENCHPOP         50000064
-#define GENRE_GERMANFOLK        50000068
-#define GENRE_GERMANPOP         50000066
+//#define GENRE_FRENCHPOP         50000064
+//#define GENRE_GERMANFOLK        50000068
+//#define GENRE_GERMANPOP         50000066
 #define GENRE_HIPHOPRAP         18
 #define GENRE_HOLIDAY           8
 #define GENRE_INDIAN            1262
@@ -67,7 +67,7 @@ typedef enum {
 #define GENRE_ROCK              21
 #define GENRE_SINGERSONGWRITER  10
 #define GENRE_SOUNDTRACK        16
-#define GENRE_SPOKENWORD        50000061
+//#define GENRE_SPOKENWORD        50000061
 #define GENRE_VOCAL             23
 #define GENRE_WORLD             19
 

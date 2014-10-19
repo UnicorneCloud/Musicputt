@@ -1,5 +1,5 @@
 //
-//  UITableViewControllerGender.h
+//  UIViewControllerGender.h
 //  MusicPutt
 //
 //  Created by Eric Pinet on 2014-10-18.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITableViewControllerGender : UITableViewController
+#import "UIViewControllerToolbar.h"
+
+@interface UIViewControllerGender : UIViewControllerToolbar
 
 @end

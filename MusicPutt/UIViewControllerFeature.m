@@ -84,12 +84,6 @@
     // init itunes feeds api
     _itunes = [[ITunesFeedsApi alloc] init];
     [_itunes setDelegate:self];
-    
-    NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
-    if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
-        country = @"US";
-    }
-    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
 }
 
 
@@ -102,6 +96,14 @@
 {
     [super viewWillAppear:animated];
     
+    // itunes search api
+    NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
+    if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
+        country = @"US";
+    }
+    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
+    
+    // start timer
     timerFlip = [NSTimer scheduledTimerWithTimeInterval:3
                                              target:self
                                            selector:@selector(nextFlip)
@@ -629,7 +631,9 @@
             currentTopRateUpdate = 4;
             currentTopRateStep = 0;
             
-            results = topRates;
+            if (topRates.count>=4) {
+                results = topRates;
+            }
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
                            ^{

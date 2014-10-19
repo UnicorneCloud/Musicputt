@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "UIViewControllerMusic.h"
 #import "UIViewControllerAlbumStore.h"
-#import "DLAVAlertViewSelectGender.h"
+#import "UIViewControllerGender.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 
@@ -214,16 +214,9 @@
 {
     NSLog(@"You have pressed the %@ button", [actionSheet buttonTitleAtIndex:buttonIndex]);
     
-    // DISCOVER_SELECT_PREFERED_GENDER
-    //
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER]) {
-        DLAVAlertViewSelectGender *alertView = [[DLAVAlertViewSelectGender alloc] initWithTitle:@"Select your preferred gender!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [alertView showWithCompletion:^(DLAVAlertView *alertView, NSInteger buttonIndex) {
-            NSLog(@"Tapped button '%@' at index: %ld", [alertView buttonTitleAtIndex:buttonIndex], (long)buttonIndex);
-        }];
-    }
-    
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewControllerGender *gender = [sb instantiateViewControllerWithIdentifier:@"PreferredGender"];
+    [_parentNavCtrl pushViewController:gender animated:YES];
 }
 
 

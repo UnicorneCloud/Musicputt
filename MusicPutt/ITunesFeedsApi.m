@@ -355,8 +355,8 @@
         retGender = GENRE_COUNTRY_TXT;
     else if (genderId == GENRE_DANCE)
         retGender = GENRE_DANCE_TXT;
-    else if (genderId == GENRE_DISNEY)
-        retGender = GENRE_DISNEY_TXT;
+    //else if (genderId == GENRE_DISNEY)
+    //    retGender = GENRE_DISNEY_TXT;
     else if (genderId == GENRE_EASYLISTENING)
         retGender = GENRE_EASYLISTENING_TXT;
     else if (genderId == GENRE_ELECTRONIC)
@@ -365,12 +365,12 @@
         retGender = GENRE_ENKA_TXT;
     else if (genderId == GENRE_FITNESSWORKOUT)
         retGender = GENRE_FITNESSWORKOUT_TXT;
-    else if (genderId == GENRE_FRENCHPOP)
-        retGender = GENRE_FRENCHPOP_TXT;
-    else if (genderId == GENRE_GERMANFOLK)
-        retGender = GENRE_GERMANFOLK_TXT;
-    else if (genderId == GENRE_GERMANPOP)
-        retGender = GENRE_GERMANPOP_TXT;
+    //else if (genderId == GENRE_FRENCHPOP)
+    //    retGender = GENRE_FRENCHPOP_TXT;
+    //else if (genderId == GENRE_GERMANFOLK)
+    //    retGender = GENRE_GERMANFOLK_TXT;
+    //else if (genderId == GENRE_GERMANPOP)
+    //    retGender = GENRE_GERMANPOP_TXT;
     else if (genderId == GENRE_HIPHOPRAP)
         retGender = GENRE_HIPHOPRAP_TXT;
     else if (genderId == GENRE_HOLIDAY)
@@ -409,8 +409,8 @@
         retGender = GENRE_SINGERSONGWRITER_TXT;
     else if (genderId == GENRE_SOUNDTRACK)
         retGender = GENRE_SOUNDTRACK_TXT;
-    else if (genderId == GENRE_SPOKENWORD)
-        retGender = GENRE_SPOKENWORD_TXT;
+    //else if (genderId == GENRE_SPOKENWORD)
+    //    retGender = GENRE_SPOKENWORD_TXT;
     else if (genderId == GENRE_VOCAL)
         retGender = GENRE_VOCAL_TXT;
     else if (genderId == GENRE_WORLD)
