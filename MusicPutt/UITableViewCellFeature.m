@@ -12,6 +12,7 @@
 #import "UIViewControllerMusic.h"
 #import "UIViewControllerAlbumStore.h"
 #import "UIViewControllerGender.h"
+#import "UIViewControllerFeatureStore.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 
@@ -20,7 +21,6 @@
 #define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create new playlist"
 
 #define DISCOVER_SEE_WHATS_NEW          @"See what's hot"
-#define DISCOVER_PLAY_WHATS_NEW         @"Play what's hot"
 #define DISCOVER_SELECT_PREFERED_GENDER @"Select your preferred gender"
 
 @interface UITableViewCellFeature() <UIActionSheetDelegate>
@@ -107,7 +107,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:DISCOVER_SEE_WHATS_NEW, DISCOVER_PLAY_WHATS_NEW, DISCOVER_SELECT_PREFERED_GENDER, nil];
+                                                        otherButtonTitles:DISCOVER_SEE_WHATS_NEW, DISCOVER_SELECT_PREFERED_GENDER, nil];
         [actionSheet showInView:_parentView];
     }
 }
@@ -228,10 +228,9 @@
     }
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SEE_WHATS_NEW])
     {
-        
-    }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_PLAY_WHATS_NEW])
-    {
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewControllerFeatureStore *featureStore = [sb instantiateViewControllerWithIdentifier:@"FeatureStore"];
+        [_parentNavCtrl pushViewController:featureStore animated:YES];
         
     }
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER])

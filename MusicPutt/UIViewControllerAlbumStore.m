@@ -43,7 +43,7 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup title
-    [self setTitle:@"Feature"];
+    [self setTitle:@"Album"];
     
     // setup tableview
     toolbarTableView = _songstable;

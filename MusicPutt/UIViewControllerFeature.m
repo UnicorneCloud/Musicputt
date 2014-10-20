@@ -30,7 +30,6 @@
     NSInteger currentTopRateStep;
     
     NSTimer *timerFlip;
-    NSTimer *timerTopRate;
     
     NSInteger nextFlip;
     
@@ -566,8 +565,8 @@
     return [self.tableView visibleCells];
 }
 
-#pragma mark - UITableViewDataSource
 
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
