@@ -18,11 +18,11 @@
 {
     BOOL TopRateReadyToFlip;
     
-    NSTimer *timerFlip;
+    //NSTimer *timerFlip;
     
     NSArray *topRates;
     
-    NSInteger currentTopRateUpdate;
+    //NSInteger currentTopRateUpdate;
     NSInteger currentTopRateStep;
 }
 
@@ -44,7 +44,7 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup title
-    [self setTitle:@"Feature Store"];
+    [self setTitle:@"Store"];
     
     // setup tableview
     toolbarTableView = _tableView;
@@ -56,6 +56,12 @@
     _itunes = [[ITunesFeedsApi alloc] init];
     [_itunes setDelegate:self];
     
+    // itunes search api
+    NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
+    if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
+        country = @"US";
+    }
+    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];    
 }
 
 /**
@@ -67,19 +73,6 @@
 {
     [super viewWillAppear:animated];
     
-    // itunes search api
-    NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
-    if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
-        country = @"US";
-    }
-    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
-    
-    // start timer
-    timerFlip = [NSTimer scheduledTimerWithTimeInterval:3
-                                                 target:self
-                                               selector:@selector(nextFlip)
-                                               userInfo: nil
-                                                repeats:YES];
 }
 
 /**
@@ -89,7 +82,6 @@
  */
 - (void) viewWillDisappear:(BOOL)animated
 {
-    [timerFlip invalidate];
 }
 
 
@@ -105,8 +97,17 @@
         
         UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if (cell) {
-            [cell.loading startAnimating];
-            [cell.loading setHidden:FALSE];
+            
+            CATransition *animation = [CATransition animation];
+            [animation setDelegate:self];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromRight];
+            [animation setDuration:0.50];
+            [animation setTimingFunction:
+             [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [cell.viewAlbums.layer addAnimation:animation forKey:kCATransition];
+            
+            [cell startLoading];
         }
         currentTopRateStep = currentTopRateStep+6;
         [self displayTopAlbumWithStartIndex:currentTopRateStep];
@@ -118,8 +119,17 @@
     if (currentTopRateStep-6 >= 0) {
         UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if (cell) {
-            [cell.loading startAnimating];
-            [cell.loading setHidden:FALSE];
+            
+            CATransition *animation = [CATransition animation];
+            [animation setDelegate:self];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromLeft];
+            [animation setDuration:0.50];
+            [animation setTimingFunction:
+             [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [cell.viewAlbums.layer addAnimation:animation forKey:kCATransition];
+            
+            [cell startLoading];
         }
         currentTopRateStep = currentTopRateStep-6;
         [self displayTopAlbumWithStartIndex:currentTopRateStep];
@@ -142,6 +152,16 @@
             for (int i=1; i<=6; i++) {
                 [results addObject: [topRates objectAtIndex:index+i]];
             }
+        }
+        
+        NSLog(@" %s - %@%ld/%ld\n", __PRETTY_FUNCTION__, @"Display:", index, index+6);
+        
+        // hide more button
+        if (topRates.count<index+12) {
+            [cell.more setHidden:TRUE];
+        }
+        else{
+            [cell.more setHidden:FALSE];
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
@@ -223,8 +243,7 @@
                                
                                TopRateReadyToFlip = true;
                                
-                               [cell.loading stopAnimating];
-                               [cell.loading setHidden:TRUE];
+                               [cell stopLoading];
                            });
                            
                        });
@@ -304,7 +323,7 @@
     UITableViewCellFeatureAlbumStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureStoreAlbumCell"];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell.loading startAnimating];
+    [cell startLoading];
     
     cell.parentNavCtrl = self.navigationController;
     
@@ -345,7 +364,8 @@
             // filter results
             topRates = [self filterTopRatesWithPreferred:results];
             
-            currentTopRateUpdate = 6;
+            NSLog(@" %s - %@%ld\n", __PRETTY_FUNCTION__, @"Results:", topRates.count);
+            
             currentTopRateStep = 0;
             
             [self displayTopAlbumWithStartIndex:currentTopRateStep];
@@ -355,8 +375,6 @@
         }
     }
 }
-
-
 
 /*
 #pragma mark - Navigation

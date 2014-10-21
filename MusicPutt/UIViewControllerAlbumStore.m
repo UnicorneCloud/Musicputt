@@ -30,7 +30,6 @@
  */
 @property (weak, nonatomic) IBOutlet UITableView* songstable;
 
-
 @end
 
 @implementation UIViewControllerAlbumStore
@@ -43,7 +42,7 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup title
-    [self setTitle:@"Album"];
+    [self setTitle:@"Store"];
     
     // setup tableview
     toolbarTableView = _songstable;
@@ -227,23 +226,31 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex-1 inSection:0];
         [_songstable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         
-        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing ", (long)currentSongIndex);
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing", (long)currentSongIndex);
         
         [self startDownloadProgress:currentSongIndex-1];
         
         NSURL *url = [NSURL URLWithString: [[songs objectAtIndex:index] previewUrl]];
-        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
-            audioPlayer.delegate = self;
-            [audioPlayer prepareToPlay];
-            [audioPlayer play];
+        if (url) {
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+                audioPlayer.delegate = self;
+                [audioPlayer prepareToPlay];
+                [audioPlayer play];
+                
+                NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
+                
+                //[self stopDownloadProgress:currentDownloadingIndex];
+            }];
+            [task resume];
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"There is no preview for this song!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil,nil];
+            [alert show];
             
-            NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
-            [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
-            
-            //[self stopDownloadProgress:currentDownloadingIndex];
-        }];
-        [task resume];
+            [self stopDownloadProgress: [NSNumber numberWithInteger:currentSongIndex-1]];
+        }
     }
 }
 

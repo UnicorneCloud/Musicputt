@@ -10,6 +10,16 @@
 
 #import "UIViewControllerAlbumStore.h"
 
+@interface UITableViewCellFeatureAlbumStore()
+{
+    
+}
+
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView* loading;
+
+@end
+
 @implementation UITableViewCellFeatureAlbumStore
 
 - (void)awakeFromNib {
@@ -38,12 +48,12 @@
     // active tap gesture on image5 label
     _image5.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureImage5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickImage5)];
-    [_image4 addGestureRecognizer:tapGestureImage4];
+    [_image5 addGestureRecognizer:tapGestureImage5];
     
     // active tap gesture on image6 label
-    _image4.userInteractionEnabled = YES;
+    _image6.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureImage6 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickImage6)];
-    [_image4 addGestureRecognizer:tapGestureImage6];
+    [_image6 addGestureRecognizer:tapGestureImage6];
     
 
 }
@@ -96,6 +106,69 @@
     NSLog(@"You have click album: %@", _collectionId6);
 }
 
+
+
+/**
+ *  Start loading cell
+ */
+- (void) startLoading
+{
+    [_loading setHidden:FALSE];
+    [_loading startAnimating];
+    
+    [self setVisibility:FALSE];
+    
+}
+
+
+/**
+ *  Stop loading cell
+ */
+- (void) stopLoading
+{
+    [_loading setHidden:TRUE];
+    [_loading startAnimating];
+    
+    [self setVisibility:TRUE];
+}
+
+
+- (void) setVisibility:(BOOL) visibility
+{
+    BOOL hidden = !visibility;
+    
+    // 1
+    [_image1 setHidden:hidden];
+    [_title1 setHidden:hidden];
+    [_artist1 setHidden:hidden];
+    
+    // 2
+    [_image2 setHidden:hidden];
+    [_title2 setHidden:hidden];
+    [_artist2 setHidden:hidden];
+    
+    // 3
+    [_image3 setHidden:hidden];
+    [_title3 setHidden:hidden];
+    [_artist3 setHidden:hidden];
+    
+    // 4
+    [_image4 setHidden:hidden];
+    [_title4 setHidden:hidden];
+    [_artist4 setHidden:hidden];
+    
+    // 5
+    [_image5 setHidden:hidden];
+    [_title5 setHidden:hidden];
+    [_artist5 setHidden:hidden];
+    
+    // 6
+    [_image6 setHidden:hidden];
+    [_title6 setHidden:hidden];
+    [_artist6 setHidden:hidden];
+}
+
+
 -(void) displayStoreAlbum:(NSString*) collectionId
 {
     if (collectionId != nil && [collectionId isEqualToString:@""]!=true ) {
@@ -105,5 +178,7 @@
         [_parentNavCtrl pushViewController:albumStore animated:YES];
     }
 }
+
+
 
 @end
