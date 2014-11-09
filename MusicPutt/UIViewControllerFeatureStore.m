@@ -17,12 +17,7 @@
 @interface UIViewControllerFeatureStore () <UITableViewDataSource, UITableViewDelegate, ITunesFeedsApiDelegate>
 {
     BOOL TopRateReadyToFlip;
-    
-    //NSTimer *timerFlip;
-    
     NSArray *topRates;
-    
-    //NSInteger currentTopRateUpdate;
     NSInteger currentTopRateStep;
 }
 

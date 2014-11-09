@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MyV-EH-EqI">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1478,11 +1479,6 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4g-AT-o20">
                                                     <rect key="frame" x="17" y="6" width="95" height="95"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZX-Eg-D1i">
-                                                    <rect key="frame" x="244" y="53" width="60" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <state key="normal" title="12.99$"/>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFQ-hO-wBF">
                                                     <rect key="frame" x="244" y="81" width="67" height="22"/>
                                                     <state key="normal" image="itunes_big">
@@ -1501,6 +1497,12 @@
                                                         <action selector="sharePressed:" destination="cPY-yP-ZSE" eventType="touchUpInside" id="4Kj-iW-pYY"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10.99$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRi-AJ-YOC">
+                                                    <rect key="frame" x="120" y="68" width="55" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1508,7 +1510,7 @@
                                             <outlet property="artistname" destination="Im5-5J-3Ww" id="1JP-Qh-prD"/>
                                             <outlet property="genre" destination="GSh-xj-2fR" id="Rr5-GF-b9i"/>
                                             <outlet property="imageview" destination="p4g-AT-o20" id="phk-se-t4E"/>
-                                            <outlet property="price" destination="UZX-Eg-D1i" id="jd6-fZ-IHp"/>
+                                            <outlet property="price" destination="TRi-AJ-YOC" id="fL2-Wi-P5L"/>
                                             <outlet property="year" destination="V22-EQ-P7H" id="mbx-mZ-nF5"/>
                                         </connections>
                                     </tableViewCell>
@@ -1569,7 +1571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8E-wZ-gpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3026" y="-1131"/>
+            <point key="canvasLocation" x="3026" y="-1132"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="mcw-CP-zbF">
