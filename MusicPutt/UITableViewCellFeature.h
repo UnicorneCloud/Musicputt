@@ -50,8 +50,15 @@ typedef enum {
 
 @property (weak, nonatomic) IBOutlet UIImageView*   image4;
 
-@property (weak, nonatomic) IBOutlet UILabel*   title;
+@property (weak, nonatomic) IBOutlet UILabel*       title;
 
-@property (weak, nonatomic) IBOutlet UILabel*   desc;
+@property (weak, nonatomic) IBOutlet UILabel*       desc;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView* progress;
+
+
+- (void) startProgress;
+
+- (void) stopProgress;
 
 @end
