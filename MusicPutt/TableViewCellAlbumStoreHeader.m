@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView* imageview;
 
-@property (weak, nonatomic) IBOutlet UILabel* artistname;
+@property (weak, nonatomic) IBOutlet UIButton* artistname;
 
 @property (weak, nonatomic) IBOutlet UILabel* albumname;
 
@@ -50,7 +50,7 @@
 - (void)setMediaItem:(ITunesAlbum *)mediaitem
 {
     _albumname.text  = [mediaitem collectionName];
-    _artistname.text = [mediaitem artistName];
+    [_artistname setTitle:[mediaitem artistName] forState:UIControlStateNormal ];
     _genre.text = [mediaitem primaryGenreName];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

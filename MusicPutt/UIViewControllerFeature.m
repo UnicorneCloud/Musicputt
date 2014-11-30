@@ -70,7 +70,7 @@
     [self setTitle:@"Feature"];
     
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
     
     // init members
     TopRateReadyToFlip = false;

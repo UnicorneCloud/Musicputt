@@ -8,12 +8,15 @@
 
 #import "UIViewControllerAlbumStore.h"
 
+#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVAudioPlayer.h>
+
 #import "AppDelegate.h"
 #import "TableViewCellAlbumStoreCell.h"
 #import "TableViewCellAlbumStoreHeader.h"
+#import "UIViewControllerArtistStore.h"
 #import "ITunesSearchApi.h"
-#import <AVFoundation/AVAudioSession.h>
-#import <AVFoundation/AVAudioPlayer.h>
+
 
 @interface UIViewControllerAlbumStore () <UITableViewDelegate, UITableViewDataSource, ITunesSearchApiDelegate, AVAudioPlayerDelegate>
 {
@@ -45,7 +48,7 @@
     [self setTitle:@"Store"];
     
     // setup tableview
-    toolbarTableView = _songstable;
+    scrollView = _songstable;
     
     // init loaging activity indicator
     activityIndicator= [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -330,6 +333,20 @@
 - (IBAction)itunesButtonPressed:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[songs[0] collectionViewUrl]]];
+}
+
+/**
+ *  Click on artist button.
+ */
+- (IBAction)artistButtonPressed:(id)sender
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"artistPressed");
+
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewControllerArtistStore *storeView = [sb instantiateViewControllerWithIdentifier:@"Store"];
+    [storeView setStoreArtistId: [songs[0] artistId]];
+    [self.navigationController pushViewController:storeView animated:YES];
+    //[self.navigationController presentViewController:storeView animated:YES completion:nil];
 }
 
 /*

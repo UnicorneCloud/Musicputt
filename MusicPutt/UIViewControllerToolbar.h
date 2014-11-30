@@ -43,6 +43,6 @@
     /**
      *  TableView attach with the current playing song.
      */
-    UITableView*                toolbarTableView;
+    UIScrollView*                scrollView;
 }
 @end

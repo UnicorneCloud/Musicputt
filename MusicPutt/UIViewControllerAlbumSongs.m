@@ -66,7 +66,7 @@
     
     NSLog(@"%@", [[albumCollection representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle]);
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
 }
 
 - (void)didReceiveMemoryWarning

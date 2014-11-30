@@ -51,7 +51,7 @@
     [self setTitle:@"Gender"];
     
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End");
 }

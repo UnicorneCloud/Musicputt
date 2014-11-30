@@ -77,7 +77,7 @@
     currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
     [self hideTabbar];
     [currentPlayingToolBar setNavigationController:self.navigationController];
-    currentPlayingToolBar.scrollView = self->toolbarTableView;
+    currentPlayingToolBar.scrollView = self->scrollView;
     
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     //if([player playbackState] == MPMoviePlaybackStatePlaying)

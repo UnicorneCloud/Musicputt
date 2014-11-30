@@ -45,7 +45,7 @@
     [self setTitle:@"Artists"];
     
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
     
     // setup query artists
     everything = [MPMediaQuery artistsQuery];

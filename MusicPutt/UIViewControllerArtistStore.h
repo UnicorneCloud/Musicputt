@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewControllerArtistStore : UIViewController
+#import "UIViewControllerToolbar.h"
+
+@interface UIViewControllerArtistStore : UIViewControllerToolbar
 
 /**
  *  ArtistId
