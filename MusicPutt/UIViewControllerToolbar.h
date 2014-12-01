@@ -45,4 +45,13 @@
      */
     UITableView*                toolbarTableView;
 }
+
+
+-(void) showTabbar;
+
+-(void) hideTabbar;
+
+-(void) setupNavigationBar;
+
+
 @end

@@ -13,7 +13,7 @@
 
 @interface UICurrentPlayingToolBar()
 {
-    UIViewCurrentToolBar *view;
+    
     UINavigationController* navController;
 }
 

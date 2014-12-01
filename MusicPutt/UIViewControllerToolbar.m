@@ -170,10 +170,11 @@
 
 -(void) showTabbar
 {
-    if ([[self.del mpdatamanager] isMusicViewControllerVisible] == false){
+    if ([[self.del mpdatamanager] isMusicViewControllerVisible] == false && [[AVAudioSession sharedInstance] isOtherAudioPlaying]){
         if (![currentPlayingToolBar isVisible]) {
             [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
         }
+        NSLog(@"QWANG : Tabbar isVisible ? %hhd", [currentPlayingToolBar isVisible]);
     }
 }
 
@@ -184,6 +185,15 @@
     }
 }
 
+
+-(void) setupNavigationBar
+{
+    // setup currentPlayingToolBar
+    currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
+    [self hideTabbar];
+    [currentPlayingToolBar setNavigationController:self.navigationController];
+    currentPlayingToolBar.scrollView = self->toolbarTableView;
+}
 
 /*
 #pragma mark - Navigation

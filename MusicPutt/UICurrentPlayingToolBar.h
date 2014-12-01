@@ -8,6 +8,8 @@
 
 #import "BFNavigationBarDrawer.h"
 
+#import "UIViewCurrentToolBar.h"
+
 
 /**
  *  Navigation Toolbar to displayed current playing song.
@@ -15,6 +17,9 @@
  * @see UIViewCurrentToolBar.h
  */
 @interface UICurrentPlayingToolBar : BFNavigationBarDrawer
+{
+    UIViewCurrentToolBar *view;
+}
 
 
 /**
