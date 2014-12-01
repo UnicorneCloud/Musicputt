@@ -12,6 +12,10 @@
 
 @property (weak, nonatomic) UINavigationController* parentNavCtrl;
 
+@property (weak, nonatomic) IBOutlet UIView*        viewAlbums;
+
+@property (weak, nonatomic) IBOutlet UILabel*       more;
+
 @property (weak, nonatomic) IBOutlet UIImageView*   image1;
 @property (weak, nonatomic) IBOutlet UILabel*       title1;
 @property (weak, nonatomic) IBOutlet UILabel*       artist1;
@@ -42,6 +46,26 @@
 @property (weak, nonatomic) IBOutlet UILabel*       artist6;
 @property (weak, nonatomic) NSString*               collectionId6;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView* loading;
+
+/**
+ *  Start loading cell
+ */
+- (void) startLoading;
+
+
+/**
+ *  Stop loading cell
+ */
+- (void) stopLoading;
+
+
+/**
+ *  Check
+ *
+ *  @return true if the cell is in loading
+ */
+- (BOOL) isLoading;
+
+
 
 @end

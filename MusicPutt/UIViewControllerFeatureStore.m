@@ -8,29 +8,39 @@
 
 #import "UIViewControllerFeatureStore.h"
 
+#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVAudioPlayer.h>
+
 #import "AppDelegate.h"
 #import "ITunesFeedsApi.h"
 #import "ITunesAlbum.h"
+#import "ITunesMusicTrack.h"
 #import "PreferredGender.h"
 #import "UITableViewCellFeatureAlbumStore.h"
+#import "UITableViewCellFeatureHeaderStore.h"
+#import "UITableViewCellFeatureSongsStore.h"
 
-@interface UIViewControllerFeatureStore () <UITableViewDataSource, UITableViewDelegate, ITunesFeedsApiDelegate>
+#define SECTION_ALBUM 0
+#define SECTION_SONG 1
+
+@interface UIViewControllerFeatureStore () <UITableViewDataSource, UITableViewDelegate, ITunesFeedsApiDelegate, AVAudioPlayerDelegate>
 {
-    BOOL TopRateReadyToFlip;
-    
-    NSTimer *timerFlip;
-    
     NSArray *topRates;
-    
-    NSInteger currentTopRateUpdate;
+    NSArray *topRatesSongs;
     NSInteger currentTopRateStep;
+    
+    AVAudioPlayer* audioPlayer;
+    NSInteger currentSongIndex;
+    NSInteger currentDownloadingIndex;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 
 @property AppDelegate* del;
 
-@property ITunesFeedsApi* itunes;
+@property ITunesFeedsApi* itunesTopAlbums;
+
+@property ITunesFeedsApi* itunesTopSongs;
 
 @end
 
@@ -44,17 +54,37 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup title
-    [self setTitle:@"Feature Store"];
+    [self setTitle:@"Store"];
     
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
     
-    // init members
-    TopRateReadyToFlip = false;
+    // top rate albums
+    _itunesTopAlbums = [[ITunesFeedsApi alloc] init];
+    [_itunesTopAlbums setDelegate:self];
+    NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
+    if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
+        country = @"US";
+    }
     
-    // init itunes feeds api
-    _itunes = [[ITunesFeedsApi alloc] init];
-    [_itunes setDelegate:self];
+    
+    [_itunesTopAlbums queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
+    
+    // top rate songs
+    _itunesTopSongs = [[ITunesFeedsApi alloc] init];
+    [_itunesTopSongs setDelegate:self];
+    [_itunesTopSongs queryFeedType:QueryTopSongs forCountry:country size:25 genre:0 asynchronizationMode:true];
+    
+    
+    // Initialize AVAudioPLayer
+    [AVAudioSession sharedInstance];
+    NSError *setCategoryError = nil;
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &setCategoryError];
+    if (setCategoryError)
+        NSLog(@"Error setting category! %@", setCategoryError);
+    
+    // init current downloading displaying
+    currentDownloadingIndex = -1;
     
 }
 
@@ -67,19 +97,6 @@
 {
     [super viewWillAppear:animated];
     
-    // itunes search api
-    NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
-    if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
-        country = @"US";
-    }
-    [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
-    
-    // start timer
-    timerFlip = [NSTimer scheduledTimerWithTimeInterval:3
-                                                 target:self
-                                               selector:@selector(nextFlip)
-                                               userInfo: nil
-                                                repeats:YES];
 }
 
 /**
@@ -89,7 +106,7 @@
  */
 - (void) viewWillDisappear:(BOOL)animated
 {
-    [timerFlip invalidate];
+    [self stopPlaying];
 }
 
 
@@ -105,8 +122,17 @@
         
         UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if (cell) {
-            [cell.loading startAnimating];
-            [cell.loading setHidden:FALSE];
+            
+            CATransition *animation = [CATransition animation];
+            [animation setDelegate:self];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromRight];
+            [animation setDuration:0.50];
+            [animation setTimingFunction:
+             [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [cell.viewAlbums.layer addAnimation:animation forKey:kCATransition];
+            
+            [cell startLoading];
         }
         currentTopRateStep = currentTopRateStep+6;
         [self displayTopAlbumWithStartIndex:currentTopRateStep];
@@ -118,8 +144,17 @@
     if (currentTopRateStep-6 >= 0) {
         UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if (cell) {
-            [cell.loading startAnimating];
-            [cell.loading setHidden:FALSE];
+            
+            CATransition *animation = [CATransition animation];
+            [animation setDelegate:self];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromLeft];
+            [animation setDuration:0.50];
+            [animation setTimingFunction:
+             [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [cell.viewAlbums.layer addAnimation:animation forKey:kCATransition];
+            
+            [cell startLoading];
         }
         currentTopRateStep = currentTopRateStep-6;
         [self displayTopAlbumWithStartIndex:currentTopRateStep];
@@ -133,114 +168,112 @@
  */
 - (void) displayTopAlbumWithStartIndex:(NSInteger) index
 {
-    UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    if (cell) {
-        NSMutableArray* results = [[NSMutableArray alloc] init];
-        
-        
-        if (topRates.count>=index && topRates.count>=index+6) {
-            for (int i=1; i<=6; i++) {
-                [results addObject: [topRates objectAtIndex:index+i]];
+    if (topRates.count>0)
+    {
+        UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        if (cell) {
+            NSMutableArray* results = [[NSMutableArray alloc] init];
+            
+            
+            if (topRates.count>=index && topRates.count>=index+6) {
+                for (int i=1; i<=6; i++) {
+                    [results addObject: [topRates objectAtIndex:index+i]];
+                }
             }
-        }
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                       ^{
-                           // image 1
-                           ITunesAlbum* album = [results objectAtIndex:0];
-                           id path = [album artworkUrl100];
-                           NSURL *url = [NSURL URLWithString:path];
-                           NSData *data = [NSData dataWithContentsOfURL:url];
-                           UIImage *sharedImage = [[UIImage alloc] initWithData:data];
-                           
-                           // image 2
-                           ITunesAlbum* album2 = [results objectAtIndex:1];
-                           id path2 = [album2 artworkUrl100];
-                           NSURL *url2 = [NSURL URLWithString:path2];
-                           NSData *data2 = [NSData dataWithContentsOfURL:url2];
-                           UIImage *sharedImage2 = [[UIImage alloc] initWithData:data2];
-                           
-                           // image 3
-                           ITunesAlbum* album3 = [results objectAtIndex:2];
-                           id path3 = [album3 artworkUrl100];
-                           NSURL *url3 = [NSURL URLWithString:path3];
-                           NSData *data3 = [NSData dataWithContentsOfURL:url3];
-                           UIImage *sharedImage3 = [[UIImage alloc] initWithData:data3];
-                           
-                           // image 4
-                           ITunesAlbum* album4 = [results objectAtIndex:3];
-                           id path4 = [album4 artworkUrl100];
-                           NSURL *url4 = [NSURL URLWithString:path4];
-                           NSData *data4 = [NSData dataWithContentsOfURL:url4];
-                           UIImage *sharedImage4 = [[UIImage alloc] initWithData:data4];
-                           
-                           // image 5
-                           ITunesAlbum* album5 = [results objectAtIndex:4];
-                           id path5 = [album5 artworkUrl100];
-                           NSURL *url5 = [NSURL URLWithString:path5];
-                           NSData *data5 = [NSData dataWithContentsOfURL:url5];
-                           UIImage *sharedImage5 = [[UIImage alloc] initWithData:data5];
-                           
-                           // image 6
-                           ITunesAlbum* album6 = [results objectAtIndex:5];
-                           id path6 = [album6 artworkUrl100];
-                           NSURL *url6 = [NSURL URLWithString:path6];
-                           NSData *data6 = [NSData dataWithContentsOfURL:url6];
-                           UIImage *sharedImage6 = [[UIImage alloc] initWithData:data6];
-                           
-                           
-                           dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            NSLog(@" %s - %@%ld/%ld\n", __PRETTY_FUNCTION__, @"Display:", index, index+6);
+            
+            // hide more button
+            if (topRates.count<index+12) {
+                [cell.more setHidden:TRUE];
+            }
+            else{
+                [cell.more setHidden:FALSE];
+            }
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
+                           ^{
+                               // image 1
+                               ITunesAlbum* album = [results objectAtIndex:0];
+                               id path = [album artworkUrl100];
+                               NSURL *url = [NSURL URLWithString:path];
+                               NSData *data = [NSData dataWithContentsOfURL:url];
+                               UIImage *sharedImage = [[UIImage alloc] initWithData:data];
                                
-                               [[cell image1] setImage:sharedImage];
-                               cell.collectionId1 = [album collectionId];
-                               [cell title1].text = [album collectionName];
-                               [cell artist1].text = [album artistName];
+                               // image 2
+                               ITunesAlbum* album2 = [results objectAtIndex:1];
+                               id path2 = [album2 artworkUrl100];
+                               NSURL *url2 = [NSURL URLWithString:path2];
+                               NSData *data2 = [NSData dataWithContentsOfURL:url2];
+                               UIImage *sharedImage2 = [[UIImage alloc] initWithData:data2];
                                
-                               [[cell image2] setImage:sharedImage2];
-                               cell.collectionId2 = [album2 collectionId];
-                               [cell title2].text = [album2 collectionName];
-                               [cell artist2].text = [album2 artistName];
+                               // image 3
+                               ITunesAlbum* album3 = [results objectAtIndex:2];
+                               id path3 = [album3 artworkUrl100];
+                               NSURL *url3 = [NSURL URLWithString:path3];
+                               NSData *data3 = [NSData dataWithContentsOfURL:url3];
+                               UIImage *sharedImage3 = [[UIImage alloc] initWithData:data3];
                                
-                               [[cell image3] setImage:sharedImage3];
-                               cell.collectionId3 = [album3 collectionId];
-                               [cell title3].text = [album3 collectionName];
-                               [cell artist3].text = [album3 artistName];
+                               // image 4
+                               ITunesAlbum* album4 = [results objectAtIndex:3];
+                               id path4 = [album4 artworkUrl100];
+                               NSURL *url4 = [NSURL URLWithString:path4];
+                               NSData *data4 = [NSData dataWithContentsOfURL:url4];
+                               UIImage *sharedImage4 = [[UIImage alloc] initWithData:data4];
                                
-                               [[cell image4] setImage:sharedImage4];
-                               cell.collectionId4 = [album4 collectionId];
-                               [cell title4].text = [album4 collectionName];
-                               [cell artist4].text = [album4 artistName];
+                               // image 5
+                               ITunesAlbum* album5 = [results objectAtIndex:4];
+                               id path5 = [album5 artworkUrl100];
+                               NSURL *url5 = [NSURL URLWithString:path5];
+                               NSData *data5 = [NSData dataWithContentsOfURL:url5];
+                               UIImage *sharedImage5 = [[UIImage alloc] initWithData:data5];
                                
-                               [[cell image5] setImage:sharedImage5];
-                               cell.collectionId5 = [album5 collectionId];
-                               [cell title5].text = [album5 collectionName];
-                               [cell artist5].text = [album5 artistName];
+                               // image 6
+                               ITunesAlbum* album6 = [results objectAtIndex:5];
+                               id path6 = [album6 artworkUrl100];
+                               NSURL *url6 = [NSURL URLWithString:path6];
+                               NSData *data6 = [NSData dataWithContentsOfURL:url6];
+                               UIImage *sharedImage6 = [[UIImage alloc] initWithData:data6];
                                
-                               [[cell image6] setImage:sharedImage6];
-                               cell.collectionId6 = [album6 collectionId];
-                               [cell title6].text = [album6 collectionName];
-                               [cell artist6].text = [album6 artistName];
                                
-                               TopRateReadyToFlip = true;
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   
+                                   [[cell image1] setImage:sharedImage];
+                                   cell.collectionId1 = [album collectionId];
+                                   [cell title1].text = [album collectionName];
+                                   [cell artist1].text = [album artistName];
+                                   
+                                   [[cell image2] setImage:sharedImage2];
+                                   cell.collectionId2 = [album2 collectionId];
+                                   [cell title2].text = [album2 collectionName];
+                                   [cell artist2].text = [album2 artistName];
+                                   
+                                   [[cell image3] setImage:sharedImage3];
+                                   cell.collectionId3 = [album3 collectionId];
+                                   [cell title3].text = [album3 collectionName];
+                                   [cell artist3].text = [album3 artistName];
+                                   
+                                   [[cell image4] setImage:sharedImage4];
+                                   cell.collectionId4 = [album4 collectionId];
+                                   [cell title4].text = [album4 collectionName];
+                                   [cell artist4].text = [album4 artistName];
+                                   
+                                   [[cell image5] setImage:sharedImage5];
+                                   cell.collectionId5 = [album5 collectionId];
+                                   [cell title5].text = [album5 collectionName];
+                                   [cell artist5].text = [album5 artistName];
+                                   
+                                   [[cell image6] setImage:sharedImage6];
+                                   cell.collectionId6 = [album6 collectionId];
+                                   [cell title6].text = [album6 collectionName];
+                                   [cell artist6].text = [album6 artistName];
+                                   
+                                   [cell stopLoading];
+                               });
                                
-                               [cell.loading stopAnimating];
-                               [cell.loading setHidden:TRUE];
                            });
-                           
-                       });
-    }
-}
-
-/**
- *  Timer reatch and flip image are needed.
- */
--(void) nextFlip
-{
-    if (TopRateReadyToFlip) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-                       ^{
-                           //[self nextTopRate];
-                       });
+        }
     }
 }
 
@@ -269,7 +302,7 @@
             // check if this item is in preferred gender
             for (int y=0; y<preferredGenders.count; y++)
             {
-                if ([[[arrayToFilter objectAtIndex:i] primaryGenreName] isEqualToString:[_itunes getGenderName:[[[preferredGenders objectAtIndex:y] genderid] integerValue]]]) {
+                if ([[[arrayToFilter objectAtIndex:i] primaryGenreName] isEqualToString:[_itunesTopAlbums getGenderName:[[[preferredGenders objectAtIndex:y] genderid] integerValue]]]) {
                     keepThisItem = true;
                     break;
                 }
@@ -293,32 +326,118 @@
 
 #pragma mark - UITableViewDataSource
 
+/**
+ *  Number of section in the table view.
+ *
+ *  @param tableView :
+ *
+ *  @return          : Number of section.
+ */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section == SECTION_ALBUM) {
+        return 1;
+    }
+    else if (section == SECTION_SONG){
+        return topRatesSongs.count;
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UITableViewCellFeatureHeaderStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureHeaderStoreCell"];
+    if (section == SECTION_ALBUM) {
+        cell.title.text = @"Top Albums";
+    }
+    else if (section == SECTION_SONG){
+        cell.title.text = @"Top Songs";
+    }
+    return cell;
 }
 
 
-- (UITableViewCellFeatureAlbumStore*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    UITableViewCellFeatureAlbumStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureStoreAlbumCell"];
+    return 35.0f;
+}
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell.loading startAnimating];
-    
-    cell.parentNavCtrl = self.navigationController;
-    
-    UISwipeGestureRecognizer *recognizer;
-    
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipeFrom:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-    [[cell contentView] addGestureRecognizer:recognizer];
-    
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipeFrom:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    [[cell contentView] addGestureRecognizer:recognizer];
-    
-    return cell;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if( indexPath.section == SECTION_ALBUM )
+    {
+        return 310.0f;
+    }
+    else if (indexPath.section == SECTION_SONG )
+    {
+        return 60.0f;
+    }
+    return 0.0f;
+}
+
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SECTION_ALBUM) {
+        
+        UITableViewCellFeatureAlbumStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureStoreAlbumCell"];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if ([cell isLoading]) {
+            [cell startLoading];
+        }
+        
+        cell.parentNavCtrl = self.navigationController;
+        
+        UISwipeGestureRecognizer *recognizer;
+        
+        recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipeFrom:)];
+        [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+        [[cell contentView] addGestureRecognizer:recognizer];
+        
+        recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipeFrom:)];
+        [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+        [[cell contentView] addGestureRecognizer:recognizer];
+        
+        [self displayTopAlbumWithStartIndex:currentTopRateStep];
+        
+        return cell;
+    }
+    else if (indexPath.section == SECTION_SONG)
+    {
+        UITableViewCellFeatureSongsStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureSongCell"];
+        
+        ITunesMusicTrack* track = [topRatesSongs objectAtIndex:indexPath.row];
+        cell.trackId = [track trackId];
+        [cell title].text = [track trackName];
+        [cell artist].text = [track artistName];
+        [[cell image] setImage:nil];
+        cell.parentNavCtrl = self.navigationController;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
+                       ^{
+                           // image 1
+                           ITunesMusicTrack* track = [topRatesSongs objectAtIndex:indexPath.row];
+                           id path = [track artworkUrl100];
+                           NSURL *url = [NSURL URLWithString:path];
+                           NSData *data = [NSData dataWithContentsOfURL:url];
+                           UIImage *sharedImage = [[UIImage alloc] initWithData:data];
+                           
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               
+                               [[cell image] setImage:sharedImage];
+                           });
+                           
+                       });
+       return cell;
+    }
+    return nil;
 }
 
 
@@ -326,6 +445,17 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == currentSongIndex && [audioPlayer isPlaying]) {
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop playing ", (long)currentSongIndex);
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        [audioPlayer stop];
+    }
+    else{
+        [self startPlayingAtIndex:indexPath.row];
+    }
     return indexPath;
 }
 
@@ -336,26 +466,134 @@
 {
     if (status == StatusSucceed) {
         
-        // load images from itunes store
-        UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        if (cell && results.count>=6) {
+        if (type == QueryTopAlbums)
+        {
+            // top albums receieved
             
-            NSLog(@" %s - %@:%ld\n", __PRETTY_FUNCTION__, @"queryResult", (unsigned long)results.count);
-            
-            // filter results
-            topRates = [self filterTopRatesWithPreferred:results];
-            
-            currentTopRateUpdate = 6;
-            currentTopRateStep = 0;
-            
+            // load images from itunes store
+            UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            if (cell && results.count>=6)
+            {
+                
+                NSLog(@" %s - %@:%ld\n", __PRETTY_FUNCTION__, @"queryResult", (unsigned long)results.count);
+                
+                // filter results
+                topRates = [self filterTopRatesWithPreferred:results];
+                
+                NSLog(@" %s - %@%ld\n", __PRETTY_FUNCTION__, @"Results:", topRates.count);
+                
+                currentTopRateStep = 0;
+                
+                [self displayTopAlbumWithStartIndex:currentTopRateStep];
+                
+                
+                NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"queryResult - end");
+            }
+        }
+        else if (type == QueryTopSongs)
+        {
+            // top songs receieved
+            topRatesSongs = results;
+            [_tableView reloadData];
             [self displayTopAlbumWithStartIndex:currentTopRateStep];
-            
-            
-            NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"queryResult - end");
         }
     }
 }
 
+#pragma mark - AVAudioPlayerDelegate
+
+/**
+ *  Ensure that playing preview song is ended
+ */
+- (void) stopPlaying
+{
+    [audioPlayer stop];
+}
+
+/**
+ *  Start playing item a this index
+ *
+ *  @param index <#index description#>
+ */
+- (void) startPlayingAtIndex:(NSInteger) index
+{
+    if (topRatesSongs.count>index) {
+        currentSongIndex = index;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
+        [_tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing", (long)currentSongIndex);
+        
+        [self startDownloadProgress:currentSongIndex];
+        
+        NSURL *url = [NSURL URLWithString: [[topRatesSongs objectAtIndex:index] previewUrl]];
+        if (url) {
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+                audioPlayer.delegate = self;
+                [audioPlayer prepareToPlay];
+                [audioPlayer play];
+                
+                NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
+                
+                //[self stopDownloadProgress:currentDownloadingIndex];
+            }];
+            [task resume];
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"There is no preview for this song!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil,nil];
+            [alert show];
+            
+            [self stopDownloadProgress: [NSNumber numberWithInteger:currentSongIndex]];
+        }
+    }
+}
+
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentSongIndex);
+    [audioPlayer stop];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self startPlayingAtIndex:currentSongIndex+1];
+}
+
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
+{
+    NSLog(@"Error occured");
+}
+
+-(void) startDownloadProgress:(NSInteger) index
+{
+    if (currentDownloadingIndex != -1) {
+        // stop already downloding progress
+        [self stopDownloadProgress:[NSNumber numberWithInteger:index]];
+    }
+    
+    currentDownloadingIndex = index;
+    
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start downloading progress ", (long)index);
+    
+    UITableViewCellFeatureSongsStore *cell = (UITableViewCellFeatureSongsStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:SECTION_SONG]];
+    if (cell) {
+        [cell startDownloadProgress];
+    }
+}
+
+-(void) stopDownloadProgress:(NSNumber*) index
+{
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    
+    UITableViewCellFeatureSongsStore *cell = (UITableViewCellFeatureSongsStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue] inSection:SECTION_SONG]];
+    if (cell) {
+        [cell stopDownloadProgress];
+    }
+    currentDownloadingIndex = -1;
+}
 
 
 /*

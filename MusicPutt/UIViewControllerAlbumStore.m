@@ -8,12 +8,15 @@
 
 #import "UIViewControllerAlbumStore.h"
 
+#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVAudioPlayer.h>
+
 #import "AppDelegate.h"
 #import "TableViewCellAlbumStoreCell.h"
 #import "TableViewCellAlbumStoreHeader.h"
+#import "UIViewControllerArtistStore.h"
 #import "ITunesSearchApi.h"
-#import <AVFoundation/AVAudioSession.h>
-#import <AVFoundation/AVAudioPlayer.h>
+
 
 @interface UIViewControllerAlbumStore () <UITableViewDelegate, UITableViewDataSource, ITunesSearchApiDelegate, AVAudioPlayerDelegate>
 {
@@ -30,7 +33,6 @@
  */
 @property (weak, nonatomic) IBOutlet UITableView* songstable;
 
-
 @end
 
 @implementation UIViewControllerAlbumStore
@@ -43,10 +45,10 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup title
-    [self setTitle:@"Album"];
+    [self setTitle:@"Store"];
     
     // setup tableview
-    toolbarTableView = _songstable;
+    scrollView = _songstable;
     
     // init loaging activity indicator
     activityIndicator= [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -74,6 +76,11 @@
     // init current downloading displaying
     currentDownloadingIndex = -1;
     
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self stopPlaying];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -227,23 +234,31 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex-1 inSection:0];
         [_songstable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         
-        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing ", (long)currentSongIndex);
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing", (long)currentSongIndex);
         
         [self startDownloadProgress:currentSongIndex-1];
         
         NSURL *url = [NSURL URLWithString: [[songs objectAtIndex:index] previewUrl]];
-        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
-            audioPlayer.delegate = self;
-            [audioPlayer prepareToPlay];
-            [audioPlayer play];
+        if (url) {
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+                audioPlayer.delegate = self;
+                [audioPlayer prepareToPlay];
+                [audioPlayer play];
+                
+                NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
+                
+                //[self stopDownloadProgress:currentDownloadingIndex];
+            }];
+            [task resume];
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"There is no preview for this song!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil,nil];
+            [alert show];
             
-            NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
-            [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
-            
-            //[self stopDownloadProgress:currentDownloadingIndex];
-        }];
-        [task resume];
+            [self stopDownloadProgress: [NSNumber numberWithInteger:currentSongIndex-1]];
+        }
     }
 }
 
@@ -323,6 +338,20 @@
 - (IBAction)itunesButtonPressed:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[songs[0] collectionViewUrl]]];
+}
+
+/**
+ *  Click on artist button.
+ */
+- (IBAction)artistButtonPressed:(id)sender
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"artistPressed");
+
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewControllerArtistStore *storeView = [sb instantiateViewControllerWithIdentifier:@"Store"];
+    [storeView setStoreArtistId: [songs[0] artistId]];
+    [self.navigationController pushViewController:storeView animated:YES];
+    //[self.navigationController presentViewController:storeView animated:YES completion:nil];
 }
 
 /*

@@ -28,6 +28,10 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl* segcontrol;
 
 
+/**
+ *  ScrollView
+ */
+@property (weak, nonatomic) IBOutlet UIScrollView*       mainScrollView;
 
 
 @end
@@ -77,6 +81,8 @@
     [self addChildViewController:storesongs];
     [_pageview addSubview:storesongs.view];
     
+    // setup tableview
+    scrollView = _mainScrollView;
     
     [self displayView:@"Albums"];
     

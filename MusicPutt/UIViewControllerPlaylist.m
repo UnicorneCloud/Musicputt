@@ -48,7 +48,7 @@
     [self setTitle:@"Playlist"];
     
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
     
     // setup query playlist
     everything = [MPMediaQuery playlistsQuery];

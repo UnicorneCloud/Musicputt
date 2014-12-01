@@ -45,7 +45,7 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // setup table view
-    toolbarTableView = self.tableView;
+    scrollView = self.tableView;
     
     // setup title
     [self setTitle:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyName]];

@@ -56,6 +56,8 @@
 		977268CC19C516B3006648AB /* UIViewControllerAlbumStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 977268CB19C516B3006648AB /* UIViewControllerAlbumStore.m */; };
 		977268D019C52B06006648AB /* TableViewCellAlbumStoreHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 977268CF19C52B06006648AB /* TableViewCellAlbumStoreHeader.m */; };
 		977268D319C52B42006648AB /* TableViewCellAlbumStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 977268D219C52B42006648AB /* TableViewCellAlbumStoreCell.m */; };
+		97774A161A2ABA5900A756F5 /* UITableViewCellFeatureHeaderStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97774A151A2ABA5900A756F5 /* UITableViewCellFeatureHeaderStore.m */; };
+		97774A191A2ABA7000A756F5 /* UITableViewCellFeatureSongsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97774A181A2ABA7000A756F5 /* UITableViewCellFeatureSongsStore.m */; };
 		9782339619F434E900D71DFC /* UITableViewCellPreferredGender.m in Sources */ = {isa = PBXBuildFile; fileRef = 9782339519F434E900D71DFC /* UITableViewCellPreferredGender.m */; };
 		9787651B199805F80046D3F7 /* UIViewControllerAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9787651A199805F80046D3F7 /* UIViewControllerAbout.m */; };
 		97901B0D197742DC00526A04 /* UIPageViewControllerMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 97901B0C197742DC00526A04 /* UIPageViewControllerMusic.m */; };
@@ -168,6 +170,10 @@
 		977268CF19C52B06006648AB /* TableViewCellAlbumStoreHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellAlbumStoreHeader.m; sourceTree = "<group>"; };
 		977268D119C52B42006648AB /* TableViewCellAlbumStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellAlbumStoreCell.h; sourceTree = "<group>"; };
 		977268D219C52B42006648AB /* TableViewCellAlbumStoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellAlbumStoreCell.m; sourceTree = "<group>"; };
+		97774A141A2ABA5900A756F5 /* UITableViewCellFeatureHeaderStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellFeatureHeaderStore.h; sourceTree = "<group>"; };
+		97774A151A2ABA5900A756F5 /* UITableViewCellFeatureHeaderStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellFeatureHeaderStore.m; sourceTree = "<group>"; };
+		97774A171A2ABA7000A756F5 /* UITableViewCellFeatureSongsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellFeatureSongsStore.h; sourceTree = "<group>"; };
+		97774A181A2ABA7000A756F5 /* UITableViewCellFeatureSongsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellFeatureSongsStore.m; sourceTree = "<group>"; };
 		9782339419F434E900D71DFC /* UITableViewCellPreferredGender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellPreferredGender.h; sourceTree = "<group>"; };
 		9782339519F434E900D71DFC /* UITableViewCellPreferredGender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellPreferredGender.m; sourceTree = "<group>"; };
 		97876519199805F80046D3F7 /* UIViewControllerAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerAbout.h; sourceTree = "<group>"; };
@@ -383,8 +389,12 @@
 			children = (
 				9740A37619F47E9D00D24425 /* UIViewControllerFeatureStore.h */,
 				9740A37719F47E9D00D24425 /* UIViewControllerFeatureStore.m */,
+				97774A141A2ABA5900A756F5 /* UITableViewCellFeatureHeaderStore.h */,
+				97774A151A2ABA5900A756F5 /* UITableViewCellFeatureHeaderStore.m */,
 				9740A37919F4845800D24425 /* UITableViewCellFeatureAlbumStore.h */,
 				9740A37A19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m */,
+				97774A171A2ABA7000A756F5 /* UITableViewCellFeatureSongsStore.h */,
+				97774A181A2ABA7000A756F5 /* UITableViewCellFeatureSongsStore.m */,
 			);
 			name = Feature;
 			sourceTree = "<group>";
@@ -819,6 +829,7 @@
 				D5B241411982AC8800233953 /* UITableViewCellMediaItemHeader.m in Sources */,
 				97AC0C3C195A493800BA60E6 /* UIViewControllerMusic.m in Sources */,
 				9707ADD9198E9FCE0093F6F0 /* UITableViewControllerMenu.m in Sources */,
+				97774A161A2ABA5900A756F5 /* UITableViewCellFeatureHeaderStore.m in Sources */,
 				97A36CE0195F593200AF6AF8 /* MPDataManager.m in Sources */,
 				97A36CEC195FC54B00AF6AF8 /* UIViewCurrentToolBar.m in Sources */,
 				9707ADBE198DED4A0093F6F0 /* UIButton+Extensions.m in Sources */,
@@ -853,6 +864,7 @@
 				D596A5921968F24D00C55597 /* UIViewControllerArtistAlbum.m in Sources */,
 				97A36CE3195F902600AF6AF8 /* UIViewControllerPlaylistSong.m in Sources */,
 				97901B13197744F300526A04 /* UIViewControllerArtistPage.m in Sources */,
+				97774A191A2ABA7000A756F5 /* UITableViewCellFeatureSongsStore.m in Sources */,
 				97EC064D197ADE700081E7E1 /* UITableViewCellAlbumPageSong.m in Sources */,
 				97901B0D197742DC00526A04 /* UIPageViewControllerMusic.m in Sources */,
 				9711FF951981DFAD00421CF4 /* UIViewControllerStoreAlbum.m in Sources */,

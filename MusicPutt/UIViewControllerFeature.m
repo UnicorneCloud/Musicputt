@@ -70,7 +70,7 @@
     [self setTitle:@"Feature"];
     
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
     
     // init members
     TopRateReadyToFlip = false;
@@ -597,6 +597,8 @@
         cell.parentView = self.view;
         cell.parentNavCtrl = self.navigationController;
         cell.type = TypeDiscover;
+        
+        [cell startProgress];
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End cellForRowAtIndexPath");
@@ -677,6 +679,7 @@
                                    cell.collectionId4 = [album4 collectionId];
                                    
                                    TopRateReadyToFlip = true;
+                                   [cell stopProgress];
                                });
 
                            });

@@ -178,7 +178,13 @@
         for (NSDictionary *entry in entries)
         {
             ITunesMusicTrack* track = [[ITunesMusicTrack alloc]init];
-        
+            
+            // load track id
+            NSDictionary* trackid = [entry objectForKey:@"id"];
+            NSDictionary* attributes = [trackid objectForKey:@"attributes"];
+            NSString* strTrackId = [attributes objectForKey:@"im:id"];
+            [track setTrackId:strTrackId];
+            
             // load track title
             NSDictionary* title = [entry objectForKey:@"im:name"];
             NSString* strTitle = [title objectForKey:@"label"];
@@ -204,8 +210,8 @@
             // load preview
             NSArray* link = [entry objectForKey:@"link"];
             NSDictionary* link1 = [link objectAtIndex:1];
-            NSDictionary* attributes = [link1 objectForKey:@"attributes"];
-            NSString* strPreview = [attributes objectForKey:@"href"];
+            NSDictionary* attributes2 = [link1 objectForKey:@"attributes"];
+            NSString* strPreview = [attributes2 objectForKey:@"href"];
             [track setPreviewUrl:strPreview];
             
             [tracks addObject:track];

@@ -58,7 +58,7 @@
     [self setTitle:[[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist]];
     
     // setup tableview
-    toolbarTableView = _tableView;
+    scrollView = _tableView;
 }
 
 - (void)didReceiveMemoryWarning

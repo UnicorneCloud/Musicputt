@@ -37,10 +37,14 @@
 -(ITunesMusicTrack*) getMediaItem;
 
 
-
+/**
+ *  Start downloading progress
+ */
 -(void) startDownloadProgress;
 
-
+/**
+ *  Stop downloading progress
+ */
 -(void) stopDownloadProgress;
 
 

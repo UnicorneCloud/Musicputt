@@ -80,15 +80,28 @@
     UITapGestureRecognizer *tapGestureImage4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickImage4)];
     [_image4 addGestureRecognizer:tapGestureImage4];
     
-    
+    // init progress hidding
+    [_progress setHidden:TRUE];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
+
+
+- (void) startProgress
+{
+    [_progress startAnimating];
+    [_progress setHidden:FALSE];
+}
+
+- (void) stopProgress
+{
+    [_progress stopAnimating];
+    [_progress setHidden:TRUE];
+}
+
 
 - (void)menuPoppu
 {
@@ -239,9 +252,6 @@
         UIViewControllerGender *gender = [sb instantiateViewControllerWithIdentifier:@"PreferredGender"];
         [_parentNavCtrl pushViewController:gender animated:YES];
     }
-    
-    
-    
 }
 
 

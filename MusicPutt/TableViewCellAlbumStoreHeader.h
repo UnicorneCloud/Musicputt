@@ -19,7 +19,6 @@
  */
 - (void)setMediaItem: (ITunesAlbum*)mediaitem;
 
-
 /**
  *  Get media item attach with this cell.
  *
