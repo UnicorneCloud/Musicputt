@@ -96,6 +96,10 @@
     return _mediaitem;
 }
 
+
+/**
+ *  Start downloading progress
+ */
 -(void) startDownloadProgress
 {
     [_songDuration setHidden:true];
@@ -105,6 +109,10 @@
     [_downloadProgress startAnimating];
 }
 
+
+/**
+ *  Stop downloading progress
+ */
 -(void) stopDownloadProgress
 {
     
@@ -113,12 +121,6 @@
     
     [_playingProgress setHidden:true];
     [_songDuration setHidden:false];
-}
-
-
--(void) stepDownload
-{
-
 }
 
 

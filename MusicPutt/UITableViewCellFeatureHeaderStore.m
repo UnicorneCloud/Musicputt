@@ -16,6 +16,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    // create blur effect
+    UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.contentView.frame];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    blurtoolbar.autoresizingMask = self.contentView.autoresizingMask;
+    [self.contentView insertSubview:blurtoolbar atIndex:0];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

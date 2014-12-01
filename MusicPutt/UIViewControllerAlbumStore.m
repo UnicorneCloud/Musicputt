@@ -78,6 +78,11 @@
     
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self stopPlaying];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

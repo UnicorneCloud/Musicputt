@@ -79,6 +79,9 @@
     _image4.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureImage4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickImage4)];
     [_image4 addGestureRecognizer:tapGestureImage4];
+    
+    // init progress hidding
+    [_progress setHidden:TRUE];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -49,8 +49,8 @@
  */
 - (void)setMediaItem:(ITunesAlbum *)mediaitem
 {
+    [_artistname setTitle:[NSString stringWithFormat:@"%@ >", [mediaitem artistName]] forState:UIControlStateNormal ];
     _albumname.text  = [mediaitem collectionName];
-    [_artistname setTitle:[mediaitem artistName] forState:UIControlStateNormal ];
     _genre.text = [mediaitem primaryGenreName];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

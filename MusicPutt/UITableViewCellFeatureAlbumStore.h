@@ -59,5 +59,13 @@
 - (void) stopLoading;
 
 
+/**
+ *  Check
+ *
+ *  @return true if the cell is in loading
+ */
+- (BOOL) isLoading;
+
+
 
 @end

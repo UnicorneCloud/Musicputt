@@ -132,6 +132,17 @@
     [self setVisibility:TRUE];
 }
 
+/**
+ *  Check
+ *
+ *  @return true if the cell is in loading
+ */
+- (BOOL) isLoading
+{
+    // return false if loading is display
+    return ![_loading isHidden];
+}
+
 
 - (void) setVisibility:(BOOL) visibility
 {
