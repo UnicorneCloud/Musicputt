@@ -192,7 +192,7 @@
     currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
     [self hideTabbar];
     [currentPlayingToolBar setNavigationController:self.navigationController];
-    currentPlayingToolBar.scrollView = self->toolbarTableView;
+    currentPlayingToolBar.scrollView = self->scrollView;
 }
 
 /*
