@@ -353,7 +353,10 @@
         [_artistalbum setText:artistalbum];
     }
     else{
-        [_imageview setImage:nil];
+        // setup title
+        [self setTitle:@""];
+        
+        [_imageview setImage:[UIImage imageNamed:@"empty"]];
         [_songtitle setText:@""];
         [_artistalbum setText:@""];
     }
