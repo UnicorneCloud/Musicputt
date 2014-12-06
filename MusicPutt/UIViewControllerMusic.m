@@ -186,6 +186,8 @@
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateDisplay];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"updateDisplay completed.");
+    
     // Create page view content
     //_artistpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtistPage"];
     //_artistpage.pageIndex = 0;
@@ -202,13 +204,19 @@
     _albumpage.pageIndex = 0;
     _albumpage.view.frame = framealbum;
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicAlbumPage completed.");
+    
     _artworkpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtworkPage"];
     _artworkpage.pageIndex = 1;
     _artworkpage.view.backgroundColor = [UIColor clearColor];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicArtworkPage completed.");
+    
     _lyricspage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicLyricsPage"];
     _lyricspage.view.frame = framelyrics;
     _lyricspage.pageIndex = 2;
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicLyricsPage completed.");
     
     _pagecontrol.numberOfPages = 3;
     _pagecontrol.currentPage = 1;
@@ -231,11 +239,15 @@
     [_pageview addSubview:_pageviewcontroller.view];
     [_pageviewcontroller didMoveToParentViewController:self];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"pageViewController completed.");
+    
     // create blur effect for _controlview
     UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     _controlview.backgroundColor = [UIColor clearColor];
     blurtoolbar.autoresizingMask = self.view.autoresizingMask;
     [_controlview insertSubview:blurtoolbar atIndex:0];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Blur effect completed.");
     
     // improve hittest for share button.
     [_share setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
