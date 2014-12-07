@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="LastPlaying" representedClassName="LastPlaying" syncable="YES">
+        <attribute name="albumuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="playlistuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="PreferredGender" representedClassName="PreferredGender" syncable="YES">
         <attribute name="genderid" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PreferredGender" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="LastPlaying" positionX="-27" positionY="27" width="128" height="75"/>
+        <element name="PreferredGender" positionX="-63" positionY="-18" width="128" height="58"/>
     </elements>
 </model>

@@ -243,6 +243,9 @@
     
     [[[self.del mpdatamanager] musicplayer] play];
     
+    // save last playing album
+    [[self.del mpdatamanager] setLastPlayingAlbum:[NSNumber numberWithLongLong:[cell getMediaItem].albumPersistentID]];
+    
     return indexPath;
 }
 /*

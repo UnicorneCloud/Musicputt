@@ -7,6 +7,8 @@
 //
 
 #import "MPDataManager.h"
+
+#import "LastPlaying.h"
 #import <MediaPlayer/MPMusicPlayerController.h>
 
 
@@ -152,6 +154,158 @@
 -(bool) isMediaPlayerInitialized
 {
     return mediaplayerinit;
+}
+
+/**
+ *  Set the last playing album
+ *
+ *  @param albumUid uid of the album
+ */
+- (void) setLastPlayingAlbum:(NSNumber*) albumUid
+{
+    NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"setLastPlayingAlbum", albumUid);
+    
+    LastPlaying *lastplaying = [LastPlaying MR_findFirst];
+    if (lastplaying==nil) {
+        lastplaying = [LastPlaying MR_createEntity];
+    }
+    lastplaying.albumuid = albumUid;
+    //[[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
+/**
+ *  Return last playing album
+ *
+ *  @return uid of the last playing album, nil if nothing
+ */
+- (NSNumber*) getLastPlayingAlbum
+{
+    LastPlaying *lastplaying = [LastPlaying MR_findFirst];
+    if (lastplaying) {
+        return lastplaying.albumuid;
+    }
+    return nil;
+}
+
+
+/**
+ *  Set the last playing playlist
+ *
+ *  @param playlistUid uid of the playlist
+ */
+- (void) setLastPlayingPlaylist:(NSNumber*) playlistUid
+{
+    NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"setLastPlayingPlaylist", playlistUid);
+    
+    LastPlaying *lastplaying = [LastPlaying MR_findFirst];
+    if (lastplaying==nil) {
+        lastplaying = [LastPlaying MR_createEntity];
+    }
+    lastplaying.playlistuid = playlistUid;
+    //[[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
+/**
+ *  Return the last playing playlist
+ *
+ *  @return uid of the last playing playlist, nil if nothing.
+ */
+- (NSNumber*) getLastPLayingPlaylist
+{
+    LastPlaying *lastplaying = [LastPlaying MR_findFirst];
+    if (lastplaying) {
+        return lastplaying.playlistuid;
+    }
+    return nil;
+}
+
+
+/**
+ *  Start playing an album.
+ *
+ *  @param albumUid album uid for starting playing.
+ *
+ *  @return true if album is starting to playing.
+ */
+- (bool) startPlayingAlbum:(NSNumber*) albumUid
+{
+    MPMediaQuery* everything;                   // result of current query
+    BOOL retval = FALSE;
+    
+    if (albumUid!=nil) {
+        // query album media on device
+        everything = [MPMediaQuery albumsQuery];
+        MPMediaPropertyPredicate *albumPredicate =  [MPMediaPropertyPredicate predicateWithValue:albumUid
+                                                                                     forProperty:MPMediaItemPropertyAlbumPersistentID
+                                                                                  comparisonType:MPMediaPredicateComparisonEqualTo];
+        [everything addFilterPredicate:albumPredicate];
+        
+        if( everything.collections[0]!=nil && [everything.collections[0] items].count>0 )
+        {
+            [[self musicplayer] stop];
+            
+            BOOL shuffleWasOn = NO;
+            if ([self musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+                [self musicplayer].shuffleMode != MPMusicShuffleModeDefault)
+            {
+                [self musicplayer].shuffleMode = MPMusicShuffleModeOff;
+                shuffleWasOn = YES;
+            }
+            [[self musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:[everything.collections[0] items]]];
+            [[self musicplayer] setNowPlayingItem:[[everything.collections[0] items ]objectAtIndex:0]];
+            if (shuffleWasOn)
+                [self musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+            
+            [[self musicplayer] play];
+            
+            retval = TRUE;
+        }
+    }
+    return retval;
+}
+
+/**
+ *  Start playing a playlist.
+ *
+ *  @param playlistUid playlist uid for starting playing.
+ *
+ *  @return true if plylist is starting to playing.
+ */
+- (bool) startPlayingPlaylist:(NSNumber*) playlistUid
+{
+    MPMediaQuery* everything;                   // result of current query
+    BOOL retval = FALSE;
+    
+    if (playlistUid!=nil) {
+        // query album media on device
+        everything = [MPMediaQuery playlistsQuery];
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:playlistUid
+                                                                               forProperty:MPMediaPlaylistPropertyPersistentID
+                                                                            comparisonType:MPMediaPredicateComparisonEqualTo];
+        [everything addFilterPredicate:predicate];
+        
+        if( everything.collections[0]!=nil && [everything.collections[0] items].count>0 )
+        {
+            [[self musicplayer] stop];
+            
+            BOOL shuffleWasOn = NO;
+            if ([self musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+                [self musicplayer].shuffleMode != MPMusicShuffleModeDefault)
+            {
+                [self musicplayer].shuffleMode = MPMusicShuffleModeOff;
+                shuffleWasOn = YES;
+            }
+            [[self musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:[everything.collections[0] items]]];
+            [[self musicplayer] setNowPlayingItem:[[everything.collections[0] items ]objectAtIndex:0]];
+            if (shuffleWasOn)
+                [self musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+            
+            [[self musicplayer] play];
+            
+            retval = TRUE;
+        }
+    }
+    return retval;
 }
 
 

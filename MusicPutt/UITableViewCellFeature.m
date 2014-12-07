@@ -13,15 +13,17 @@
 #import "UIViewControllerAlbumStore.h"
 #import "UIViewControllerGender.h"
 #import "UIViewControllerFeatureStore.h"
+#import "LastPlaying.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 
-#define MUSICPUTT_PLAY_PREFERED         @"Play my favorites"
-#define MUSICPUTT_PLAY_LASTEST          @"Play lastest playlist"
-#define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create new playlist"
+#define MUSICPUTT_PLAY_PREFERED         @"Play my Favorites"
+#define MUSICPUTT_PLAY_LASTEST_PLAYLIST @"Play Last Playlist"
+#define MUSICPUTT_PLAY_LASTEST_ALBUM    @"Play Last Album"
+#define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create New Playlist"
 
-#define DISCOVER_SEE_WHATS_NEW          @"See what's hot"
-#define DISCOVER_SELECT_PREFERED_GENDER @"Select your preferred gender"
+#define DISCOVER_SEE_WHATS_NEW          @"See What's Hot"
+#define DISCOVER_SELECT_PREFERED_GENDER @"Select Your Preferred Gender"
 
 @interface UITableViewCellFeature() <UIActionSheetDelegate>
 {
@@ -111,7 +113,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:MUSICPUTT_PLAY_PREFERED, MUSICPUTT_PLAY_LASTEST, MUSICPUTT_CREATE_NEW_PLAYLIST, nil];
+                                                        otherButtonTitles:MUSICPUTT_PLAY_PREFERED, MUSICPUTT_PLAY_LASTEST_PLAYLIST, MUSICPUTT_PLAY_LASTEST_ALBUM, MUSICPUTT_CREATE_NEW_PLAYLIST, nil];
         [actionSheet showInView:_parentView];
     }
     else if (_type == TypeDiscover){
@@ -191,6 +193,8 @@
                                                                                   comparisonType:MPMediaPredicateComparisonEqualTo];
         [everything addFilterPredicate:albumPredicate];
         
+        [[[self.del mpdatamanager] musicplayer] stop];
+        
         BOOL shuffleWasOn = NO;
         if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
             [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
@@ -204,6 +208,9 @@
             [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
         
         [[[self.del mpdatamanager] musicplayer] play];
+        
+        // save last playing album
+        [[self.del mpdatamanager] setLastPlayingAlbum:albumUid];
         
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
@@ -231,9 +238,52 @@
     {
        
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST])
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_PLAYLIST])
     {
+        NSNumber* lastaplaylist = [[[self del] mpdatamanager] getLastPLayingPlaylist];
+        if (lastaplaylist!=nil) {
+            NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"PlayLastPlaylist:", lastaplaylist);
+            
+            if( [[[self del] mpdatamanager] startPlayingPlaylist:lastaplaylist] )
+            {
+                UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
+                [_parentNavCtrl pushViewController:musicView animated:YES];
+            }
+        }
+        else{
+            UIAlertView *message = [[UIAlertView alloc]
+                                    initWithTitle:@"Nothing!"
+                                    message:@"No last playlist to play!"
+                                    delegate:nil
+                                    cancelButtonTitle:@"OK"
+                                    otherButtonTitles:nil];
+            [message show];
+        }
     
+    }
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_ALBUM])
+    {
+        NSNumber* lastalbum = [[[self del] mpdatamanager] getLastPlayingAlbum];
+        if (lastalbum!=nil) {
+            NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"PlayLastAlbum:", lastalbum);
+
+            if( [[[self del] mpdatamanager] startPlayingAlbum:lastalbum] )
+            {
+                UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
+                [_parentNavCtrl pushViewController:musicView animated:YES];
+            }
+        }
+        else{
+             UIAlertView *message = [[UIAlertView alloc]
+                                     initWithTitle:@"Nothing!"
+                                     message:@"No last album to play!"
+                                     delegate:nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil];
+             [message show];
+        }
     }
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_CREATE_NEW_PLAYLIST])
     {

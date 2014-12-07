@@ -109,4 +109,50 @@
  */
 - (void) setMusicViewControllerVisible:(bool) visible;
 
+/**
+ *  Set the last playing album
+ *
+ *  @param albumUid uid of the album
+ */
+- (void) setLastPlayingAlbum:(NSNumber*) albumUid;
+
+/**
+ *  Return last playing album
+ *
+ *  @return uid of the last playing album
+ */
+- (NSNumber*) getLastPlayingAlbum;
+
+/**
+ *  Set the last playing playlist
+ *
+ *  @param playlistUid uid of the playlist
+ */
+- (void) setLastPlayingPlaylist:(NSNumber*) playlistUid;
+
+/**
+ *  Return the last playing playlist
+ *
+ *  @return uid of the last playing playlist
+ */
+- (NSNumber*) getLastPLayingPlaylist;
+
+/**
+ *  Start playing an album.
+ *
+ *  @param albumUid album uid for starting playing.
+ *
+ *  @return true if album is starting to playing.
+ */
+- (bool) startPlayingAlbum:(NSNumber*) albumUid;
+
+/**
+ *  Start playing a playlist.
+ *
+ *  @param playlistUid playlist uid for starting playing.
+ *
+ *  @return true if plylist is starting to playing.
+ */
+- (bool) startPlayingPlaylist:(NSNumber*) playlistUid;
+
 @end

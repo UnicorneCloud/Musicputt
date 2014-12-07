@@ -128,6 +128,9 @@
     
     [[[self.del mpdatamanager] musicplayer] play];
     
+    // save last playing playlist
+    [[self.del mpdatamanager] setLastPlayingPlaylist:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyPersistentID]];
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     return indexPath;
