@@ -234,11 +234,16 @@
 {
     NSLog(@"You have pressed the %@ button", [actionSheet buttonTitleAtIndex:buttonIndex]);
     
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_PREFERED])
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_PREFERED]) // start playing prefered
     {
-       
+        if( [[[self del] mpdatamanager] startPlayingBestRating] )
+        {
+            UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
+            [_parentNavCtrl pushViewController:musicView animated:YES];
+        }
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_PLAYLIST])
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_PLAYLIST]) // start playing last playlist
     {
         NSNumber* lastaplaylist = [[[self del] mpdatamanager] getLastPLayingPlaylist];
         if (lastaplaylist!=nil) {
@@ -262,7 +267,7 @@
         }
     
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_ALBUM])
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_ALBUM]) // start playing last album
     {
         NSNumber* lastalbum = [[[self del] mpdatamanager] getLastPlayingAlbum];
         if (lastalbum!=nil) {
@@ -285,18 +290,18 @@
              [message show];
         }
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_CREATE_NEW_PLAYLIST])
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_CREATE_NEW_PLAYLIST]) // create new playlist
     {
         
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SEE_WHATS_NEW])
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SEE_WHATS_NEW]) // create what's new
     {
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewControllerFeatureStore *featureStore = [sb instantiateViewControllerWithIdentifier:@"FeatureStore"];
         [_parentNavCtrl pushViewController:featureStore animated:YES];
         
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER])
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SELECT_PREFERED_GENDER]) // select prefered gender
     {
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewControllerGender *gender = [sb instantiateViewControllerWithIdentifier:@"PreferredGender"];

@@ -308,5 +308,49 @@
     return retval;
 }
 
+/**
+ *  Start playing best rating song on the device.
+ */
+- (BOOL) startPlayingBestRating
+{
+    BOOL retval = FALSE;
+    
+    NSTimeInterval start  = [[NSDate date] timeIntervalSince1970];
+    
+    MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
+    NSArray *songsArray = [songsQuery items];
+    
+    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:MPMediaItemPropertyRating
+                                                             ascending:NO];
+    NSArray *sortedSongsArray = [songsArray sortedArrayUsingDescriptors:@[sorter]];
+    
+    NSTimeInterval finish = [[NSDate date] timeIntervalSince1970];
+    
+    NSLog(@" %s - %@ %f secondes\n", __PRETTY_FUNCTION__, @"Finish ordering took", finish - start);
+    
+    if (sortedSongsArray.count>0) {
+        
+        [[self musicplayer] stop];
+        
+        BOOL shuffleWasOn = NO;
+        if ([self musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+            [self musicplayer].shuffleMode != MPMusicShuffleModeDefault)
+        {
+            [self musicplayer].shuffleMode = MPMusicShuffleModeOff;
+            shuffleWasOn = YES;
+        }
+        [[self musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:sortedSongsArray]];
+        [[self musicplayer] setNowPlayingItem:[sortedSongsArray objectAtIndex:0]];
+        if (shuffleWasOn)
+            [self musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+        
+        [[self musicplayer] play];
+        
+        retval = TRUE;
+    }
+    
+    return retval;
+}
+
 
 @end

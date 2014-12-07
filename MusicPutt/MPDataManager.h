@@ -151,8 +151,16 @@
  *
  *  @param playlistUid playlist uid for starting playing.
  *
- *  @return true if plylist is starting to playing.
+ *  @return true if playlist is starting to playing.
  */
 - (bool) startPlayingPlaylist:(NSNumber*) playlistUid;
+
+/**
+ *  Start playing best rating song on the device.
+ * 
+ *  @return true if start playing is possible.
+ */
+- (BOOL) startPlayingBestRating;
+
 
 @end
