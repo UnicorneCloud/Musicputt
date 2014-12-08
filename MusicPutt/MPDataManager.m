@@ -21,7 +21,7 @@
 
 @implementation MPDataManager
 {
-    bool musicviewcontrollervisible;
+    bool currentPlayingToolbarMustBeHidden; // if true, CurrentPlayingToolBar must be hidden.
 }
 
 
@@ -41,8 +41,8 @@
     // init current playing toolbar
     _currentPlayingToolbar = [[UICurrentPlayingToolBar alloc] init];
     
-    // the initial state of the musicviewcontroller is hidden.
-    musicviewcontrollervisible = false;
+    // the initial state of the currentPlayingToolbarMustBeHidden is not hidden.
+    currentPlayingToolbarMustBeHidden = false;
     
     // init magic record
     [MagicalRecord setupCoreDataStack];
@@ -102,25 +102,24 @@
 
 
 /**
- *  Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
- *  is displayed, UICurrentPlayingToolBar is hidden.
+ *  Indicate if UICurrentPlayingToolBar must be hidden.
  *
- *  @return True if UIMusicViewController displayed
+ *  @return True if UICurrentPlayingToolBar must be hidden.
  */
-- (bool) isMusicViewControllerVisible
+- (bool) currentPlayingToolbarMustBeHidden
 {
-    return musicviewcontrollervisible;
+    return currentPlayingToolbarMustBeHidden;
 }
 
 
 /**
- *  Set the status of the visibility of the UIMusicViewController.
+ *  Set if UICurrentPlayingToolBar must be hidden.
  *
- *  @param visible True to indicate the UIMusicViewController displayed.
+ *  @param hidden True to hidden UICurrentPlayingToolBar.
  */
-- (void) setMusicViewControllerVisible:(bool) visible
+- (void) setCurrentPlayingToolbarMustBeHidden:(bool) hidden
 {
-    musicviewcontrollervisible = visible;
+    currentPlayingToolbarMustBeHidden = hidden;
 }
 
 #pragma mark - MediaPlayer

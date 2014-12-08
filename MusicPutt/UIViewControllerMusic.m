@@ -276,7 +276,7 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
-    [[self.del mpdatamanager] setMusicViewControllerVisible:true];
+    [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:true];
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
@@ -331,7 +331,7 @@
     
     [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
     
-    [[self.del mpdatamanager] setMusicViewControllerVisible:false];
+    [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:false];
 }
 
 

@@ -108,7 +108,7 @@
     [super viewDidDisappear:animated];
     
     // setup currentPlayingToolBar
-    if ([[self.del mpdatamanager] isMusicViewControllerVisible]) {
+    if ([[self.del mpdatamanager] currentPlayingToolbarMustBeHidden]) {
         currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
         [self hideTabbar];
     }
@@ -170,7 +170,7 @@
 
 -(void) showTabbar
 {
-    if ([[self.del mpdatamanager] isMusicViewControllerVisible] == false && [[AVAudioSession sharedInstance] isOtherAudioPlaying]){
+    if ([[self.del mpdatamanager] currentPlayingToolbarMustBeHidden] == false && [[AVAudioSession sharedInstance] isOtherAudioPlaying]){
         if (![currentPlayingToolBar isVisible]) {
             [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
         }
