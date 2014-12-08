@@ -23,6 +23,9 @@
 #define SECTION_ALBUM 0
 #define SECTION_SONG 1
 
+#define NB_TOP_ALBUM 100
+#define NB_TOP_SONG  50
+
 @interface UIViewControllerFeatureStore () <UITableViewDataSource, UITableViewDelegate, ITunesFeedsApiDelegate, AVAudioPlayerDelegate>
 {
     NSArray *topRates;
@@ -68,12 +71,12 @@
     }
     
     
-    [_itunesTopAlbums queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
+    [_itunesTopAlbums queryFeedType:QueryTopAlbums forCountry:country size:NB_TOP_ALBUM genre:0 asynchronizationMode:true];
     
     // top rate songs
     _itunesTopSongs = [[ITunesFeedsApi alloc] init];
     [_itunesTopSongs setDelegate:self];
-    [_itunesTopSongs queryFeedType:QueryTopSongs forCountry:country size:25 genre:0 asynchronizationMode:true];
+    [_itunesTopSongs queryFeedType:QueryTopSongs forCountry:country size:NB_TOP_SONG genre:0 asynchronizationMode:true];
     
     
     // Initialize AVAudioPLayer
