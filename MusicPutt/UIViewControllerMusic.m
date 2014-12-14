@@ -202,12 +202,14 @@
     
     _albumpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicAlbumPage"];
     _albumpage.pageIndex = 0;
+    _albumpage.parentNavigationController = self.navigationController;
     _albumpage.view.frame = framealbum;
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicAlbumPage completed.");
     
     _artworkpage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicArtworkPage"];
     _artworkpage.pageIndex = 1;
+    _artworkpage.parentNavigationController = self.navigationController;
     _artworkpage.view.backgroundColor = [UIColor clearColor];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicArtworkPage completed.");
@@ -215,6 +217,7 @@
     _lyricspage = [self.storyboard instantiateViewControllerWithIdentifier:@"MusicLyricsPage"];
     _lyricspage.view.frame = framelyrics;
     _lyricspage.pageIndex = 2;
+    _lyricspage.parentNavigationController = self.navigationController;
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicLyricsPage completed.");
     
@@ -286,13 +289,19 @@
      name:        MPMusicPlayerControllerNowPlayingItemDidChangeNotification
      object:      [[self.del mpdatamanager] musicplayer]];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Add observer for MPMusicPlayerControllerNowPlayingItemDidChangeNotification");
+    
     [notificationCenter
      addObserver: self
      selector:    @selector (handle_PlaybackStateChanged:)
      name:        MPMusicPlayerControllerPlaybackStateDidChangeNotification
      object:      [[self.del mpdatamanager] musicplayer]];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Add observer for MPMusicPlayerControllerPlaybackStateDidChangeNotification");
+    
     [[[self.del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"beginGeneratingPlaybackNotifications");
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
@@ -300,9 +309,12 @@
                                    userInfo: nil
                                     repeats:YES];
     
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start timer");
+    
     // update current playing song display
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateDisplay];
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 
@@ -372,7 +384,6 @@
         [_songtitle setText:@""];
         [_artistalbum setText:@""];
     }
-    
 }
 
 /**
@@ -380,6 +391,17 @@
  */
 -(void) updateDisplay
 {
+    NSTimeInterval start  = [[NSDate date] timeIntervalSince1970];
+    
+    NSTimeInterval startcalculateduration = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval endcalculateduration = [[NSDate date] timeIntervalSince1970];
+    
+    NSTimeInterval startgetplayerstatus = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval endgetplayerstatus = [[NSDate date] timeIntervalSince1970];
+    
+    NSTimeInterval startsetprogress = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval endsetprogress = [[NSDate date] timeIntervalSince1970];
+    
     // update display only if mediaplayer if ready
     if ([[self.del mpdatamanager] isMediaPlayerInitialized])
     {
@@ -390,6 +412,8 @@
         
         if ([[[self.del mpdatamanager] musicplayer] nowPlayingItem]!=NULL)
         {
+            startcalculateduration = [[NSDate date] timeIntervalSince1970];
+            
             NSNumber* duration = [[[[self.del mpdatamanager] musicplayer] nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
             playbackDuration = [duration doubleValue];
             currentTime = [[[self.del mpdatamanager] musicplayer] currentPlaybackTime];
@@ -414,8 +438,15 @@
                 NSString *enddingTime = [NSString stringWithFormat:@"-%ld:%02ld", minutes, seconds];
                 [_endtime setText:enddingTime];
             }
+            
+            endcalculateduration = [[NSDate date] timeIntervalSince1970];
         }
+        
+        startsetprogress = [[NSDate date] timeIntervalSince1970];
         [_progresstime setProgress:progressValue animated:false];
+        endsetprogress = [[NSDate date] timeIntervalSince1970];
+        
+        startgetplayerstatus = [[NSDate date] timeIntervalSince1970];
         
         // update icon play/pause
         //MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
@@ -451,10 +482,22 @@
             _shuffle.opaque = false;
             _shuffle.alpha = 0.5;
         }
+        endgetplayerstatus = [[NSDate date] timeIntervalSince1970];
     }
     else
     {
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
+    }
+    
+    NSTimeInterval finish  = [[NSDate date] timeIntervalSince1970];
+    
+    // if duration of execution is more than 1 seconde
+    // display execution time details
+    if (finish - start > 1) {
+        NSLog(@" %s - %@ %f\n", __PRETTY_FUNCTION__, @"[Warning] - Total execution time:", finish-start);
+        NSLog(@" %s - %@ %f\n", __PRETTY_FUNCTION__, @"[Warning] - Calculation of duration time:", endcalculateduration-startcalculateduration);
+        NSLog(@" %s - %@ %f\n", __PRETTY_FUNCTION__, @"[Warning] - Set progress time:", endsetprogress-startsetprogress);
+        NSLog(@" %s - %@ %f\n", __PRETTY_FUNCTION__, @"[Warning] - Get media player status time:", endgetplayerstatus-startgetplayerstatus);
     }
 }
 

@@ -255,6 +255,15 @@
                 UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
                 [_parentNavCtrl pushViewController:musicView animated:YES];
             }
+            else{
+                UIAlertView *message = [[UIAlertView alloc]
+                                        initWithTitle:@"Nothing!"
+                                        message:@"No last playlist to play!"
+                                        delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+                [message show];
+            }
         }
         else{
             UIAlertView *message = [[UIAlertView alloc]
@@ -278,6 +287,15 @@
                 UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
                 [_parentNavCtrl pushViewController:musicView animated:YES];
+            }
+            else{
+                UIAlertView *message = [[UIAlertView alloc]
+                                        initWithTitle:@"Nothing!"
+                                        message:@"No last album to play!"
+                                        delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+                [message show];
             }
         }
         else{
