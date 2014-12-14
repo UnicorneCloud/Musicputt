@@ -81,6 +81,17 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");
 }
 
+/**
+ *  Prepare application to gone in foreground.
+ */
+- (void) prepareAppWillEnterForeground
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    // nothing
+    
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");
+}
 
 /**
  *  Prepare application to terminate
@@ -133,7 +144,7 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     bool retval = false;
-    _musicplayer = [MPMusicPlayerController iPodMusicPlayer];
+    _musicplayer = [MPMusicPlayerController systemMusicPlayer];
     if (_musicplayer==NULL) {
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[ERROR] - Error getting MPMusicPlayerController iPodMusicPlayer");
     }
@@ -283,7 +294,7 @@
                                                                             comparisonType:MPMediaPredicateComparisonEqualTo];
         [everything addFilterPredicate:predicate];
         
-        if( everything.collections[0]!=nil && [everything.collections[0] items].count>0 )
+        if( everything.collections.count>0 && [everything.collections[0] items].count>0 )
         {
             [[self musicplayer] stop];
             

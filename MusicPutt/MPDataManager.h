@@ -78,6 +78,11 @@
 - (void) prepareAppDidEnterBackground;
 
 /**
+ *  Prepare application to gone in foreground.
+ */
+- (void) prepareAppWillEnterForeground;
+
+/**
  *  Prepare application to become active
  */
 -(void) prepareAppDidBecomeActive;
