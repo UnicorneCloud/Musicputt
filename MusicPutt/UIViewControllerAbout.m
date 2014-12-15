@@ -163,8 +163,8 @@
     
     if (indexPath.section == 0)
     {
-        NSArray *titles = @[@"This application is an creation of Qiaomei Wang and Eric Pinet. We use many api from a lot of great people.",
-                            @"(pineri01@gmail.com)"];
+        NSArray *titles = @[@"This application is an creation of Qiaomei Wang and Eric Pinet.",
+                            @"Contact us : pineri01@gmail.com"];
         
         cell.textLabel.font = [UIFont systemFontOfSize:12];
         cell.textLabel.textColor = [UIColor darkGrayColor];

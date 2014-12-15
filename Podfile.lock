@@ -7,12 +7,12 @@ PODS:
   - ISO8601DateFormatterValueTransformer (0.6.0):
     - RKValueTransformers (~> 1.1.0)
   - MagicalRecord (2.2):
-    - MagicalRecord/Core
+    - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
   - MONActivityIndicatorView (0.0.1)
   - REFrostedViewController (2.4.6)
   - RestKit (0.23.1):
-    - RestKit/Core
+    - RestKit/Core (= 0.23.1)
   - RestKit/Core (0.23.1):
     - RestKit/CoreData
     - RestKit/Network
@@ -30,7 +30,7 @@ PODS:
     - RKValueTransformers (~> 1.1.0)
   - RestKit/Support (0.23.1):
     - TransitionKit (= 2.1.0)
-  - RKValueTransformers (1.1.0)
+  - RKValueTransformers (1.1.1)
   - SOCKit (1.1)
   - TransitionKit (2.1.0)
   - UAProgressView (0.1.1)
@@ -57,9 +57,9 @@ SPEC CHECKSUMS:
   MONActivityIndicatorView: 728965121e59cef32c1bc4676f6868e35f3c8c61
   REFrostedViewController: 0f6bb16aeb4b384da25cc3c97bc1a16926583c62
   RestKit: 0b5f1bbc43b81beba158262a1adae48ac062eb1e
-  RKValueTransformers: b705e7b4651b9206b94600408462b74554bba969
+  RKValueTransformers: 67b4ea3eb6a1c1a0b8c3c37eb4e4c05e4febeba2
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
   TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
   UAProgressView: c393bc53d1cabc077279e957c5898a5bb7bdb3ce
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.35.0

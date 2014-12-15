@@ -1,0 +1,128 @@
+
+// To check if a library is compiled with CocoaPods you
+// can use the `COCOAPODS` macro definition which is
+// defined in the xcconfigs so it is available in
+// headers also when they are imported in the client
+// project.
+
+
+// AFNetworking
+#define COCOAPODS_POD_AVAILABLE_AFNetworking
+#define COCOAPODS_VERSION_MAJOR_AFNetworking 1
+#define COCOAPODS_VERSION_MINOR_AFNetworking 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking 4
+
+// AMWaveTransition
+#define COCOAPODS_POD_AVAILABLE_AMWaveTransition
+#define COCOAPODS_VERSION_MAJOR_AMWaveTransition 0
+#define COCOAPODS_VERSION_MINOR_AMWaveTransition 5
+#define COCOAPODS_VERSION_PATCH_AMWaveTransition 0
+
+// BFNavigationBarDrawer
+#define COCOAPODS_POD_AVAILABLE_BFNavigationBarDrawer
+#define COCOAPODS_VERSION_MAJOR_BFNavigationBarDrawer 1
+#define COCOAPODS_VERSION_MINOR_BFNavigationBarDrawer 0
+#define COCOAPODS_VERSION_PATCH_BFNavigationBarDrawer 2
+
+// DLAlertView
+#define COCOAPODS_POD_AVAILABLE_DLAlertView
+#define COCOAPODS_VERSION_MAJOR_DLAlertView 1
+#define COCOAPODS_VERSION_MINOR_DLAlertView 2
+#define COCOAPODS_VERSION_PATCH_DLAlertView 4
+
+// DZNEmptyDataSet
+#define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
+#define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
+#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 3
+#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 2
+
+// ISO8601DateFormatterValueTransformer
+#define COCOAPODS_POD_AVAILABLE_ISO8601DateFormatterValueTransformer
+#define COCOAPODS_VERSION_MAJOR_ISO8601DateFormatterValueTransformer 0
+#define COCOAPODS_VERSION_MINOR_ISO8601DateFormatterValueTransformer 6
+#define COCOAPODS_VERSION_PATCH_ISO8601DateFormatterValueTransformer 0
+
+// MONActivityIndicatorView
+#define COCOAPODS_POD_AVAILABLE_MONActivityIndicatorView
+#define COCOAPODS_VERSION_MAJOR_MONActivityIndicatorView 0
+#define COCOAPODS_VERSION_MINOR_MONActivityIndicatorView 0
+#define COCOAPODS_VERSION_PATCH_MONActivityIndicatorView 1
+
+// MagicalRecord
+#define COCOAPODS_POD_AVAILABLE_MagicalRecord
+#define COCOAPODS_VERSION_MAJOR_MagicalRecord 2
+#define COCOAPODS_VERSION_MINOR_MagicalRecord 2
+#define COCOAPODS_VERSION_PATCH_MagicalRecord 0
+
+// MagicalRecord/Core
+#define COCOAPODS_POD_AVAILABLE_MagicalRecord_Core
+#define COCOAPODS_VERSION_MAJOR_MagicalRecord_Core 2
+#define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
+#define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
+
+// REFrostedViewController
+#define COCOAPODS_POD_AVAILABLE_REFrostedViewController
+#define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
+#define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
+#define COCOAPODS_VERSION_PATCH_REFrostedViewController 6
+
+// RKValueTransformers
+#define COCOAPODS_POD_AVAILABLE_RKValueTransformers
+#define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1
+#define COCOAPODS_VERSION_MINOR_RKValueTransformers 1
+#define COCOAPODS_VERSION_PATCH_RKValueTransformers 1
+
+// RestKit
+#define COCOAPODS_POD_AVAILABLE_RestKit
+#define COCOAPODS_VERSION_MAJOR_RestKit 0
+#define COCOAPODS_VERSION_MINOR_RestKit 23
+#define COCOAPODS_VERSION_PATCH_RestKit 1
+
+// RestKit/Core
+#define COCOAPODS_POD_AVAILABLE_RestKit_Core
+#define COCOAPODS_VERSION_MAJOR_RestKit_Core 0
+#define COCOAPODS_VERSION_MINOR_RestKit_Core 23
+#define COCOAPODS_VERSION_PATCH_RestKit_Core 1
+
+// RestKit/CoreData
+#define COCOAPODS_POD_AVAILABLE_RestKit_CoreData
+#define COCOAPODS_VERSION_MAJOR_RestKit_CoreData 0
+#define COCOAPODS_VERSION_MINOR_RestKit_CoreData 23
+#define COCOAPODS_VERSION_PATCH_RestKit_CoreData 1
+
+// RestKit/Network
+#define COCOAPODS_POD_AVAILABLE_RestKit_Network
+#define COCOAPODS_VERSION_MAJOR_RestKit_Network 0
+#define COCOAPODS_VERSION_MINOR_RestKit_Network 23
+#define COCOAPODS_VERSION_PATCH_RestKit_Network 1
+
+// RestKit/ObjectMapping
+#define COCOAPODS_POD_AVAILABLE_RestKit_ObjectMapping
+#define COCOAPODS_VERSION_MAJOR_RestKit_ObjectMapping 0
+#define COCOAPODS_VERSION_MINOR_RestKit_ObjectMapping 23
+#define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 1
+
+// RestKit/Support
+#define COCOAPODS_POD_AVAILABLE_RestKit_Support
+#define COCOAPODS_VERSION_MAJOR_RestKit_Support 0
+#define COCOAPODS_VERSION_MINOR_RestKit_Support 23
+#define COCOAPODS_VERSION_PATCH_RestKit_Support 1
+
+// SOCKit
+#define COCOAPODS_POD_AVAILABLE_SOCKit
+#define COCOAPODS_VERSION_MAJOR_SOCKit 1
+#define COCOAPODS_VERSION_MINOR_SOCKit 1
+#define COCOAPODS_VERSION_PATCH_SOCKit 0
+
+// TransitionKit
+#define COCOAPODS_POD_AVAILABLE_TransitionKit
+#define COCOAPODS_VERSION_MAJOR_TransitionKit 2
+#define COCOAPODS_VERSION_MINOR_TransitionKit 1
+#define COCOAPODS_VERSION_PATCH_TransitionKit 0
+
+// UAProgressView
+#define COCOAPODS_POD_AVAILABLE_UAProgressView
+#define COCOAPODS_VERSION_MAJOR_UAProgressView 0
+#define COCOAPODS_VERSION_MINOR_UAProgressView 1
+#define COCOAPODS_VERSION_PATCH_UAProgressView 1
+

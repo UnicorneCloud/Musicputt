@@ -417,10 +417,27 @@
                     <view key="view" contentMode="scaleToFill" id="WxO-B6-qqd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="380"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLG-xI-3xV">
+                                <rect key="frame" x="25" y="0.0" width="288" height="380"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.37918223509999999" green="0.0" blue="0.01786659027" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WLG-xI-3xV" firstAttribute="leading" secondItem="WxO-B6-qqd" secondAttribute="leadingMargin" constant="9" id="8YI-AC-dPT"/>
+                            <constraint firstItem="WLG-xI-3xV" firstAttribute="trailing" secondItem="WxO-B6-qqd" secondAttribute="trailingMargin" constant="9" id="Ux7-Rr-1O1"/>
+                            <constraint firstItem="WLG-xI-3xV" firstAttribute="top" secondItem="WxO-B6-qqd" secondAttribute="topMargin" id="aAv-KR-6qT"/>
+                            <constraint firstItem="HwC-cm-fG4" firstAttribute="top" secondItem="WLG-xI-3xV" secondAttribute="bottom" id="bb5-oX-yQT"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="380"/>
+                    <connections>
+                        <outlet property="lyrics" destination="WLG-xI-3xV" id="oPw-N1-Ous"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2E-9z-yhS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

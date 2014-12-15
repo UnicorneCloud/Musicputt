@@ -88,6 +88,13 @@
     
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [storealbum stopPlaying];
+    [storesongs stopPlaying];
+}
+
+/*
 -(void) viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -95,6 +102,7 @@
     [storesongs stopPlaying];
     
 }
+ */
 
 - (void)didReceiveMemoryWarning
 {
