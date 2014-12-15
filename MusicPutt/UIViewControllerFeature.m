@@ -444,7 +444,7 @@
         else
             newImage = [UIImage imageNamed:@"empty"];
         
-        
+        // TODO LEAK PROBLEM
         [UIView transitionWithView:imageToUpdate
                           duration:0.6
                            options:UIViewAnimationOptionTransitionFlipFromRight
@@ -516,6 +516,7 @@
             imageToUpdate = cell.image4;
         }
         
+        
         if (topRates.count > currentTopRateUpdate + currentTopRateStep) {
             ITunesAlbum* album = [topRates objectAtIndex:currentTopRateUpdate + currentTopRateStep];
             id path = [album artworkUrl100];
@@ -525,7 +526,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                
+                // TODO LEAK PROBLEM
                 [UIView transitionWithView:imageToUpdate
                                   duration:0.6
                                    options:UIViewAnimationOptionTransitionFlipFromRight

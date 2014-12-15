@@ -330,7 +330,7 @@
     return indexPath;
 }
 
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
@@ -340,7 +340,7 @@
 {
     return 60;
 }
-
+*/
 -(IBAction)toggleSearch:(id)sender
 {
     // hide the search bar when it's showed

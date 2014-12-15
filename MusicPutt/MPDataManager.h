@@ -78,6 +78,11 @@
 - (void) prepareAppDidEnterBackground;
 
 /**
+ *  Prepare application to gone in foreground.
+ */
+- (void) prepareAppWillEnterForeground;
+
+/**
  *  Prepare application to become active
  */
 -(void) prepareAppDidBecomeActive;
@@ -95,19 +100,18 @@
 -(bool) isMediaPlayerInitialized;
 
 /**
- *  Indicate if the UIMusicViewController is displayed. When the UIMusicViewController
- *  is displayed, UICurrentPlayingToolBar is hidden.
+ *  Indicate if UICurrentPlayingToolBar must be hidden.
  *
- *  @return True if UIMusicViewController displayed
+ *  @return True if UICurrentPlayingToolBar must be hidden.
  */
-- (bool) isMusicViewControllerVisible;
+- (bool) currentPlayingToolbarMustBeHidden;
 
 /**
- *  Set the status of the visibility of the UIMusicViewController.
+ *  Set if UICurrentPlayingToolBar must be hidden.
  *
- *  @param visible True to indicate the UIMusicViewController displayed.
+ *  @param hidden True to hidden UICurrentPlayingToolBar.
  */
-- (void) setMusicViewControllerVisible:(bool) visible;
+- (void) setCurrentPlayingToolbarMustBeHidden:(bool) hidden;
 
 /**
  *  Set the last playing album

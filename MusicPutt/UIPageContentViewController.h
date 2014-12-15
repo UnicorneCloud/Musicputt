@@ -12,4 +12,6 @@
 
 @property NSUInteger pageIndex;
 
+@property UINavigationController* parentNavigationController;
+
 @end

@@ -164,7 +164,7 @@
     if (indexPath.section == 0)
     {
         NSArray *titles = @[@"This application is an creation of Qiaomei Wang and Eric Pinet. We use many api from a lot of great people.",
-                            @"Thank you very much developpers for your creation: AFNetworking, AMWaveTransition, BFNavigationBarDrawer, MONActivityIndicatorView, ReFrostedViewController, RestKit, UAProgressView, iCarousel."];
+                            @"(pineri01@gmail.com)"];
         
         cell.textLabel.font = [UIFont systemFontOfSize:12];
         cell.textLabel.textColor = [UIColor darkGrayColor];
