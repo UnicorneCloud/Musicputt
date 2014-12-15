@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MPMediaQuery.h>
 
-@interface UIViewControllerArtistAlbum () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
+@interface UIViewControllerArtistAlbum () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate,UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate>
 {
     MPMediaQuery* everything;             // result of current query
     MPMediaItemCollection *artistCollection;
@@ -21,7 +21,8 @@
 
 @property AppDelegate* del;
 @property (weak, nonatomic) IBOutlet UITableView*  tableView;
-
+@property (nonatomic)UISearchController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchResults;
 @end
 
 @implementation UIViewControllerArtistAlbum
@@ -59,6 +60,23 @@
     
     // setup tableview
     scrollView = _tableView;
+    // search controller
+    
+    self.searchResults = [NSMutableArray arrayWithCapacity:[artistCollection count]];
+    
+    // scroll the search bar off-screen
+    //[self hideSearchBar];
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    
+    self.searchController.searchResultsUpdater = self;
+    
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    
+    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
+    
+    self.tableView.tableHeaderView = self.searchController.searchBar;
 }
 
 - (void)didReceiveMemoryWarning
@@ -322,6 +340,21 @@
 {
     return 60;
 }
+
+-(IBAction)toggleSearch:(id)sender
+{
+    // hide the search bar when it's showed
+    NSLog(@"self.tableView.bounds.origin.y = %f", self.tableView.bounds.origin.y);
+    
+    if (self.tableView.bounds.origin.y == -64) {
+        [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.frame.size.height-70, 1, 1) animated:YES];
+    }
+    else
+    {
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    }
+}
+
 /*
 #pragma mark - Navigation
 
