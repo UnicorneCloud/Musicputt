@@ -15,6 +15,7 @@
 #import "UIViewControllerLyricsPage.h"
 #import "UIButton+Extensions.h"
 #import "UIImageViewArtwork.h"
+#import "UIImageView+Perspective.h"
 
 
 #import <AVFoundation/AVFoundation.h>
@@ -27,6 +28,7 @@
 @interface UIViewControllerMusic () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 {
     NSTimer *timer;
+    MPMediaItem* lastItem;
 }
 
 /**
@@ -311,9 +313,13 @@
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start timer");
     
+    // setup UIImageView+Perspective
+    [_imageview startUpdatesWithValue:0.01 manager:[[self.del mpdatamanager]sharedManager]];
+    
     // update current playing song display
     [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
     [self updateDisplay];
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
@@ -344,6 +350,9 @@
     [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
     
     [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:false];
+    
+    // setup UIImageView+Perspective
+    [_imageview stopUpdateManager:[[self.del mpdatamanager]sharedManager]];
 }
 
 
@@ -375,6 +384,8 @@
         NSString *artistalbum = [NSString stringWithFormat:@"%@ - %@", [aitem valueForProperty:MPMediaItemPropertyArtist]
                                                                      , [aitem valueForProperty:MPMediaItemPropertyAlbumTitle]];
         [_artistalbum setText:artistalbum];
+        
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"LoadImage");
     }
     else{
         // setup title
@@ -391,6 +402,7 @@
  */
 -(void) updateDisplay
 {
+    
     NSTimeInterval start  = [[NSDate date] timeIntervalSince1970];
     
     NSTimeInterval startcalculateduration = [[NSDate date] timeIntervalSince1970];

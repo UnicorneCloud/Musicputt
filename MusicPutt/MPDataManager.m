@@ -10,11 +10,13 @@
 
 #import "LastPlaying.h"
 #import <MediaPlayer/MPMusicPlayerController.h>
+#import <CoreMotion/CoreMotion.h>
 
 
 @interface MPDataManager()
 {
     BOOL mediaplayerinit;
+    CMMotionManager *motionmanager;
 }
 
 @end
@@ -360,6 +362,20 @@
     }
     
     return retval;
+}
+
+/**
+ *  Shared CMotionManager.
+ *
+ *  @return singleton CMotionManager
+ */
+- (CMMotionManager *)sharedManager
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        motionmanager = [[CMMotionManager alloc] init];
+    });
+    return motionmanager;
 }
 
 

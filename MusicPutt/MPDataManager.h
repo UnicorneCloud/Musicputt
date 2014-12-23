@@ -12,6 +12,7 @@
 #import "UITabBarControllerMain.h"
 
 @class MPMusicPlayerController;
+@class CMMotionManager;
 
 /**
  * MPDataManager is the main application data manager. This class maintain all data for
@@ -165,6 +166,13 @@
  *  @return true if start playing is possible.
  */
 - (BOOL) startPlayingBestRating;
+
+/**
+ *  Shared CMotionManager.
+ *
+ *  @return singleton CMotionManager
+ */
+- (CMMotionManager *)sharedManager;
 
 
 @end
