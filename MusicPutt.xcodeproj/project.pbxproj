@@ -35,6 +35,7 @@
 		9740A37819F47E9D00D24425 /* UIViewControllerFeatureStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9740A37719F47E9D00D24425 /* UIViewControllerFeatureStore.m */; };
 		9740A37B19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9740A37A19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m */; };
 		9747AA9C1A49AC74005CA8F4 /* UIImageView+Perspective.m in Sources */ = {isa = PBXBuildFile; fileRef = 9747AA9B1A49AC74005CA8F4 /* UIImageView+Perspective.m */; };
+		9747AAA01A4A2C10005CA8F4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9747AA9F1A4A2C10005CA8F4 /* MessageUI.framework */; };
 		97570B78198D406F00A542DA /* UIViewControllerArtistStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B77198D406F00A542DA /* UIViewControllerArtistStore.m */; };
 		97570B7B198D5D1700A542DA /* UIViewControllerStoreSongs.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B7A198D5D1700A542DA /* UIViewControllerStoreSongs.m */; };
 		97570B7E198D6B7300A542DA /* UITableViewCellSongStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B7D198D6B7300A542DA /* UITableViewCellSongStore.m */; };
@@ -141,6 +142,7 @@
 		9740A37A19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellFeatureAlbumStore.m; sourceTree = "<group>"; };
 		9747AA9A1A49AC74005CA8F4 /* UIImageView+Perspective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Perspective.h"; sourceTree = "<group>"; };
 		9747AA9B1A49AC74005CA8F4 /* UIImageView+Perspective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Perspective.m"; sourceTree = "<group>"; };
+		9747AA9F1A4A2C10005CA8F4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		97570B76198D406F00A542DA /* UIViewControllerArtistStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerArtistStore.h; sourceTree = "<group>"; };
 		97570B77198D406F00A542DA /* UIViewControllerArtistStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerArtistStore.m; sourceTree = "<group>"; };
 		97570B79198D5D1700A542DA /* UIViewControllerStoreSongs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerStoreSongs.h; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9747AAA01A4A2C10005CA8F4 /* MessageUI.framework in Frameworks */,
 				9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */,
 				976687D6194FBB4D00B5A843 /* CoreGraphics.framework in Frameworks */,
 				976687D8194FBB4D00B5A843 /* UIKit.framework in Frameworks */,
@@ -433,6 +436,7 @@
 		976687D2194FBB4D00B5A843 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9747AA9F1A4A2C10005CA8F4 /* MessageUI.framework */,
 				9799979D1962086E00360BF8 /* AVFoundation.framework */,
 				9706486819510A0900FA877A /* MediaPlayer.framework */,
 				976687D3194FBB4D00B5A843 /* Foundation.framework */,
