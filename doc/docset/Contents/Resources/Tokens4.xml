@@ -60,6 +60,23 @@ See: http://www.apple.com/itunes/affiliates/resources/blog/introduction---rss-fe
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/getGenderName:</TokenIdentifier>
+			<Abstract type="html">Return the gender name from the gender id.</Abstract>
+			<DeclaredIn>ITunesFeedsApi.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)getGenderName:(NSInteger)genderId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>genderId</Name>
+					<Abstract type="html">GenderID in the iTunes Store.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Gender name.</Abstract></ReturnValue>
+			<Anchor>//api/name/getGenderName:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApi/connection:didReceiveResponse:</TokenIdentifier>
 			<Abstract type="html">Receive response from web json api.</Abstract>
 			<DeclaredIn>ITunesFeedsApi.m</DeclaredIn>
