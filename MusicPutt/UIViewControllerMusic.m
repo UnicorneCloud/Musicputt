@@ -28,7 +28,6 @@
 @interface UIViewControllerMusic () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 {
     NSTimer *timer;
-    MPMediaItem* lastItem;
 }
 
 /**
