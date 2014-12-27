@@ -126,3 +126,9 @@
 #define COCOAPODS_VERSION_MINOR_UAProgressView 1
 #define COCOAPODS_VERSION_PATCH_UAProgressView 1
 
+// iPerspective
+#define COCOAPODS_POD_AVAILABLE_iPerspective
+#define COCOAPODS_VERSION_MAJOR_iPerspective 0
+#define COCOAPODS_VERSION_MINOR_iPerspective 1
+#define COCOAPODS_VERSION_PATCH_iPerspective 0
+
