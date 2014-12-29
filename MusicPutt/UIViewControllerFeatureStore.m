@@ -530,7 +530,9 @@
         [audioPlayer stop];
     }
     else{
-        [self startPlayingAtIndex:indexPath.row];
+        if (indexPath.section!=0) {
+            [self startPlayingAtIndex:indexPath.row];
+        }
     }
     return indexPath;
 }
