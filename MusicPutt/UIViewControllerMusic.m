@@ -184,8 +184,8 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // update current playing song display
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
-    [self updateDisplay];
+    //[self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    //[self updateDisplay];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"updateDisplay completed.");
     
@@ -269,19 +269,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-/**
- *  Start notification from mediaplayer, start timer update current time.
- *
- *  @param animated <#animated description#>
- */
-- (void) viewWillAppear:(BOOL)animated
+- (void) viewDidAppear:(BOOL)animated
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    
-    [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:true];
-    
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [notificationCenter
@@ -305,19 +294,37 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"beginGeneratingPlaybackNotifications");
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self
-                                   selector:@selector(updateDisplay)
-                                   userInfo: nil
-                                    repeats:YES];
+                                             target:self
+                                           selector:@selector(updateDisplay)
+                                           userInfo: nil
+                                            repeats:YES];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start timer");
+}
+
+
+
+/**
+ *  Start notification from mediaplayer, start timer update current time.
+ *
+ *  @param animated <#animated description#>
+ */
+- (void) viewWillAppear:(BOOL)animated
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:true];
+    
+    // update current playing song display
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+        [self updateDisplay];
+        
+    });
     
     // setup UIImageView+Perspective
     [_imageview startUpdatesWithValue:0.01 manager:[[self.del mpdatamanager]sharedManager]];
-    
-    // update current playing song display
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
-    [self updateDisplay];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -374,7 +381,9 @@
             image = [artwork imageWithSize:[_imageview frame].size];
             if(image.size.height==0 || image.size.width==0)
                 image = [UIImage imageNamed:@"empty"];
-            
+        }
+        else{
+            image = [UIImage imageNamed:@"empty"];
         }
         
         [_imageview setImage:image];

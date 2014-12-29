@@ -116,6 +116,9 @@
                 image = [UIImage imageNamed:@"empty"];
                 
         }
+        else{
+            image = [UIImage imageNamed:@"empty"];
+        }
         
         [_imageview setImage:image];
         [_songTitle setText:[aitem valueForProperty:MPMediaItemPropertyTitle]];
