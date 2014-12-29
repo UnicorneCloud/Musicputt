@@ -1,0 +1,1 @@
+../../../iTunesApi/Pod/Classes/ITunesMusicTrack.h

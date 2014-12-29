@@ -132,3 +132,9 @@
 #define COCOAPODS_VERSION_MINOR_iPerspective 1
 #define COCOAPODS_VERSION_PATCH_iPerspective 0
 
+// iTunesApi
+#define COCOAPODS_POD_AVAILABLE_iTunesApi
+#define COCOAPODS_VERSION_MAJOR_iTunesApi 0
+#define COCOAPODS_VERSION_MINOR_iTunesApi 1
+#define COCOAPODS_VERSION_PATCH_iTunesApi 0
+

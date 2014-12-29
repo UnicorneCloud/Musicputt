@@ -10,7 +10,8 @@
 #import "ITunesMusicTrack.h"
 #import "ITunesAlbum.h"
 
-#import <RestKit/RestKit.h>
+#import "RestKit.h"
+//#import <RestKit/RestKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface ITunesSearchApi()
