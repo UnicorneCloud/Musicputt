@@ -34,7 +34,6 @@
 		9726C7CC19F2B24E004BCF44 /* UIViewControllerGender.m in Sources */ = {isa = PBXBuildFile; fileRef = 9726C7CB19F2B24E004BCF44 /* UIViewControllerGender.m */; };
 		9740A37819F47E9D00D24425 /* UIViewControllerFeatureStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9740A37719F47E9D00D24425 /* UIViewControllerFeatureStore.m */; };
 		9740A37B19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9740A37A19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m */; };
-		9747AA9C1A49AC74005CA8F4 /* UIImageView+Perspective.m in Sources */ = {isa = PBXBuildFile; fileRef = 9747AA9B1A49AC74005CA8F4 /* UIImageView+Perspective.m */; };
 		9747AAA01A4A2C10005CA8F4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9747AA9F1A4A2C10005CA8F4 /* MessageUI.framework */; };
 		97570B78198D406F00A542DA /* UIViewControllerArtistStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B77198D406F00A542DA /* UIViewControllerArtistStore.m */; };
 		97570B7B198D5D1700A542DA /* UIViewControllerStoreSongs.m in Sources */ = {isa = PBXBuildFile; fileRef = 97570B7A198D5D1700A542DA /* UIViewControllerStoreSongs.m */; };
@@ -140,8 +139,6 @@
 		9740A37719F47E9D00D24425 /* UIViewControllerFeatureStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerFeatureStore.m; sourceTree = "<group>"; };
 		9740A37919F4845800D24425 /* UITableViewCellFeatureAlbumStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellFeatureAlbumStore.h; sourceTree = "<group>"; };
 		9740A37A19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellFeatureAlbumStore.m; sourceTree = "<group>"; };
-		9747AA9A1A49AC74005CA8F4 /* UIImageView+Perspective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Perspective.h"; sourceTree = "<group>"; };
-		9747AA9B1A49AC74005CA8F4 /* UIImageView+Perspective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Perspective.m"; sourceTree = "<group>"; };
 		9747AA9F1A4A2C10005CA8F4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		97570B76198D406F00A542DA /* UIViewControllerArtistStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerArtistStore.h; sourceTree = "<group>"; };
 		97570B77198D406F00A542DA /* UIViewControllerArtistStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerArtistStore.m; sourceTree = "<group>"; };
@@ -618,8 +615,6 @@
 				97ECDFB81972EAF6007889E3 /* UIViewControllerToolbar.m */,
 				9707ADCC198E831C0093F6F0 /* UAProgressView+Extensions.h */,
 				9707ADCD198E837E0093F6F0 /* UIProgressView+Extensions.m */,
-				9747AA9A1A49AC74005CA8F4 /* UIImageView+Perspective.h */,
-				9747AA9B1A49AC74005CA8F4 /* UIImageView+Perspective.m */,
 			);
 			name = tools;
 			sourceTree = "<group>";
@@ -878,7 +873,6 @@
 				9740A37B19F4845800D24425 /* UITableViewCellFeatureAlbumStore.m in Sources */,
 				9707ADD6198E98990093F6F0 /* REFrostedViewControllerMain.m in Sources */,
 				97ECDFB61972EA4D007889E3 /* ITunesSearchApi.m in Sources */,
-				9747AA9C1A49AC74005CA8F4 /* UIImageView+Perspective.m in Sources */,
 				9707ADD1198E886D0093F6F0 /* UITabBarControllerMain.m in Sources */,
 				97EC0649197ABC580081E7E1 /* UIViewControllerAlbumPage.m in Sources */,
 				97570B7B198D5D1700A542DA /* UIViewControllerStoreSongs.m in Sources */,

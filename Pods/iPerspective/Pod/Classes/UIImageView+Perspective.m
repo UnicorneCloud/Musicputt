@@ -8,7 +8,8 @@
 
 #import "UIImageView+Perspective.h"
 
-#define AMPLITUDE 15
+#define AMPLITUDE 20
+#define LIMIT_ANGLE 2
 
 @implementation UIImageView (Perspective)
 
@@ -27,10 +28,10 @@
         [mManager setDeviceMotionUpdateInterval:intervalValue];
         [mManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) {
             
-            if (deviceMotion.attitude.roll > -2 &&
-                deviceMotion.attitude.roll < 2  &&
-                deviceMotion.attitude.pitch > -2 &&
-                deviceMotion.attitude.pitch < 2) {
+            if (deviceMotion.attitude.roll > -LIMIT_ANGLE &&
+                deviceMotion.attitude.roll < LIMIT_ANGLE  &&
+                deviceMotion.attitude.pitch > -LIMIT_ANGLE &&
+                deviceMotion.attitude.pitch < LIMIT_ANGLE) {
                 
                 CGRect frame = initialFrame;
                 frame.origin.x = initialFrame.origin.x + (AMPLITUDE*deviceMotion.attitude.roll);
