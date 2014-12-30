@@ -261,7 +261,7 @@
     
     [_imageview setMaximumAmplitude:10.0];   // (Optional) maximum move of UIImageView
     [_imageview setMaximumAngle:2.0];        // (OPtional) maximum angle managed
-    [_imageview setUpdateInterval:0.01];     // (Optional) interval of refresh
+    [_imageview setUpdateInterval:0.05];     // (Optional) interval of refresh
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
