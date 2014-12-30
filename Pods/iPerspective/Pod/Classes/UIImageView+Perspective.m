@@ -8,6 +8,8 @@
 
 #import "UIImageView+Perspective.h"
 
+#import <CoreMotion/CoreMotion.h>
+
 #define AMPLITUDE 20
 #define LIMIT_ANGLE 2
 
@@ -19,7 +21,7 @@
  *  @param intervalValue time in miliseconde
  *  @param motionManager motion manager (AppDelegate)
  */
-- (void)startUpdatesWithValue:(NSTimeInterval)intervalValue manager:(CMMotionManager*)motionManager;
+- (void)startUpdate:(NSTimeInterval)intervalValue manager:(CMMotionManager*)motionManager;
 {
     CMMotionManager *mManager = motionManager;
     CGRect initialFrame = self.frame;
@@ -43,6 +45,18 @@
             }
         }];
     }
+}
+
+/**
+ *  Start update display perspective with interval value of time (float).
+ *
+ *  @deprecated
+ *  @param intervalValue time in miliseconde
+ *  @param motionManager motion manager (AppDelegate)
+ */
+- (void)startUpdatesWithValue:(NSTimeInterval)intervalValue manager:(CMMotionManager*)motionManager;
+{
+    [self startUpdate:intervalValue manager:motionManager];
 }
 
 /**

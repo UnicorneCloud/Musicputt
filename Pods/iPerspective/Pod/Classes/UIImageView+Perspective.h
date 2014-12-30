@@ -8,13 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-#import <CoreMotion/CoreMotion.h>
+@class CMMotionManager;
 
 @interface UIImageView (Perspective)
 
 /**
  *  Start update display perspective with interval value of time (float).
  *
+ *  @param intervalValue time in miliseconde
+ *  @param motionManager motion manager (AppDelegate)
+ */
+- (void)startUpdate:(NSTimeInterval)intervalValue manager:(CMMotionManager*)motionManager;
+
+
+
+/**
+ *  Start update display perspective with interval value of time (float).
+ *
+ *  @deprecated
  *  @param intervalValue time in miliseconde
  *  @param motionManager motion manager (AppDelegate)
  */

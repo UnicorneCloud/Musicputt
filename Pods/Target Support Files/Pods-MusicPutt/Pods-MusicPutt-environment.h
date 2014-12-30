@@ -16,7 +16,7 @@
 #define COCOAPODS_POD_AVAILABLE_AMWaveTransition
 #define COCOAPODS_VERSION_MAJOR_AMWaveTransition 0
 #define COCOAPODS_VERSION_MINOR_AMWaveTransition 5
-#define COCOAPODS_VERSION_PATCH_AMWaveTransition 0
+#define COCOAPODS_VERSION_PATCH_AMWaveTransition 5
 
 // BFNavigationBarDrawer
 #define COCOAPODS_POD_AVAILABLE_BFNavigationBarDrawer
@@ -33,8 +33,8 @@
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
-#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 3
-#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 2
+#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 5
+#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 0
 
 // ISO8601DateFormatterValueTransformer
 #define COCOAPODS_POD_AVAILABLE_ISO8601DateFormatterValueTransformer
@@ -64,7 +64,7 @@
 #define COCOAPODS_POD_AVAILABLE_REFrostedViewController
 #define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
 #define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
-#define COCOAPODS_VERSION_PATCH_REFrostedViewController 6
+#define COCOAPODS_VERSION_PATCH_REFrostedViewController 7
 
 // RKValueTransformers
 #define COCOAPODS_POD_AVAILABLE_RKValueTransformers
@@ -76,37 +76,37 @@
 #define COCOAPODS_POD_AVAILABLE_RestKit
 #define COCOAPODS_VERSION_MAJOR_RestKit 0
 #define COCOAPODS_VERSION_MINOR_RestKit 23
-#define COCOAPODS_VERSION_PATCH_RestKit 1
+#define COCOAPODS_VERSION_PATCH_RestKit 3
 
 // RestKit/Core
 #define COCOAPODS_POD_AVAILABLE_RestKit_Core
 #define COCOAPODS_VERSION_MAJOR_RestKit_Core 0
 #define COCOAPODS_VERSION_MINOR_RestKit_Core 23
-#define COCOAPODS_VERSION_PATCH_RestKit_Core 1
+#define COCOAPODS_VERSION_PATCH_RestKit_Core 3
 
 // RestKit/CoreData
 #define COCOAPODS_POD_AVAILABLE_RestKit_CoreData
 #define COCOAPODS_VERSION_MAJOR_RestKit_CoreData 0
 #define COCOAPODS_VERSION_MINOR_RestKit_CoreData 23
-#define COCOAPODS_VERSION_PATCH_RestKit_CoreData 1
+#define COCOAPODS_VERSION_PATCH_RestKit_CoreData 3
 
 // RestKit/Network
 #define COCOAPODS_POD_AVAILABLE_RestKit_Network
 #define COCOAPODS_VERSION_MAJOR_RestKit_Network 0
 #define COCOAPODS_VERSION_MINOR_RestKit_Network 23
-#define COCOAPODS_VERSION_PATCH_RestKit_Network 1
+#define COCOAPODS_VERSION_PATCH_RestKit_Network 3
 
 // RestKit/ObjectMapping
 #define COCOAPODS_POD_AVAILABLE_RestKit_ObjectMapping
 #define COCOAPODS_VERSION_MAJOR_RestKit_ObjectMapping 0
 #define COCOAPODS_VERSION_MINOR_RestKit_ObjectMapping 23
-#define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 1
+#define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 3
 
 // RestKit/Support
 #define COCOAPODS_POD_AVAILABLE_RestKit_Support
 #define COCOAPODS_VERSION_MAJOR_RestKit_Support 0
 #define COCOAPODS_VERSION_MINOR_RestKit_Support 23
-#define COCOAPODS_VERSION_PATCH_RestKit_Support 1
+#define COCOAPODS_VERSION_PATCH_RestKit_Support 3
 
 // SOCKit
 #define COCOAPODS_POD_AVAILABLE_SOCKit
@@ -129,7 +129,7 @@
 // iPerspective
 #define COCOAPODS_POD_AVAILABLE_iPerspective
 #define COCOAPODS_VERSION_MAJOR_iPerspective 0
-#define COCOAPODS_VERSION_MINOR_iPerspective 1
+#define COCOAPODS_VERSION_MINOR_iPerspective 2
 #define COCOAPODS_VERSION_PATCH_iPerspective 0
 
 // iTunesApi

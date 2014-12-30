@@ -11,277 +11,19 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import <objc/runtime.h>
 
-#pragma mark - DZNEmptyDataSetView
-
 @interface DZNEmptyDataSetView : UIView
+
+@property (nonatomic, readonly) UIView *contentView;
 @property (nonatomic, readonly) UILabel *titleLabel;
 @property (nonatomic, readonly) UILabel *detailLabel;
 @property (nonatomic, readonly) UIImageView *imageView;
 @property (nonatomic, readonly) UIButton *button;
-@property (nonatomic, readonly) UIView *contentView;
 @property (nonatomic, strong) UIView *customView;
-@property (nonatomic, assign) UIScrollView *hostView;
 
 @property (nonatomic, assign) CGPoint offset;
 @property (nonatomic, assign) CGFloat verticalSpace;
-@property (nonatomic, getter = didCenterToSuperview) BOOL centerToSuperview;
 
-- (void)cleanContent;
-
-@end
-
-@implementation DZNEmptyDataSetView
-@synthesize contentView = _contentView;
-@synthesize titleLabel = _titleLabel, detailLabel = _detailLabel, imageView = _imageView, button = _button;
-
-- (instancetype)init
-{
-    self =  [super init];
-    if (self) {
-        [self addSubview:self.contentView];
-    }
-    return self;
-}
-
-- (void)didMoveToSuperview
-{
-    self.frame = self.superview.bounds;
-    
-    [UIView animateWithDuration:0.25
-                     animations:^{_contentView.alpha = 1.0;}
-                     completion:NULL];
-}
-
-
-#pragma mark - Getter Methods
-
-- (UIView *)contentView
-{
-    if (!_contentView)
-    {
-        _contentView = [UIView new];
-        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        _contentView.backgroundColor = [UIColor clearColor];
-        _contentView.userInteractionEnabled = YES;
-        _contentView.alpha = 0;
-    }
-    return _contentView;
-}
-
-- (UILabel *)titleLabel
-{
-    if (!_titleLabel)
-    {
-        _titleLabel = [UILabel new];
-        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.backgroundColor = [UIColor clearColor];
-        
-        _titleLabel.font = [UIFont systemFontOfSize:27.0];
-        _titleLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.numberOfLines = 1;
-        
-        [_contentView addSubview:_titleLabel];
-    }
-    return _titleLabel;
-}
-
-- (UILabel *)detailLabel
-{
-    if (!_detailLabel)
-    {
-        _detailLabel = [UILabel new];
-        _detailLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _detailLabel.backgroundColor = [UIColor clearColor];
-        
-        _detailLabel.font = [UIFont systemFontOfSize:17.0];
-        _detailLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
-        _detailLabel.textAlignment = NSTextAlignmentCenter;
-        _detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _detailLabel.numberOfLines = 0;
-        
-        [_contentView addSubview:_detailLabel];
-    }
-    return _detailLabel;
-}
-
-- (UIImageView *)imageView
-{
-    if (!_imageView)
-    {
-        _imageView = [UIImageView new];
-        _imageView.translatesAutoresizingMaskIntoConstraints = NO;
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
-        _imageView.userInteractionEnabled = NO;
-        
-        [_contentView addSubview:_imageView];
-    }
-    return _imageView;
-}
-
-- (UIButton *)button
-{
-    if (!_button)
-    {
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.translatesAutoresizingMaskIntoConstraints = NO;
-        _button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        _button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        _button.adjustsImageWhenHighlighted = YES;
-        _button.userInteractionEnabled = YES;
-        
-        [_button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [_contentView addSubview:_button];
-    }
-    return _button;
-}
-
-
-#pragma mark - Setter Methods
-
-- (void)setCustomView:(UIView *)view
-{
-    if (_customView) {
-        [_customView removeFromSuperview];
-        _customView = nil;
-    }
-    
-    if (!view) {
-        return;
-    }
-    
-    [self cleanContent];
-    
-    _customView = view;
-    _customView.translatesAutoresizingMaskIntoConstraints = !CGRectIsEmpty(view.frame);
-    
-    [_contentView addSubview:_customView];
-}
-
-
-#pragma mark - Action Methods
-
-- (void)didTapButton:(id)sender
-{
-    SEL selector = NSSelectorFromString(@"dzn_didTapDataButton:");
-    [self.hostView performSelector:selector withObject:sender afterDelay:0.0f];
-}
-
-- (void)cleanContent
-{
-    [_titleLabel removeFromSuperview];
-    [_detailLabel removeFromSuperview];
-    [_imageView removeFromSuperview];
-    [_button removeFromSuperview];
-    [_customView removeFromSuperview];
-    
-    _titleLabel = nil;
-    _detailLabel = nil;
-    _imageView = nil;
-    _button = nil;
-    _customView = nil;
-}
-
-
-#pragma mark - UIView Constraints & Layout Methods
-
-- (void)updateConstraintsIfNeeded
-{
-    [super updateConstraintsIfNeeded];
-}
-
-- (void)updateConstraints
-{
-    [super updateConstraints];
-    
-    if (_contentView.constraints.count > 0) {
-        [_contentView removeConstraints:_contentView.constraints];
-    }
-    
-    NSMutableDictionary *views = [NSMutableDictionary dictionaryWithDictionary:NSDictionaryOfVariableBindings(self,_contentView)];
-    
-    if (!self.didCenterToSuperview) {
-        self.centerToSuperview = YES;
-        
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[self]-(<=0)-[_contentView]"
-                                                                     options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-        
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[self]-(<=0)-[_contentView]"
-                                                                     options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
-    }
-    
-    if (!CGPointEqualToPoint(self.offset, CGPointZero) && self.constraints.count == 4) {
-        
-        NSLayoutConstraint *hConstraint = self.constraints[3];
-        hConstraint.constant = self.offset.x*-1;
-        
-        NSLayoutConstraint *vConstraint = self.constraints[1];
-        vConstraint.constant = self.offset.y*-1;
-    }
-    
-    if (_customView) {
-        if (_customView) [views setObject:_customView forKey:@"_customView"];
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_customView]|" options:0 metrics:nil views:views]];
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_customView]|" options:0 metrics:nil views:views]];
-        return;
-    }
-    
-    CGFloat width = (self.frame.size.width > 0) ? self.frame.size.width : [UIScreen mainScreen].bounds.size.width;
-    
-    NSInteger multiplier = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 16 : 4;
-    NSNumber *padding = @(roundf(width/multiplier));
-    NSNumber *imgWidth = @(roundf(_imageView.image.size.width));
-    NSNumber *imgHeight = @(roundf(_imageView.image.size.height));
-    NSNumber *trailing = @(roundf((width-[imgWidth floatValue])/2.0));
-    
-    NSDictionary *metrics = NSDictionaryOfVariableBindings(padding,trailing,imgWidth,imgHeight);
-    
-    if (_titleLabel.superview) {
-        [views setObject:_titleLabel forKey:@"_titleLabel"];
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_titleLabel]-padding-|"
-                                                                             options:0 metrics:metrics views:views]];
-    }
-    
-    if (_detailLabel.superview) {
-        [views setObject:_detailLabel forKey:@"_detailLabel"];
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_detailLabel]-padding-|"
-                                                                             options:0 metrics:metrics views:views]];
-    }
-    
-    if (_imageView) {
-        [views setObject:_imageView forKey:@"_imageView"];
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-trailing-[_imageView(imgWidth)]-trailing-|"
-                                                                             options:0 metrics:metrics views:views]];
-    }
-    
-    if (_button) {
-        [views setObject:_button forKey:@"_button"];
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_button]-padding-|"
-                                                                             options:0 metrics:metrics views:views]];
-    }
-    
-    NSMutableString *format = [NSMutableString new];
-    NSMutableArray *subviews = [NSMutableArray new];
-    
-    if (_imageView.image) [subviews addObject:@"[_imageView(imgHeight)]"];
-    if (_titleLabel.attributedText.string.length > 0) [subviews addObject:@"[_titleLabel]"];
-    if (_detailLabel.attributedText.string.length > 0) [subviews addObject:@"[_detailLabel]"];
-    if ([_button attributedTitleForState:UIControlStateNormal].string.length > 0) [subviews addObject:@"[_button]"];
-    
-    [subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [format appendString:obj];
-        if (idx < subviews.count-1) {
-            if (_verticalSpace > 0) [format appendFormat:@"-%.f-", _verticalSpace];
-            else [format appendString:@"-11-"];
-        }
-    }];
-    
-    if (format.length > 0) {
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|%@|", format]
-                                                                             options:0 metrics:metrics views:views]];
-    }
-}
+- (void)removeAllSubviews;
 
 @end
 
@@ -297,7 +39,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 
 @implementation UIScrollView (DZNEmptyDataSet)
 
-#pragma mark - Getter Methods
+#pragma mark - Getters (Public)
 
 - (id<DZNEmptyDataSetSource>)emptyDataSetSource
 {
@@ -309,16 +51,24 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     return objc_getAssociatedObject(self, kEmptyDataSetDelegate);
 }
 
+- (BOOL)isEmptyDataSetVisible
+{
+    UIView *view = objc_getAssociatedObject(self, kEmptyDataSetView);
+    return view ? !view.hidden : NO;
+}
+
+
+#pragma mark - Getters (Private)
+
 - (DZNEmptyDataSetView *)emptyDataSetView
 {
     DZNEmptyDataSetView *view = objc_getAssociatedObject(self, kEmptyDataSetView);
+    
     if (!view)
     {
-        view = [[DZNEmptyDataSetView alloc] init];
-        view.hostView = self;
+        view = [DZNEmptyDataSetView new];
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         view.userInteractionEnabled = YES;
-        view.backgroundColor = nil;
         view.hidden = YES;
         
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dzn_didTapContentView:)];
@@ -330,15 +80,10 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     return view;
 }
 
-- (BOOL)isEmptyDataSetVisible
-{
-    UIView *view = objc_getAssociatedObject(self, kEmptyDataSetView);
-    return !view.hidden;
-}
-
 - (BOOL)dzn_canDisplay
 {
-    if ([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]]) {
+    if ([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]] || [self isKindOfClass:[UIScrollView class]])
+    {
         id source = self.emptyDataSetSource;
         
         if (source && [source conformsToProtocol:@protocol(DZNEmptyDataSetSource)]) {
@@ -349,102 +94,6 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         }
     }
     return NO;
-}
-
-- (BOOL)dzn_shouldDisplay
-{
-    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetShouldDisplay:)]) {
-        return [self.emptyDataSetDelegate emptyDataSetShouldDisplay:self];
-    }
-    return YES;
-}
-
-- (BOOL)dzn_isTouchAllowed
-{
-    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetShouldAllowTouch:)]) {
-        return [self.emptyDataSetDelegate emptyDataSetShouldAllowTouch:self];
-    }
-    return YES;
-}
-
-- (BOOL)dzn_isScrollAllowed
-{
-    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetShouldAllowScroll:)]) {
-        return [self.emptyDataSetDelegate emptyDataSetShouldAllowScroll:self];
-    }
-    return NO;
-}
-
-- (UIColor *)dzn_dataSetBackgroundColor
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(backgroundColorForEmptyDataSet:)]) {
-        return [self.emptyDataSetSource backgroundColorForEmptyDataSet:self];
-    }
-    return [UIColor clearColor];
-}
-
-- (NSAttributedString *)dzn_titleLabelText
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(titleForEmptyDataSet:)]) {
-        return [self.emptyDataSetSource titleForEmptyDataSet:self];
-    }
-    return nil;
-}
-
-- (NSAttributedString *)dzn_detailLabelText
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(descriptionForEmptyDataSet:)]) {
-        return [self.emptyDataSetSource descriptionForEmptyDataSet:self];
-    }
-    return nil;
-}
-
-- (NSAttributedString *)dzn_buttonTitleForState:(UIControlState)state
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(buttonTitleForEmptyDataSet:forState:)]) {
-        return [self.emptyDataSetSource buttonTitleForEmptyDataSet:self forState:state];
-    }
-    return nil;
-}
-
-- (UIImage *)dzn_buttonBackgroundImageForState:(UIControlState)state
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(buttonBackgroundImageForEmptyDataSet:forState:)]) {
-        return [self.emptyDataSetSource buttonBackgroundImageForEmptyDataSet:self forState:state];
-    }
-    return nil;
-}
-
-- (UIImage *)dzn_image
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(imageForEmptyDataSet:)]) {
-        return [self.emptyDataSetSource imageForEmptyDataSet:self];
-    }
-    return nil;
-}
-
-- (CGPoint)dzn_offset
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(offsetForEmptyDataSet:)]) {
-        return [self.emptyDataSetSource offsetForEmptyDataSet:self];
-    }
-    return CGPointZero;
-}
-
-- (CGFloat)dzn_verticalSpace
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(spaceHeightForEmptyDataSet:)]) {
-        return [self.emptyDataSetSource spaceHeightForEmptyDataSet:self];
-    }
-    return 0.0;
-}
-
-- (UIView *)dzn_customView
-{
-    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(customViewForEmptyDataSet:)]) {
-        return [self.emptyDataSetSource customViewForEmptyDataSet:self];
-    }
-    return nil;
 }
 
 - (NSInteger)dzn_itemsCount
@@ -488,10 +137,172 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 }
 
 
-#pragma mark - Setter Methods
+#pragma mark - Data Source Getters
+
+- (NSAttributedString *)dzn_titleLabelText
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(titleForEmptyDataSet:)]) {
+        NSAttributedString *string = [self.emptyDataSetSource titleForEmptyDataSet:self];
+        if (string) NSAssert([string isKindOfClass:[NSAttributedString class]], @"You must return a valid NSAttributedString object -titleForEmptyDataSet:");
+        return string;
+    }
+    return nil;
+}
+
+- (NSAttributedString *)dzn_detailLabelText
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(descriptionForEmptyDataSet:)]) {
+        NSAttributedString *string = [self.emptyDataSetSource descriptionForEmptyDataSet:self];
+        if (string) NSAssert([string isKindOfClass:[NSAttributedString class]], @"You must return a valid NSAttributedString object -descriptionForEmptyDataSet:");
+        return string;
+    }
+    return nil;
+}
+
+- (UIImage *)dzn_image
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(imageForEmptyDataSet:)]) {
+        UIImage *image = [self.emptyDataSetSource imageForEmptyDataSet:self];
+        if (image) NSAssert([image isKindOfClass:[UIImage class]], @"You must return a valid UIImage object for -imageForEmptyDataSet:");
+        return image;
+    }
+    return nil;
+}
+
+- (NSAttributedString *)dzn_buttonTitleForState:(UIControlState)state
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(buttonTitleForEmptyDataSet:forState:)]) {
+        NSAttributedString *string = [self.emptyDataSetSource buttonTitleForEmptyDataSet:self forState:state];
+        if (string) NSAssert([string isKindOfClass:[NSAttributedString class]], @"You must return a valid NSAttributedString object for -buttonTitleForEmptyDataSet:forState:");
+        return string;
+    }
+    return nil;
+}
+
+- (UIImage *)dzn_buttonBackgroundImageForState:(UIControlState)state
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(buttonBackgroundImageForEmptyDataSet:forState:)]) {
+        UIImage *image = [self.emptyDataSetSource buttonBackgroundImageForEmptyDataSet:self forState:state];
+        if (image) NSAssert([image isKindOfClass:[UIImage class]], @"You must return a valid UIImage object for -buttonBackgroundImageForEmptyDataSet:forState:");
+        return image;
+    }
+    return nil;
+}
+
+- (UIColor *)dzn_dataSetBackgroundColor
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(backgroundColorForEmptyDataSet:)]) {
+        UIColor *color = [self.emptyDataSetSource backgroundColorForEmptyDataSet:self];
+        if (color) NSAssert([color isKindOfClass:[UIColor class]], @"You must return a valid UIColor object -backgroundColorForEmptyDataSet:");
+        return color;
+    }
+    return [UIColor clearColor];
+}
+
+- (UIView *)dzn_customView
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(customViewForEmptyDataSet:)]) {
+        UIView *view = [self.emptyDataSetSource customViewForEmptyDataSet:self];
+        if (view) NSAssert([view isKindOfClass:[UIView class]], @"You must return a valid UIView object for -customViewForEmptyDataSet:");
+        return view;
+    }
+    return nil;
+}
+
+- (CGPoint)dzn_offset
+{
+    CGFloat top = self.contentInset.top / 2.0;
+    CGFloat left = self.contentInset.left / 2.0;
+    CGFloat bottom = self.contentInset.bottom / 2.0;
+    CGFloat right = self.contentInset.right / 2.0;
+    
+    // Honors the scrollView's contentInset
+    CGPoint offset = CGPointMake(left-right, top-bottom);
+    
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(offsetForEmptyDataSet:)]) {
+        CGPoint customOffset = [self.emptyDataSetSource offsetForEmptyDataSet:self];
+        offset = CGPointMake(offset.x + customOffset.x, offset.y + customOffset.y);
+    }
+    
+    return offset;
+}
+
+- (CGFloat)dzn_verticalSpace
+{
+    if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(spaceHeightForEmptyDataSet:)]) {
+        return [self.emptyDataSetSource spaceHeightForEmptyDataSet:self];
+    }
+    return 0.0;
+}
+
+
+#pragma mark - Delegate Getters & Events (Private)
+
+- (BOOL)dzn_shouldDisplay
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetShouldDisplay:)]) {
+        return [self.emptyDataSetDelegate emptyDataSetShouldDisplay:self];
+    }
+    return YES;
+}
+
+- (BOOL)dzn_isTouchAllowed
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetShouldAllowTouch:)]) {
+        return [self.emptyDataSetDelegate emptyDataSetShouldAllowTouch:self];
+    }
+    return YES;
+}
+
+- (BOOL)dzn_isScrollAllowed
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetShouldAllowScroll:)]) {
+        return [self.emptyDataSetDelegate emptyDataSetShouldAllowScroll:self];
+    }
+    return NO;
+}
+
+- (void)dzn_willWillAppear
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetWillAppear:)]) {
+        [self.emptyDataSetDelegate emptyDataSetWillAppear:self];
+    }
+}
+
+- (void)dzn_willDisappear
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetWillDisappear:)]) {
+        [self.emptyDataSetDelegate emptyDataSetWillDisappear:self];
+    }
+}
+
+- (void)dzn_didTapContentView:(id)sender
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetDidTapView:)]) {
+        [self.emptyDataSetDelegate emptyDataSetDidTapView:self];
+    }
+}
+
+- (void)dzn_didTapDataButton:(id)sender
+{
+    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetDidTapButton:)]) {
+        [self.emptyDataSetDelegate emptyDataSetDidTapButton:self];
+    }
+}
+
+
+#pragma mark - Setters (Public)
 
 - (void)setEmptyDataSetSource:(id<DZNEmptyDataSetSource>)source
 {
+    // Registers for device orientation changes
+    if (source && !self.emptyDataSetSource) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDidChangeOrientation:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    }
+    else if (!source && self.emptyDataSetSource) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    }
+    
     objc_setAssociatedObject(self, kEmptyDataSetSource, source, OBJC_ASSOCIATION_ASSIGN);
     
     if (![self dzn_canDisplay]) {
@@ -516,27 +327,24 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     }
 }
 
+
+#pragma mark - Setters (Private)
+
 - (void)setEmptyDataSetView:(DZNEmptyDataSetView *)view
 {
     objc_setAssociatedObject(self, kEmptyDataSetView, view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
-#pragma mark - Action Methods
+#pragma mark - Reload APIs (Public)
 
-- (void)dzn_didTapContentView:(id)sender
+- (void)reloadEmptyDataSet
 {
-    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetDidTapView:)]) {
-        [self.emptyDataSetDelegate emptyDataSetDidTapView:self];
-    }
+    [self dzn_reloadEmptyDataSet];
 }
 
-- (void)dzn_didTapDataButton:(id)sender
-{
-    if (self.emptyDataSetDelegate && [self.emptyDataSetDelegate respondsToSelector:@selector(emptyDataSetDidTapButton:)]) {
-        [self.emptyDataSetDelegate emptyDataSetDidTapButton:self];
-    }
-}
+
+#pragma mark - Reload APIs (Private)
 
 - (void)dzn_reloadEmptyDataSet
 {
@@ -546,23 +354,31 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     
     if ([self dzn_shouldDisplay] && [self dzn_itemsCount] == 0)
     {
+        // Notifies that the empty dataset view will appear
+        [self dzn_willWillAppear];
+        
         DZNEmptyDataSetView *view = self.emptyDataSetView;
         UIView *customView = [self dzn_customView];
         
         if (!view.superview) {
-            NSInteger idx = (self.subviews.count > 0) ? 1 : 0;
-            [self insertSubview:view atIndex:idx];
+
+            // Send the view to back, in case a header and/or footer is present
+            if ([self isKindOfClass:[UITableView class]] && self.subviews.count > 1) {
+                [self insertSubview:view atIndex:1];
+            }
+            else {
+                [self addSubview:view];
+            }
         }
         
-        [view updateConstraintsIfNeeded];
+        // Moves all its subviews
+        [view removeAllSubviews];
         
         // If a non-nil custom view is available, let's configure it instead
         if (customView) {
             view.customView = customView;
         }
         else {
-            view.customView = nil;
-            
             // Configure labels
             view.detailLabel.attributedText = [self dzn_detailLabelText];
             view.titleLabel.attributedText = [self dzn_titleLabelText];
@@ -575,11 +391,14 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
             [view.button setAttributedTitle:[self dzn_buttonTitleForState:1] forState:1];
             [view.button setBackgroundImage:[self dzn_buttonBackgroundImageForState:0] forState:0];
             [view.button setBackgroundImage:[self dzn_buttonBackgroundImageForState:1] forState:1];
+            [view.button setUserInteractionEnabled:[self dzn_isTouchAllowed]];
 
-            // Configure offset and spacing
-            view.offset = [self dzn_offset];
+            // Configure spacing
             view.verticalSpace = [self dzn_verticalSpace];
         }
+        
+        // Configure Offset
+        view.offset = [self dzn_offset];
         
         // Configure the empty dataset view
         view.backgroundColor = [self dzn_dataSetBackgroundColor];
@@ -598,8 +417,11 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 
 - (void)dzn_invalidate
 {
+    // Notifies that the empty dataset view will disappear
+    [self dzn_willDisappear];
+
     if (self.emptyDataSetView) {
-        [self.emptyDataSetView cleanContent];
+        [self.emptyDataSetView removeAllSubviews];
         [self.emptyDataSetView removeFromSuperview];
         
         [self setEmptyDataSetView:nil];
@@ -609,7 +431,19 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 }
 
 
-#pragma mark - ReloadData Method Swizzling
+
+#pragma mark - Notification Events
+
+- (void)deviceDidChangeOrientation:(NSNotification *)notification
+{
+    if (self.isEmptyDataSetVisible) {
+        [self.emptyDataSetView updateConstraints];
+        [self.emptyDataSetView layoutIfNeeded];
+    }
+}
+
+
+#pragma mark - Method Swizzling
 
 static NSMutableDictionary *_impLookupTable;
 static NSString *const DZNSwizzleInfoPointerKey = @"pointer";
@@ -622,23 +456,24 @@ static NSString *const DZNSwizzleInfoSelectorKey = @"selector";
 void dzn_original_implementation(id self, SEL _cmd)
 {
     // Fetch original implementation from lookup table
-    NSString *key = _implementationKey(self, _cmd);
+    NSString *key = dzn_implementationKey(self, _cmd);
     
     NSDictionary *swizzleInfo = [_impLookupTable objectForKey:key];
     NSValue *impValue = [swizzleInfo valueForKey:DZNSwizzleInfoPointerKey];
     
     IMP impPointer = [impValue pointerValue];
     
+    // We then inject the additional implementation for reloading the empty dataset
+    // Doing it before calling the original implementation does update the 'isEmptyDataSetVisible' flag on time.
+    [self dzn_reloadEmptyDataSet];
+
     // If found, call original implementation
     if (impPointer) {
         ((void(*)(id,SEL))impPointer)(self,_cmd);
     }
-    
-    // We then inject the additional implementation for reloading the empty dataset
-    [self dzn_reloadEmptyDataSet];
 }
 
-NSString *_implementationKey(id target, SEL selector)
+NSString *dzn_implementationKey(id target, SEL selector)
 {
     if (!target || !selector) {
         return nil;
@@ -680,7 +515,7 @@ NSString *_implementationKey(id target, SEL selector)
         }
     }
     
-    NSString *key = _implementationKey(self, selector);
+    NSString *key = dzn_implementationKey(self, selector);
     NSValue *impValue = [[_impLookupTable objectForKey:key] valueForKey:DZNSwizzleInfoPointerKey];
     
     // If the implementation for this class already exist, skip!!
@@ -701,7 +536,7 @@ NSString *_implementationKey(id target, SEL selector)
 }
 
 
-#pragma mark - UIGestureRecognizerDelegate methods
+#pragma mark - UIGestureRecognizerDelegate Methods
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -710,6 +545,314 @@ NSString *_implementationKey(id target, SEL selector)
     }
     
     return [super gestureRecognizerShouldBegin:gestureRecognizer];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+
+@end
+
+
+#pragma mark - DZNEmptyDataSetView
+
+@interface DZNEmptyDataSetView ()
+@end
+
+@implementation DZNEmptyDataSetView
+@synthesize contentView = _contentView;
+@synthesize titleLabel = _titleLabel, detailLabel = _detailLabel, imageView = _imageView, button = _button;
+
+#pragma mark - Initialization Methods
+
+- (instancetype)init
+{
+    self =  [super init];
+    if (self) {
+        [self addSubview:self.contentView];
+    }
+    return self;
+}
+
+- (void)didMoveToSuperview
+{
+    self.frame = self.superview.bounds;
+    
+    [UIView animateWithDuration:0.25
+                     animations:^{_contentView.alpha = 1.0;}
+                     completion:NULL];
+}
+
+#pragma mark - Getters
+
+- (UIView *)contentView
+{
+    if (!_contentView)
+    {
+        _contentView = [UIView new];
+        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
+        _contentView.backgroundColor = [UIColor clearColor];
+        _contentView.userInteractionEnabled = YES;
+        _contentView.alpha = 0;
+    }
+    return _contentView;
+}
+
+- (UIImageView *)imageView
+{
+    if (!_imageView)
+    {
+        _imageView = [UIImageView new];
+        _imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        _imageView.backgroundColor = [UIColor clearColor];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        _imageView.userInteractionEnabled = NO;
+        _imageView.accessibilityLabel = @"empty set background image";
+
+        [_contentView addSubview:_imageView];
+    }
+    return _imageView;
+}
+
+- (UILabel *)titleLabel
+{
+    if (!_titleLabel)
+    {
+        _titleLabel = [UILabel new];
+        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _titleLabel.backgroundColor = [UIColor clearColor];
+        
+        _titleLabel.font = [UIFont systemFontOfSize:27.0];
+        _titleLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _titleLabel.numberOfLines = 2;
+        _titleLabel.accessibilityLabel = @"empty set title";
+        
+        [_contentView addSubview:_titleLabel];
+    }
+    return _titleLabel;
+}
+
+- (UILabel *)detailLabel
+{
+    if (!_detailLabel)
+    {
+        _detailLabel = [UILabel new];
+        _detailLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _detailLabel.backgroundColor = [UIColor clearColor];
+        
+        _detailLabel.font = [UIFont systemFontOfSize:17.0];
+        _detailLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+        _detailLabel.textAlignment = NSTextAlignmentCenter;
+        _detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _detailLabel.numberOfLines = 0;
+        _detailLabel.accessibilityLabel = @"empty set detail label";
+        
+        [_contentView addSubview:_detailLabel];
+    }
+    return _detailLabel;
+}
+
+- (UIButton *)button
+{
+    if (!_button)
+    {
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button.translatesAutoresizingMaskIntoConstraints = NO;
+        _button.backgroundColor = [UIColor clearColor];
+        _button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        _button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        _button.accessibilityLabel = @"empty set button";
+
+        [_button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_contentView addSubview:_button];
+    }
+    return _button;
+}
+
+- (BOOL)canShowImage {
+    return (_imageView.image && _imageView.superview);
+}
+
+- (BOOL)canShowTitle {
+    return (_titleLabel.attributedText.string.length > 0 && _titleLabel.superview);
+}
+
+- (BOOL)canShowDetail {
+    return (_detailLabel.attributedText.string.length > 0 && _detailLabel.superview);
+}
+
+- (BOOL)canShowButton {
+    return ([_button attributedTitleForState:UIControlStateNormal].string.length > 0 && _button.superview);
+}
+
+
+#pragma mark - Setters
+
+- (void)setCustomView:(UIView *)view
+{
+    if (_customView) {
+        [_customView removeFromSuperview];
+        _customView = nil;
+    }
+    
+    if (!view) {
+        return;
+    }
+    
+    _customView = view;
+    _customView.translatesAutoresizingMaskIntoConstraints = !CGRectIsEmpty(view.frame);
+    
+    [_contentView addSubview:_customView];
+}
+
+
+#pragma mark - Action Methods
+
+- (void)didTapButton:(id)sender
+{
+    SEL selector = NSSelectorFromString(@"dzn_didTapDataButton:");
+    
+    if ([self.superview respondsToSelector:selector]) {
+        [self.superview performSelector:selector withObject:sender afterDelay:0.0f];
+    }
+}
+
+- (void)removeAllSubviews
+{
+    [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    _titleLabel = nil;
+    _detailLabel = nil;
+    _imageView = nil;
+    _button = nil;
+    _customView = nil;
+}
+
+- (void)removeAllConstraints
+{
+    [self removeConstraints:self.constraints];
+    [self.contentView removeConstraints:self.contentView.constraints];
+}
+
+
+#pragma mark - UIView Constraints & Layout Methods
+
+- (void)updateConstraintsIfNeeded
+{
+    [super updateConstraintsIfNeeded];
+}
+
+- (void)updateConstraints
+{
+    // Cleans up any constraints
+    [self removeAllConstraints];
+    
+    NSMutableDictionary *views = [NSMutableDictionary dictionary];
+    [views setObject:self forKey:@"self"];
+    [views setObject:self.contentView forKey:@"contentView"];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[self]-(<=0)-[contentView]"
+                                                                 options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[self]-(<=0)-[contentView]"
+                                                                 options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    
+    // If a custom offset is available, we modify the contentView's constraints constants
+    if (!CGPointEqualToPoint(self.offset, CGPointZero) && self.constraints.count == 4) {
+        NSLayoutConstraint *vConstraint = self.constraints[1];
+        NSLayoutConstraint *hConstraint = [self.constraints lastObject];
+        
+        // the values must be inverted to follow the up-bottom and left-right directions
+        vConstraint.constant = self.offset.y*-1;
+        hConstraint.constant = self.offset.x*-1;
+    }
+    
+    if (_customView) {
+        [views setObject:_customView forKey:@"customView"];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|" options:0 metrics:nil views:views]];
+        
+        // Skips from any further configuration
+        return [super updateConstraints];;
+    }
+    
+    CGFloat width = CGRectGetWidth(self.frame) ? : CGRectGetWidth([UIScreen mainScreen].bounds);
+    NSNumber *padding =  [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @20 : @(roundf(width/16.0));
+    NSNumber *imgWidth = @(roundf(_imageView.image.size.width));
+    NSNumber *imgHeight = @(roundf(_imageView.image.size.height));
+    NSNumber *trailing = @(roundf((width-[imgWidth floatValue])/2.0));
+    
+    NSDictionary *metrics = NSDictionaryOfVariableBindings(padding,trailing,imgWidth,imgHeight);
+    
+    // Since any element could be missing from displaying, we need to create a dynamic string format
+    NSMutableArray *verticalSubviews = [NSMutableArray new];
+    
+    // Assign the image view's horizontal constraints
+    if (_imageView.superview) {
+        [views setObject:_imageView forKey:@"imageView"];
+        [verticalSubviews addObject:@"[imageView(imgHeight)]"];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-trailing-[imageView(imgWidth)]-trailing-|"
+                                                                                 options:0 metrics:metrics views:views]];
+    }
+    
+    // Assign the title label's horizontal constraints
+    if ([self canShowTitle]) {
+        [views setObject:_titleLabel forKey:@"titleLabel"];
+        [verticalSubviews addObject:@"[titleLabel]"];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[titleLabel]-padding-|"
+                                                                                 options:0 metrics:metrics views:views]];
+    }
+    // or removes from its superview
+    else {
+        [_titleLabel removeFromSuperview];
+        _titleLabel = nil;
+    }
+    
+    // Assign the detail label's horizontal constraints
+    if ([self canShowDetail]) {
+        [views setObject:_detailLabel forKey:@"detailLabel"];
+        [verticalSubviews addObject:@"[detailLabel]"];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[detailLabel]-padding-|"
+                                                                                 options:0 metrics:metrics views:views]];
+    }
+    // or removes from its superview
+    else {
+        [_detailLabel removeFromSuperview];
+        _detailLabel = nil;
+    }
+    
+    // Assign the button's horizontal constraints
+    if (_button.superview) {
+        [views setObject:_button forKey:@"button"];
+        [verticalSubviews addObject:@"[button]"];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[button]-padding-|"
+                                                                                 options:0 metrics:metrics views:views]];
+    }
+    // or removes from its superview
+    else {
+        [_button removeFromSuperview];
+        _button = nil;
+    }
+    
+
+    // Build the string format for the vertical constraints, adding a margin between each element. Default is 11.
+    NSString *verticalFormat = [verticalSubviews componentsJoinedByString:[NSString stringWithFormat:@"-%.f-", self.verticalSpace ?: 11]];
+    
+    // Assign the vertical constraints to the content view
+    if (verticalFormat.length > 0) {
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|%@|", verticalFormat]
+                                                                             options:0 metrics:metrics views:views]];
+    }
+    
+    [super updateConstraints];
 }
 
 @end

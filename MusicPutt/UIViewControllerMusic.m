@@ -15,7 +15,7 @@
 #import "UIViewControllerLyricsPage.h"
 #import "UIButton+Extensions.h"
 #import "UIImageViewArtwork.h"
-#import "UIImageView+Perspective.h"
+#import "UIImageViewPerspective.h"
 
 
 #import <AVFoundation/AVFoundation.h>
@@ -73,7 +73,7 @@
 /**
  *  Artwork of the current playing song.
  */
-@property (weak, nonatomic) IBOutlet UIImageView*       imageview;
+@property (weak, nonatomic) IBOutlet UIImageViewPerspective*       imageview;
 
 /**
  *  Page control to display page.
@@ -256,6 +256,13 @@
     // improve hittest for share button.
     [_share setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     
+    // initialize _imagePerspective
+    [_imageview setMotionManger:[[self.del mpdatamanager]sharedManager]]; // (Mandatory) set motion manager
+    
+    [_imageview setMaximumAmplitude:10.0];   // (Optional) maximum move of UIImageView
+    [_imageview setMaximumAngle:2.0];        // (OPtional) maximum angle managed
+    [_imageview setUpdateInterval:0.01];     // (Optional) interval of refresh
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
@@ -323,8 +330,8 @@
         
     });
     
-    // setup UIImageView+Perspective
-    [_imageview startUpdatesWithValue:0.01 manager:[[self.del mpdatamanager]sharedManager]];
+    // start motion tracking
+    [_imageview startUpdate];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -357,8 +364,8 @@
     
     [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:false];
     
-    // setup UIImageView+Perspective
-    [_imageview stopUpdateManager:[[self.del mpdatamanager]sharedManager]];
+    // stop motion tracking
+    [_imageview stopUpdate];
 }
 
 
