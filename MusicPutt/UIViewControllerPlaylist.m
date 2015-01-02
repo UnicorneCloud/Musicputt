@@ -60,13 +60,6 @@
     // setup tableview
     scrollView = _tableView;
     
-    // load musicputt playlist
-    musicputtPlaylists = [Playlist MR_findAll];
-    
-    // load query playlist
-    everything = [MPMediaQuery playlistsQuery];
-    itunesPlaylists = [everything collections];
-    
     // add playlist button
     UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"add"]
                                                                  style:UIBarButtonItemStylePlain
@@ -75,6 +68,20 @@
     [self.navigationItem setLeftBarButtonItem:menuItem];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // load musicputt playlist
+    musicputtPlaylists = [Playlist MR_findAll];
+    
+    // load query playlist
+    everything = [MPMediaQuery playlistsQuery];
+    itunesPlaylists = [everything collections];
+    
+    [self.tableView reloadData];
 }
 
 
@@ -127,6 +134,7 @@
         playlist.name = alertTextField.text;
         
         // reload table data to show new playlist
+        musicputtPlaylists = [Playlist MR_findAll];
         [self.tableView reloadData];
         
         // set current playlist

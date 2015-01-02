@@ -75,18 +75,17 @@
         toolbar.scrollView = self.tableView;
         
         // Add some buttons
-        UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
+        //UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
+        //UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
+        UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
         UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
-        UIBarButtonItem *button3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
-        UIBarButtonItem *button4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
-        UIBarButtonItem *button5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trash)];
+        UIBarButtonItem *button3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trash)];
         
-        toolbar.items = @[button1, button2, button3, button4, button5];
+        toolbar.items = @[button1, button2, button3/*, button4, button5*/];
         
         [toolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
     }
     
-             
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
@@ -101,6 +100,7 @@
     if (toolbar) {
         [toolbar hideAnimated:YES];
     }
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 - (void) add
