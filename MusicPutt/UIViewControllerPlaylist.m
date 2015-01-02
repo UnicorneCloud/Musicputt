@@ -10,13 +10,21 @@
 #import "UICurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 #import "UITableViewCellPlaylist.h"
+#import "Playlist.h"
+
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface UIViewControllerPlaylist () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
+// Identification of tableview section
+#define _SECTION_MUSICPUTT_PLAYLIST_    0
+#define _SECTION_ITUNES_PLAYLIST_       1
+
+
+@interface UIViewControllerPlaylist () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIAlertViewDelegate>
 {
     //CurrentPlayingToolBar*  currentPlayingToolBar;
     MPMediaQuery*           everything;             // result of current query
-    NSArray*                playlists;
+    NSArray*                itunesPlaylists;
+    NSArray*                musicputtPlaylists;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
@@ -50,9 +58,19 @@
     // setup tableview
     scrollView = _tableView;
     
-    // setup query playlist
+    // load musicputt playlist
+    musicputtPlaylists = [Playlist MR_findAll];
+    
+    // load query playlist
     everything = [MPMediaQuery playlistsQuery];
-    playlists = [everything collections];
+    itunesPlaylists = [everything collections];
+    
+    // add playlist button
+    UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"add"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(addPlaylist)];
+    [self.navigationItem setLeftBarButtonItem:menuItem];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -69,6 +87,28 @@
     
 }
 
+- (void) addPlaylist
+{
+    // enter new playlist name
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter playlist name:"
+                                                        message:@""
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Ok",
+                                                                nil] ;
+    alertView.tag = 2;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    UITextField * alertTextField = [alertView textFieldAtIndex:0];
+    NSLog(@"alerttextfiled - %@",alertTextField.text);
+    
+    // do whatever you want to do with this UITextField.
+}
+
 #pragma mark - AMWaveViewController
 
 - (NSArray*)visibleCells
@@ -79,16 +119,35 @@
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [playlists count];
+    if (section == _SECTION_MUSICPUTT_PLAYLIST_) {
+        return [musicputtPlaylists count];
+    }
+    else if (section == _SECTION_ITUNES_PLAYLIST_){
+        return [itunesPlaylists count];
+    }
+    return 0;
 }
 
 
 - (UITableViewCellPlaylist*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellPlaylist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylist"];
-    [cell setMediaItem: playlists[indexPath.row]];
+    
+    if (indexPath.section == _SECTION_MUSICPUTT_PLAYLIST_) {
+        [cell setMediaItem: musicputtPlaylists[indexPath.row]];
+    }
+    else if (indexPath.section == _SECTION_ITUNES_PLAYLIST_){
+        [cell setMediaItem: itunesPlaylists[indexPath.row]];
+    }
+    
     return cell;
 }
 
@@ -97,8 +156,6 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //MPMediaPlaylist* item = playlists[indexPath.row];
-    //[self.del mpdatamanager].currentPlaylist = item;
     return indexPath;
 }
 
