@@ -13,6 +13,7 @@
 
 @class MPMusicPlayerController;
 @class CMMotionManager;
+@class Playlist;
 
 /**
  * MPDataManager is the main application data manager. This class maintain all data for
@@ -32,9 +33,14 @@
 @property (strong, nonatomic) UICurrentPlayingToolBar*  currentPlayingToolbar;
 
 /**
- *  Current selected playlist select in the playlist navigation bar.
+ *  Current selected itunes playlist select in the playlist navigation bar.
  */
 @property (strong, nonatomic) MPMediaPlaylist* currentPlaylist;
+
+/**
+ *  Current selected musicputt playlist select in the playlist navigation bar.
+ */
+@property (strong, nonatomic) Playlist* currentMusicputtPlaylist;
 
 /**
  *  Current song list for the songlist navigation bar.

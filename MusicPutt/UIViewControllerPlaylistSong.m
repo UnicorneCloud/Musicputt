@@ -8,14 +8,17 @@
 
 #import "UIViewControllerPlaylistSong.h"
 #import "AppDelegate.h"
+#import "Playlist.h"
 #import "UITableViewCellPlaylistSong.h"
+#import <BFNavigationBarDrawer.h>
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface UIViewControllerPlaylistSong () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 {
-    //CurrentPlayingToolBar*  currentPlayingToolBar;
+    BOOL                    isMusicputtPlaylist;
     MPMediaQuery*           everything;             // result of current query
     NSArray*                songs;
+    BFNavigationBarDrawer*  toolbar;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
@@ -47,18 +50,42 @@
     // setup table view
     scrollView = self.tableView;
     
-    // setup title
-    [self setTitle:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyName]];
+    // init toolbar
+    toolbar = nil;
     
-    // query playlist songs
-    /*everything = [MPMediaQuery playlistsQuery];
-    MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyPersistentID]
-                                                                    forProperty:MPMediaPlaylistPropertyPersistentID
-                                                                    comparisonType:MPMediaPredicateComparisonEqualTo];
-   [everything addFilterPredicate:predicate];
-    songs = [everything items];
-    */
-    songs = [[[self.del mpdatamanager] currentPlaylist] items];
+    // load playlist
+    if ([[self.del mpdatamanager] currentPlaylist] != nil) {
+        // itunes playlist
+        [self setTitle:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyName]];
+        songs = [[[self.del mpdatamanager] currentPlaylist] items];
+        isMusicputtPlaylist = FALSE;
+    }
+    else if ([[self.del mpdatamanager] currentMusicputtPlaylist] != nil){
+        
+        // hide current playing song toolbar
+        [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:true];
+        
+        // musicputt playlist (it's permit to edit)
+        [self setTitle:[[[self.del mpdatamanager] currentMusicputtPlaylist] name]];
+        songs = [[[[self.del mpdatamanager] currentMusicputtPlaylist] items] allObjects];
+        isMusicputtPlaylist = TRUE;
+        
+        // display tool bar
+        toolbar = [[BFNavigationBarDrawer alloc] init];
+        toolbar.scrollView = self.tableView;
+        
+        // Add some buttons
+        UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
+        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
+        UIBarButtonItem *button3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
+        UIBarButtonItem *button4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
+        UIBarButtonItem *button5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trash)];
+        
+        toolbar.items = @[button1, button2, button3, button4, button5];
+        
+        [toolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+    }
+    
              
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -69,6 +96,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    if (toolbar) {
+        [toolbar hideAnimated:YES];
+    }
+}
+
+- (void) add
+{
+     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+- (void) edit
+{
+     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+- (void) trash
+{
+     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

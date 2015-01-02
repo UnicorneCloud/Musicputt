@@ -49,7 +49,16 @@
 
     // Configure the view for the selected state
     if (selected==true) {
-        [self.del mpdatamanager].currentPlaylist = itunesPlaylist;
+        
+        if (type == _ITUNES_PLAYLIST_) {
+            [self.del mpdatamanager].currentPlaylist = itunesPlaylist;
+            [self.del mpdatamanager].currentMusicputtPlaylist = nil;
+        }
+        else if (type == _MUSICPUTT_PLAYLIST_){
+            [self.del mpdatamanager].currentPlaylist = nil;
+            [self.del mpdatamanager].currentMusicputtPlaylist = musicputtPlaylist;
+        }
+        
     }
 }
 

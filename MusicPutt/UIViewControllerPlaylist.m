@@ -10,7 +10,9 @@
 #import "UICurrentPlayingToolBar.h"
 #import "AppDelegate.h"
 #import "UITableViewCellPlaylist.h"
+#import "UIViewControllerPlaylistSong.h"
 #import "Playlist.h"
+
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -101,12 +103,41 @@
     [alertView show];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     UITextField * alertTextField = [alertView textFieldAtIndex:0];
-    NSLog(@"alerttextfiled - %@",alertTextField.text);
     
-    // do whatever you want to do with this UITextField.
+    // check if playlist name already exist
+    NSArray* result = [Playlist MR_findByAttribute:@"name" withValue:alertTextField.text];
+    if (result.count>0) {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"This name is already use for a playlist!");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"This name is already use."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil,
+                                                                    nil] ;
+        [alertView show];
+    }
+    else{
+        // create playlist
+        Playlist* playlist = [Playlist MR_createEntity];
+        playlist.name = alertTextField.text;
+        
+        // reload table data to show new playlist
+        [self.tableView reloadData];
+        
+        // set current playlist
+        [self.del mpdatamanager].currentPlaylist = nil;
+        [self.del mpdatamanager].currentMusicputtPlaylist = playlist;
+        
+        // pop playlist songs
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewControllerPlaylistSong *playlistSongs = [sb instantiateViewControllerWithIdentifier:@"PlaylistSongs"];
+        [[self navigationController] pushViewController:playlistSongs animated:YES];
+    }
 }
 
 #pragma mark - AMWaveViewController
@@ -142,7 +173,7 @@
     UITableViewCellPlaylist* cell = [tableView dequeueReusableCellWithIdentifier:@"CellPlaylist"];
     
     if (indexPath.section == _SECTION_MUSICPUTT_PLAYLIST_) {
-        [cell setMediaItem: musicputtPlaylists[indexPath.row]];
+        [cell setPlaylistItem: musicputtPlaylists[indexPath.row]];
     }
     else if (indexPath.section == _SECTION_ITUNES_PLAYLIST_){
         [cell setMediaItem: itunesPlaylists[indexPath.row]];

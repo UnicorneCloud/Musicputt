@@ -999,7 +999,7 @@
         <!--Playlist title-->
         <scene sceneID="vo0-hP-2Mr">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="NPJ-YI-DcX" customClass="UIViewControllerPlaylistSong" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaylistSongs" modalTransitionStyle="crossDissolve" id="NPJ-YI-DcX" customClass="UIViewControllerPlaylistSong" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dkx-qu-aXw"/>
                         <viewControllerLayoutGuide type="bottom" id="jl9-sf-NZV"/>
@@ -2133,6 +2133,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JhZ-jo-ybM"/>
+        <segue reference="bJo-x3-wXa"/>
     </inferredMetricsTieBreakers>
 </document>
