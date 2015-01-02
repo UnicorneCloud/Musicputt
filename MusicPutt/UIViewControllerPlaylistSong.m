@@ -13,7 +13,7 @@
 #import <BFNavigationBarDrawer.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface UIViewControllerPlaylistSong () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
+@interface UIViewControllerPlaylistSong () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIAlertViewDelegate>
 {
     BOOL                    isMusicputtPlaylist;
     MPMediaQuery*           everything;             // result of current query
@@ -62,28 +62,17 @@
     }
     else if ([[self.del mpdatamanager] currentMusicputtPlaylist] != nil){
         
-        // hide current playing song toolbar
-        [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:true];
-        
         // musicputt playlist (it's permit to edit)
         [self setTitle:[[[self.del mpdatamanager] currentMusicputtPlaylist] name]];
         songs = [[[[self.del mpdatamanager] currentMusicputtPlaylist] items] allObjects];
         isMusicputtPlaylist = TRUE;
         
-        // display tool bar
-        toolbar = [[BFNavigationBarDrawer alloc] init];
-        toolbar.scrollView = self.tableView;
-        
-        // Add some buttons
-        //UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
-        //UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
-        UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
-        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
-        UIBarButtonItem *button3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trash)];
-        
-        toolbar.items = @[button1, button2, button3/*, button4, button5*/];
-        
-        [toolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+        // add playlist button
+        UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(edit)];
+        [self.navigationItem setRightBarButtonItem:menuItem];
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
@@ -103,22 +92,61 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
-- (void) add
-{
-     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
-}
-
 - (void) edit
 {
+    // during editing playlist stop media player
+    [[[self.del mpdatamanager] musicplayer] stop];
+    
+    // hide current playing song toolbar
+    [[[self.del mpdatamanager] currentPlayingToolbar] hideAnimated:false];
+    
+    // display tool bar
+    toolbar = [[BFNavigationBarDrawer alloc] init];
+    toolbar.scrollView = self.tableView;
+    
+    // Add some buttons
+    //UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
+    //UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
+    //UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
+    UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
+    UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trash)];
+    
+    toolbar.items = @[button1, button2 /*, button3, button4, button5*/];
+    
+    [toolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+    
      NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 - (void) trash
 {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Delete"
+                                                        message:@"Are you sure that you want delete this playlist?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Ok",
+                              nil] ;
+    [alertView show];
+    
      NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        //delete playlist
+        [[[self.del mpdatamanager] currentMusicputtPlaylist] MR_deleteEntity];
+        
+        // dismis view
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
 #pragma mark UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return songs.count;

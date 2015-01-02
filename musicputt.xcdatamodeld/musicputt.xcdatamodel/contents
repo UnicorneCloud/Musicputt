@@ -6,7 +6,6 @@
     </entity>
     <entity name="Playlist" representedClassName="Playlist" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaylistItem" inverseName="playlist" inverseEntity="PlaylistItem" syncable="YES"/>
     </entity>
     <entity name="PlaylistItem" representedClassName="PlaylistItem" syncable="YES">
@@ -18,8 +17,8 @@
     </entity>
     <elements>
         <element name="LastPlaying" positionX="-171" positionY="-72" width="128" height="73"/>
-        <element name="PreferredGender" positionX="-20" positionY="-72" width="128" height="58"/>
-        <element name="Playlist" positionX="135" positionY="-81" width="128" height="88"/>
+        <element name="Playlist" positionX="135" positionY="-81" width="128" height="75"/>
         <element name="PlaylistItem" positionX="135" positionY="59" width="128" height="73"/>
+        <element name="PreferredGender" positionX="-20" positionY="-72" width="128" height="58"/>
     </elements>
 </model>

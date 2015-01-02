@@ -2,7 +2,7 @@
 //  Playlist.h
 //  MusicPutt
 //
-//  Created by Eric Pinet on 2015-01-01.
+//  Created by Eric Pinet on 2015-01-02.
 //  Copyright (c) 2015 Eric Pinet. All rights reserved.
 //
 
@@ -13,7 +13,6 @@
 
 @interface Playlist : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *items;
 @end

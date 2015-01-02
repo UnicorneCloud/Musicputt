@@ -124,15 +124,15 @@
             if (image.size.height>0 && image.size.width>0) // check if image present
                 [_imageview setImage:image];
             else
-                [_imageview setImage:[UIImage imageNamed:@"empty"]];
+                [_imageview setImage:[UIImage imageNamed:@"musicputt"]];
         }
         else{
-            [_imageview setImage:[UIImage imageNamed:@"empty"]];
+            [_imageview setImage:[UIImage imageNamed:@"musicputt"]];
         }
     }
     else
     {
-        [_imageview setImage:[UIImage imageNamed:@"empty"]];
+        [_imageview setImage:[UIImage imageNamed:@"musicputt"]];
     }
     
 }
