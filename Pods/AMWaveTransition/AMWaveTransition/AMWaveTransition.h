@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Fancy Pixel. All rights reserved.
 //
 
+@import UIKit;
+
 @protocol AMWaveTransitioning <NSObject>
 
 - (NSArray*)visibleCells;
@@ -16,6 +18,11 @@ typedef NS_ENUM(NSInteger, AMWaveTransitionType) {
     AMWaveTransitionTypeSubtle,
     AMWaveTransitionTypeNervous,
     AMWaveTransitionTypeBounce
+};
+
+typedef NS_ENUM(NSInteger, AMWaveInteractiveTransitionType) {
+    AMWaveTransitionEdgePan,
+    AMWaveTransitionFullScreenPan,
 };
 
 @interface AMWaveTransition : NSObject <UIViewControllerAnimatedTransitioning>
@@ -82,29 +89,43 @@ typedef NS_ENUM(NSInteger, AMWaveTransitionType) {
 /** Operation type
  *
  * Sets the operation type (push or pop)
- *
  */
 @property (assign, nonatomic) UINavigationControllerOperation operation;
 
 /** Transition type
  *
  * Sets the transition style
- *
  */
 @property (assign, nonatomic) AMWaveTransitionType transitionType;
 
 /** Animation duration
  *
  * Sets the duration of the animation. The whole duration accounts for the maxDelay property.
- *
  */
 @property (assign, nonatomic) CGFloat duration;
 
 /** Maximum animation delay
  *
  * Sets the max delay that a cell will wait beofre animating.
- *
  */
 @property (assign, nonatomic) CGFloat maxDelay;
+
+/** Inset between view controllers
+ *
+ * Sets the inset between view controllers. Defaults to 20 points.
+ */
+@property (assign, nonatomic) CGFloat viewControllersInset;
+
+/** Alpha animation with interactive transition
+ *
+ * Turn on/off alpha animation with interactive transition. Defaults to NO.
+ */
+@property (assign, nonatomic) BOOL animateAlphaWithInteractiveTransition;
+
+/** Interactive transition type
+ *
+ * Sets interactive transition type (edge or fullscreen). Defaults to edge.
+ */
+@property (assign, nonatomic) AMWaveInteractiveTransitionType interactiveTransitionType;
 
 @end

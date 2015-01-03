@@ -15,6 +15,7 @@
 #import "UIViewControllerLyricsPage.h"
 #import "UIButton+Extensions.h"
 #import "UIImageViewArtwork.h"
+#import "UIImageViewPerspective.h"
 
 
 #import <AVFoundation/AVFoundation.h>
@@ -72,7 +73,7 @@
 /**
  *  Artwork of the current playing song.
  */
-@property (weak, nonatomic) IBOutlet UIImageView*       imageview;
+@property (weak, nonatomic) IBOutlet UIImageViewPerspective*       imageview;
 
 /**
  *  Page control to display page.
@@ -183,8 +184,8 @@
     self.del = [[UIApplication sharedApplication] delegate];
     
     // update current playing song display
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
-    [self updateDisplay];
+    //[self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+    //[self updateDisplay];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"updateDisplay completed.");
     
@@ -255,6 +256,13 @@
     // improve hittest for share button.
     [_share setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     
+    // initialize _imagePerspective
+    [_imageview setMotionManger:[[self.del mpdatamanager]sharedManager]]; // (Mandatory) set motion manager
+    
+    [_imageview setMaximumAmplitude:10.0];   // (Optional) maximum move of UIImageView
+    [_imageview setMaximumAngle:2.0];        // (OPtional) maximum angle managed
+    [_imageview setUpdateInterval:0.05];     // (Optional) interval of refresh
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
@@ -268,19 +276,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-/**
- *  Start notification from mediaplayer, start timer update current time.
- *
- *  @param animated <#animated description#>
- */
-- (void) viewWillAppear:(BOOL)animated
+- (void) viewDidAppear:(BOOL)animated
 {
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    
-    [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:true];
-    
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [notificationCenter
@@ -304,16 +301,38 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"beginGeneratingPlaybackNotifications");
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self
-                                   selector:@selector(updateDisplay)
-                                   userInfo: nil
-                                    repeats:YES];
+                                             target:self
+                                           selector:@selector(updateDisplay)
+                                           userInfo: nil
+                                            repeats:YES];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Start timer");
+}
+
+
+
+/**
+ *  Start notification from mediaplayer, start timer update current time.
+ *
+ *  @param animated <#animated description#>
+ */
+- (void) viewWillAppear:(BOOL)animated
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:true];
     
     // update current playing song display
-    [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
-    [self updateDisplay];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+        [self updateDisplay];
+        
+    });
+    
+    // start motion tracking
+    [_imageview startUpdate];
+    
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
@@ -344,6 +363,9 @@
     [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
     
     [[self.del mpdatamanager] setCurrentPlayingToolbarMustBeHidden:false];
+    
+    // stop motion tracking
+    [_imageview stopUpdate];
 }
 
 
@@ -366,7 +388,9 @@
             image = [artwork imageWithSize:[_imageview frame].size];
             if(image.size.height==0 || image.size.width==0)
                 image = [UIImage imageNamed:@"empty"];
-            
+        }
+        else{
+            image = [UIImage imageNamed:@"empty"];
         }
         
         [_imageview setImage:image];
@@ -375,6 +399,8 @@
         NSString *artistalbum = [NSString stringWithFormat:@"%@ - %@", [aitem valueForProperty:MPMediaItemPropertyArtist]
                                                                      , [aitem valueForProperty:MPMediaItemPropertyAlbumTitle]];
         [_artistalbum setText:artistalbum];
+        
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"LoadImage");
     }
     else{
         // setup title
@@ -391,6 +417,7 @@
  */
 -(void) updateDisplay
 {
+    
     NSTimeInterval start  = [[NSDate date] timeIntervalSince1970];
     
     NSTimeInterval startcalculateduration = [[NSDate date] timeIntervalSince1970];

@@ -49,6 +49,13 @@
 						<NodeRef refid="36"/>
 						<NodeRef refid="37"/>
 						<NodeRef refid="38"/>
+						<NodeRef refid="39"/>
+						<NodeRef refid="40"/>
+						<NodeRef refid="41"/>
+						<NodeRef refid="42"/>
+						<NodeRef refid="43"/>
+						<NodeRef refid="44"/>
+						<NodeRef refid="45"/>
 						
 					</Subnodes>
 				</Node>
@@ -59,8 +66,8 @@
 					<Name>Protocols</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="39"/>
-						<NodeRef refid="40"/>
+						<NodeRef refid="46"/>
+						<NodeRef refid="47"/>
 						
 					</Subnodes>
 				</Node>
@@ -70,9 +77,9 @@
 					<Name>Constants</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="41"/>
-						<NodeRef refid="42"/>
-						<NodeRef refid="43"/>
+						<NodeRef refid="48"/>
+						<NodeRef refid="49"/>
+						<NodeRef refid="50"/>
 						
 					</Subnodes>
 				</Node>
@@ -366,6 +373,66 @@
             
         </Node>
 		<Node id="11" type="file" documentType="reference">
+            <Name>TableViewCellAlbumStoreCell</Name>
+            <Path>Classes/TableViewCellAlbumStoreCell.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/TableViewCellAlbumStoreCell.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/TableViewCellAlbumStoreCell.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/TableViewCellAlbumStoreCell.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/TableViewCellAlbumStoreCell.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="12" type="file" documentType="reference">
+            <Name>TableViewCellAlbumStoreHeader</Name>
+            <Path>Classes/TableViewCellAlbumStoreHeader.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/TableViewCellAlbumStoreHeader.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/TableViewCellAlbumStoreHeader.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/TableViewCellAlbumStoreHeader.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="13" type="file" documentType="reference">
             <Name>UICurrentPlayingToolBar</Name>
             <Path>Classes/UICurrentPlayingToolBar.html</Path>
             
@@ -392,7 +459,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="12" type="file" documentType="reference">
+		<Node id="14" type="file" documentType="reference">
             <Name>UITabBarControllerMain</Name>
             <Path>Classes/UITabBarControllerMain.html</Path>
             
@@ -419,7 +486,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="13" type="file" documentType="reference">
+		<Node id="15" type="file" documentType="reference">
             <Name>UITableViewCellAlbum</Name>
             <Path>Classes/UITableViewCellAlbum.html</Path>
             
@@ -452,7 +519,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="14" type="file" documentType="reference">
+		<Node id="16" type="file" documentType="reference">
             <Name>UITableViewCellAlbumPageSong</Name>
             <Path>Classes/UITableViewCellAlbumPageSong.html</Path>
             
@@ -485,7 +552,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="15" type="file" documentType="reference">
+		<Node id="17" type="file" documentType="reference">
             <Name>UITableViewCellAlbumStoreSong</Name>
             <Path>Classes/UITableViewCellAlbumStoreSong.html</Path>
             
@@ -518,7 +585,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="16" type="file" documentType="reference">
+		<Node id="18" type="file" documentType="reference">
             <Name>UITableViewCellArtist</Name>
             <Path>Classes/UITableViewCellArtist.html</Path>
             
@@ -551,7 +618,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="17" type="file" documentType="reference">
+		<Node id="19" type="file" documentType="reference">
             <Name>UITableViewCellArtistAlbum</Name>
             <Path>Classes/UITableViewCellArtistAlbum.html</Path>
             
@@ -584,12 +651,66 @@
             </Subnodes>
             
         </Node>
-		<Node id="18" type="file" documentType="reference">
+		<Node id="20" type="file" documentType="reference">
             <Name>UITableViewCellFeature</Name>
             <Path>Classes/UITableViewCellFeature.html</Path>
             
         </Node>
-		<Node id="19" type="file" documentType="reference">
+		<Node id="21" type="file" documentType="reference">
+            <Name>UITableViewCellFeatureAlbumStore</Name>
+            <Path>Classes/UITableViewCellFeatureAlbumStore.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellFeatureAlbumStore.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellFeatureAlbumStore.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UITableViewCellFeatureAlbumStore.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="22" type="file" documentType="reference">
+            <Name>UITableViewCellFeatureSongsStore</Name>
+            <Path>Classes/UITableViewCellFeatureSongsStore.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellFeatureSongsStore.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellFeatureSongsStore.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UITableViewCellFeatureSongsStore.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="23" type="file" documentType="reference">
             <Name>UITableViewCellHeaderSection</Name>
             <Path>Classes/UITableViewCellHeaderSection.html</Path>
             
@@ -616,7 +737,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="20" type="file" documentType="reference">
+		<Node id="24" type="file" documentType="reference">
             <Name>UITableViewCellMediaItem</Name>
             <Path>Classes/UITableViewCellMediaItem.html</Path>
             
@@ -649,7 +770,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="21" type="file" documentType="reference">
+		<Node id="25" type="file" documentType="reference">
             <Name>UITableViewCellMediaItemHeader</Name>
             <Path>Classes/UITableViewCellMediaItemHeader.html</Path>
             
@@ -676,7 +797,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="22" type="file" documentType="reference">
+		<Node id="26" type="file" documentType="reference">
             <Name>UITableViewCellPlaylist</Name>
             <Path>Classes/UITableViewCellPlaylist.html</Path>
             
@@ -709,7 +830,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="23" type="file" documentType="reference">
+		<Node id="27" type="file" documentType="reference">
             <Name>UITableViewCellPlaylistSong</Name>
             <Path>Classes/UITableViewCellPlaylistSong.html</Path>
             
@@ -742,7 +863,34 @@
             </Subnodes>
             
         </Node>
-		<Node id="24" type="file" documentType="reference">
+		<Node id="28" type="file" documentType="reference">
+            <Name>UITableViewCellPreferredGender</Name>
+            <Path>Classes/UITableViewCellPreferredGender.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellPreferredGender.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UITableViewCellPreferredGender.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UITableViewCellPreferredGender.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="29" type="file" documentType="reference">
             <Name>UITableViewCellSongStore</Name>
             <Path>Classes/UITableViewCellSongStore.html</Path>
             
@@ -775,7 +923,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="25" type="file" documentType="reference">
+		<Node id="30" type="file" documentType="reference">
             <Name>UITableViewControllerMenu</Name>
             <Path>Classes/UITableViewControllerMenu.html</Path>
             
@@ -802,7 +950,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="26" type="file" documentType="reference">
+		<Node id="31" type="file" documentType="reference">
             <Name>UIViewControllerAbout</Name>
             <Path>Classes/UIViewControllerAbout.html</Path>
             
@@ -829,7 +977,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="27" type="file" documentType="reference">
+		<Node id="32" type="file" documentType="reference">
             <Name>UIViewControllerAlbumPage</Name>
             <Path>Classes/UIViewControllerAlbumPage.html</Path>
             
@@ -856,7 +1004,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="28" type="file" documentType="reference">
+		<Node id="33" type="file" documentType="reference">
             <Name>UIViewControllerAlbumSongs</Name>
             <Path>Classes/UIViewControllerAlbumSongs.html</Path>
             
@@ -883,7 +1031,40 @@
             </Subnodes>
             
         </Node>
-		<Node id="29" type="file" documentType="reference">
+		<Node id="34" type="file" documentType="reference">
+            <Name>UIViewControllerAlbumStore</Name>
+            <Path>Classes/UIViewControllerAlbumStore.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerAlbumStore.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerAlbumStore.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UIViewControllerAlbumStore.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UIViewControllerAlbumStore.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="35" type="file" documentType="reference">
             <Name>UIViewControllerArtistAlbum</Name>
             <Path>Classes/UIViewControllerArtistAlbum.html</Path>
             
@@ -910,7 +1091,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="30" type="file" documentType="reference">
+		<Node id="36" type="file" documentType="reference">
             <Name>UIViewControllerArtistStore</Name>
             <Path>Classes/UIViewControllerArtistStore.html</Path>
             
@@ -937,12 +1118,61 @@
             </Subnodes>
             
         </Node>
-		<Node id="31" type="file" documentType="reference">
+		<Node id="37" type="file" documentType="reference">
             <Name>UIViewControllerFeature</Name>
             <Path>Classes/UIViewControllerFeature.html</Path>
             
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerFeature.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerFeature.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UIViewControllerFeature.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
         </Node>
-		<Node id="32" type="file" documentType="reference">
+		<Node id="38" type="file" documentType="reference">
+            <Name>UIViewControllerFeatureStore</Name>
+            <Path>Classes/UIViewControllerFeatureStore.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerFeatureStore.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerFeatureStore.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UIViewControllerFeatureStore.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="39" type="file" documentType="reference">
             <Name>UIViewControllerMusic</Name>
             <Path>Classes/UIViewControllerMusic.html</Path>
             
@@ -975,17 +1205,17 @@
             </Subnodes>
             
         </Node>
-		<Node id="33" type="file" documentType="reference">
+		<Node id="40" type="file" documentType="reference">
             <Name>UIViewControllerPlaylist</Name>
             <Path>Classes/UIViewControllerPlaylist.html</Path>
             
         </Node>
-		<Node id="34" type="file" documentType="reference">
+		<Node id="41" type="file" documentType="reference">
             <Name>UIViewControllerPlaylistSong</Name>
             <Path>Classes/UIViewControllerPlaylistSong.html</Path>
             
         </Node>
-		<Node id="35" type="file" documentType="reference">
+		<Node id="42" type="file" documentType="reference">
             <Name>UIViewControllerStoreAlbum</Name>
             <Path>Classes/UIViewControllerStoreAlbum.html</Path>
             
@@ -1018,7 +1248,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="36" type="file" documentType="reference">
+		<Node id="43" type="file" documentType="reference">
             <Name>UIViewControllerStoreSongs</Name>
             <Path>Classes/UIViewControllerStoreSongs.html</Path>
             
@@ -1051,12 +1281,34 @@
             </Subnodes>
             
         </Node>
-		<Node id="37" type="file" documentType="reference">
+		<Node id="44" type="file" documentType="reference">
             <Name>UIViewControllerToolbar</Name>
             <Path>Classes/UIViewControllerToolbar.html</Path>
             
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerToolbar.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UIViewControllerToolbar.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UIViewControllerToolbar.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
         </Node>
-		<Node id="38" type="file" documentType="reference">
+		<Node id="45" type="file" documentType="reference">
             <Name>UIViewCurrentToolBar</Name>
             <Path>Classes/UIViewCurrentToolBar.html</Path>
             
@@ -1091,7 +1343,7 @@
         </Node>
 		
 		
-        <Node id="39" type="file" documentType="reference">
+        <Node id="46" type="file" documentType="reference">
             <Name>ITunesFeedsApiDelegate</Name>
             <Path>Protocols/ITunesFeedsApiDelegate.html</Path>
             
@@ -1118,7 +1370,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="40" type="file" documentType="reference">
+		<Node id="47" type="file" documentType="reference">
             <Name>ITunesSearchApiDelegate</Name>
             <Path>Protocols/ITunesSearchApiDelegate.html</Path>
             
@@ -1146,17 +1398,17 @@
             
         </Node>
 		
-        <Node id="41" type="file" documentType="reference">
+        <Node id="48" type="file" documentType="reference">
             <Name>MediaGroupByType</Name>
             <Path>Constants/MediaGroupByType.html</Path>
             
         </Node>
-		<Node id="42" type="file" documentType="reference">
+		<Node id="49" type="file" documentType="reference">
             <Name>iCarouselOption</Name>
             <Path>Constants/iCarouselOption.html</Path>
             
         </Node>
-		<Node id="43" type="file" documentType="reference">
+		<Node id="50" type="file" documentType="reference">
             <Name>iCarouselType</Name>
             <Path>Constants/iCarouselType.html</Path>
             

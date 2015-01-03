@@ -1,5 +1,0 @@
-#include "Pods-MusicPutt-CXCardView.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/CXCardView" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AMWaveTransition" "${PODS_ROOT}/Headers/BFNavigationBarDrawer" "${PODS_ROOT}/Headers/CXCardView" "${PODS_ROOT}/Headers/DZNEmptyDataSet" "${PODS_ROOT}/Headers/UAProgressView"
-OTHER_LDFLAGS = -ObjC ${PODS_MUSICPUTT_CXCARDVIEW_OTHER_LDFLAGS}
-PODS_ROOT = ${SRCROOT}

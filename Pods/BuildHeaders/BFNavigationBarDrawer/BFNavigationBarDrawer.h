@@ -1,1 +1,0 @@
-../../BFNavigationBarDrawer/BFNavigationBarDrawer/BFNavigationBarDrawer.h

@@ -11,7 +11,11 @@
 #import "AppDelegate.h"
 #import "UIColor+CreateMethods.h"
 
-@interface UIViewControllerAbout () <UITableViewDataSource, UITableViewDelegate>
+#import <MessageUI/MessageUI.h>
+
+
+
+@interface UIViewControllerAbout () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 /**
  *  App delegate
@@ -114,7 +118,7 @@
     // Return the number of rows in the section.
     if (section==0) {
         // Main section as 4 menu items
-        return 2;
+        return 4;
     }
     else{
         return 0;
@@ -128,7 +132,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 125;
+    return 35;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionIndex
@@ -163,10 +167,12 @@
     
     if (indexPath.section == 0)
     {
-        NSArray *titles = @[@"This application is an creation of Qiaomei Wang and Eric Pinet. We use many api from a lot of great people.",
-                            @"(pineri01@gmail.com)"];
+        NSArray *titles = @[@"This application is an creation",
+                            @"of Qiaomei Wang and",
+                            @"Eric Pinet.",
+                            @"Contact us : pineri01@gmail.com"];
         
-        cell.textLabel.font = [UIFont systemFontOfSize:12];
+        cell.textLabel.font = [UIFont systemFontOfSize:18];
         cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.textLabel.text = titles[indexPath.row];
         cell.textLabel.numberOfLines = 8;
@@ -177,6 +183,41 @@
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==3) {
+        // Check that a mail account is available
+        if ([MFMailComposeViewController canSendMail]) {
+            MFMailComposeViewController * emailController = [[MFMailComposeViewController alloc] init];
+            emailController.mailComposeDelegate = self;
+            
+            [emailController setSubject:@"Musicputt"];
+            [emailController setMessageBody:@"" isHTML:YES];
+            [emailController setToRecipients:[NSArray arrayWithObjects:@"pineri01@gmail.com",nil]];
+            
+            [self presentViewController:emailController animated:YES completion:nil];
+        }
+        // Show error if no mail account is active
+        else {
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"You must have a mail account in order to send an email" delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
+    
+    return indexPath;
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        
+    }
+    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

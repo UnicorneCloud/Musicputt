@@ -444,7 +444,7 @@
         else
             newImage = [UIImage imageNamed:@"empty"];
         
-        // TODO LEAK PROBLEM
+        // TODO MAYBE LEAK PROBLEM
         [UIView transitionWithView:imageToUpdate
                           duration:0.6
                            options:UIViewAnimationOptionTransitionFlipFromRight
@@ -526,7 +526,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                // TODO LEAK PROBLEM
+                // TODO MAYBE LEAK PROBLEM
                 [UIView transitionWithView:imageToUpdate
                                   duration:0.6
                                    options:UIViewAnimationOptionTransitionFlipFromRight

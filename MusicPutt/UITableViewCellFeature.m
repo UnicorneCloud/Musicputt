@@ -20,7 +20,7 @@
 #define MUSICPUTT_PLAY_PREFERED         @"Play my Favorites"
 #define MUSICPUTT_PLAY_LASTEST_PLAYLIST @"Play Last Playlist"
 #define MUSICPUTT_PLAY_LASTEST_ALBUM    @"Play Last Album"
-#define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create New Playlist"
+//#define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create New Playlist"
 
 #define DISCOVER_SEE_WHATS_NEW          @"See What's Hot"
 #define DISCOVER_SELECT_PREFERED_GENDER @"Select Your Preferred Gender"
@@ -113,7 +113,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:MUSICPUTT_PLAY_PREFERED, MUSICPUTT_PLAY_LASTEST_PLAYLIST, MUSICPUTT_PLAY_LASTEST_ALBUM, MUSICPUTT_CREATE_NEW_PLAYLIST, nil];
+                                                        otherButtonTitles:MUSICPUTT_PLAY_PREFERED, MUSICPUTT_PLAY_LASTEST_PLAYLIST, MUSICPUTT_PLAY_LASTEST_ALBUM/*, MUSICPUTT_CREATE_NEW_PLAYLIST*/, nil];
         [actionSheet showInView:_parentView];
     }
     else if (_type == TypeDiscover){
@@ -308,10 +308,12 @@
              [message show];
         }
     }
+    /*
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_CREATE_NEW_PLAYLIST]) // create new playlist
     {
         
     }
+     */
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SEE_WHATS_NEW]) // create what's new
     {
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

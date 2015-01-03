@@ -8,7 +8,18 @@
 
 #import "UIViewControllerLyricsPage.h"
 
+#import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
+
 @interface UIViewControllerLyricsPage ()
+{
+    MPMediaItem* currentplayingitem;
+}
+
+@property AppDelegate* del;
+
+@property IBOutlet UILabel* lyrics;
 
 @end
 
@@ -28,6 +39,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // setup app delegate
+    self.del = [[UIApplication sharedApplication] delegate];
+    
     // Create blur effect
     UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     self.view.backgroundColor = [UIColor clearColor];
@@ -39,6 +53,28 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    // set current playing media
+    currentplayingitem = [[[self.del mpdatamanager] musicplayer] nowPlayingItem];
+    
+    /*
+    NSString *title = [currentplayingitem valueForProperty:MPMediaItemPropertyTitle];
+    NSString *lyrics = [currentplayingitem valueForProperty:MPMediaItemPropertyLyrics];
+    */
+    NSURL* songURL = [currentplayingitem valueForProperty:MPMediaItemPropertyAssetURL];
+    AVAsset* songAsset = [AVURLAsset URLAssetWithURL:songURL options:nil];
+    NSString* lyrics = [songAsset lyrics];
+    
+    if (lyrics!=nil) {
+        _lyrics.text = lyrics;
+    }
+    else{
+        _lyrics.text = @"No lyrics";
+    }
+    
 }
 
 /*

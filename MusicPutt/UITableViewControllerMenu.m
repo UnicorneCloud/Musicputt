@@ -124,6 +124,7 @@
         [[[[self del] mpdatamanager] tabbar] setSelectedIndex:3];
     }
     
+    /*
     else if (indexPath.section == 1 && indexPath.row == 0)
     {
         // Rate this app
@@ -141,7 +142,8 @@
         [self presentViewController:controller animated:YES completion:nil];
         
     }
-    else if (indexPath.section == 1 && indexPath.row == 2)
+    else */
+    if (indexPath.section == 1 && indexPath.row == 0)
     {
         // About
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -175,7 +177,7 @@
     else
     {
         // Settings section as 3 menu items
-        return 3;
+        return 1;
     }
 }
 
@@ -221,7 +223,7 @@
     }
     else
     {
-        NSArray *titles = @[@"Rate this app", @"Share this app", @"About"];
+        NSArray *titles = @[/*@"Rate this app", @"Share this app", */@"About"];
         cell.textLabel.text = titles[indexPath.row];
     }
     

@@ -174,7 +174,6 @@
         if (![currentPlayingToolBar isVisible]) {
             [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
         }
-        NSLog(@"QWANG : Tabbar isVisible ? %hhd", [currentPlayingToolBar isVisible]);
     }
 }
 

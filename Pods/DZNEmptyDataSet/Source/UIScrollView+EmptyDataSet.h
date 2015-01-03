@@ -15,29 +15,31 @@
 
 /**
  A drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display.
- 
- @discussion It will work automatically, by just conforming to DZNEmptyDataSetSource, and returning the data you want to show. The -reloadData call will be observed so the empty dataset will be configured whenever needed. It is (extremely) important to set the dataSetSource and dataSetDelegate to nil, whenever the view is going to be released. This class uses KVO under the hood, so it needs to remove the observer before dealocating the view.
+ @discussion It will work automatically, by just conforming to DZNEmptyDataSetSource, and returning the data you want to show.
  */
 @interface UIScrollView (EmptyDataSet)
 
 /** The empty datasets data source. */
-@property (nonatomic, weak) id <DZNEmptyDataSetSource> emptyDataSetSource;
+@property (nonatomic, weak) IBOutlet id <DZNEmptyDataSetSource> emptyDataSetSource;
 /** The empty datasets delegate. */
-@property (nonatomic, weak) id <DZNEmptyDataSetDelegate> emptyDataSetDelegate;
+@property (nonatomic, weak) IBOutlet id <DZNEmptyDataSetDelegate> emptyDataSetDelegate;
 /** YES if any empty dataset is visible. */
 @property (nonatomic, readonly, getter = isEmptyDataSetVisible) BOOL emptyDataSetVisible;
+
+/**
+ Reloads the empty dataset content receiver.
+ @discussion Call this method to force all the data to refresh. Calling -reloadData is similar, but this forces only the empty dataset to reload, not the entire table view or collection view.
+ */
+- (void)reloadEmptyDataSet;
 
 @end
 
 
 /**
  The object that acts as the data source of the empty datasets.
- 
- @discussion The data source must adopt the DZNEmptyDataSetSource protocol. The data source is not retained. All data source methods are optional. They will not be considered in the layout if they either return nil or the view controller doesn't conform to them.
+ @discussion The data source must adopt the DZNEmptyDataSetSource protocol. The data source is not retained. All data source methods are optional.
  */
 @protocol DZNEmptyDataSetSource <NSObject>
-@required
-
 @optional
 
 /**
@@ -125,12 +127,11 @@
 
 /**
  The object that acts as the delegate of the empty datasets.
- The delegate must adopt the DZNEmptyDataSetDelegate protocol. The delegate is not retained.
+ @discussion The delegate can adopt the DZNEmptyDataSetDelegate protocol. The delegate is not retained. All delegate methods are optional.
  
  @discussion All delegate methods are optional. Use this delegate for receiving action callbacks.
  */
 @protocol DZNEmptyDataSetDelegate <NSObject>
-@required
 @optional
 
 /**
@@ -171,5 +172,19 @@
  @param scrollView A scrollView subclass informing the delegate.
  */
 - (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView;
+
+/**
+ Tells the delegate that the empty data set will appear.
+
+ @param scrollView A scrollView subclass informing the delegate.
+ */
+- (void)emptyDataSetWillAppear:(UIScrollView *)scrollView;
+
+/**
+ Tells the delegate that the empty data set will disappear.
+
+ @param scrollView A scrollView subclass informing the delegate.
+ */
+- (void)emptyDataSetWillDisappear:(UIScrollView *)scrollView;
 
 @end
