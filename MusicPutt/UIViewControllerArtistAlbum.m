@@ -355,6 +355,61 @@
     }
 }
 
+#pragma mark - UISearchResultsUpdating
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+    NSString *searchString = [self.searchController.searchBar text];
+    
+    //if(searchString.length>0)
+    //{
+    [self updateFilteredContentForArtistAlbumOrSong:searchString];
+    [self.tableView reloadData];
+    // }
+}
+
+#pragma mark - Content Filtering
+
+- (void)updateFilteredContentForArtistAlbumOrSong:(NSString *)searchText
+{
+    if ((searchText == nil) || [searchText length] == 0)
+    {
+        self.searchResults = [artistCollection.items mutableCopy];
+        return;
+    }
+    [self.searchResults removeAllObjects]; // First clear the filtered array.
+    
+    // exemples
+    MPMediaPropertyPredicate *albumPredicate =
+    [MPMediaPropertyPredicate predicateWithValue:searchText
+                                     forProperty:MPMediaItemPropertyAlbumTitle
+                                  comparisonType:MPMediaPredicateComparisonContains];
+    
+    // Find out all the medias which match the current artist name.
+    everything = [MPMediaQuery albumsQuery];
+    MPMediaPropertyPredicate *artistPredicate =
+    [MPMediaPropertyPredicate predicateWithValue:[[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist]
+                                     forProperty:MPMediaItemPropertyAlbumArtist];
+    [everything addFilterPredicate:artistPredicate];
+    /*
+     Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
+     */
+    /*
+    for (MPMediaItemCollection *artistCollection in artists)
+    {
+        NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
+        MPMediaItem* artistRepresentativeItem = [(MPMediaItemCollection*)artistCollection representativeItem];
+        NSString *name = [artistRepresentativeItem valueForProperty:MPMediaItemPropertyArtist];
+        NSRange artistNameRange = NSMakeRange(0, name.length);
+        NSRange foundRange = [name rangeOfString:artistName options:searchOptions range:artistNameRange];
+        if (foundRange.length > 0)
+        {
+            [self.searchResults addObject:artistCollection];
+        }
+    }
+    */
+}
+
 /*
 #pragma mark - Navigation
 
