@@ -14,6 +14,7 @@
 @class MPMusicPlayerController;
 @class CMMotionManager;
 @class Playlist;
+@class BFNavigationBarDrawer;
 
 /**
  * MPDataManager is the main application data manager. This class maintain all data for
@@ -31,6 +32,11 @@
  *  Toolbar displayed when music playing and the UIMusicViewController is not displayed.
  */
 @property (strong, nonatomic) UICurrentPlayingToolBar*  currentPlayingToolbar;
+
+/**
+ *  Toolbar displayed when playlist is editing.
+ */
+@property (strong, nonatomic) BFNavigationBarDrawer*  currentEditingPlaylistToolbar;
 
 /**
  *  Current selected itunes playlist select in the playlist navigation bar.
@@ -119,6 +125,20 @@
  *  @param hidden True to hidden UICurrentPlayingToolBar.
  */
 - (void) setCurrentPlayingToolbarMustBeHidden:(bool) hidden;
+
+/**
+ *  Indicate if playlist is in editing mode. If true, we have to display toolbar editing.
+ *
+ *  @return True if a playlist is in editing mode.
+ */
+- (bool) isPlaylistEditing;
+
+/**
+ *  Set  state of playlist editing mode.
+ *
+ *  @param active True to indicate that a playlist is in editing mode.
+ */
+- (void) setPlaylistEditing:(bool) active;
 
 /**
  *  Set the last playing album

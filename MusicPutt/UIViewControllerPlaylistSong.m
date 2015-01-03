@@ -50,7 +50,7 @@
     // setup table view
     scrollView = self.tableView;
     
-    // init toolbar
+    // init others members
     toolbar = nil;
     
     // load playlist
@@ -68,11 +68,21 @@
         isMusicputtPlaylist = TRUE;
         
         // add playlist button
-        UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
-                                                                     style:UIBarButtonItemStylePlain
+        UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                                                                     target:self
                                                                     action:@selector(edit)];
         [self.navigationItem setRightBarButtonItem:menuItem];
+        
+        // create editing toolbar
+        toolbar = [[self.del mpdatamanager] currentEditingPlaylistToolbar];
+        toolbar.scrollView = self.tableView;
+        
+        // Add some buttons
+        UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save)];
+        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
+        UIBarButtonItem *button3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trash)];
+        
+        toolbar.items = @[button1, button2, button3];
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
@@ -86,36 +96,37 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    if (toolbar) {
-        [toolbar hideAnimated:YES];
-    }
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+- (void) save
+{
+    // Stop editing
+    [self stopEditing];
 }
 
 - (void) edit
 {
-    // during editing playlist stop media player
-    [[[self.del mpdatamanager] musicplayer] stop];
+    if (![[self.del mpdatamanager] isPlaylistEditing]) {
+        
+        // start editing
+        [[self.del mpdatamanager] setPlaylistEditing:true];
+        
+        // during editing playlist stop media player
+        //[[[self.del mpdatamanager] musicplayer] stop];
+        
+        // hide current playing song toolbar
+        [self hideCurrentPlayingToolbar];
+        
+        // show editing toolbar
+        [self showCurrentEditingPlaylistToolbar];
+    }
+    else{
+        // Stop editing
+        [self stopEditing];
+    }
     
-    // hide current playing song toolbar
-    [[[self.del mpdatamanager] currentPlayingToolbar] hideAnimated:false];
-    
-    // display tool bar
-    toolbar = [[BFNavigationBarDrawer alloc] init];
-    toolbar.scrollView = self.tableView;
-    
-    // Add some buttons
-    //UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
-    //UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
-    //UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
-    UIBarButtonItem *button1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:0];
-    UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trash)];
-    
-    toolbar.items = @[button1, button2 /*, button3, button4, button5*/];
-    
-    [toolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
-    
-     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 - (void) trash
@@ -129,6 +140,12 @@
     [alertView show];
     
      NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
+}
+
+- (void) stopEditing
+{
+    [[self.del mpdatamanager] setPlaylistEditing:FALSE];
+    [self hideCurrentEditingPlaylistToolbar];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -210,6 +227,15 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
     
     return indexPath;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([[self.del mpdatamanager] isPlaylistEditing] && viewController!=self) {
+        
+        // stop editing
+        [self stopEditing];
+    }
 }
 
 

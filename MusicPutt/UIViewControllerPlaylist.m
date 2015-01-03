@@ -114,37 +114,39 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UITextField * alertTextField = [alertView textFieldAtIndex:0];
-    
-    // check if playlist name already exist
-    NSArray* result = [Playlist MR_findByAttribute:@"name" withValue:alertTextField.text];
-    if (result.count>0) {
-        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"This name is already use for a playlist!");
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"This name is already use."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil,
-                                                                    nil] ;
-        [alertView show];
-    }
-    else{
-        // create playlist
-        Playlist* playlist = [Playlist MR_createEntity];
-        playlist.name = alertTextField.text;
+    if (buttonIndex==1) { // 1=Ok
+        UITextField * alertTextField = [alertView textFieldAtIndex:0];
         
-        // reload table data to show new playlist
-        musicputtPlaylists = [Playlist MR_findAll];
-        [self.tableView reloadData];
-        
-        // set current playlist
-        [self.del mpdatamanager].currentPlaylist = nil;
-        [self.del mpdatamanager].currentMusicputtPlaylist = playlist;
-        
-        // pop playlist songs
-        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewControllerPlaylistSong *playlistSongs = [sb instantiateViewControllerWithIdentifier:@"PlaylistSongs"];
-        [[self navigationController] pushViewController:playlistSongs animated:YES];
+        // check if playlist name already exist
+        NSArray* result = [Playlist MR_findByAttribute:@"name" withValue:alertTextField.text];
+        if (result.count>0) {
+            NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"This name is already use for a playlist!");
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:@"This name is already use."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil,
+                                      nil] ;
+            [alertView show];
+        }
+        else{
+            // create playlist
+            Playlist* playlist = [Playlist MR_createEntity];
+            playlist.name = alertTextField.text;
+            
+            // reload table data to show new playlist
+            musicputtPlaylists = [Playlist MR_findAll];
+            [self.tableView reloadData];
+            
+            // set current playlist
+            [self.del mpdatamanager].currentPlaylist = nil;
+            [self.del mpdatamanager].currentMusicputtPlaylist = playlist;
+            
+            // pop playlist songs
+            UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewControllerPlaylistSong *playlistSongs = [sb instantiateViewControllerWithIdentifier:@"PlaylistSongs"];
+            [[self navigationController] pushViewController:playlistSongs animated:YES];
+        }
     }
 }
 

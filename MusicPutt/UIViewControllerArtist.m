@@ -219,7 +219,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"begin");
     
     [self setupNavigationBar];
-    [self showTabbar];
+    [self showCurrentPlayingToolbar];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"stoped");
 }
