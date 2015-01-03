@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MPMediaQuery.h>
 
-@interface UIViewControllerArtistAlbum () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
+@interface UIViewControllerArtistAlbum () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate,UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate>
 {
     MPMediaQuery* everything;             // result of current query
     MPMediaItemCollection *artistCollection;
@@ -21,7 +21,8 @@
 
 @property AppDelegate* del;
 @property (weak, nonatomic) IBOutlet UITableView*  tableView;
-
+@property (nonatomic)UISearchController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchResults;
 @end
 
 @implementation UIViewControllerArtistAlbum
@@ -59,6 +60,23 @@
     
     // setup tableview
     scrollView = _tableView;
+    // search controller
+    
+    self.searchResults = [NSMutableArray arrayWithCapacity:[artistCollection count]];
+    
+    // scroll the search bar off-screen
+    //[self hideSearchBar];
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    
+    self.searchController.searchResultsUpdater = self;
+    
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    
+    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
+    
+    self.tableView.tableHeaderView = self.searchController.searchBar;
 }
 
 - (void)didReceiveMemoryWarning
@@ -321,7 +339,76 @@
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
-}*/
+}
+*/
+-(IBAction)toggleSearch:(id)sender
+{
+    // hide the search bar when it's showed
+    NSLog(@"self.tableView.bounds.origin.y = %f", self.tableView.bounds.origin.y);
+    
+    if (self.tableView.bounds.origin.y == -64) {
+        [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.frame.size.height-70, 1, 1) animated:YES];
+    }
+    else
+    {
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    }
+}
+
+#pragma mark - UISearchResultsUpdating
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+    NSString *searchString = [self.searchController.searchBar text];
+    
+    //if(searchString.length>0)
+    //{
+    [self updateFilteredContentForArtistAlbumOrSong:searchString];
+    [self.tableView reloadData];
+    // }
+}
+
+#pragma mark - Content Filtering
+
+- (void)updateFilteredContentForArtistAlbumOrSong:(NSString *)searchText
+{
+    if ((searchText == nil) || [searchText length] == 0)
+    {
+        self.searchResults = [artistCollection.items mutableCopy];
+        return;
+    }
+    [self.searchResults removeAllObjects]; // First clear the filtered array.
+    
+    // exemples
+    MPMediaPropertyPredicate *albumPredicate =
+    [MPMediaPropertyPredicate predicateWithValue:searchText
+                                     forProperty:MPMediaItemPropertyAlbumTitle
+                                  comparisonType:MPMediaPredicateComparisonContains];
+    
+    // Find out all the medias which match the current artist name.
+    everything = [MPMediaQuery albumsQuery];
+    MPMediaPropertyPredicate *artistPredicate =
+    [MPMediaPropertyPredicate predicateWithValue:[[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist]
+                                     forProperty:MPMediaItemPropertyAlbumArtist];
+    [everything addFilterPredicate:artistPredicate];
+    /*
+     Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
+     */
+    /*
+    for (MPMediaItemCollection *artistCollection in artists)
+    {
+        NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
+        MPMediaItem* artistRepresentativeItem = [(MPMediaItemCollection*)artistCollection representativeItem];
+        NSString *name = [artistRepresentativeItem valueForProperty:MPMediaItemPropertyArtist];
+        NSRange artistNameRange = NSMakeRange(0, name.length);
+        NSRange foundRange = [name rangeOfString:artistName options:searchOptions range:artistNameRange];
+        if (foundRange.length > 0)
+        {
+            [self.searchResults addObject:artistCollection];
+        }
+    }
+    */
+}
 
 /*
 #pragma mark - Navigation
