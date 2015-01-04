@@ -8,6 +8,8 @@
 
 #import "UITableViewCellArtistAlbum.h"
 #import "AppDelegate.h"
+#import "Playlist.h"
+#import "PlaylistItem.h"
 
 @interface UITableViewCellArtistAlbum()
 {
@@ -62,6 +64,15 @@
 - (MPMediaItem*)getMediaItem
 {
     return mediaItem;
+}
+
+- (IBAction)addButtonClick:(id)sender
+{
+    // create new playlist item and add to current playlist
+    PlaylistItem* item = [PlaylistItem MR_createEntity];
+    item.songuid = [[NSNumber alloc] initWithUnsignedLongLong:mediaItem.persistentID];
+    item.position = [[NSNumber alloc] initWithUnsignedLong: [[[[self.del mpdatamanager] currentMusicputtPlaylist] items] count] ];
+    [[[self.del mpdatamanager] currentMusicputtPlaylist] addItemsObject:item];
 }
 
 @end

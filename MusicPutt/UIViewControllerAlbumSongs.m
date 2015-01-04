@@ -19,7 +19,6 @@
     MPMediaQuery* everything;                   // result of current query
     NSNumber *fullLength;
     MPMediaItemCollection* albumCollection;
-    //MPMediaItem* currentplayingitem;
 }
 
 @property AppDelegate* del;

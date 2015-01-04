@@ -1730,7 +1730,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Artists" id="uv7-8s-kc1">
-                        <barButtonItem key="rightBarButtonItem" image="search" id="ezE-NO-evB">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="search" id="ezE-NO-evB">
                             <inset key="imageInsets" minX="44" minY="23" maxX="0.0" maxY="20"/>
                             <connections>
                                 <action selector="toggleSearch:" destination="DMV-5q-SQk" id="Bat-QM-Fnk"/>
@@ -1822,9 +1822,19 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0O-oT-gFW">
+                                                    <rect key="frame" x="265" y="14" width="22" height="22"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="addButtonClick:" destination="DAU-Mg-cGG" eventType="touchUpInside" id="m8w-rU-Vgj"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="add" destination="K0O-oT-gFW" id="xmE-ie-AD7"/>
                                             <outlet property="songDuration" destination="Z7Z-Vt-9uC" id="ysm-mJ-gMv"/>
                                             <outlet property="songName" destination="n0b-iS-i60" id="nmw-3s-lvy"/>
                                             <outlet property="trackNo" destination="F7L-YY-tl0" id="hQv-54-rmE"/>
@@ -1842,7 +1852,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Artist title" id="wSH-nU-wFc">
-                        <barButtonItem key="rightBarButtonItem" image="search" id="dIk-HV-Ph6">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="search" id="dIk-HV-Ph6">
                             <inset key="imageInsets" minX="44" minY="23" maxX="0.0" maxY="20"/>
                             <connections>
                                 <action selector="toggleSearch:" destination="0g8-ph-yTh" id="8jV-RJ-gaN"/>
@@ -2144,6 +2154,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JhZ-jo-ybM"/>
+        <segue reference="DLh-Kj-oM3"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -21,8 +21,8 @@
 
 @property AppDelegate* del;
 @property (weak, nonatomic) IBOutlet UITableView*  tableView;
-@property (nonatomic)UISearchController *searchController;
-@property (nonatomic, strong) NSMutableArray *searchResults;
+//@property (nonatomic)UISearchController *searchController;
+//@property (nonatomic, strong) NSMutableArray *searchResults;
 @end
 
 @implementation UIViewControllerArtistAlbum
@@ -60,24 +60,24 @@
     
     // setup tableview
     scrollView = _tableView;
-    // search controller
     
+    
+    // setup search controller
+    /*
     self.searchResults = [NSMutableArray arrayWithCapacity:[artistCollection count]];
-    
-    // scroll the search bar off-screen
-    //[self hideSearchBar];
-    
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    
     self.searchController.searchResultsUpdater = self;
-    
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.hidesNavigationBarDuringPresentation = NO;
-    
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
-    
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    //self.searchController.searchBar.showsCancelButton = true;
+    */
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,14 +95,14 @@
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.searchController.active)
-    {
-        return 1;
-    }
-    else
-    {
+    //if (self.searchController.active)
+    //{
+    //    return 1;
+    //}
+    //else
+    //{
       return [[everything collections] count];
-    }
+    //}
 }
 
 /**
@@ -115,14 +115,14 @@
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.searchController.active)
-    {
-        return [self.searchResults count]; //[everything collections].count;
-    }
-    else
-    {
+    //if (self.searchController.active)
+    //{
+    //    return [self.searchResults count]; //[everything collections].count;
+    //}
+    //else
+    //{
         return [[everything collections][section] count] ;
-    }
+    //}
 }
 
 /**
@@ -137,16 +137,27 @@
 {
     UITableViewCellArtistAlbum* cell = [tableView dequeueReusableCellWithIdentifier:@"CellArtistAlbum"];
 
+    // check if editing playlist is active
+    if ([[self.del mpdatamanager] isPlaylistEditing]) {
+        
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [[cell songDuration] setHidden:TRUE];   // hide duration
+        [[cell add] setHidden:FALSE];           // show add button
+    }
+    else{
+        [[cell songDuration] setHidden:FALSE];   // show duration
+        [[cell add] setHidden:TRUE];             // hide add button
+    }
     
-    if (self.searchController.active)
-    {
-        MPMediaItemCollection *itemCollection =(MPMediaItemCollection*)(self.searchResults[indexPath.row]);
-        [cell setArtistAlbumItem: itemCollection.items[0]] ;
-    }
-    else
-    {
+    //if (self.searchController.active)
+    //{
+    //    MPMediaItemCollection *itemCollection =(MPMediaItemCollection*)(self.searchResults[indexPath.row]);
+    //    [cell setArtistAlbumItem: itemCollection.items[0]] ;
+    //}
+    //else
+    //{
         [cell setArtistAlbumItem: [[everything collections][indexPath.section] items][indexPath.row]] ;
-    }
+    //}
     return cell;
 }
 /**
@@ -290,67 +301,74 @@
 {
     UITableViewCellArtistAlbum* cell = (UITableViewCellArtistAlbum*)[self tableView:_tableView cellForRowAtIndexPath:indexPath];
     
-    NSMutableArray* list = [[NSMutableArray alloc] init];
-    NSInteger step = 0;
-    NSInteger maxstep = 0;
-    
-    maxstep = [self getItemNumberBeforeSection: [[everything collections] count] + 1];
-    
-    NSInteger  currentSection = indexPath.section;
-    // Global position of item in the list.
-    NSUInteger pos = [self getGlobalItemPos:indexPath];
-    
-    NSUInteger localPos = indexPath.row;
-    
-    while (step<maxstep) {
-        [list addObject: [[[everything collections][currentSection] items] objectAtIndex:localPos]];
-        //NSLog(@"%@", [list[step] valueForProperty:MPMediaItemPropertyTitle]);
-        step++;
-        pos++;
-        localPos++;
+    // check if editing playlist is active
+    if ([[self.del mpdatamanager] isPlaylistEditing]) {
         
-        // update the section when reading the next album.
-        if (localPos == [[everything collections][currentSection] items].count)
+        return nil; // cancel row selection
+    }
+    else{
+        NSMutableArray* list = [[NSMutableArray alloc] init];
+        NSInteger step = 0;
+        NSInteger maxstep = 0;
+        
+        maxstep = [self getItemNumberBeforeSection: [[everything collections] count] + 1];
+        
+        NSInteger  currentSection = indexPath.section;
+        // Global position of item in the list.
+        NSUInteger pos = [self getGlobalItemPos:indexPath];
+        
+        NSUInteger localPos = indexPath.row;
+        
+        while (step<maxstep) {
+            [list addObject: [[[everything collections][currentSection] items] objectAtIndex:localPos]];
+            //NSLog(@"%@", [list[step] valueForProperty:MPMediaItemPropertyTitle]);
+            step++;
+            pos++;
+            localPos++;
             
-        {
-            // If it's not the last section.
-            if(currentSection < ([self numberOfSectionsInTableView:_tableView] - 1))
+            // update the section when reading the next album.
+            if (localPos == [[everything collections][currentSection] items].count)
+                
             {
-                currentSection++;
+                // If it's not the last section.
+                if(currentSection < ([self numberOfSectionsInTableView:_tableView] - 1))
+                {
+                    currentSection++;
+                }
+                // Go to the first section if it's the last section in the table view.
+                else
+                {
+                    currentSection = 0;
+                }
+                localPos = 0;
             }
-            // Go to the first section if it's the last section in the table view.
-            else
+            
+            if(pos == maxstep)
             {
-                currentSection = 0;
+                pos=0;
             }
-            localPos = 0;
         }
         
-        if(pos == maxstep)
+        [[[self.del mpdatamanager] musicplayer] stop];
+        
+        BOOL shuffleWasOn = NO;
+        if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+            [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
         {
-            pos=0;
+            [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
+            shuffleWasOn = YES;
         }
+        [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
+        [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[cell getMediaItem]];
+        if (shuffleWasOn)
+            [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+        
+        [[[self.del mpdatamanager] musicplayer] play];
+        
+        // save last playing album
+        [[self.del mpdatamanager] setLastPlayingAlbum:[NSNumber numberWithLongLong:[cell getMediaItem].albumPersistentID]];
     }
-
-    [[[self.del mpdatamanager] musicplayer] stop];
     
-    BOOL shuffleWasOn = NO;
-    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
-        [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
-    {
-        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
-        shuffleWasOn = YES;
-    }
-    [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
-    [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[cell getMediaItem]];
-    if (shuffleWasOn)
-        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
-    
-    [[[self.del mpdatamanager] musicplayer] play];
-    
-    // save last playing album
-    [[self.del mpdatamanager] setLastPlayingAlbum:[NSNumber numberWithLongLong:[cell getMediaItem].albumPersistentID]];
-
     return indexPath;
 }
 
@@ -367,6 +385,7 @@
 */
 -(IBAction)toggleSearch:(id)sender
 {
+    /*
     // hide the search bar when it's showed
     NSLog(@"self.tableView.bounds.origin.y = %f", self.tableView.bounds.origin.y);
     
@@ -377,28 +396,27 @@
     {
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
+    */
 }
 
 #pragma mark - UISearchResultsUpdating
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     
+    /*
     NSString *searchString = [self.searchController.searchBar text];
-    
-    //if(searchString.length>0)
-    //{
     [self updateFilteredContentForArtistSong:searchString];
     [self.tableView reloadData];
-    // }
+    */
 }
 
 #pragma mark - Content Filtering
 
 - (void)updateFilteredContentForArtistSong:(NSString *)searchText
 {
+    /*
     if ((searchText == nil) || [searchText length] == 0)
     {
-        //self.searchResults = [artistCollection.items mutableCopy];
         everything = [MPMediaQuery albumsQuery];
         MPMediaPropertyPredicate *artistPredicate =
         [MPMediaPropertyPredicate predicateWithValue:[[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist]
@@ -408,16 +426,6 @@
     }
     [self.searchResults removeAllObjects]; // First clear the filtered array.
     
-    // exemples
-    // Find out all the medias which match the current album name.
-     //everything = [MPMediaQuery albumsQuery];
-    /*
-    MPMediaPropertyPredicate *albumPredicate =
-    [MPMediaPropertyPredicate predicateWithValue:searchText
-                                     forProperty:MPMediaItemPropertyAlbumTitle
-                                  comparisonType:MPMediaPredicateComparisonContains];
-    [everything addFilterPredicate:albumPredicate];
-    */
     // Find out all the medias which match the current item title.
     everything = [MPMediaQuery songsQuery];
     
@@ -444,6 +452,7 @@
             [self.searchResults addObject:itemCollection];
         }
     }
+    */
 }
 
 /*
