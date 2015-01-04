@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class MPMediaItem;
+@class PlaylistItem;
 
 /**
  *  Cell for display song of a playlist
@@ -49,5 +50,19 @@
  *  @return Media item attach with this cell.
  */
 - (MPMediaItem*) getMediaItem;
+
+/**
+ *  Playlist item attach with this cell.
+ *
+ *  @param playlistItem playlist item to attach with this cell.
+ */
+- (void) setPlaylistItem:(PlaylistItem*) playlistItem;
+
+/**
+ *  Get playlist item song of this current cell.
+ *
+ *  @return playlist item attach with this cell.
+ */
+- (PlaylistItem*) getPlaylistItem;
 
 @end

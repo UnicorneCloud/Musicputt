@@ -10,18 +10,26 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface UITableViewCellMediaItem : UITableViewCell
+
 /**
  *  Song's track number.
  */
 @property (weak,nonatomic) IBOutlet UILabel* trackNo;
+
 /**
  *  Song's name.
  */
 @property (weak,nonatomic) IBOutlet UILabel* songName;
+
 /**
  *  Song's duration.
  */
 @property (weak,nonatomic) IBOutlet UILabel* songDuration;
+
+/**
+ *  Button add
+ */
+@property (weak, nonatomic) IBOutlet UIButton* add;
 
 /**
  *  Set the artist album item information for the cell.

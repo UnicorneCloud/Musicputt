@@ -8,11 +8,16 @@
 
 #import "UITableViewCellPlaylist.h"
 #import "AppDelegate.h"
+#import "Playlist.h"
+#import "PlaylistItem.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface UITableViewCellPlaylist()
 {
-    MPMediaPlaylist* playlist;
+    MPMediaPlaylist* itunesPlaylist;
+    Playlist* musicputtPlaylist;
+    
+    int type;
 }
 
 @property AppDelegate* del;
@@ -44,23 +49,31 @@
 
     // Configure the view for the selected state
     if (selected==true) {
-        [self.del mpdatamanager].currentPlaylist = playlist;
+        
+        if (type == _ITUNES_PLAYLIST_) {
+            [self.del mpdatamanager].currentPlaylist = itunesPlaylist;
+            [self.del mpdatamanager].currentMusicputtPlaylist = nil;
+        }
+        else if (type == _MUSICPUTT_PLAYLIST_){
+            [self.del mpdatamanager].currentPlaylist = nil;
+            [self.del mpdatamanager].currentMusicputtPlaylist = musicputtPlaylist;
+        }
+        
     }
 }
 
-
-
 - (void) setMediaItem:(MPMediaPlaylist*) mediaItem
 {
-    playlist = mediaItem;
+    type = _ITUNES_PLAYLIST_;
+    itunesPlaylist = mediaItem;
     
-    _playlisttitle.text = [playlist valueForProperty:MPMediaPlaylistPropertyName];
-    _playlistnbtracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)playlist.count];
+    _playlisttitle.text = [itunesPlaylist valueForProperty:MPMediaPlaylistPropertyName];
+    _playlistnbtracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)itunesPlaylist.count];
     
-    if(playlist.count>0)
+    if(itunesPlaylist.count>0)
     {
         UIImage* image;
-        MPMediaItem* song = playlist.items[0]; // 0 to keep firts item in playlist
+        MPMediaItem* song = itunesPlaylist.items[0]; // 0 to keep firts item in playlist
         MPMediaItemArtwork *artwork = [song valueForProperty:MPMediaItemPropertyArtwork];
         if (artwork)
             image = [artwork imageWithSize:[_imageview frame].size];
@@ -77,7 +90,61 @@
 
 - (MPMediaPlaylist*) getMediaItem
 {
-    return playlist;
+    return itunesPlaylist;
+}
+
+- (void) setPlaylistItem:(Playlist*) playlist
+{
+    type = _MUSICPUTT_PLAYLIST_;
+    musicputtPlaylist = playlist;
+    
+    _playlisttitle.text = [musicputtPlaylist name];
+    _playlistnbtracks.text = [NSString stringWithFormat:@"%lu track(s)", (unsigned long)[musicputtPlaylist items].count];
+    
+    if([musicputtPlaylist items].count>0)
+    {
+        UIImage* image;
+        NSArray* songs;
+        MPMediaQuery* everything;             // result of current query
+        
+        // search songs with his id
+        everything = [MPMediaQuery songsQuery];
+        MPMediaPropertyPredicate *predicate =[MPMediaPropertyPredicate predicateWithValue:[[[[musicputtPlaylist items] allObjects] objectAtIndex:0] songuid]
+                                                                              forProperty:MPMediaItemPropertyPersistentID
+                                                                           comparisonType:MPMediaPredicateComparisonEqualTo];
+        [everything addFilterPredicate:predicate];
+        songs = [everything items];
+        
+        // load image
+        MPMediaItem* song = songs[0]; // 0 to keep firts item in playlist
+        if (song) {
+            MPMediaItemArtwork *artwork = [song valueForProperty:MPMediaItemPropertyArtwork];
+            if (artwork)
+                image = [artwork imageWithSize:[_imageview frame].size];
+            if (image.size.height>0 && image.size.width>0) // check if image present
+                [_imageview setImage:image];
+            else
+                [_imageview setImage:[UIImage imageNamed:@"musicputt"]];
+        }
+        else{
+            [_imageview setImage:[UIImage imageNamed:@"musicputt"]];
+        }
+    }
+    else
+    {
+        [_imageview setImage:[UIImage imageNamed:@"musicputt"]];
+    }
+    
+}
+
+- (Playlist*) getPlaylistItem
+{
+    return musicputtPlaylist;
+}
+
+- (NSInteger) getType
+{
+    return type;
 }
 
 @end

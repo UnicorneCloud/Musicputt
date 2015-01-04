@@ -11,6 +11,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "UITableViewCellMediaItem.h"
 #import "UITableViewCellMediaItemHeader.h"
+#import "Playlist.h"
+#import "PlaylistItem.h"
 
 @interface UIViewControllerAlbumSongs ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 {
@@ -64,7 +66,6 @@
     // setup title
     [self setTitle:[[albumCollection representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle]];
     
-    NSLog(@"%@", [[albumCollection representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle]);
     // setup tableview
     scrollView = _tableView;
 }
@@ -73,6 +74,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -87,6 +94,18 @@
     UITableViewCellMediaItem* cell = [tableView dequeueReusableCellWithIdentifier:@"MediaItemCell"];
     [cell setAlbumSongItem: [albumCollection items][indexPath.row]];
     
+    // check if editing playlist is active
+    if ([[self.del mpdatamanager] isPlaylistEditing]) {
+        
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [[cell songDuration] setHidden:TRUE];   // hide duration
+        [[cell add] setHidden:FALSE];           // show add button
+    }
+    else{
+        [[cell songDuration] setHidden:FALSE];   // show duration
+        [[cell add] setHidden:TRUE];             // hide add button 
+    }
+
     return cell;
 }
 
@@ -211,40 +230,47 @@
 {
     UITableViewCellMediaItem* cell = (UITableViewCellMediaItem*)[self tableView:_tableView cellForRowAtIndexPath:indexPath];
     
-    NSMutableArray* list = [[NSMutableArray alloc] init];
-    NSInteger step       = 0;
-    NSInteger maxstep    = [albumCollection items].count;
-    NSUInteger pos       = indexPath.row;
-    
-    while (step<maxstep) {
-        [list addObject: [[albumCollection items] objectAtIndex:pos]];
-        step++;
-        pos++;
+    // check if editing playlist is active
+    if ([[self.del mpdatamanager] isPlaylistEditing]) {
+
+        return nil; // cancel row selection
+    }
+    else{
+        NSMutableArray* list = [[NSMutableArray alloc] init];
+        NSInteger step       = 0;
+        NSInteger maxstep    = [albumCollection items].count;
+        NSUInteger pos       = indexPath.row;
         
-        if(pos == maxstep)
-        {
-            pos=0;
+        while (step<maxstep) {
+            [list addObject: [[albumCollection items] objectAtIndex:pos]];
+            step++;
+            pos++;
+            
+            if(pos == maxstep)
+            {
+                pos=0;
+            }
         }
+        
+        [[[self.del mpdatamanager] musicplayer] stop];
+        
+        BOOL shuffleWasOn = NO;
+        if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+            [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
+        {
+            [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
+            shuffleWasOn = YES;
+        }
+        [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
+        [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[cell getMediaItem]];
+        if (shuffleWasOn)
+            [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+        
+        [[[self.del mpdatamanager] musicplayer] play];
+        
+        // save last playing album
+        [[self.del mpdatamanager] setLastPlayingAlbum:[NSNumber numberWithLongLong:[cell getMediaItem].albumPersistentID]];
     }
-    
-    [[[self.del mpdatamanager] musicplayer] stop];
-    
-    BOOL shuffleWasOn = NO;
-    if ([[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeOff &&
-        [[self.del mpdatamanager] musicplayer].shuffleMode != MPMusicShuffleModeDefault)
-    {
-        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeOff;
-        shuffleWasOn = YES;
-    }
-    [[[self.del mpdatamanager] musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
-    [[[self.del mpdatamanager] musicplayer] setNowPlayingItem:[cell getMediaItem]];
-    if (shuffleWasOn)
-        [[self.del mpdatamanager] musicplayer].shuffleMode = MPMusicShuffleModeSongs;
-    
-    [[[self.del mpdatamanager] musicplayer] play];
-    
-    // save last playing album
-    [[self.del mpdatamanager] setLastPlayingAlbum:[NSNumber numberWithLongLong:[cell getMediaItem].albumPersistentID]];
     
     return indexPath;
 }

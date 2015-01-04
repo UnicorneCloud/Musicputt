@@ -41,16 +41,39 @@
     UICurrentPlayingToolBar*    currentPlayingToolBar;
     
     /**
+     * Toolbar to display edition action during playlist edition
+     */
+    BFNavigationBarDrawer*      currentEditingPlaylistToolbar;
+    
+    /**
      *  TableView attach with the current playing song.
      */
     UIScrollView*                scrollView;
 }
 
+/**
+ *  Show current playing toolbar
+ */
+-(void) showCurrentPlayingToolbar;
 
--(void) showTabbar;
+/**
+ *  Hide current playing toolbar
+ */
+-(void) hideCurrentPlayingToolbar;
 
--(void) hideTabbar;
+/**
+ *  Show current editing playlist toolbar
+ */
+-(void) showCurrentEditingPlaylistToolbar;
 
+/**
+ *  Hide current editing playlist toolbar
+ */
+-(void) hideCurrentEditingPlaylistToolbar;
+
+/**
+ *  Setup navigation bar
+ */
 -(void) setupNavigationBar;
 
 

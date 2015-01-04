@@ -14,7 +14,8 @@
 
 @interface UIViewControllerToolbar ()
 {
-    BOOL isShowTabbar;
+    BOOL isShowCurrentPlayingToolbar;
+    BOOL isShowCurrentEditingPlaylistToolbar;
 }
 
 @property AppDelegate* del;
@@ -41,7 +42,11 @@
     // setup app delegate
     self.del = [[UIApplication sharedApplication] delegate];
     
-    isShowTabbar = false;
+    // by default current playlist toolbar is hide.
+    isShowCurrentPlayingToolbar = false;
+    
+    // by default current editing playlist is hide.
+    isShowCurrentEditingPlaylistToolbar = false;
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,31 +78,47 @@
     
     [[[_del mpdatamanager] musicplayer] beginGeneratingPlaybackNotifications];
     
+    // setup current editing playlist toolbar
+    currentEditingPlaylistToolbar = [[self.del mpdatamanager] currentEditingPlaylistToolbar];
+    [self hideCurrentEditingPlaylistToolbar];
+    currentEditingPlaylistToolbar.scrollView = self->scrollView;
+
+    if ([[self.del mpdatamanager] isPlaylistEditing]) {
+        [currentEditingPlaylistToolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+        isShowCurrentEditingPlaylistToolbar = true;
+    }
+    else{
+        isShowCurrentEditingPlaylistToolbar = false;
+    }
+    
     // setup currentPlayingToolBar
     currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
-    [self hideTabbar];
+    [self hideCurrentPlayingToolbar];
     [currentPlayingToolBar setNavigationController:self.navigationController];
     currentPlayingToolBar.scrollView = self->scrollView;
     
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    //if([player playbackState] == MPMoviePlaybackStatePlaying)
-    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
-    {
-        [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
-        isShowTabbar = true;
-    }
-    else
-    {
-        if ([player nowPlayingItem] == nil)
+    // show current playing toolbar only if current editing playlist toolbar aren't shown
+    if (isShowCurrentEditingPlaylistToolbar==false) {
+        
+        MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
+        //if([player playbackState] == MPMoviePlaybackStatePlaying)
+        if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
         {
-            isShowTabbar = false;
+            [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+            isShowCurrentPlayingToolbar = true;
         }
         else
         {
-            [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
-            isShowTabbar = true;
+            if ([player nowPlayingItem] == nil)
+            {
+                isShowCurrentPlayingToolbar = false;
+            }
+            else
+            {
+                [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+                isShowCurrentPlayingToolbar = true;
+            }
         }
-        
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Complete");
@@ -107,10 +128,16 @@
 {
     [super viewDidDisappear:animated];
     
-    // setup currentPlayingToolBar
+    // hide current playing toolbar
+    if ([[self.del mpdatamanager] isPlaylistEditing]==false) {
+        currentEditingPlaylistToolbar = [[self.del mpdatamanager] currentEditingPlaylistToolbar];
+        [self hideCurrentEditingPlaylistToolbar];
+    }
+    
+    // hide current playing toolbar
     if ([[self.del mpdatamanager] currentPlayingToolbarMustBeHidden]) {
         currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
-        [self hideTabbar];
+        [self hideCurrentPlayingToolbar];
     }
     
 }
@@ -135,6 +162,48 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
+-(void) showCurrentPlayingToolbar
+{
+    if ([[self.del mpdatamanager] currentPlayingToolbarMustBeHidden] == false && [[AVAudioSession sharedInstance] isOtherAudioPlaying]){
+        if (![currentPlayingToolBar isVisible]) {
+            [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+        }
+    }
+}
+
+-(void) hideCurrentPlayingToolbar
+{
+    if ([currentPlayingToolBar isVisible]) {
+        [currentPlayingToolBar hideAnimated:YES];
+    }
+}
+
+-(void) showCurrentEditingPlaylistToolbar
+{
+    if ([[self.del mpdatamanager] isPlaylistEditing] == TRUE) {
+        if([currentEditingPlaylistToolbar isVisible] == FALSE){
+            [currentEditingPlaylistToolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+        }
+    }
+}
+
+-(void) hideCurrentEditingPlaylistToolbar
+{
+    if ([currentEditingPlaylistToolbar isVisible]) {
+        [currentEditingPlaylistToolbar hideAnimated:YES];
+    }
+}
+
+
+-(void) setupNavigationBar
+{
+    // setup currentPlayingToolBar
+    currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
+    [self hideCurrentPlayingToolbar];
+    [currentPlayingToolBar setNavigationController:self.navigationController];
+    currentPlayingToolBar.scrollView = self->scrollView;
+}
+
 
 #pragma  mark - MPMusicPlayerNSNotificationCenter
 
@@ -144,11 +213,11 @@
     MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
     if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
-        [self showTabbar];
+        [self showCurrentPlayingToolbar];
     else
     {
         if ([player nowPlayingItem] == nil)
-            [self hideTabbar];
+            [self hideCurrentPlayingToolbar];
     }
 }
 
@@ -159,39 +228,13 @@
     //if([player playbackState] == MPMoviePlaybackStatePlaying)
     if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
     {
-        [self showTabbar];
+        [self showCurrentPlayingToolbar];
     }
     else
     {
         if ([player nowPlayingItem] == nil)
-            [self hideTabbar];
+            [self hideCurrentPlayingToolbar];
     }
-}
-
--(void) showTabbar
-{
-    if ([[self.del mpdatamanager] currentPlayingToolbarMustBeHidden] == false && [[AVAudioSession sharedInstance] isOtherAudioPlaying]){
-        if (![currentPlayingToolBar isVisible]) {
-            [currentPlayingToolBar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
-        }
-    }
-}
-
--(void) hideTabbar
-{
-    if ([currentPlayingToolBar isVisible]) {
-        [currentPlayingToolBar hideAnimated:YES];
-    }
-}
-
-
--(void) setupNavigationBar
-{
-    // setup currentPlayingToolBar
-    currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
-    [self hideTabbar];
-    [currentPlayingToolBar setNavigationController:self.navigationController];
-    currentPlayingToolBar.scrollView = self->scrollView;
 }
 
 /*
