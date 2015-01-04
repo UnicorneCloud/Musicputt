@@ -9,6 +9,7 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaylistItem" inverseName="playlist" inverseEntity="PlaylistItem" syncable="YES"/>
     </entity>
     <entity name="PlaylistItem" representedClassName="PlaylistItem" syncable="YES">
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="songuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="items" inverseEntity="Playlist" syncable="YES"/>
     </entity>
@@ -18,7 +19,7 @@
     <elements>
         <element name="LastPlaying" positionX="-171" positionY="-72" width="128" height="73"/>
         <element name="Playlist" positionX="135" positionY="-81" width="128" height="75"/>
-        <element name="PlaylistItem" positionX="135" positionY="59" width="128" height="73"/>
+        <element name="PlaylistItem" positionX="135" positionY="59" width="128" height="90"/>
         <element name="PreferredGender" positionX="-20" positionY="-72" width="128" height="58"/>
     </elements>
 </model>
