@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#define _MUSICPUTT_PLAYLIST_    0
+#define _ITUNES_PLAYLIST_       1
+
 @class MPMediaPlaylist;
+@class Playlist;
 
 
 /**
@@ -46,6 +50,28 @@
  *  @return the media item.
  */
 - (MPMediaPlaylist*) getMediaItem;
+
+
+/**
+ *  Set the playlist attach with this cell.
+ *
+ *  @param playlist attach with this cell.
+ */
+- (void) setPlaylistItem:(Playlist*) playlist;
+
+/**
+ *  Get the playlist attach with this cell.
+ *
+ *  @return the playlist.
+ */
+- (Playlist*) getPlaylistItem;
+
+/**
+ *  Return type of playlist (_MUSICPUTT_PLAYLIST_ or _ITUNES_PLAYLIST_)
+ *
+ *  @return _MUSICPUTT_PLAYLIST_ or _ITUNES_PLAYLIST_
+ */
+- (NSInteger) getType;
 
 
 @end

@@ -147,7 +147,9 @@
                     
                     self.frame = frame;
                     
-                    self.translatesAutoresizingMaskIntoConstraints = YES;
+                    if(self){
+                        self.translatesAutoresizingMaskIntoConstraints = YES;
+                    }
                 }
             }];
         }

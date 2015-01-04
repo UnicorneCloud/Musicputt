@@ -17,15 +17,14 @@
 {
     BOOL mediaplayerinit;
     CMMotionManager *motionmanager;
+    
+    BOOL playlistEditing;
+    bool currentPlayingToolbarMustBeHidden; // if true, CurrentPlayingToolBar must be hidden.
 }
 
 @end
 
 @implementation MPDataManager
-{
-    bool currentPlayingToolbarMustBeHidden; // if true, CurrentPlayingToolBar must be hidden.
-}
-
 
 /**
  *  Initialise all data for the current execution of the application.
@@ -46,9 +45,14 @@
     // the initial state of the currentPlayingToolbarMustBeHidden is not hidden.
     currentPlayingToolbarMustBeHidden = false;
     
+    // init current editing playlist toolbar
+    _currentEditingPlaylistToolbar = [[BFNavigationBarDrawer alloc] init];
+    
+    // the initial state of playlist editing mode is FALSE:
+    playlistEditing = false;
+    
     // init magic record
     [MagicalRecord setupCoreDataStack];
-    
     
     return retval;
 }
@@ -133,6 +137,32 @@
 - (void) setCurrentPlayingToolbarMustBeHidden:(bool) hidden
 {
     currentPlayingToolbarMustBeHidden = hidden;
+}
+
+/**
+ *  Indicate if playlist is in editing mode. If true, we have to display toolbar editing.
+ *
+ *  @return True if a playlist is in editing mode.
+ */
+- (bool) isPlaylistEditing
+{
+    return playlistEditing;
+}
+
+/**
+ *  Set  state of playlist editing mode.
+ *
+ *  @param active True to indicate that a playlist is in editing mode.
+ */
+- (void) setPlaylistEditing:(bool) active
+{
+    playlistEditing = active;
+    
+    if (playlistEditing == FALSE) {
+        
+        // save magical record
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    }
 }
 
 #pragma mark - MediaPlayer
