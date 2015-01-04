@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MPMediaQuery.h>
 
-@interface UIViewControllerArtistAlbum () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate,UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate>
+@interface UIViewControllerArtistAlbum () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UISearchResultsUpdating>
 {
     MPMediaQuery* everything;             // result of current query
     MPMediaItemCollection *artistCollection;
@@ -77,6 +77,7 @@
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
     
     self.tableView.tableHeaderView = self.searchController.searchBar;
+    //self.searchController.searchBar.showsCancelButton = true;
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,7 +95,14 @@
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[everything collections] count];
+    if (self.searchController.active)
+    {
+        return 1;
+    }
+    else
+    {
+      return [[everything collections] count];
+    }
 }
 
 /**
@@ -107,7 +115,14 @@
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[everything collections][section] count] ;
+    if (self.searchController.active)
+    {
+        return [self.searchResults count]; //[everything collections].count;
+    }
+    else
+    {
+        return [[everything collections][section] count] ;
+    }
 }
 
 /**
@@ -121,8 +136,17 @@
 - (UITableViewCellArtistAlbum*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellArtistAlbum* cell = [tableView dequeueReusableCellWithIdentifier:@"CellArtistAlbum"];
-    [cell setArtistAlbumItem: [[everything collections][indexPath.section] items][indexPath.row]] ;
+
     
+    if (self.searchController.active)
+    {
+        MPMediaItemCollection *itemCollection =(MPMediaItemCollection*)(self.searchResults[indexPath.row]);
+        [cell setArtistAlbumItem: itemCollection.items[0]] ;
+    }
+    else
+    {
+        [cell setArtistAlbumItem: [[everything collections][indexPath.section] items][indexPath.row]] ;
+    }
     return cell;
 }
 /**
@@ -363,51 +387,63 @@
     
     //if(searchString.length>0)
     //{
-    [self updateFilteredContentForArtistAlbumOrSong:searchString];
+    [self updateFilteredContentForArtistSong:searchString];
     [self.tableView reloadData];
     // }
 }
 
 #pragma mark - Content Filtering
 
-- (void)updateFilteredContentForArtistAlbumOrSong:(NSString *)searchText
+- (void)updateFilteredContentForArtistSong:(NSString *)searchText
 {
     if ((searchText == nil) || [searchText length] == 0)
     {
-        self.searchResults = [artistCollection.items mutableCopy];
+        //self.searchResults = [artistCollection.items mutableCopy];
+        everything = [MPMediaQuery albumsQuery];
+        MPMediaPropertyPredicate *artistPredicate =
+        [MPMediaPropertyPredicate predicateWithValue:[[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist]
+                                         forProperty:MPMediaItemPropertyAlbumArtist];
+        [everything addFilterPredicate:artistPredicate];
         return;
     }
     [self.searchResults removeAllObjects]; // First clear the filtered array.
     
     // exemples
+    // Find out all the medias which match the current album name.
+     //everything = [MPMediaQuery albumsQuery];
+    /*
     MPMediaPropertyPredicate *albumPredicate =
     [MPMediaPropertyPredicate predicateWithValue:searchText
                                      forProperty:MPMediaItemPropertyAlbumTitle
                                   comparisonType:MPMediaPredicateComparisonContains];
+    [everything addFilterPredicate:albumPredicate];
+    */
+    // Find out all the medias which match the current item title.
+    everything = [MPMediaQuery songsQuery];
     
-    // Find out all the medias which match the current artist name.
-    everything = [MPMediaQuery albumsQuery];
     MPMediaPropertyPredicate *artistPredicate =
     [MPMediaPropertyPredicate predicateWithValue:[[artistCollection representativeItem] valueForProperty:MPMediaItemPropertyArtist]
                                      forProperty:MPMediaItemPropertyAlbumArtist];
     [everything addFilterPredicate:artistPredicate];
-    /*
-     Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
-     */
-    /*
-    for (MPMediaItemCollection *artistCollection in artists)
+    
+    MPMediaPropertyPredicate *songTitlePredicate =
+    [MPMediaPropertyPredicate predicateWithValue:searchText
+                                     forProperty:MPMediaItemPropertyTitle
+                                  comparisonType:MPMediaPredicateComparisonContains];
+    [everything addFilterPredicate:songTitlePredicate];
+
+    for (MPMediaItemCollection *itemCollection in everything.collections)
     {
         NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
-        MPMediaItem* artistRepresentativeItem = [(MPMediaItemCollection*)artistCollection representativeItem];
-        NSString *name = [artistRepresentativeItem valueForProperty:MPMediaItemPropertyArtist];
-        NSRange artistNameRange = NSMakeRange(0, name.length);
-        NSRange foundRange = [name rangeOfString:artistName options:searchOptions range:artistNameRange];
+        MPMediaItem* itemRepresentativeItem = [(MPMediaItemCollection*)itemCollection representativeItem];
+        NSString *name = [itemRepresentativeItem valueForProperty:MPMediaItemPropertyTitle];
+        NSRange itemNameRange = NSMakeRange(0, name.length);
+        NSRange foundRange = [name rangeOfString:searchText options:searchOptions range:itemNameRange];
         if (foundRange.length > 0)
         {
-            [self.searchResults addObject:artistCollection];
+            [self.searchResults addObject:itemCollection];
         }
     }
-    */
 }
 
 /*

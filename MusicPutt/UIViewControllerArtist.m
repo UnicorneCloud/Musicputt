@@ -12,7 +12,7 @@
 #import <MediaPlayer/MPMediaQuery.h>
 
 
-@interface UIViewControllerArtist ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate>
+@interface UIViewControllerArtist ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UISearchResultsUpdating>
 {
     MPMediaQuery* everything;             // result of current query
     NSArray*      artists;
@@ -91,7 +91,13 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.searchController.searchBar.hidden = false;
     [self.tableView setContentOffset:CGPointMake(0, 44)];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    //[self searchBarCancelButtonClicked:self.searchController.searchBar];
+    self.searchController.searchBar.hidden = true;
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,6 +187,7 @@
     [self.tableView reloadData];
    // }
 }
+
 /*
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
@@ -201,27 +208,6 @@
     {
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
-}
-
-//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;                      // return NO to not become first responder
-#pragma mark - UISearchBarDelegate Delegate Methods
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"begin");
-   //[self hideTabbar];
-    //[self setupConstraintsWithSearchBar:searchBar];
-    [self setupNavigationBar];
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"stoped");
-}
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"begin");
-    
-    [self setupNavigationBar];
-    [self showTabbar];
-    
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"stoped");
 }
 
 #pragma mark - AMWaveViewController
