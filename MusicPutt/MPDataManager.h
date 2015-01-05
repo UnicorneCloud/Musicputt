@@ -79,6 +79,11 @@
 @property (strong, nonatomic) UINavigationController* currentNavController;
 
 /**
+ *  Indicate if is needed to reload Display of MediaItem in UIViewCOntrollerMusic.
+ */
+@property BOOL forceDisplayMediaItem;
+
+/**
  *  Initialise all data for the current execution of the application.
  *
  *  @return True if the initialization succesed.

@@ -376,6 +376,9 @@
  */
 -(void) displayMediaItem: (MPMediaItem*) aitem
 {
+    // ensure that force display is set to false;
+    [self.del mpdatamanager].forceDisplayMediaItem = false;
+    
     if (aitem!=NULL) {
         
         // setup title
@@ -510,6 +513,11 @@
             _shuffle.alpha = 0.5;
         }
         endgetplayerstatus = [[NSDate date] timeIntervalSince1970];
+        
+        // if needed, force displayMediaItem
+        if ([self.del mpdatamanager].forceDisplayMediaItem) {
+            [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+        }
     }
     else
     {
