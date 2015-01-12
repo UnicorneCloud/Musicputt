@@ -14,3 +14,12 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+
+/**
+ *  Magical record importation
+ */
+#define MR_SHORTHAND
+#import <MagicalRecord/CoreData+MagicalRecord.h>
+
+

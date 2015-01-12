@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/AppDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/AppDelegate</TokenIdentifier>
+			<Abstract type="html">Application main delegate.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setWindow:</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Main window application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setMpdatamanager:</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
+			
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/mpdatamanager</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
+			
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/mpdatamanager</TokenIdentifier>
+			<Abstract type="html">Object use for maintain data of the current execution of that application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) MPDataManager *mpdatamanager</Declaration>
+			
+			
+			<Anchor>//api/name/mpdatamanager</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setMainMenu:</TokenIdentifier>
+			<Abstract type="html">Main menu of the application</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) REFrostedViewControllerMain *mainMenu</Declaration>
+			
+			
+			<Anchor>//api/name/mainMenu</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/mainMenu</TokenIdentifier>
+			<Abstract type="html">Main menu of the application</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) REFrostedViewControllerMain *mainMenu</Declaration>
+			
+			
+			<Anchor>//api/name/mainMenu</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/mainMenu</TokenIdentifier>
+			<Abstract type="html">Main menu of the application</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) REFrostedViewControllerMain *mainMenu</Declaration>
+			
+			
+			<Anchor>//api/name/mainMenu</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/versionBuild</TokenIdentifier>
+			<Abstract type="html">Return version and build.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)versionBuild</Declaration>
+			
+			<ReturnValue><Abstract type="html">Return the version and build of the applicaiton.</Abstract></ReturnValue>
+			<Anchor>//api/name/versionBuild</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/appVersion</TokenIdentifier>
+			<Abstract type="html">Return appVersion from project settings</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)appVersion</Declaration>
+			
+			<ReturnValue><Abstract type="html">&lt;#return value description#&gt;</Abstract></ReturnValue>
+			<Anchor>//api/name/appVersion</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/build</TokenIdentifier>
+			<Abstract type="html">Return build from projects settings</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)build</Declaration>
+			
+			<ReturnValue><Abstract type="html">&lt;#return value description#&gt;</Abstract></ReturnValue>
+			<Anchor>//api/name/build</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

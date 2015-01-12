@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ITunesFeedsApiTest.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ITunesFeedsApiTest</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ITunesFeedsApiTest.m</DeclaredIn>
+            
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ITunesFeedsApiTest/queryResult:type:results:</TokenIdentifier>
+			<Abstract type="html">Implement this methode for recieve result after query.</Abstract>
+			<DeclaredIn>ITunesFeedsApiTest.m</DeclaredIn>
+			
+			<Declaration>- (void)queryResult:(ITunesFeedsApiQueryStatus)status type:(ITunesFeedsQueryType)type results:(NSArray *)results</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>status</Name>
+					<Abstract type="html">Status of the querys</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">Type of query sender</Abstract>
+				</Parameter><Parameter>
+					<Name>results</Name>
+					<Abstract type="html">resultset of the query</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/queryResult:type:results:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

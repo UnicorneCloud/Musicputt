@@ -1,0 +1,1483 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MPDataManager Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MusicPutt </a></h1>
+				<a id="developerHome" href="../index.html">Eric Pinet</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MPDataManager Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/currentAlbumCollection">&nbsp;&nbsp;&nbsp;&nbsp;currentAlbumCollection</option>
+	
+	<option value="//api/name/currentArtist">&nbsp;&nbsp;&nbsp;&nbsp;currentArtist</option>
+	
+	<option value="//api/name/currentArtistCollection">&nbsp;&nbsp;&nbsp;&nbsp;currentArtistCollection</option>
+	
+	<option value="//api/name/currentNavController">&nbsp;&nbsp;&nbsp;&nbsp;currentNavController</option>
+	
+	<option value="//api/name/currentPlayingToolbar">&nbsp;&nbsp;&nbsp;&nbsp;currentPlayingToolbar</option>
+	
+	<option value="//api/name/currentPlaylist">&nbsp;&nbsp;&nbsp;&nbsp;currentPlaylist</option>
+	
+	<option value="//api/name/musicplayer">&nbsp;&nbsp;&nbsp;&nbsp;musicplayer</option>
+	
+	<option value="//api/name/tabbar">&nbsp;&nbsp;&nbsp;&nbsp;tabbar</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/currentPlayingToolbarMustBeHidden">&nbsp;&nbsp;&nbsp;&nbsp;- currentPlayingToolbarMustBeHidden</option>
+	
+	<option value="//api/name/getLastPLayingPlaylist">&nbsp;&nbsp;&nbsp;&nbsp;- getLastPLayingPlaylist</option>
+	
+	<option value="//api/name/getLastPlayingAlbum">&nbsp;&nbsp;&nbsp;&nbsp;- getLastPlayingAlbum</option>
+	
+	<option value="//api/name/initialise">&nbsp;&nbsp;&nbsp;&nbsp;- initialise</option>
+	
+	<option value="//api/name/initialiseMediaPlayer">&nbsp;&nbsp;&nbsp;&nbsp;- initialiseMediaPlayer</option>
+	
+	<option value="//api/name/isMediaPlayerInitialized">&nbsp;&nbsp;&nbsp;&nbsp;- isMediaPlayerInitialized</option>
+	
+	<option value="//api/name/prepareAppDidBecomeActive">&nbsp;&nbsp;&nbsp;&nbsp;- prepareAppDidBecomeActive</option>
+	
+	<option value="//api/name/prepareAppDidEnterBackground">&nbsp;&nbsp;&nbsp;&nbsp;- prepareAppDidEnterBackground</option>
+	
+	<option value="//api/name/prepareAppWillEnterForeground">&nbsp;&nbsp;&nbsp;&nbsp;- prepareAppWillEnterForeground</option>
+	
+	<option value="//api/name/prepareAppWillTerminate">&nbsp;&nbsp;&nbsp;&nbsp;- prepareAppWillTerminate</option>
+	
+	<option value="//api/name/setCurrentPlayingToolbarMustBeHidden:">&nbsp;&nbsp;&nbsp;&nbsp;- setCurrentPlayingToolbarMustBeHidden:</option>
+	
+	<option value="//api/name/setLastPlayingAlbum:">&nbsp;&nbsp;&nbsp;&nbsp;- setLastPlayingAlbum:</option>
+	
+	<option value="//api/name/setLastPlayingPlaylist:">&nbsp;&nbsp;&nbsp;&nbsp;- setLastPlayingPlaylist:</option>
+	
+	<option value="//api/name/startPlayingAlbum:">&nbsp;&nbsp;&nbsp;&nbsp;- startPlayingAlbum:</option>
+	
+	<option value="//api/name/startPlayingBestRating">&nbsp;&nbsp;&nbsp;&nbsp;- startPlayingBestRating</option>
+	
+	<option value="//api/name/startPlayingPlaylist:">&nbsp;&nbsp;&nbsp;&nbsp;- startPlayingPlaylist:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentAlbumCollection">currentAlbumCollection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentArtist">currentArtist</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentArtistCollection">currentArtistCollection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentNavController">currentNavController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentPlayingToolbar">currentPlayingToolbar</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentPlaylist">currentPlaylist</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/musicplayer">musicplayer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbar">tabbar</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentPlayingToolbarMustBeHidden">currentPlayingToolbarMustBeHidden</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getLastPLayingPlaylist">getLastPLayingPlaylist</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getLastPlayingAlbum">getLastPlayingAlbum</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initialise">initialise</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initialiseMediaPlayer">initialiseMediaPlayer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isMediaPlayerInitialized">isMediaPlayerInitialized</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareAppDidBecomeActive">prepareAppDidBecomeActive</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareAppDidEnterBackground">prepareAppDidEnterBackground</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareAppWillEnterForeground">prepareAppWillEnterForeground</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareAppWillTerminate">prepareAppWillTerminate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setCurrentPlayingToolbarMustBeHidden:">setCurrentPlayingToolbarMustBeHidden:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLastPlayingAlbum:">setLastPlayingAlbum:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLastPlayingPlaylist:">setLastPlayingPlaylist:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startPlayingAlbum:">startPlayingAlbum:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startPlayingBestRating">startPlayingBestRating</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startPlayingPlaylist:">startPlayingPlaylist:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MPDataManager Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MPDataManager Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MPDataManager.h<br />MPDataManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>MPDataManager is the main application data manager. This class maintain all data for
+the current execution.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/musicplayer">&nbsp;&nbsp;musicplayer</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentPlayingToolbar">&nbsp;&nbsp;currentPlayingToolbar</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentPlaylist">&nbsp;&nbsp;currentPlaylist</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentArtistCollection">&nbsp;&nbsp;currentArtistCollection</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentAlbumCollection">&nbsp;&nbsp;currentAlbumCollection</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentArtist">&nbsp;&nbsp;currentArtist</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tabbar">&nbsp;&nbsp;tabbar</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentNavController">&nbsp;&nbsp;currentNavController</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initialise">&ndash;&nbsp;initialise</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepareAppDidEnterBackground">&ndash;&nbsp;prepareAppDidEnterBackground</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepareAppWillEnterForeground">&ndash;&nbsp;prepareAppWillEnterForeground</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepareAppDidBecomeActive">&ndash;&nbsp;prepareAppDidBecomeActive</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepareAppWillTerminate">&ndash;&nbsp;prepareAppWillTerminate</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isMediaPlayerInitialized">&ndash;&nbsp;isMediaPlayerInitialized</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentPlayingToolbarMustBeHidden">&ndash;&nbsp;currentPlayingToolbarMustBeHidden</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setCurrentPlayingToolbarMustBeHidden:">&ndash;&nbsp;setCurrentPlayingToolbarMustBeHidden:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLastPlayingAlbum:">&ndash;&nbsp;setLastPlayingAlbum:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getLastPlayingAlbum">&ndash;&nbsp;getLastPlayingAlbum</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLastPlayingPlaylist:">&ndash;&nbsp;setLastPlayingPlaylist:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getLastPLayingPlaylist">&ndash;&nbsp;getLastPLayingPlaylist</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startPlayingAlbum:">&ndash;&nbsp;startPlayingAlbum:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startPlayingPlaylist:">&ndash;&nbsp;startPlayingPlaylist:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startPlayingBestRating">&ndash;&nbsp;startPlayingBestRating</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initialiseMediaPlayer">&ndash;&nbsp;initialiseMediaPlayer</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/currentAlbumCollection" title="currentAlbumCollection"></a>
+	<h3 class="subsubtitle method-title">currentAlbumCollection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current selected album collection for the album navigation bar.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) MPMediaItemCollection *currentAlbumCollection</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentArtist" title="currentArtist"></a>
+	<h3 class="subsubtitle method-title">currentArtist</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current selected artist for the artist navigation bar.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) MPMediaItem *currentArtist</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentArtistCollection" title="currentArtistCollection"></a>
+	<h3 class="subsubtitle method-title">currentArtistCollection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current selected artist collection for the artist navigation bar.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) MPMediaItemCollection *currentArtistCollection</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentNavController" title="currentNavController"></a>
+	<h3 class="subsubtitle method-title">currentNavController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current navigation controller. Use by the main <a href="#//api/name/tabbar">tabbar</a> and main menu to pop all view Controller when swith <a href="#//api/name/tabbar">tabbar</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) UINavigationController *currentNavController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentPlayingToolbar" title="currentPlayingToolbar"></a>
+	<h3 class="subsubtitle method-title">currentPlayingToolbar</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Toolbar displayed when music playing and the UIMusicViewController is not displayed.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) <a href="../Classes/UICurrentPlayingToolBar.html">UICurrentPlayingToolBar</a> *currentPlayingToolbar</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentPlaylist" title="currentPlaylist"></a>
+	<h3 class="subsubtitle method-title">currentPlaylist</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current selected playlist select in the playlist navigation bar.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) MPMediaPlaylist *currentPlaylist</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/musicplayer" title="musicplayer"></a>
+	<h3 class="subsubtitle method-title">musicplayer</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Main music player controller.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) MPMusicPlayerController *musicplayer</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tabbar" title="tabbar"></a>
+	<h3 class="subsubtitle method-title">tabbar</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Main tabbar controller</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) <a href="../Classes/UITabBarControllerMain.html">UITabBarControllerMain</a> *tabbar</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/currentPlayingToolbarMustBeHidden" title="currentPlayingToolbarMustBeHidden"></a>
+	<h3 class="subsubtitle method-title">currentPlayingToolbarMustBeHidden</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicate if <a href="../Classes/UICurrentPlayingToolBar.html">UICurrentPlayingToolBar</a> must be hidden.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (bool)currentPlayingToolbarMustBeHidden</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>True if <a href="../Classes/UICurrentPlayingToolBar.html">UICurrentPlayingToolBar</a> must be hidden.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getLastPLayingPlaylist" title="getLastPLayingPlaylist"></a>
+	<h3 class="subsubtitle method-title">getLastPLayingPlaylist</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the last playing playlist</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSNumber *)getLastPLayingPlaylist</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>uid of the last playing playlist</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getLastPlayingAlbum" title="getLastPlayingAlbum"></a>
+	<h3 class="subsubtitle method-title">getLastPlayingAlbum</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return last playing album</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSNumber *)getLastPlayingAlbum</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>uid of the last playing album</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initialise" title="initialise"></a>
+	<h3 class="subsubtitle method-title">initialise</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialise all data for the current execution of the application.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (bool)initialise</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>True if the initialization succesed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initialiseMediaPlayer" title="initialiseMediaPlayer"></a>
+	<h3 class="subsubtitle method-title">initialiseMediaPlayer</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialization of the media player.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (bool)initialiseMediaPlayer</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>True if initialization succesed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isMediaPlayerInitialized" title="isMediaPlayerInitialized"></a>
+	<h3 class="subsubtitle method-title">isMediaPlayerInitialized</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return true if the mediaPlayer is initialized.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (bool)isMediaPlayerInitialized</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Return true if media player is initialized.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareAppDidBecomeActive" title="prepareAppDidBecomeActive"></a>
+	<h3 class="subsubtitle method-title">prepareAppDidBecomeActive</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Prepare application to become active</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)prepareAppDidBecomeActive</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareAppDidEnterBackground" title="prepareAppDidEnterBackground"></a>
+	<h3 class="subsubtitle method-title">prepareAppDidEnterBackground</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Prepare application to gone in background.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)prepareAppDidEnterBackground</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareAppWillEnterForeground" title="prepareAppWillEnterForeground"></a>
+	<h3 class="subsubtitle method-title">prepareAppWillEnterForeground</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Prepare application to gone in foreground.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)prepareAppWillEnterForeground</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareAppWillTerminate" title="prepareAppWillTerminate"></a>
+	<h3 class="subsubtitle method-title">prepareAppWillTerminate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Prepare application to terminate</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)prepareAppWillTerminate</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setCurrentPlayingToolbarMustBeHidden:" title="setCurrentPlayingToolbarMustBeHidden:"></a>
+	<h3 class="subsubtitle method-title">setCurrentPlayingToolbarMustBeHidden:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set if <a href="../Classes/UICurrentPlayingToolBar.html">UICurrentPlayingToolBar</a> must be hidden.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setCurrentPlayingToolbarMustBeHidden:(bool)<em>hidden</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>hidden</em></dt>
+			<dd><p>True to hidden <a href="../Classes/UICurrentPlayingToolBar.html">UICurrentPlayingToolBar</a>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLastPlayingAlbum:" title="setLastPlayingAlbum:"></a>
+	<h3 class="subsubtitle method-title">setLastPlayingAlbum:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the last playing album</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setLastPlayingAlbum:(NSNumber *)<em>albumUid</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>albumUid</em></dt>
+			<dd><p>uid of the album</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLastPlayingPlaylist:" title="setLastPlayingPlaylist:"></a>
+	<h3 class="subsubtitle method-title">setLastPlayingPlaylist:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the last playing playlist</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setLastPlayingPlaylist:(NSNumber *)<em>playlistUid</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>playlistUid</em></dt>
+			<dd><p>uid of the playlist</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startPlayingAlbum:" title="startPlayingAlbum:"></a>
+	<h3 class="subsubtitle method-title">startPlayingAlbum:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Start playing an album.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (bool)startPlayingAlbum:(NSNumber *)<em>albumUid</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>albumUid</em></dt>
+			<dd><p>album uid for starting playing.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>true if album is starting to playing.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startPlayingBestRating" title="startPlayingBestRating"></a>
+	<h3 class="subsubtitle method-title">startPlayingBestRating</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Start playing best rating song on the device.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)startPlayingBestRating</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>true if start playing is possible.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startPlayingPlaylist:" title="startPlayingPlaylist:"></a>
+	<h3 class="subsubtitle method-title">startPlayingPlaylist:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Start playing a playlist.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (bool)startPlayingPlaylist:(NSNumber *)<em>playlistUid</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>playlistUid</em></dt>
+			<dd><p>playlist uid for starting playing.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>true if playlist is starting to playing.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MPDataManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+                    
+                    
+
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 Eric Pinet. All rights reserved. (Last updated: 2014-12-21)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
