@@ -51,6 +51,9 @@
     // the initial state of playlist editing mode is FALSE:
     playlistEditing = false;
     
+    // the initial state of forceDisplayMediaItem is FLASE;
+    _forceDisplayMediaItem = false;
+    
     // init magic record
     [MagicalRecord setupCoreDataStack];
     
@@ -94,9 +97,9 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
-    // nothing
+    _forceDisplayMediaItem = true;
     
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 /**
