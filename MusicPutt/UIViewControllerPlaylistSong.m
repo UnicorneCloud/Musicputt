@@ -293,7 +293,7 @@
     
     // save last playing playlist
     if (isMusicputtPlaylist) {
-        // TODO save last playlist
+        [[self.del mpdatamanager] setLastPlayingPlaylistMusicPutt:[[[self.del mpdatamanager] currentMusicputtPlaylist] name]];
     }
     else{
         [[self.del mpdatamanager] setLastPlayingPlaylist:[[[self.del mpdatamanager] currentPlaylist] valueForProperty:MPMediaPlaylistPropertyPersistentID]];
