@@ -105,6 +105,9 @@
 
 -(void) displayMediaItem: (MPMediaItem*) aitem
 {
+    // ensure that force display is set to false;
+    [self.del mpdatamanager].forceDisplayMediaItem = false;
+    
     if (aitem!=NULL) {
         
         UIImage* image;
@@ -167,6 +170,11 @@
             _progress.centralView =  pauseView;
         else
             _progress.centralView =  playView;
+        
+        // if needed, force displayMediaItem
+        if ([self.del mpdatamanager].forceDisplayMediaItem) {
+            [self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
+        }
     }
     else
     {
@@ -289,6 +297,10 @@
  */
 -(void) updateCurrentPlayingItem
 {
+    
+    // ensure that force display is set to false;
+    [self.del mpdatamanager].forceDisplayMediaItem = false;
+    
     // do action only if media player is ready
     if ([[self.del mpdatamanager] isMediaPlayerInitialized])
     {

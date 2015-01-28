@@ -245,11 +245,15 @@
     }
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_PLAYLIST]) // start playing last playlist
     {
-        NSNumber* lastaplaylist = [[[self del] mpdatamanager] getLastPLayingPlaylist];
-        if (lastaplaylist!=nil) {
-            NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"PlayLastPlaylist:", lastaplaylist);
+        
+        NSNumber* lastplaylist = [[[self del] mpdatamanager] getLastPLayingPlaylist];
+        NSString* lastplaylistmusicputt = [[[self del] mpdatamanager] getLastPLayingPlaylistMusicPutt];
+        
+        
+        if (lastplaylist!=nil && [[[self del] mpdatamanager] isLastPlaylistMusicPutt] == FALSE) {              // ITUNES
+            NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"PlayLastPlaylist:", lastplaylist);
             
-            if( [[[self del] mpdatamanager] startPlayingPlaylist:lastaplaylist] )
+            if( [[[self del] mpdatamanager] startPlayingPlaylist:lastplaylist] )
             {
                 UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
@@ -266,15 +270,35 @@
             }
         }
         else{
-            UIAlertView *message = [[UIAlertView alloc]
-                                    initWithTitle:@"Nothing!"
-                                    message:@"No last playlist to play!"
-                                    delegate:nil
-                                    cancelButtonTitle:@"OK"
-                                    otherButtonTitles:nil];
-            [message show];
+            if (lastplaylistmusicputt!=nil && [[[self del] mpdatamanager] isLastPlaylistMusicPutt] == TRUE) {   // MUSICPUTT
+                NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"PlayLastPlaylist:", lastplaylistmusicputt);
+                
+                if( [[[self del] mpdatamanager] startPlayingPlaylistMusicPutt:lastplaylistmusicputt] )
+                {
+                    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
+                    [_parentNavCtrl pushViewController:musicView animated:YES];
+                }
+                else{
+                    UIAlertView *message = [[UIAlertView alloc]
+                                            initWithTitle:@"Nothing!"
+                                            message:@"No last playlist to play!"
+                                            delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+                    [message show];
+                }
+            }
+            else{
+                UIAlertView *message = [[UIAlertView alloc]
+                                        initWithTitle:@"Nothing!"
+                                        message:@"No last playlist to play!"
+                                        delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+                [message show];
+            }
         }
-    
     }
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_ALBUM]) // start playing last album
     {
