@@ -11,13 +11,15 @@
 #import "UITableViewCellFeature.h"
 #import "ITunesAlbum.h"
 #import "ITunesFeedsApi.h"
+#import "MusicputtApi.h"
+#import "MPListening.h"
 #import "PreferredGender.h"
 #import "AppDelegate.h"
 
 
 
 
-@interface UIViewControllerFeature ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, ITunesFeedsApiDelegate, UIActionSheetDelegate>
+@interface UIViewControllerFeature ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, ITunesFeedsApiDelegate, MusicPuttApiDelegate, UIActionSheetDelegate>
 {
     UIBarButtonItem* editButton;
     NSArray *sortedSongsArray;
@@ -40,6 +42,9 @@
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
 @property AppDelegate* del;
 @property ITunesFeedsApi* itunes;
+@property MusicPuttApi* musicputt;
+
+
 
 @end
 
@@ -83,6 +88,11 @@
     // init itunes feeds api
     _itunes = [[ITunesFeedsApi alloc] init];
     [_itunes setDelegate:self];
+    
+    // init musicputt api
+    _musicputt = [[MusicPuttApi alloc] init];
+    [_musicputt setDelegate:self];
+    
 }
 
 
@@ -101,6 +111,9 @@
         country = @"US";
     }
     [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
+    
+    // musicputt api
+    //[_musicputt queryListening];
     
     // start timer
     timerFlip = [NSTimer scheduledTimerWithTimeInterval:3
@@ -687,6 +700,24 @@
             
             NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"queryResult - end");
         }
+    }
+}
+
+#pragma mark - MusicPuttApiDelegate
+
+-(void) queryResultMusicPutt:(MusicPuttApiQueryStatus)status type:(MusicPuttApiQueryType)type results:(NSArray*)results
+{
+    if (status == MusicPuttApiStatusSucceed) {
+        
+        MPListening* listening = [results objectAtIndex:0];
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"queryResult - end");
+        
+        // TODO
+    }
+    else{
+        
+        // TODO
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Error");
     }
 }
 

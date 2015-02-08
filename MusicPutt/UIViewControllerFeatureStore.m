@@ -20,6 +20,11 @@
 #import "UITableViewCellFeatureHeaderStore.h"
 #import "UITableViewCellFeatureSongsStore.h"
 
+
+// TEST
+#import "MPListening.h"
+#import "MusicPuttApi.h"
+
 #define SECTION_ALBUM 0
 #define SECTION_SONG 1
 
@@ -504,6 +509,24 @@
                            NSURL *url = [NSURL URLWithString:path];
                            NSData *data = [NSData dataWithContentsOfURL:url];
                            UIImage *sharedImage = [[UIImage alloc] initWithData:data];
+                           
+                           
+                           // TEST
+                           if (indexPath.row==0) {
+                               MPListening *listening = [[MPListening alloc] init];
+                               listening.trackId = track.trackId;
+                               listening.collectionId = track.collectionId;
+                               listening.artistId = track.artistId;
+                               listening.trackName = track.trackName;
+                               listening.collectionName = track.collectionName;
+                               listening.artistName = track.artistName;
+                               listening.previewUrl = track.previewUrl;
+                               listening.artworkUrl100 = track.artworkUrl100;
+                               
+                               MusicPuttApi *api = [[MusicPuttApi alloc] init];
+                               [api postListening:listening];
+                           }
+                           // TEST END
                            
                            dispatch_async(dispatch_get_main_queue(), ^{
                                
