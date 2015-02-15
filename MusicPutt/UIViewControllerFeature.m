@@ -383,7 +383,7 @@
             currentMusicPuttStep++;
         }
         
-        if (currentMusicPuttUpdate + currentMusicPuttStep > sortedSongsArray.count) {
+        if (currentMusicPuttUpdate + currentMusicPuttStep >= sortedSongsArray.count) {
             currentMusicPuttUpdate = 4;
             currentMusicPuttStep = 1;
         }
