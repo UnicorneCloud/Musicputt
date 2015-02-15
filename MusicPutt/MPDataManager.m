@@ -15,6 +15,7 @@
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <CoreMotion/CoreMotion.h>
 
+#define IS_IOS7 [[UIDevice currentDevice].systemVersion hasPrefix:@"7"]
 
 @interface MPDataManager()
 {
@@ -182,7 +183,14 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     bool retval = false;
-    _musicplayer = [MPMusicPlayerController systemMusicPlayer];
+    
+    if (IS_IOS7) {
+        _musicplayer = [MPMusicPlayerController iPodMusicPlayer];
+    }
+    else{
+        _musicplayer = [MPMusicPlayerController systemMusicPlayer];
+    }
+    
     if (_musicplayer==NULL) {
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[ERROR] - Error getting MPMusicPlayerController iPodMusicPlayer");
     }
