@@ -229,6 +229,13 @@
 - (BOOL) startPlayingBestRating;
 
 /**
+ *  Set the last media playing item. This action will send item in musicputt server database.
+ *
+ *  @param item Media item now playing.
+ */
+- (void) setLastPlayingItem:(MPMediaItem*)item;
+
+/**
  *  Shared CMotionManager.
  *
  *  @return singleton CMotionManager

@@ -24,6 +24,8 @@
     
     BOOL playlistEditing;
     bool currentPlayingToolbarMustBeHidden; // if true, CurrentPlayingToolBar must be hidden.
+    
+    NSMutableArray* _lastPlayingItems;
 }
 
 @end
@@ -57,6 +59,9 @@
     
     // the initial state of forceDisplayMediaItem is FLASE;
     _forceDisplayMediaItem = false;
+    
+    // init last playing item array
+    _lastPlayingItems = [[NSMutableArray alloc] init];
     
     // init magic record
     [MagicalRecord setupCoreDataStack];
@@ -511,6 +516,18 @@
     }
     
     return retval;
+}
+
+/**
+ *  Set the last media playing item. This action will send item in musicputt server database.
+ *
+ *  @param item Media item now playing.
+ */
+- (void) setLastPlayingItem:(MPMediaItem*)item
+{
+    [_lastPlayingItems addObject:item];
+    
+    // TODO try to find songs in iTunesStore, If found, Post to Musicputt server.
 }
 
 /**

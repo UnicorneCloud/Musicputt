@@ -8,58 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-
-/**
- *  Enum of queryResult type.
- */
-typedef enum {
-    QueryMusicPuttListening,
-    QueryAll
-} MusicPuttApiQueryType;
-
-typedef enum {
-    MusicPuttApiStatusSucceed,
-    MusicPuttApiStatusFailed
-} MusicPuttApiQueryStatus;
-
-
-
-
-/**
- *  Protocol for the delegate of the MusicPuttApi.
- */
-@protocol MusicPuttApiDelegate <NSObject>
-
-@optional
-
-/**
- *  Implement this methode for recieve result after query.
- *
- *  @param status  Status of the querys
- *  @param type    Type of query sender
- *  @param results resultset of the query
- */
--(void) queryResultMusicPutt:(MusicPuttApiQueryStatus)status type:(MusicPuttApiQueryType)type results:(NSArray*)results;
-
-@end
-
-
-
 @class MPListening;
 
 @interface MusicPuttApi : NSObject
 
-/**
- *  Set delegate to recieve result of query.
- *
- *  @param anObject delegate object with ITunesSearchApiDelegate protocol.
- */
-- (void) setDelegate:(id) anObject;
 
 /**
- *  Execute query to retrieve last playing songs by others users in musicputt and return results to the delagate.
+ *  Execute query to retrieve last playing songs by others users in musicputt and execute success block or failure
+ * [_musicputt queryListeningListAsynchronizationMode:true
+ *                                            success:^(NSArray* results){
+ *                                                                          NSLog(@"success");
+ *                                                                       }
+ *                                            failure:^(NSError* error){
+ *                                                                          NSLog(@"error");
+ *                                                                      }];
+ *
+ *  @param async   True for async response.
+ *  @param success success block
+ *  @param failure failure block
  */
-- (void) queryListening;
+- (void) queryListeningListAsynchronizationMode:(BOOL)async
+                                        success:(void (^)(NSArray* results))success
+                                        failure:(void (^)(NSError *error))failure;
 
 /**
  *  Post a MPListening to musicputt server

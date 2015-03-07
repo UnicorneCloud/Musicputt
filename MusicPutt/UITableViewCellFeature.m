@@ -17,9 +17,15 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 
-#define MUSICPUTT_PLAY_PREFERED         @"Play my Favorites"
-#define MUSICPUTT_PLAY_LASTEST_PLAYLIST @"Play Last Playlist"
-#define MUSICPUTT_PLAY_LASTEST_ALBUM    @"Play Last Album"
+#define LOCAL_PLAY_PREFERED         @"Play my Favorites"
+#define LOCAL_PLAY_LASTEST_PLAYLIST @"Play Last Playlist"
+#define LOCAL_PLAY_LASTEST_ALBUM    @"Play Last Album"
+//#define LOCAL_CREATE_NEW_PLAYLIST   @"Create New Playlist"
+
+
+#define MUSICPUTT_SEE_MORE         @"See more ..."
+//#define MUSICPUTT_PLAY_LASTEST_PLAYLIST @"Play Last Playlist"
+//#define MUSICPUTT_PLAY_LASTEST_ALBUM    @"Play Last Album"
 //#define MUSICPUTT_CREATE_NEW_PLAYLIST   @"Create New Playlist"
 
 #define DISCOVER_SEE_WHATS_NEW          @"See What's Hot"
@@ -107,13 +113,22 @@
 
 - (void)menuPoppu
 {
+    if (_type == TypeLocal) {
+        // Local row
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:LOCAL_PLAY_PREFERED, LOCAL_PLAY_LASTEST_PLAYLIST, LOCAL_PLAY_LASTEST_ALBUM/*, LOCAL_CREATE_NEW_PLAYLIST*/, nil];
+        [actionSheet showInView:_parentView];
+    }
     if (_type == TypeMusicPutt) {
         // Musicputt row
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:MUSICPUTT_PLAY_PREFERED, MUSICPUTT_PLAY_LASTEST_PLAYLIST, MUSICPUTT_PLAY_LASTEST_ALBUM/*, MUSICPUTT_CREATE_NEW_PLAYLIST*/, nil];
+                                                        otherButtonTitles:MUSICPUTT_SEE_MORE, nil];
         [actionSheet showInView:_parentView];
     }
     else if (_type == TypeDiscover){
@@ -129,12 +144,12 @@
 
 - (void)onClickImage1
 {
-    if (_type == TypeMusicPutt) {
+    if (_type == TypeLocal) {
         // click on album in musicputt (local device album)
         [self playAlbum:_albumUid1];
         NSLog(@"You have click album: %@", _albumUid1);
     }
-    else if (_type == TypeDiscover){
+    else if (_type == TypeDiscover || _type == TypeMusicPutt){
         // click on album in TopRate
         [self displayStoreAlbum:_collectionId1];
         NSLog(@"You have click album: %@", _collectionId1);
@@ -143,12 +158,12 @@
 
 - (void)onClickImage2
 {
-    if (_type == TypeMusicPutt) {
+    if (_type == TypeLocal) {
         // click on album in musicputt (local device album)
         [self playAlbum:_albumUid2];
         NSLog(@"You have click album: %@", _albumUid2);
     }
-    else if (_type == TypeDiscover){
+    else if (_type == TypeDiscover || _type == TypeMusicPutt){
         // click on album in TopRate
         [self displayStoreAlbum:_collectionId2];
         NSLog(@"You have click album: %@", _collectionId2);
@@ -157,12 +172,12 @@
 
 - (void)onClickImage3
 {
-    if (_type == TypeMusicPutt) {
+    if (_type == TypeLocal) {
         // click on album in musicputt (local device album)
         [self playAlbum:_albumUid3];
         NSLog(@"You have click album: %@", _albumUid3);
     }
-    else if (_type == TypeDiscover){
+    else if (_type == TypeDiscover || _type == TypeMusicPutt){
         // click on album in TopRate
         [self displayStoreAlbum:_collectionId3];
         NSLog(@"You have click album: %@", _collectionId3);
@@ -171,12 +186,12 @@
 
 - (void)onClickImage4
 {
-    if (_type == TypeMusicPutt) {
+    if (_type == TypeLocal) {
         // click on album in musicputt (local device album)
         [self playAlbum:_albumUid4];
         NSLog(@"You have click album: %@", _albumUid4);
     }
-    else if (_type == TypeDiscover){
+    else if (_type == TypeDiscover || _type == TypeMusicPutt){
         // click on album in TopRate
         [self displayStoreAlbum:_collectionId4];
         NSLog(@"You have click album: %@", _collectionId4);
@@ -234,7 +249,7 @@
 {
     NSLog(@"You have pressed the %@ button", [actionSheet buttonTitleAtIndex:buttonIndex]);
     
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_PREFERED]) // start playing prefered
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:LOCAL_PLAY_PREFERED]) // start playing prefered
     {
         if( [[[self del] mpdatamanager] startPlayingBestRating] )
         {
@@ -243,7 +258,7 @@
             [_parentNavCtrl pushViewController:musicView animated:YES];
         }
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_PLAYLIST]) // start playing last playlist
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:LOCAL_PLAY_LASTEST_PLAYLIST]) // start playing last playlist
     {
         
         NSNumber* lastplaylist = [[[self del] mpdatamanager] getLastPLayingPlaylist];
@@ -300,7 +315,7 @@
             }
         }
     }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_PLAY_LASTEST_ALBUM]) // start playing last album
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:LOCAL_PLAY_LASTEST_ALBUM]) // start playing last album
     {
         NSNumber* lastalbum = [[[self del] mpdatamanager] getLastPlayingAlbum];
         if (lastalbum!=nil) {
@@ -333,7 +348,7 @@
         }
     }
     /*
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_CREATE_NEW_PLAYLIST]) // create new playlist
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:LOCAL_CREATE_NEW_PLAYLIST]) // create new playlist
     {
         
     }
