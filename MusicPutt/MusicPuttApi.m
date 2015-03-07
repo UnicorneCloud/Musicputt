@@ -14,11 +14,11 @@
 
 
 
-//#define _MUSICPUTT_BASE_URL_ @"http://musicputt.net78.net/"
-// #define _MUSICPUTT_RELATIVE_URL_ @"http://musicputt.net78.net/listeningList.php"
+#define _MUSICPUTT_BASE_URL_ @"http://musicputt.atwebpages.com/"
+#define _MUSICPUTT_RELATIVE_URL_ @"http://musicputt.atwebpages.com/listeningList.php"
 
-#define _MUSICPUTT_BASE_URL_ @"http://192.168.5.10:8080/"
-#define _MUSICPUTT_RELATIVE_URL_ @"http://192.168.5.10:8080/listeningList.php"
+//#define _MUSICPUTT_BASE_URL_ @"http://192.168.5.10:8080/"
+//#define _MUSICPUTT_RELATIVE_URL_ @"http://192.168.5.10:8080/listeningList.php"
 
 
 

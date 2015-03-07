@@ -90,8 +90,8 @@
     [_itunes setDelegate:self];
     
     // init musicputt api
-    _musicputt = [[MusicPuttApi alloc] init];
-    [_musicputt setDelegate:self];
+    //_musicputt = [[MusicPuttApi alloc] init];
+    //[_musicputt setDelegate:self];
     
 }
 
