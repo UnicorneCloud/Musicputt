@@ -2,6 +2,8 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="LastPlaying" representedClassName="LastPlaying" syncable="YES">
         <attribute name="albumuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="islastmusicputt" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="playlistmusicputt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="playlistuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Playlist" representedClassName="Playlist" syncable="YES">
@@ -17,7 +19,7 @@
         <attribute name="genderid" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="LastPlaying" positionX="-171" positionY="-72" width="128" height="73"/>
+        <element name="LastPlaying" positionX="-171" positionY="-72" width="128" height="105"/>
         <element name="Playlist" positionX="135" positionY="-81" width="128" height="75"/>
         <element name="PlaylistItem" positionX="135" positionY="59" width="128" height="90"/>
         <element name="PreferredGender" positionX="-20" positionY="-72" width="128" height="58"/>

@@ -9,9 +9,13 @@
 #import "MPDataManager.h"
 
 #import "LastPlaying.h"
+#import "Playlist.h"
+#import "PlaylistItem.h"
+
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <CoreMotion/CoreMotion.h>
 
+#define IS_IOS7 [[UIDevice currentDevice].systemVersion hasPrefix:@"7"]
 
 @interface MPDataManager()
 {
@@ -20,6 +24,8 @@
     
     BOOL playlistEditing;
     bool currentPlayingToolbarMustBeHidden; // if true, CurrentPlayingToolBar must be hidden.
+    
+    NSMutableArray* _lastPlayingItems;
 }
 
 @end
@@ -50,6 +56,12 @@
     
     // the initial state of playlist editing mode is FALSE:
     playlistEditing = false;
+    
+    // the initial state of forceDisplayMediaItem is FLASE;
+    _forceDisplayMediaItem = false;
+    
+    // init last playing item array
+    _lastPlayingItems = [[NSMutableArray alloc] init];
     
     // init magic record
     [MagicalRecord setupCoreDataStack];
@@ -94,9 +106,9 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
-    // nothing
+    _forceDisplayMediaItem = true;
     
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Conpleted");
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
 
 /**
@@ -176,7 +188,14 @@
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     bool retval = false;
-    _musicplayer = [MPMusicPlayerController systemMusicPlayer];
+    
+    if (IS_IOS7) {
+        _musicplayer = [MPMusicPlayerController iPodMusicPlayer];
+    }
+    else{
+        _musicplayer = [MPMusicPlayerController systemMusicPlayer];
+    }
+    
     if (_musicplayer==NULL) {
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[ERROR] - Error getting MPMusicPlayerController iPodMusicPlayer");
     }
@@ -229,6 +248,53 @@
     return nil;
 }
 
+/**
+ *  Return true if last playlist is musicputt type.
+ *
+ *  @return true if musicputt type. false if itunes type.
+ */
+- (BOOL) isLastPlaylistMusicPutt
+{
+    LastPlaying *lastplaying = [LastPlaying MR_findFirst];
+    if (lastplaying) {
+        if (lastplaying.islastmusicputt) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+/**
+ *  Set last playing playlist (musicputt type)
+ *
+ *  @param playlistName Name of the playlist
+ */
+- (void) setLastPlayingPlaylistMusicPutt:(NSString*) playlistName
+{
+    NSLog(@" %s - %@ %@\n", __PRETTY_FUNCTION__, @"setLastPlayingPlaylistMusicputt", playlistName);
+    
+    LastPlaying *lastplaying = [LastPlaying MR_findFirst];
+    if (lastplaying==nil) {
+        lastplaying = [LastPlaying MR_createEntity];
+    }
+    lastplaying.playlistmusicputt = playlistName;
+    lastplaying.islastmusicputt = [NSNumber numberWithInt:1];
+    //[[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
+/**
+ *  Get last playing playlist (musicputt type)
+ *
+ *  @return Name of the lastest playlist play.
+ */
+- (NSString*) getLastPLayingPlaylistMusicPutt
+{
+    LastPlaying *lastplaying = [LastPlaying MR_findFirst];
+    if (lastplaying) {
+        return lastplaying.playlistmusicputt;
+    }
+    return nil;
+}
 
 /**
  *  Set the last playing playlist
@@ -244,6 +310,7 @@
         lastplaying = [LastPlaying MR_createEntity];
     }
     lastplaying.playlistuid = playlistUid;
+    lastplaying.islastmusicputt = [NSNumber numberWithInt:0];
     //[[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
@@ -351,6 +418,63 @@
 }
 
 /**
+ *  Start playing a playlist musicputt.
+ *
+ *  @param playlistName playlist name for starting playing musicputt playlist.
+ *
+ *  @return true if playlist is starting to playing.
+ */
+- (bool) startPlayingPlaylistMusicPutt:(NSString*) playlistName
+{
+    BOOL retval = FALSE;
+    Playlist *playlist = [Playlist MR_findFirstByAttribute:@"name" withValue:playlistName];
+    
+    if (playlistName){
+
+        NSSortDescriptor *sortPosition = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+        NSArray* songs = [[playlist items] sortedArrayUsingDescriptors:[NSArray arrayWithObjects: sortPosition, nil]];
+        
+        NSMutableArray* list = [[NSMutableArray alloc] init];
+        MPMediaItem *song;
+        MPMediaPropertyPredicate *predicate;
+        MPMediaQuery *songQuery;
+        
+        for (int i=0 ; i<songs.count ; i++) {
+            predicate = [MPMediaPropertyPredicate predicateWithValue: ((PlaylistItem*)[songs objectAtIndex:i]).songuid forProperty:MPMediaItemPropertyPersistentID];
+            songQuery = [[MPMediaQuery alloc] init];
+            [songQuery addFilterPredicate: predicate];
+            if (songQuery.items.count > 0)
+            {
+                //song exists
+                song = [songQuery.items objectAtIndex:0];
+                [list addObject: song];
+            }
+        }
+        
+        if (list.count>0) {
+            [[self musicplayer] stop];
+            
+            BOOL shuffleWasOn = NO;
+            if ([self musicplayer].shuffleMode != MPMusicShuffleModeOff &&
+                [self musicplayer].shuffleMode != MPMusicShuffleModeDefault)
+            {
+                [self musicplayer].shuffleMode = MPMusicShuffleModeOff;
+                shuffleWasOn = YES;
+            }
+            [[self musicplayer] setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:list]];
+            [[self musicplayer] setNowPlayingItem:[list objectAtIndex:0]];
+            if (shuffleWasOn)
+                [self musicplayer].shuffleMode = MPMusicShuffleModeSongs;
+            
+            [[self musicplayer] play];
+            
+            retval = TRUE;
+        }
+    }
+    return retval;
+}
+
+/**
  *  Start playing best rating song on the device.
  */
 - (BOOL) startPlayingBestRating
@@ -392,6 +516,18 @@
     }
     
     return retval;
+}
+
+/**
+ *  Set the last media playing item. This action will send item in musicputt server database.
+ *
+ *  @param item Media item now playing.
+ */
+- (void) setLastPlayingItem:(MPMediaItem*)item
+{
+    [_lastPlayingItems addObject:item];
+    
+    // TODO try to find songs in iTunesStore, If found, Post to Musicputt server.
 }
 
 /**

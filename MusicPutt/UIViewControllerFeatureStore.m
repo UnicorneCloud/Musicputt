@@ -20,6 +20,11 @@
 #import "UITableViewCellFeatureHeaderStore.h"
 #import "UITableViewCellFeatureSongsStore.h"
 
+
+// TEST
+#import "MPListening.h"
+#import "MusicPuttApi.h"
+
 #define SECTION_ALBUM 0
 #define SECTION_SONG 1
 

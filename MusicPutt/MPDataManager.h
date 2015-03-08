@@ -79,6 +79,11 @@
 @property (strong, nonatomic) UINavigationController* currentNavController;
 
 /**
+ *  Indicate if is needed to reload Display of MediaItem in UIViewCOntrollerMusic.
+ */
+@property BOOL forceDisplayMediaItem;
+
+/**
  *  Initialise all data for the current execution of the application.
  *
  *  @return True if the initialization succesed.
@@ -155,6 +160,27 @@
 - (NSNumber*) getLastPlayingAlbum;
 
 /**
+ *  Return true if last playlist is musicputt type.
+ *
+ *  @return true if musicputt type. false if itunes type.
+ */
+- (BOOL) isLastPlaylistMusicPutt;
+
+/**
+ *  Set last playing playlist (musicputt type)
+ *
+ *  @param playlistName Name of the playlist
+ */
+- (void) setLastPlayingPlaylistMusicPutt:(NSString*) playlistName;
+
+/**
+ *  Get last playing playlist (musicputt type)
+ *
+ *  @return Name of the lastest playlist play.
+ */
+- (NSString*) getLastPLayingPlaylistMusicPutt;
+
+/**
  *  Set the last playing playlist
  *
  *  @param playlistUid uid of the playlist
@@ -187,11 +213,27 @@
 - (bool) startPlayingPlaylist:(NSNumber*) playlistUid;
 
 /**
+ *  Start playing a playlist musicputt.
+ *
+ *  @param playlistName playlist name for starting playing musicputt playlist.
+ *
+ *  @return true if playlist is starting to playing.
+ */
+- (bool) startPlayingPlaylistMusicPutt:(NSString*) playlistName;
+
+/**
  *  Start playing best rating song on the device.
  * 
  *  @return true if start playing is possible.
  */
 - (BOOL) startPlayingBestRating;
+
+/**
+ *  Set the last media playing item. This action will send item in musicputt server database.
+ *
+ *  @param item Media item now playing.
+ */
+- (void) setLastPlayingItem:(MPMediaItem*)item;
 
 /**
  *  Shared CMotionManager.

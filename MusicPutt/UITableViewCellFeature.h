@@ -12,6 +12,7 @@
  *  Enum of query status.
  */
 typedef enum {
+    TypeLocal,
     TypeMusicPutt,
     TypeDiscover
 } CellFeatureType;
