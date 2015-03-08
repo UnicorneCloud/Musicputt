@@ -403,6 +403,9 @@
                                                                      , [aitem valueForProperty:MPMediaItemPropertyAlbumTitle]];
         [_artistalbum setText:artistalbum];
         
+        // set last playing item to send it to musicputt server
+        [[self.del mpdatamanager] setLastPlayingItem:aitem];
+        
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"LoadImage");
     }
     else{
