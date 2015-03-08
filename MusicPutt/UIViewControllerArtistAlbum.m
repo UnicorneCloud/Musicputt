@@ -20,9 +20,13 @@
 }
 
 @property AppDelegate* del;
+
 @property (weak, nonatomic) IBOutlet UITableView*  tableView;
-//@property (nonatomic)UISearchController *searchController;
-//@property (nonatomic, strong) NSMutableArray *searchResults;
+
+@property (nonatomic, strong) NSMutableArray *searchResults;
+
+@property (nonatomic)UISearchController *searchController;
+
 @end
 
 @implementation UIViewControllerArtistAlbum
@@ -61,29 +65,33 @@
     // setup tableview
     scrollView = _tableView;
     
-    
     // setup search controller
-    /*
     self.searchResults = [NSMutableArray arrayWithCapacity:[artistCollection count]];
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchController.searchBar.showsCancelButton = NO;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    */
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.searchController.searchBar.hidden = false;
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.searchController.searchBar.hidden = true;
 }
 
 /**
@@ -95,14 +103,14 @@
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //if (self.searchController.active)
-    //{
-    //    return 1;
-    //}
-    //else
-    //{
+    if ([self.searchController isActive])
+    {
+        return 1;
+    }
+    else
+    {
       return [[everything collections] count];
-    //}
+    }
 }
 
 /**
@@ -115,14 +123,14 @@
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //if (self.searchController.active)
-    //{
-    //    return [self.searchResults count]; //[everything collections].count;
-    //}
-    //else
-    //{
+    if ([self.searchController isActive])
+    {
+        return [self.searchResults count]; //[everything collections].count;
+    }
+    else
+    {
         return [[everything collections][section] count] ;
-    //}
+    }
 }
 
 /**
@@ -149,15 +157,15 @@
         [[cell add] setHidden:TRUE];             // hide add button
     }
     
-    //if (self.searchController.active)
-    //{
-    //    MPMediaItemCollection *itemCollection =(MPMediaItemCollection*)(self.searchResults[indexPath.row]);
-    //    [cell setArtistAlbumItem: itemCollection.items[0]] ;
-    //}
-    //else
-    //{
+    if (self.searchController.active)
+    {
+        MPMediaItemCollection *itemCollection =(MPMediaItemCollection*)(self.searchResults[indexPath.row]);
+        [cell setArtistAlbumItem: itemCollection.items[0]] ;
+    }
+    else
+    {
         [cell setArtistAlbumItem: [[everything collections][indexPath.section] items][indexPath.row]] ;
-    //}
+    }
     return cell;
 }
 /**
@@ -167,7 +175,7 @@
  *
  *  @return           : The full duration of the album.
  */
-- (NSString*)fullAlbumLength:(NSInteger)indexAlbum
+- (NSString*) fullAlbumLength:(NSInteger)indexAlbum
 {
     fullLength = 0;
     [[[everything collections][indexAlbum] items] enumerateObjectsUsingBlock:^(MPMediaItem *songItem, NSUInteger idx, BOOL *stop) {
@@ -189,6 +197,10 @@
  */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if(self.searchController.isActive)
+    {
+       return nil;
+    }
     UITableViewCellHeaderSection * headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderCell"];
     headerCell.contentView.backgroundColor = [UIColor whiteColor];
     
@@ -252,6 +264,9 @@
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (self.searchController.isActive) {
+        return 0.0f;
+    }
     return 80.0f;
 }
 
@@ -385,7 +400,6 @@
 */
 -(IBAction)toggleSearch:(id)sender
 {
-    /*
     // hide the search bar when it's showed
     NSLog(@"self.tableView.bounds.origin.y = %f", self.tableView.bounds.origin.y);
     
@@ -396,25 +410,21 @@
     {
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
-    */
 }
 
 #pragma mark - UISearchResultsUpdating
 
--(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
-    /*
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
     NSString *searchString = [self.searchController.searchBar text];
     [self updateFilteredContentForArtistSong:searchString];
     [self.tableView reloadData];
-    */
 }
 
 #pragma mark - Content Filtering
 
 - (void)updateFilteredContentForArtistSong:(NSString *)searchText
 {
-    /*
     if ((searchText == nil) || [searchText length] == 0)
     {
         everything = [MPMediaQuery albumsQuery];
@@ -452,7 +462,6 @@
             [self.searchResults addObject:itemCollection];
         }
     }
-    */
 }
 
 /*
