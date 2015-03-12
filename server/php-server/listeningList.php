@@ -1,9 +1,12 @@
 <?
 	/*************************************************************************************
-	 * MUSICPUTT json server
+	 * MUSICPUTT json server - (listeningList)
 	 *
 	 * This is the json server for the iOS application musicputt. This server respond to
 	 * json request.
+	 *
+	 * This service is use for get what user in musicput listening and send new song
+	 * listening in musicputt.
 	 * 
 	 * ************************************************************************************/
 
@@ -16,11 +19,10 @@
 	///////////////////////////////////////////////////////////////////////////////////////
 	// mysql connection
 	//
-	$mysqli = new mysqli("localhost",	// host
-						 "root",		// user
-						 "root", 		// password
-						 "musicputt"); 	// database
-
+	$mysqli = new mysqli("fdb13.awardspace.net",	// host
+						 "1812630_music",		// user
+						 "Asdlkj01msn", 		// password
+						 "1812630_music"); 	// database
 	if ($mysqli->connect_errno) {
 		echo "{\n";
 		echo "	\"results\": [\n";
@@ -126,7 +128,7 @@
 		// build sql query
 		$sql =  "SELECT trackId, artistId, collectionId, trackName, artistName, collectionName, " .
 		"previewUrl, artworkUrl100, listeningDate, listeningCount FROM listening " .
-		"ORDER BY listeningDate DESC";
+		"ORDER BY DATE_FORMAT(listeningDate, '%Y%m') DESC LIMIT 500";
 
 		// execute query
 		if( $result = $mysqli->query($sql) ){

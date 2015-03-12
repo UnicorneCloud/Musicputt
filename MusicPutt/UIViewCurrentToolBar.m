@@ -129,6 +129,9 @@
         [_album setText:[aitem valueForProperty:MPMediaItemPropertyAlbumTitle]];
         
         [self updateCurrentTime];
+        
+        // set last playing item to send it to musicputt server
+        [[self.del mpdatamanager] setLastPlayingItem:aitem];
     }
     else{
         [_imageview setImage:nil];
