@@ -1956,7 +1956,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Artists" id="uv7-8s-kc1">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="search" id="ezE-NO-evB">
+                        <barButtonItem key="rightBarButtonItem" image="search" id="ezE-NO-evB">
                             <inset key="imageInsets" minX="44" minY="23" maxX="0.0" maxY="20"/>
                             <connections>
                                 <action selector="toggleSearch:" destination="DMV-5q-SQk" id="Bat-QM-Fnk"/>
@@ -2129,7 +2129,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Artist title" id="wSH-nU-wFc">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="search" id="dIk-HV-Ph6">
+                        <barButtonItem key="rightBarButtonItem" image="search" id="dIk-HV-Ph6">
                             <inset key="imageInsets" minX="44" minY="23" maxX="0.0" maxY="20"/>
                             <connections>
                                 <action selector="toggleSearch:" destination="0g8-ph-yTh" id="8jV-RJ-gaN"/>
