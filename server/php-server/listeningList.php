@@ -20,9 +20,9 @@
 	// mysql connection
 	//
 	$mysqli = new mysqli("fdb13.awardspace.net",	// host
-						 "1812630_music",		// user
-						 "Asdlkj01msn", 		// password
-						 "1812630_music"); 	// database
+						 "1812630_music",		    // user
+						 "Asdlkj01msn", 		    // password
+						 "1812630_music"); 	        // database
 	if ($mysqli->connect_errno) {
 		echo "{\n";
 		echo "	\"results\": [\n";
@@ -128,7 +128,7 @@
 		// build sql query
 		$sql =  "SELECT trackId, artistId, collectionId, trackName, artistName, collectionName, " .
 		"previewUrl, artworkUrl100, listeningDate, listeningCount FROM listening " .
-		"ORDER BY DATE_FORMAT(listeningDate, '%Y%m%d') DESC LIMIT 500";
+		"ORDER BY YEARWEEK( listeningDate ) DESC LIMIT 500";
 
 		// execute query
 		if( $result = $mysqli->query($sql) ){
