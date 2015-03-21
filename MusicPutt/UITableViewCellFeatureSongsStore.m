@@ -26,25 +26,14 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    // init download progress
+    // init download progress and playing
     [_downloadProgress setHidden:true];
+    [_equalizer setHidden:true];
     
     // active gesture on image
     _image.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick)];
     [_image addGestureRecognizer:tapGestureImage];
-    
-    /*
-    // active gesture on title
-    _title.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleClick)];
-    [_title addGestureRecognizer:tapGestureTitle];
-    
-    // active gesture on artist name
-    _artist.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureArtist = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(artistClick)];
-    [_artist addGestureRecognizer:tapGestureArtist];
-    */
     
     // Init iTunes search api
     itunes = [[ITunesSearchApi alloc] init];
@@ -65,6 +54,7 @@
 -(void) startDownloadProgress
 {
     [_downloadProgress setHidden:false];
+    [_equalizer setHidden:true];
     [_downloadProgress startAnimating];
 }
 
@@ -78,6 +68,28 @@
     [_downloadProgress setHidden:true];
 }
 
+/**
+ *  Start playing progress
+ */
+-(void) startPlayingProgress
+{
+    [_downloadProgress setHidden:true];
+    [_equalizer setHidden:false];
+    [_equalizer startAnimation];
+}
+
+/**
+ *  Stop playing progress
+ */
+-(void) stopPlayingProgress
+{
+    [_equalizer stopAnimation];
+    [_equalizer setHidden:true];
+}
+
+/**
+ *  Click on image
+ */
 - (void) imageClick
 {
     [self displayStoreAlbum];

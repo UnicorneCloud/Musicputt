@@ -40,6 +40,7 @@
     AVAudioPlayer* audioPlayer;
     NSInteger currentSongIndex;
     NSInteger currentDownloadingIndex;
+    NSInteger currentPlayingIndex;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
@@ -54,6 +55,11 @@
 
 @implementation UIViewControllerFeatureStore
 
+
+/**
+ *  viewDidLoad
+ *  Initialisation and iTunes request
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -93,6 +99,7 @@
     
     // init current downloading displaying
     currentDownloadingIndex = -1;
+    currentPlayingIndex = -1;
     
 }
 
@@ -117,13 +124,19 @@
     [self stopPlaying];
 }
 
-
+/**
+ *  didReceiveMemoryWarning
+ */
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
+/**
+ *  handleLeftSwipeFrom
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)handleLeftSwipeFrom:(id)sender
 {
     if (topRates.count >= currentTopRateStep+7) {
@@ -147,6 +160,11 @@
     }
 }
 
+/**
+ *  handleRightSwipeFrom
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)handleRightSwipeFrom:(id)sender
 {
     if (currentTopRateStep-6 >= 0) {
@@ -419,6 +437,14 @@
     return 2;
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   <#section description#>
+ *
+ *  @return <#return value description#>
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == SECTION_ALBUM) {
@@ -430,6 +456,14 @@
     return 0;
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   <#section description#>
+ *
+ *  @return <#return value description#>
+ */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UITableViewCellFeatureHeaderStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureHeaderStoreCell"];
@@ -442,12 +476,27 @@
     return cell;
 }
 
-
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   <#section description#>
+ *
+ *  @return <#return value description#>
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 35.0f;
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if( indexPath.section == SECTION_ALBUM )
@@ -461,7 +510,14 @@
     return 0.0f;
 }
 
-
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == SECTION_ALBUM) {
@@ -494,12 +550,27 @@
     {
         UITableViewCellFeatureSongsStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureSongCell"];
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         ITunesMusicTrack* track = [topRatesSongs objectAtIndex:indexPath.row];
         cell.trackId = [track trackId];
         [cell title].text = [track trackName];
         [cell artist].text = [track artistName];
         [[cell image] setImage:nil];
         cell.parentNavCtrl = self.navigationController;
+        
+        if (currentPlayingIndex == indexPath.row) {
+            [cell startPlayingProgress];
+            
+            if (currentDownloadingIndex == indexPath.row) {
+                [cell stopPlayingProgress];
+                [cell startDownloadProgress];
+            }
+        }
+        else{
+            [cell stopPlayingProgress];
+            [cell stopDownloadProgress];
+        }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
                        ^{
@@ -524,6 +595,14 @@
 
 #pragma mark - UITableViewDelegate
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == currentSongIndex && [audioPlayer isPlaying]) {
@@ -533,6 +612,7 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         
         [audioPlayer stop];
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentSongIndex]];
     }
     else{
         if (indexPath.section!=0) {
@@ -545,6 +625,13 @@
 
 #pragma mark - ITunesFeedsApiDelegate
 
+/**
+ *  <#Description#>
+ *
+ *  @param status  <#status description#>
+ *  @param type    <#type description#>
+ *  @param results <#results description#>
+ */
 -(void) queryResult:(ITunesFeedsApiQueryStatus)status type:(ITunesFeedsQueryType)type results:(NSArray*)results
 {
     if (status == StatusSucceed) {
@@ -554,7 +641,7 @@
             // top albums receieved
             
             // load images from itunes store
-            UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:SECTION_ALBUM]];
             if (cell && results.count>=6)
             {
                 
@@ -591,6 +678,7 @@
 - (void) stopPlaying
 {
     [audioPlayer stop];
+    [self stopPlayingProgress:[NSNumber numberWithInteger:currentPlayingIndex]];
 }
 
 /**
@@ -604,7 +692,7 @@
         currentSongIndex = index;
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
-        [_tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        //[_tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         
         NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing", (long)currentSongIndex);
         
@@ -618,15 +706,23 @@
                 [audioPlayer prepareToPlay];
                 [audioPlayer play];
                 
+                
                 NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
                 [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
                 
-                //[self stopDownloadProgress:currentDownloadingIndex];
+                NSNumber *param2 = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(startPlayingProgress:) withObject:param2 waitUntilDone:NO];
+                
+                
             }];
             [task resume];
         }
         else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"There is no preview for this song!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                            message:@"There is no preview for this song!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil,nil];
             [alert show];
             
             [self stopDownloadProgress: [NSNumber numberWithInteger:currentSongIndex]];
@@ -634,22 +730,40 @@
     }
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param player <#player description#>
+ *  @param flag   <#flag description#>
+ */
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentSongIndex);
     [audioPlayer stop];
+    //[self stopPlayingProgress:[NSNumber numberWithInteger:currentSongIndex]];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //[_tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self startPlayingAtIndex:currentSongIndex+1];
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param player <#player description#>
+ *  @param error  <#error description#>
+ */
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
 {
     NSLog(@"Error occured");
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
 -(void) startDownloadProgress:(NSInteger) index
 {
     if (currentDownloadingIndex != -1) {
@@ -667,6 +781,11 @@
     }
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
 -(void) stopDownloadProgress:(NSNumber*) index
 {
     //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
@@ -676,6 +795,44 @@
         [cell stopDownloadProgress];
     }
     currentDownloadingIndex = -1;
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) startPlayingProgress:(NSInteger) index
+{
+    if (currentPlayingIndex != -1) {
+        // stop already downloding progress
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentPlayingIndex]];
+    }
+    
+    currentPlayingIndex = currentSongIndex;
+    
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start downloading progress ", (long)index);
+    
+    UITableViewCellFeatureSongsStore *cell = (UITableViewCellFeatureSongsStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentPlayingIndex inSection:SECTION_SONG]];
+    if (cell) {
+        [cell startPlayingProgress];
+    }
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) stopPlayingProgress:(NSNumber*) index
+{
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    
+    UITableViewCellFeatureSongsStore *cell = (UITableViewCellFeatureSongsStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue] inSection:SECTION_SONG]];
+    if (cell) {
+        [cell stopPlayingProgress];
+    }
+    currentPlayingIndex = -1;
 }
 
 

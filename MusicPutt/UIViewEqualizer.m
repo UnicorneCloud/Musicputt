@@ -25,6 +25,8 @@
     BOOL _directionUp;
     
     NSString* _color;
+    
+    NSTimer* timer;
 }
 
 @end
@@ -65,8 +67,6 @@
     
     // default direction up
     _directionUp = true;
-    
-    [self startAnimation];
 }
 
 - (void)startAnimation
@@ -75,14 +75,20 @@
     [self setNeedsDisplay];
     
     //schedule redraws once per second
-    [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(updateView:) userInfo:nil repeats:YES];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(updateView:) userInfo:nil repeats:YES];
+}
+
+- (void)stopAnimation
+{
+    if (timer) {
+        [timer invalidate];
+    }
 }
 
 - (void)updateView:(NSTimer*)timer
 {
     //tell the view to update
     [self setNeedsDisplay];
-    //[timer invalidate];
 }
 
 
@@ -116,13 +122,13 @@
     
     if (_directionUp) {
         _firstLineCurrentValue++;
-        if ( _firstLineCurrentValue == _maxHeight ) {
+        if ( _firstLineCurrentValue >= _maxHeight ) {
             _directionUp = false;
         }
     }
     else{
         _firstLineCurrentValue--;
-        if ( _firstLineCurrentValue == 0 ) {
+        if ( _firstLineCurrentValue <= 0 ) {
             _directionUp = true;
         }
     }

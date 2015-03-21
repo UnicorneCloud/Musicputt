@@ -10,4 +10,8 @@
 
 @interface UIViewEqualizer : UIView
 
+- (void)startAnimation;
+
+- (void)stopAnimation;
+
 @end
