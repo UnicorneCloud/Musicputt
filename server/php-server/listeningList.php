@@ -128,7 +128,7 @@
 		// build sql query
 		$sql =  "SELECT trackId, artistId, collectionId, trackName, artistName, collectionName, " .
 		"previewUrl, artworkUrl100, listeningDate, listeningCount FROM listening " .
-		"ORDER BY DATE_FORMAT(listeningDate, '%Y%m') DESC LIMIT 500";
+		"ORDER BY DATE_FORMAT(listeningDate, '%Y%m%d') DESC LIMIT 500";
 
 		// execute query
 		if( $result = $mysqli->query($sql) ){
