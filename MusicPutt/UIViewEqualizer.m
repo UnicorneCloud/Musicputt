@@ -22,6 +22,8 @@
     float _lineWidth;
     float _lineSpaceWidth;
     
+    float _refreshRate;
+    
     BOOL _directionUp;
     
     NSString* _color;
@@ -67,6 +69,9 @@
     
     // default direction up
     _directionUp = true;
+    
+    // default refresh rate
+    _refreshRate = 0.02;
 }
 
 - (void)startAnimation
@@ -75,7 +80,7 @@
     [self setNeedsDisplay];
     
     //schedule redraws once per second
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(updateView:) userInfo:nil repeats:YES];
+    timer = [NSTimer scheduledTimerWithTimeInterval:_refreshRate target:self selector:@selector(updateView:) userInfo:nil repeats:YES];
 }
 
 - (void)stopAnimation
@@ -128,7 +133,7 @@
     }
     else{
         _firstLineCurrentValue--;
-        if ( _firstLineCurrentValue <= 0 ) {
+        if ( _firstLineCurrentValue <= (_maxHeight/3) ) {
             _directionUp = true;
         }
     }
@@ -139,7 +144,7 @@
     
     // draw line 3
     CGContextMoveToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _maxHeight);
-    CGContextAddLineToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _firstLineCurrentValue + (_firstLineCurrentValue*0.55) );
+    CGContextAddLineToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _firstLineCurrentValue + (_firstLineCurrentValue*0.25) - (_maxHeight/3) );
 
     
     // strock path
