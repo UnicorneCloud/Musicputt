@@ -75,6 +75,8 @@
     self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
     self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    [self dismissKeyboard];
 }
 
 - (void)didReceiveMemoryWarning
@@ -462,6 +464,11 @@
             [self.searchResults addObject:itemCollection];
         }
     }
+}
+
+- (void)dismissKeyboard
+{
+    [[self.del window] endEditing:YES];
 }
 
 /*

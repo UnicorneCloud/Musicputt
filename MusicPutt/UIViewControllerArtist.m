@@ -182,9 +182,12 @@
 -(IBAction)toggleSearch:(id)sender
 {
     // hide the search bar when it's showed
+    NSLog(@"self.tableView.frame.origin.y = %f", self.tableView.frame.origin.y);
     NSLog(@"self.tableView.bounds.origin.y = %f", self.tableView.bounds.origin.y);
     
-    if (self.tableView.bounds.origin.y == -64) {
+    if (self.tableView.bounds.origin.y == -64)
+    {
+        [[self searchController] setActive: false];
         [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.frame.size.height-70, 1, 1) animated:YES];
     }
     else
