@@ -24,6 +24,8 @@
     
     float _refreshRate;
     
+    float _currentRatio;
+    
     BOOL _directionUp;
     
     NSString* _color;
@@ -72,6 +74,10 @@
     
     // default refresh rate
     _refreshRate = 0.02;
+    
+    // default current ratio
+    _currentRatio = 0.25;
+    
 }
 
 - (void)startAnimation
@@ -129,22 +135,26 @@
         _firstLineCurrentValue++;
         if ( _firstLineCurrentValue >= _maxHeight ) {
             _directionUp = false;
+            
+            _currentRatio = 0.0 + ((float)arc4random() / UINT32_MAX) * (0.8 - 0.2);
         }
     }
     else{
         _firstLineCurrentValue--;
         if ( _firstLineCurrentValue <= (_maxHeight/3) ) {
             _directionUp = true;
+            
+            _currentRatio = 0.0 + ((float)arc4random() / UINT32_MAX) * (0.8 - 0.2);
         }
     }
     
     // draw line 2
     CGContextMoveToPoint(context, (_lineWidth+_lineSpaceWidth)+_lineWidth/2, _maxHeight);
-    CGContextAddLineToPoint(context, (_lineWidth+_lineSpaceWidth)+_lineWidth/2, _firstLineCurrentValue - (_firstLineCurrentValue*0.25) );
+    CGContextAddLineToPoint(context, (_lineWidth+_lineSpaceWidth)+_lineWidth/2, _firstLineCurrentValue - (_firstLineCurrentValue*_currentRatio) );
     
     // draw line 3
     CGContextMoveToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _maxHeight);
-    CGContextAddLineToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _firstLineCurrentValue + (_firstLineCurrentValue*0.25) - (_maxHeight/3) );
+    CGContextAddLineToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _firstLineCurrentValue + (_firstLineCurrentValue*_currentRatio) - (_maxHeight/3) );
 
     
     // strock path
