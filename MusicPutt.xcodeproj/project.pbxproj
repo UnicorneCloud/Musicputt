@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		9706486919510A0900FA877A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9706486819510A0900FA877A /* MediaPlayer.framework */; };
+		97066C701AE4183D00CF8591 /* UIViewControllerMusicPutt.m in Sources */ = {isa = PBXBuildFile; fileRef = 97066C6F1AE4183D00CF8591 /* UIViewControllerMusicPutt.m */; };
 		9707ADBE198DED4A0093F6F0 /* UIButton+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADBD198DED4A0093F6F0 /* UIButton+Extensions.m */; };
 		9707ADCE198E837E0093F6F0 /* UIProgressView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADCD198E837E0093F6F0 /* UIProgressView+Extensions.m */; };
 		9707ADD1198E886D0093F6F0 /* UITabBarControllerMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9707ADD0198E886D0093F6F0 /* UITabBarControllerMain.m */; };
@@ -116,6 +117,8 @@
 /* Begin PBXFileReference section */
 		89565662E321BB87AE17192C /* Pods-MusicPutt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPutt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicPutt/Pods-MusicPutt.debug.xcconfig"; sourceTree = "<group>"; };
 		9706486819510A0900FA877A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		97066C6E1AE4183D00CF8591 /* UIViewControllerMusicPutt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerMusicPutt.h; sourceTree = "<group>"; };
+		97066C6F1AE4183D00CF8591 /* UIViewControllerMusicPutt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerMusicPutt.m; sourceTree = "<group>"; };
 		9707ADBC198DED4A0093F6F0 /* UIButton+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Extensions.h"; path = "MusicPutt/UIButton+Extensions.h"; sourceTree = "<group>"; };
 		9707ADBD198DED4A0093F6F0 /* UIButton+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Extensions.m"; path = "MusicPutt/UIButton+Extensions.m"; sourceTree = "<group>"; };
 		9707ADCC198E831C0093F6F0 /* UAProgressView+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UAProgressView+Extensions.h"; path = "MusicPutt/tools/UAProgressView+Extensions.h"; sourceTree = "<group>"; };
@@ -290,6 +293,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97066C6D1AE417E900CF8591 /* FeatureMusicputt */ = {
+			isa = PBXGroup;
+			children = (
+				97066C6E1AE4183D00CF8591 /* UIViewControllerMusicPutt.h */,
+				97066C6F1AE4183D00CF8591 /* UIViewControllerMusicPutt.m */,
+			);
+			name = FeatureMusicputt;
+			sourceTree = "<group>";
+		};
 		9707ADD2198E88810093F6F0 /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,6 +396,7 @@
 				9799978B1960F61800360BF8 /* Artist */,
 				9799978C1960F62700360BF8 /* Album */,
 				97AC0C36195A419E00BA60E6 /* Music */,
+				97066C6D1AE417E900CF8591 /* FeatureMusicputt */,
 				9711FF911981DE4A00421CF4 /* Store */,
 			);
 			name = UI;
@@ -834,6 +847,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B241351981E4C600233953 /* UIViewControllerAlbum.m in Sources */,
+				97066C701AE4183D00CF8591 /* UIViewControllerMusicPutt.m in Sources */,
 				979DED28196500E50055AD39 /* UITableViewCellFeature.m in Sources */,
 				977268CC19C516B3006648AB /* UIViewControllerAlbumStore.m in Sources */,
 				97AF57B61960A53A002978E8 /* UITableViewCellPlaylist.m in Sources */,

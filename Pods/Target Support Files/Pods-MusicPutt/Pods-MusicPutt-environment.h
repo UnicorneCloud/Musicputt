@@ -16,7 +16,7 @@
 #define COCOAPODS_POD_AVAILABLE_AMWaveTransition
 #define COCOAPODS_VERSION_MAJOR_AMWaveTransition 0
 #define COCOAPODS_VERSION_MINOR_AMWaveTransition 5
-#define COCOAPODS_VERSION_PATCH_AMWaveTransition 5
+#define COCOAPODS_VERSION_PATCH_AMWaveTransition 7
 
 // BFNavigationBarDrawer
 #define COCOAPODS_POD_AVAILABLE_BFNavigationBarDrawer
@@ -34,7 +34,7 @@
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
 #define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 5
-#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 0
+#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 2
 
 // ISO8601DateFormatterValueTransformer
 #define COCOAPODS_POD_AVAILABLE_ISO8601DateFormatterValueTransformer
@@ -46,7 +46,7 @@
 #define COCOAPODS_POD_AVAILABLE_MONActivityIndicatorView
 #define COCOAPODS_VERSION_MAJOR_MONActivityIndicatorView 0
 #define COCOAPODS_VERSION_MINOR_MONActivityIndicatorView 0
-#define COCOAPODS_VERSION_PATCH_MONActivityIndicatorView 1
+#define COCOAPODS_VERSION_PATCH_MONActivityIndicatorView 3
 
 // MagicalRecord
 #define COCOAPODS_POD_AVAILABLE_MagicalRecord
@@ -64,13 +64,13 @@
 #define COCOAPODS_POD_AVAILABLE_REFrostedViewController
 #define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
 #define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
-#define COCOAPODS_VERSION_PATCH_REFrostedViewController 7
+#define COCOAPODS_VERSION_PATCH_REFrostedViewController 8
 
 // RKValueTransformers
 #define COCOAPODS_POD_AVAILABLE_RKValueTransformers
 #define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1
 #define COCOAPODS_VERSION_MINOR_RKValueTransformers 1
-#define COCOAPODS_VERSION_PATCH_RKValueTransformers 1
+#define COCOAPODS_VERSION_PATCH_RKValueTransformers 2
 
 // RestKit
 #define COCOAPODS_POD_AVAILABLE_RestKit
@@ -108,6 +108,18 @@
 #define COCOAPODS_VERSION_MINOR_RestKit_Support 23
 #define COCOAPODS_VERSION_PATCH_RestKit_Support 3
 
+// SDWebImage
+#define COCOAPODS_POD_AVAILABLE_SDWebImage
+#define COCOAPODS_VERSION_MAJOR_SDWebImage 3
+#define COCOAPODS_VERSION_MINOR_SDWebImage 7
+#define COCOAPODS_VERSION_PATCH_SDWebImage 2
+
+// SDWebImage/Core
+#define COCOAPODS_POD_AVAILABLE_SDWebImage_Core
+#define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
+#define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
+#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 2
+
 // SOCKit
 #define COCOAPODS_POD_AVAILABLE_SOCKit
 #define COCOAPODS_VERSION_MAJOR_SOCKit 1
@@ -130,11 +142,11 @@
 #define COCOAPODS_POD_AVAILABLE_iPerspective
 #define COCOAPODS_VERSION_MAJOR_iPerspective 0
 #define COCOAPODS_VERSION_MINOR_iPerspective 2
-#define COCOAPODS_VERSION_PATCH_iPerspective 0
+#define COCOAPODS_VERSION_PATCH_iPerspective 1
 
 // iTunesApi
 #define COCOAPODS_POD_AVAILABLE_iTunesApi
 #define COCOAPODS_VERSION_MAJOR_iTunesApi 0
-#define COCOAPODS_VERSION_MINOR_iTunesApi 1
+#define COCOAPODS_VERSION_MINOR_iTunesApi 2
 #define COCOAPODS_VERSION_PATCH_iTunesApi 0
 

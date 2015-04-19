@@ -7,6 +7,7 @@
 //
 
 #import "UITableViewCellSongStore.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "ITunesMusicTrack.h"
 
@@ -77,22 +78,8 @@
                           [durationtime intValue]/60,
                           [durationtime intValue]%60];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                   ^{
-                       _artWork.image = nil;
-                       
-                       id path = [mediaitem artworkUrl60];
-                       NSURL *url = [NSURL URLWithString:path];
-                       NSData *data = [NSData dataWithContentsOfURL:url];
-                       
-                       UIImage *img = [[UIImage alloc] initWithData:data];
-                       
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                           
-                           _artWork.image = img;
-                       });
-                       
-                   });
+    [_artWork sd_setImageWithURL:[NSURL URLWithString:[mediaitem artworkUrl60]]
+                placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-60.jpg",[mediaitem trackId]]]];
     
     _mediaitem = mediaitem;
 }

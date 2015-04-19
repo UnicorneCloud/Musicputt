@@ -8,8 +8,11 @@
 
 #import "TableViewCellAlbumStoreHeader.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #import "ITunesAlbum.h"
 #import "MOStoreButton.h"
+
 
 @interface TableViewCellAlbumStoreHeader()
 {
@@ -65,12 +68,9 @@
         _price.text = [NSString stringWithFormat:@"$%@", [mediaitem collectionPrice]];
     }
     
-    id path = [mediaitem artworkUrl100];
-    NSURL *url = [NSURL URLWithString:path];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img = [[UIImage alloc] initWithData:data];
-    
-    _imageview.image = img;
+    [_imageview sd_setImageWithURL:[NSURL URLWithString:[mediaitem getArtworkUrlCustomQuality:@"300x300-75"]]
+                    placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-300.jpg",[mediaitem collectionId]]]
+                    options:SDWebImageProgressiveDownload];
     
     _mediaitem = mediaitem;
 }

@@ -16,6 +16,8 @@
 #import "PreferredGender.h"
 #import "AppDelegate.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 /**
  *  Index for each cell. Local, MusicPutt and TopRate.
@@ -48,9 +50,9 @@
     
     NSInteger nextFlip;
     
-    BOOL LocalReadyToFlip;
-    BOOL MusicPuttReadyToFlip;
-    BOOL TopRateReadyToFlip;
+    BOOL localReadyToFlip;
+    BOOL musicPuttReadyToFlip;
+    BOOL topRateReadyToFlip;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
@@ -93,9 +95,9 @@
     scrollView = _tableView;
     
     // init members
-    LocalReadyToFlip = false;
-    MusicPuttReadyToFlip = false;
-    TopRateReadyToFlip = false;
+    localReadyToFlip = false;
+    musicPuttReadyToFlip = false;
+    topRateReadyToFlip = false;
     
     // load most recent songs
     sortedSongsArray = [[NSArray alloc] init];
@@ -143,54 +145,33 @@
                                                        UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_MUSICPUTT_CELL_INDEX_ inSection:0]];
                                                        if(cell)
                                                        {
+                                                           // image 1
+                                                           MPListening* album = [results objectAtIndex:0];
+                                                           [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
+                                                           cell.collectionId1 = [album collectionId];
                                                            
-                                                           dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                                                                          ^{
-                                                                              // image 1
-                                                                              MPListening* album = [results objectAtIndex:0];
-                                                                              id path = [album artworkUrl100];
-                                                                              NSURL *url = [NSURL URLWithString:path];
-                                                                              NSData *data = [NSData dataWithContentsOfURL:url];
-                                                                              UIImage *sharedImage = [[UIImage alloc] initWithData:data];
-                                                                              
-                                                                              // image 2
-                                                                              MPListening* album2 = [results objectAtIndex:1];
-                                                                              id path2 = [album2 artworkUrl100];
-                                                                              NSURL *url2 = [NSURL URLWithString:path2];
-                                                                              NSData *data2 = [NSData dataWithContentsOfURL:url2];
-                                                                              UIImage *sharedImage2 = [[UIImage alloc] initWithData:data2];
-                                                                              
-                                                                              // image 3
-                                                                              MPListening* album3 = [results objectAtIndex:2];
-                                                                              id path3 = [album3 artworkUrl100];
-                                                                              NSURL *url3 = [NSURL URLWithString:path3];
-                                                                              NSData *data3 = [NSData dataWithContentsOfURL:url3];
-                                                                              UIImage *sharedImage3 = [[UIImage alloc] initWithData:data3];
-                                                                              
-                                                                              // image 4
-                                                                              MPListening* album4 = [results objectAtIndex:3];
-                                                                              id path4 = [album4 artworkUrl100];
-                                                                              NSURL *url4 = [NSURL URLWithString:path4];
-                                                                              NSData *data4 = [NSData dataWithContentsOfURL:url4];
-                                                                              UIImage *sharedImage4 = [[UIImage alloc] initWithData:data4];
-                                                                              
-                                                                              
-                                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                  
-                                                                                  [[cell image1] setImage:sharedImage];
-                                                                                  cell.collectionId1 = [album collectionId];
-                                                                                  [[cell image2] setImage:sharedImage2];
-                                                                                  cell.collectionId2 = [album2 collectionId];
-                                                                                  [[cell image3] setImage:sharedImage3];
-                                                                                  cell.collectionId3 = [album3 collectionId];
-                                                                                  [[cell image4] setImage:sharedImage4];
-                                                                                  cell.collectionId4 = [album4 collectionId];
-                                                                                  
-                                                                                  TopRateReadyToFlip = true;
-                                                                                  [cell stopProgress];
-                                                                              });
-                                                                              
-                                                                          });
+                                                           // image 2
+                                                           MPListening* album2 = [results objectAtIndex:1];
+                                                           [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
+                                                           cell.collectionId2 = [album2 collectionId];
+                                                           
+                                                           // image 3
+                                                           MPListening* album3 = [results objectAtIndex:2];
+                                                           [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
+                                                           cell.collectionId3 = [album3 collectionId];
+                                                           
+                                                           // image 4
+                                                           MPListening* album4 = [results objectAtIndex:3];
+                                                           [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
+                                                           cell.collectionId4 = [album4 collectionId];
+                                                           
+                                                           [cell stopProgress];
+                                                           musicPuttReadyToFlip = true;
+                                                           
                                                        }
                                                    }
                                                }
@@ -241,7 +222,7 @@
     
     NSTimeInterval finish = [[NSDate date] timeIntervalSince1970];
     
-    LocalReadyToFlip = true;
+    localReadyToFlip = true;
     
     NSLog(@" %s - %@ %f secondes\n", __PRETTY_FUNCTION__, @"Finish ordering took", finish - start);
     
@@ -432,18 +413,18 @@
 {
     nextFlip++;
     if (nextFlip==1) {
-        if (LocalReadyToFlip) {
+        if (localReadyToFlip) {
             [self nextLocal];
         }
     }
     else if (nextFlip==2){
-        if (LocalReadyToFlip) {
+        if (localReadyToFlip) {
             [self nextLocal];
         }
     }
     else if (nextFlip==3){
         
-        if (TopRateReadyToFlip) {
+        if (topRateReadyToFlip) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                        ^{
                             [self nextTopRate];
@@ -802,54 +783,35 @@
         if (topRates.count>=4) {
             results = topRates;
         }
+                           
+        // image 1
+        ITunesAlbum* album = [results objectAtIndex:0];
+        [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
+        cell.collectionId1 = [album collectionId];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                       ^{
-                           // image 1
-                           ITunesAlbum* album = [results objectAtIndex:0];
-                           id path = [album artworkUrl100];
-                           NSURL *url = [NSURL URLWithString:path];
-                           NSData *data = [NSData dataWithContentsOfURL:url];
-                           UIImage *sharedImage = [[UIImage alloc] initWithData:data];
-                           
-                           // image 2
-                           ITunesAlbum* album2 = [results objectAtIndex:1];
-                           id path2 = [album2 artworkUrl100];
-                           NSURL *url2 = [NSURL URLWithString:path2];
-                           NSData *data2 = [NSData dataWithContentsOfURL:url2];
-                           UIImage *sharedImage2 = [[UIImage alloc] initWithData:data2];
-                           
-                           // image 3
-                           ITunesAlbum* album3 = [results objectAtIndex:2];
-                           id path3 = [album3 artworkUrl100];
-                           NSURL *url3 = [NSURL URLWithString:path3];
-                           NSData *data3 = [NSData dataWithContentsOfURL:url3];
-                           UIImage *sharedImage3 = [[UIImage alloc] initWithData:data3];
-                           
-                           // image 4
-                           ITunesAlbum* album4 = [results objectAtIndex:3];
-                           id path4 = [album4 artworkUrl100];
-                           NSURL *url4 = [NSURL URLWithString:path4];
-                           NSData *data4 = [NSData dataWithContentsOfURL:url4];
-                           UIImage *sharedImage4 = [[UIImage alloc] initWithData:data4];
-                           
-                           
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               
-                               [[cell image1] setImage:sharedImage];
-                               cell.collectionId1 = [album collectionId];
-                               [[cell image2] setImage:sharedImage2];
-                               cell.collectionId2 = [album2 collectionId];
-                               [[cell image3] setImage:sharedImage3];
-                               cell.collectionId3 = [album3 collectionId];
-                               [[cell image4] setImage:sharedImage4];
-                               cell.collectionId4 = [album4 collectionId];
-                               
-                               TopRateReadyToFlip = true;
-                               [cell stopProgress];
-                           });
-                           
-                       });
+        // image 2
+        ITunesAlbum* album2 = [results objectAtIndex:1];
+        [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
+        cell.collectionId2 = [album2 collectionId];
+        
+        // image 3
+        ITunesAlbum* album3 = [results objectAtIndex:2];
+        [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
+        cell.collectionId3 = [album3 collectionId];
+        
+        // image 4
+        ITunesAlbum* album4 = [results objectAtIndex:3];
+        [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
+        cell.collectionId4 = [album4 collectionId];
+        
+        topRateReadyToFlip = true;
+        [cell stopProgress];
+        
+        
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End cellForRowAtIndexPath");
