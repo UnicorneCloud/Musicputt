@@ -16,6 +16,8 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+#define _QUALITY_IMAGE_ @"200x200-75"
+
 @interface UIViewControllerStoreAlbum () <  ITunesSearchApiDelegate,
                                             iCarouselDataSource,
                                             iCarouselDelegate,
@@ -198,13 +200,13 @@
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
-    id path = [[result objectAtIndex:index+1] artworkUrl100];
+    id path = [[[result objectAtIndex:index+1] artworkUrl100] stringByReplacingOccurrencesOfString:@"100x100-75" withString:_QUALITY_IMAGE_];
     NSURL *url = [NSURL URLWithString:path];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *img = [[UIImage alloc] initWithData:data];
     
     UIImageView* imageview = [[UIImageView alloc] initWithImage:img];
-    imageview.frame = CGRectMake(0, 0, 100.0f, 100.0f);
+    imageview.frame = CGRectMake(0, 0, 110.0f, 110.0f);
     return imageview;
 }
 
