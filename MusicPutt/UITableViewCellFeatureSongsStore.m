@@ -95,18 +95,9 @@
     [self displayStoreAlbum];
 }
 
-/*
-- (void) titleClick
-{
-    [self displayStoreAlbum];
-}
-
-- (void) artistClick
-{
-    [self displayStoreAlbum];
-}
-*/
- 
+/**
+ *  Display store album in new screen.
+ */
 -(void) displayStoreAlbum
 {
     
@@ -120,7 +111,13 @@
     }
 }
 
-
+/**
+ *  ITunesSearchApi receive result.
+ *
+ *  @param status  Status of the result.
+ *  @param type    Type of query.
+ *  @param results results of the query.
+ */
 -(void) queryResult:(ITunesSearchApiQueryStatus)status type:(ITunesSearchApiQueryType)type results:(NSArray*)results
 {
     if (status==ITunesSearchApiStatusSucceed) {
