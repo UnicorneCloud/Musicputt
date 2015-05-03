@@ -318,7 +318,7 @@
         NSString* sharedString = [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", [songs[0] artistName], [songs[0] collectionName]];
         NSURL* sharedUrl = [NSURL URLWithString:[songs[0] collectionViewUrl]];
         
-        id path = [songs[0] artworkUrl100];
+        id path = [songs[0] getArtworkUrlCustomQuality:@"300x300-100"];
         NSURL *url = [NSURL URLWithString:path];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *sharedImage = [[UIImage alloc] initWithData:data];

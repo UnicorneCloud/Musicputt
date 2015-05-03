@@ -86,7 +86,7 @@
     NSString* sharedString = [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", [currentPlaying trackName], [currentPlaying collectionName]];
     NSURL* sharedUrl = [NSURL URLWithString:[currentPlaying trackViewUrl]];
     
-    id path = [currentPlaying artworkUrl100];
+    id path = [currentPlaying getArtworkUrlCustomQuality:@"300x300-100"];
     NSURL *url = [NSURL URLWithString:path];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *sharedImage = [[UIImage alloc] initWithData:data];

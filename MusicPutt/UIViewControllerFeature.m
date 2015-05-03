@@ -110,18 +110,6 @@
     // init musicputt api
     _musicputt = [[MusicPuttApi alloc] init];
     
-}
-
-
-/**
- *  viewWillAppear
- *
- *  @param animated <#animated description#>
- */
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
     // itunes search api
     NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
     if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
@@ -179,6 +167,18 @@
                                                    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicPutt request failed");
                                                }];
     
+}
+
+
+/**
+ *  viewWillAppear
+ *
+ *  @param animated <#animated description#>
+ */
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
     // start timer
     timerFlip = [NSTimer scheduledTimerWithTimeInterval:3
                                                  target:self
@@ -776,42 +776,50 @@
         
         [cell startProgress];
         
-        currentTopRateUpdate = 4;
-        currentTopRateStep = 0;
-        
         NSArray* results;
-        if (topRates.count>=4) {
+        if (topRates.count>=4)
+        {
             results = topRates;
+            
+            // image 1
+            ITunesAlbum* album = [results objectAtIndex:0];
+            [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
+            cell.collectionId1 = [album collectionId];
+            
+            // image 2
+            ITunesAlbum* album2 = [results objectAtIndex:1];
+            [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
+            cell.collectionId2 = [album2 collectionId];
+            
+            // image 3
+            ITunesAlbum* album3 = [results objectAtIndex:2];
+            [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
+            cell.collectionId3 = [album3 collectionId];
+            
+            // image 4
+            ITunesAlbum* album4 = [results objectAtIndex:3];
+            [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
+            cell.collectionId4 = [album4 collectionId];
+            
+            topRateReadyToFlip = true;
+            [cell stopProgress];
         }
-                           
-        // image 1
-        ITunesAlbum* album = [results objectAtIndex:0];
-        [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
-                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
-        cell.collectionId1 = [album collectionId];
-        
-        // image 2
-        ITunesAlbum* album2 = [results objectAtIndex:1];
-        [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
-                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
-        cell.collectionId2 = [album2 collectionId];
-        
-        // image 3
-        ITunesAlbum* album3 = [results objectAtIndex:2];
-        [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
-                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
-        cell.collectionId3 = [album3 collectionId];
-        
-        // image 4
-        ITunesAlbum* album4 = [results objectAtIndex:3];
-        [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
-                         placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
-        cell.collectionId4 = [album4 collectionId];
-        
-        topRateReadyToFlip = true;
-        [cell stopProgress];
-        
-        
+        else
+        {
+            cell.collectionId1 = nil;
+            cell.collectionId2 = nil;
+            cell.collectionId3 = nil;
+            cell.collectionId4 = nil;
+            
+            cell.image1 = nil;
+            cell.image2 = nil;
+            cell.image3 = nil;
+            cell.image4 = nil;
+        }
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End cellForRowAtIndexPath");
@@ -840,6 +848,46 @@
             
             // filter results
             topRates = [self filterTopRatesWithPreferred:results];
+            
+            UITableViewCellFeature *cell = (UITableViewCellFeature *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_TOP_RATE_CELL_INDEX_ inSection:0]];
+            
+            currentTopRateUpdate = 4;
+            currentTopRateStep = 0;
+            
+            if(cell)
+            {
+                NSArray* results;
+                if (topRates.count>=4) {
+                    results = topRates;
+                }
+                
+                // image 1
+                ITunesAlbum* album = [results objectAtIndex:0];
+                [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
+                cell.collectionId1 = [album collectionId];
+                
+                // image 2
+                ITunesAlbum* album2 = [results objectAtIndex:1];
+                [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
+                cell.collectionId2 = [album2 collectionId];
+                
+                // image 3
+                ITunesAlbum* album3 = [results objectAtIndex:2];
+                [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
+                cell.collectionId3 = [album3 collectionId];
+                
+                // image 4
+                ITunesAlbum* album4 = [results objectAtIndex:3];
+                [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
+                cell.collectionId4 = [album4 collectionId];
+                
+                [cell stopProgress];
+                topRateReadyToFlip = true;
+            }
             
             NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"queryResult - end");
         }
