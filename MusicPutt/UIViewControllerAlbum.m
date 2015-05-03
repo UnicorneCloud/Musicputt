@@ -11,13 +11,15 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MPMediaQuery.h>
 
-@interface UIViewControllerAlbum ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
+@interface UIViewControllerAlbum ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UISearchResultsUpdating>
 {
     MPMediaQuery* everything;             // result of current query
     NSArray*      albums;
 }
 @property AppDelegate* del;
 @property (weak, nonatomic) IBOutlet UITableView*  tableView;
+@property (nonatomic)UISearchController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchResults;
 @end
 
 @implementation UIViewControllerAlbum
@@ -48,6 +50,29 @@
     // setup query artists
     everything = [MPMediaQuery albumsQuery];
     albums = [everything collections];
+    
+    // setup search bar
+    self.searchResults = [NSMutableArray arrayWithCapacity:[albums count]];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchController.searchBar.showsCancelButton = NO;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.searchController.searchBar.hidden = false;
+    //self.searchController.active = true;
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.searchController.searchBar.hidden = true;
+    self.searchController.active = false;
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,13 +85,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return albums.count;
+    // If the requesting table view is the search display controller's table view, return the count of
+    // the filtered list, otherwise return the count of the main list.
+    if (self.searchController.isActive)
+    {
+        return [self.searchResults count];
+    }
+    else
+    {
+        return albums.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellAlbum* cell = [tableView dequeueReusableCellWithIdentifier:@"CellAlbum"];
-    [cell setAlbumItem: albums[indexPath.row]];
+    
+    if (self.searchController.isActive)
+    {
+        [cell setAlbumItem: self.searchResults[indexPath.row]];
+    }
+    else
+    {
+        [cell setAlbumItem: albums[indexPath.row]];
+    }
     
     return cell;
 }
@@ -84,6 +126,41 @@
 - (NSArray*)visibleCells
 {
     return [self.tableView visibleCells];
+}
+
+#pragma mark - UISearchResultsUpdating
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    NSString *searchString = [self.searchController.searchBar text];
+    [self updateFilteredContentForAlbum:searchString];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Content Filtering
+
+- (void)updateFilteredContentForAlbum:(NSString *)albumName
+{
+    if ((albumName == nil) || [albumName length] == 0)
+    {
+        self.searchResults = [albums mutableCopy];
+        return;
+    }
+    [self.searchResults removeAllObjects]; // First clear the filtered array.
+    
+    // Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
+    for (MPMediaItemCollection *albumCollection in albums)
+    {
+        NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
+        MPMediaItem* albumRepresentativeItem = [(MPMediaItemCollection*)albumCollection representativeItem];
+        NSString *name = [albumRepresentativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];
+        NSRange albumNameRange = NSMakeRange(0, name.length);
+        NSRange foundRange = [name rangeOfString:albumName options:searchOptions range:albumNameRange];
+        if (foundRange.length > 0)
+        {
+            [self.searchResults addObject:albumCollection];
+        }
+    }
 }
 
 /*
