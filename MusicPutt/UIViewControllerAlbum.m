@@ -117,7 +117,15 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.del mpdatamanager].currentAlbumCollection = albums[indexPath.row];
+    if (self.searchController.isActive)
+    {
+        [self.del mpdatamanager].currentAlbumCollection = self.searchResults[indexPath.row];
+    }
+    else
+    {
+        [self.del mpdatamanager].currentAlbumCollection = albums[indexPath.row];
+    }
+
     return indexPath;
 }
 
