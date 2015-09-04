@@ -71,6 +71,10 @@
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
     self.tableView.tableHeaderView = self.searchController.searchBar;
     
+    //self.navigationController.navigationBar.translucent = NO;
+    self.searchController.searchBar.translucent = NO;
+    self.searchController.searchBar.backgroundColor = [UIColor whiteColor];
+    
     // Initiate the dictionnairy and fill it.
     artistDictionary = [NSMutableDictionary dictionary];
     NSMutableSet *tempSet = [NSMutableSet set];

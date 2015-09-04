@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MyV-EH-EqI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MyV-EH-EqI">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -2224,7 +2224,16 @@
                             <constraint firstAttribute="trailing" secondItem="oZS-XV-z7f" secondAttribute="trailing" id="roz-R9-puB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Albums" id="qEa-cp-Bf4"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Albums" id="qEa-cp-Bf4">
+                        <barButtonItem key="rightBarButtonItem" image="search" id="mF6-If-F3L">
+                            <inset key="imageInsets" minX="44" minY="23" maxX="0.0" maxY="20"/>
+                            <connections>
+                                <action selector="toggleSearch:" destination="Dkf-df-RHb" id="up5-2H-3Tm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="oZS-XV-z7f" id="xXH-mi-NI4"/>
                     </connections>
@@ -2386,7 +2395,15 @@
                             <constraint firstAttribute="trailing" secondItem="kSG-vX-q3r" secondAttribute="trailing" id="mYa-2C-1ky"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Album title" id="yAh-7K-oFv"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Album title" id="yAh-7K-oFv">
+                        <barButtonItem key="rightBarButtonItem" image="search" id="vXC-QI-OvE">
+                            <inset key="imageInsets" minX="44" minY="23" maxX="0.0" maxY="20"/>
+                            <connections>
+                                <action selector="toggleSearch:" destination="o7z-vy-FnK" id="75W-Xw-fvf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="kSG-vX-q3r" id="nAW-yc-SOV"/>
                         <outlet property="view" destination="ei8-gg-fHH" id="2jz-PK-iW2"/>
@@ -2495,6 +2512,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="DLh-Kj-oM3"/>
+        <segue reference="JhZ-jo-ybM"/>
     </inferredMetricsTieBreakers>
 </document>

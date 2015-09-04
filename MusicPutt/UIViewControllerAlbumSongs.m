@@ -126,6 +126,14 @@
 {
     UITableViewCellMediaItem* cell = [tableView dequeueReusableCellWithIdentifier:@"MediaItemCell"];
    
+    if (self.searchController.isActive)
+    {
+        [cell setAlbumSongItem: self.searchResults[indexPath.row]];
+    }
+    else
+    {
+        [cell setAlbumSongItem: songs[indexPath.row]];
+    }
     
     // check if editing playlist is active
     if ([[self.del mpdatamanager] isPlaylistEditing])
@@ -136,14 +144,6 @@
     }
     else
     {
-        if (self.searchController.isActive)
-        {
-            [cell setAlbumSongItem: self.searchResults[indexPath.row]];
-        }
-        else
-        {
-             [cell setAlbumSongItem: songs[indexPath.row]];
-        }
         [[cell songDuration] setHidden:FALSE];   // show duration
         [[cell add] setHidden:TRUE];             // hide add button 
     }
@@ -326,6 +326,23 @@
     [self.tableView reloadData];
 }
 
+-(IBAction)toggleSearch:(id)sender
+{
+    // hide the search bar when it's showed
+    NSLog(@"self.tableView.frame.origin.y = %f", self.tableView.frame.origin.y);
+    NSLog(@"self.tableView.bounds.origin.y = %f", self.tableView.bounds.origin.y);
+    
+    if (self.tableView.bounds.origin.y == -64)
+    {
+        [[self searchController] setActive: false];
+        [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.frame.size.height-70, 1, 1) animated:YES];
+    }
+    else
+    {
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    }
+}
+
 
 #pragma mark - Content Filtering
 
@@ -358,30 +375,11 @@
     [[self.del window] endEditing:YES];
 }
 
-//UISearchBarDelegate
 
-/*
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    if ([searchText length] > 0)
-    {
-        [self searchController].active = true;
-    }
-    else
-    {
-        [self searchController].active = false;
-    }
-}
-*/
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
+
+
 
 @end
