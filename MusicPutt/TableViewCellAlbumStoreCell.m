@@ -11,6 +11,7 @@
 #import "ITunesMusicTrack.h"
 #import "UAProgressView.h"
 #import "UIColor+CreateMethods.h"
+#import "UIViewEqualizer.h"
 
 @interface TableViewCellAlbumStoreCell ()
 {
@@ -34,7 +35,6 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel* songDuration;
 
-
 @end
 
 @implementation TableViewCellAlbumStoreCell
@@ -46,15 +46,7 @@
     [_downloadProgress setHidden:true];
     
     // init playing progress
-    currentProgress = 0;
-    [_playingProgress setHidden:true];
-    _playingProgress.borderWidth = 1.0;
-    _playingProgress.lineWidth = 3.0;
-    _playingProgress.animationDuration = 0.1;
-    _playingProgress.tintColor = [UIColor colorWithHex:@"#8E8E93" alpha:1.0];
-
-    // hide song durration
-    //[_songDuration setHidden:true];
+    [_equalizer setHidden:true];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -103,7 +95,7 @@
 -(void) startDownloadProgress
 {
     [_songDuration setHidden:true];
-    [_playingProgress setHidden:true];
+    [_equalizer setHidden:true];
     
     [_downloadProgress setHidden:false];
     [_downloadProgress startAnimating];
@@ -119,7 +111,29 @@
     [_downloadProgress startAnimating];
     [_downloadProgress setHidden:true];
     
-    [_playingProgress setHidden:true];
+    [_songDuration setHidden:false];
+}
+
+/**
+ *  Start playing progress
+ */
+-(void) startPlayingProgress
+{
+    [_downloadProgress setHidden:true];
+    [_songDuration setHidden:true];
+    
+    [_equalizer setHidden:false];
+    [_equalizer startAnimation];
+}
+
+/**
+ *  Stop playing progress
+ */
+-(void) stopPlayingProgress
+{
+    [_equalizer stopAnimation];
+    [_equalizer setHidden:true];
+    
     [_songDuration setHidden:false];
 }
 

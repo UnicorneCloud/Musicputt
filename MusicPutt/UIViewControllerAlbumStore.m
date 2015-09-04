@@ -24,6 +24,7 @@
     AVAudioPlayer* audioPlayer;
     NSInteger currentSongIndex;
     NSInteger currentDownloadingIndex;
+    NSInteger currentPlayingIndex;
     UIActivityIndicatorView *activityIndicator;
 }
 @property AppDelegate* del;
@@ -75,6 +76,7 @@
     
     // init current downloading displaying
     currentDownloadingIndex = -1;
+    currentPlayingIndex = -1;
     
 }
 
@@ -138,6 +140,20 @@
 {
     TableViewCellAlbumStoreCell * cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumStoreCell"];
     [cell setMediaItem:songs[indexPath.row+1]];
+    
+    if (currentPlayingIndex == indexPath.row) {
+        [cell startPlayingProgress];
+        
+        if (currentDownloadingIndex == indexPath.row) {
+            [cell stopPlayingProgress];
+            [cell startDownloadProgress];
+        }
+    }
+    else{
+        [cell stopPlayingProgress];
+        [cell stopDownloadProgress];
+    }
+    
     return cell;
 }
 
@@ -203,6 +219,7 @@
         [self.songstable deselectRowAtIndexPath:indexPath animated:YES];
         
         [audioPlayer stop];
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentSongIndex]];
     }
     else{
         [self startPlayingAtIndex:indexPath.row+1];
@@ -219,6 +236,7 @@
 - (void) stopPlaying
 {
     [audioPlayer stop];
+    [self stopPlayingProgress:[NSNumber numberWithInteger:currentPlayingIndex]];
 }
 
 /**
@@ -249,7 +267,9 @@
                 NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
                 [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
                 
-                //[self stopDownloadProgress:currentDownloadingIndex];
+                NSNumber *param2 = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(startPlayingProgress:) withObject:param2 waitUntilDone:NO];
+                
             }];
             [task resume];
         }
@@ -304,6 +324,42 @@
         [cell stopDownloadProgress];
     }
     currentDownloadingIndex = -1;
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) startPlayingProgress:(NSInteger) index
+{
+    if (currentPlayingIndex != -1) {
+        // stop already downloding progress
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentPlayingIndex]];
+    }
+    
+    currentPlayingIndex = currentSongIndex;
+    
+    TableViewCellAlbumStoreCell *cell = (TableViewCellAlbumStoreCell*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentPlayingIndex-1 inSection:0]];
+    if (cell) {
+        [cell startPlayingProgress];
+    }
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) stopPlayingProgress:(NSNumber*) index
+{
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    
+    TableViewCellAlbumStoreCell *cell = (TableViewCellAlbumStoreCell*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue]-1 inSection:0]];
+    if (cell) {
+        [cell stopPlayingProgress];
+    }
+    currentPlayingIndex = -1;
 }
 
 /**

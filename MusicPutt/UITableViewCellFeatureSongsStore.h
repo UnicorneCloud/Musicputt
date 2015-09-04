@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UIViewEqualizer.h"
+@class UIViewEqualizer;
 
 @interface UITableViewCellFeatureSongsStore : UITableViewCell
 

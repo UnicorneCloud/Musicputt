@@ -637,11 +637,8 @@
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentSongIndex);
-    [audioPlayer stop];
-    //[self stopPlayingProgress:[NSNumber numberWithInteger:currentSongIndex]];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
-    //[_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [audioPlayer stop];
     
     [self startPlayingAtIndex:currentSongIndex+1];
 }

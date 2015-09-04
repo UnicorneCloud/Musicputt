@@ -26,14 +26,14 @@
                                     <constraint firstAttribute="width" constant="340" id="gFR-G1-IK5"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RT9-91-CXc" userLabel="PageView">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RT9-91-CXc" userLabel="PageView">
                                 <rect key="frame" x="0.0" y="62" width="320" height="383"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="Hgc-L5-bQh"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO" userLabel="ControlView">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n8M-i6-VAO" userLabel="ControlView">
                                 <rect key="frame" x="0.0" y="431" width="320" height="137"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOr-t9-xfT">
@@ -1764,51 +1764,45 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="songname" text="Song name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16B-Az-CFD">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="songname" text="Song name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16B-Az-CFD">
                                                     <rect key="frame" x="40" y="10" width="210" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.41892538270000002" green="0.0" blue="0.0045457619820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Duration" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-y3-eYl">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Duration" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-y3-eYl">
                                                     <rect key="frame" x="264" y="13" width="47" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nuk-yI-3QK" customClass="UAProgressView">
-                                                    <rect key="frame" x="281" y="10" width="26" height="26"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-sq-JsQ">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-sq-JsQ">
                                                     <rect key="frame" x="284" y="14" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="o4A-dP-Tv1"/>
                                                     </constraints>
                                                 </activityIndicatorView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WMg-Tm-oLd" userLabel="Equalizer" customClass="UIViewEqualizer">
+                                                    <rect key="frame" x="285" y="15" width="18" height="18"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="16B-Az-CFD" firstAttribute="leading" secondItem="wK2-1R-PTM" secondAttribute="trailing" constant="8" symbolic="YES" id="0Hw-qv-7H7"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wK2-1R-PTM" secondAttribute="bottom" constant="12" id="3fh-lg-IKR"/>
-                                                <constraint firstItem="dzu-y3-eYl" firstAttribute="centerY" secondItem="Nuk-yI-3QK" secondAttribute="centerY" id="AQk-oV-8Xc"/>
                                                 <constraint firstItem="dzu-y3-eYl" firstAttribute="leading" secondItem="16B-Az-CFD" secondAttribute="trailing" constant="14" id="CDx-JY-loQ"/>
                                                 <constraint firstItem="nnL-sq-JsQ" firstAttribute="bottom" secondItem="dzu-y3-eYl" secondAttribute="bottom" id="ESt-SV-Cf5"/>
                                                 <constraint firstItem="16B-Az-CFD" firstAttribute="top" secondItem="q8u-zc-tJD" secondAttribute="topMargin" constant="1" id="FkE-n4-Iea"/>
-                                                <constraint firstItem="Nuk-yI-3QK" firstAttribute="centerY" secondItem="16B-Az-CFD" secondAttribute="centerY" id="Okj-Vs-7cA"/>
                                                 <constraint firstItem="wK2-1R-PTM" firstAttribute="top" secondItem="q8u-zc-tJD" secondAttribute="topMargin" constant="3" id="WT5-Ns-rWr"/>
-                                                <constraint firstItem="16B-Az-CFD" firstAttribute="top" secondItem="Nuk-yI-3QK" secondAttribute="top" id="a31-JC-jPC"/>
                                                 <constraint firstItem="nnL-sq-JsQ" firstAttribute="top" secondItem="q8u-zc-tJD" secondAttribute="topMargin" constant="5" id="bp8-Dz-3AM"/>
                                                 <constraint firstItem="nnL-sq-JsQ" firstAttribute="leading" secondItem="16B-Az-CFD" secondAttribute="trailing" constant="34" id="dVR-e7-zNT"/>
                                                 <constraint firstItem="dzu-y3-eYl" firstAttribute="top" secondItem="q8u-zc-tJD" secondAttribute="topMargin" constant="4" id="eoU-9M-BD6"/>
-                                                <constraint firstItem="Nuk-yI-3QK" firstAttribute="leading" secondItem="16B-Az-CFD" secondAttribute="trailing" constant="31" id="fdu-2b-x4A"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Nuk-yI-3QK" secondAttribute="trailing" constant="5" id="fgf-yh-dk1"/>
-                                                <constraint firstItem="Nuk-yI-3QK" firstAttribute="centerX" secondItem="nnL-sq-JsQ" secondAttribute="centerX" id="kxS-9z-jov"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="dzu-y3-eYl" secondAttribute="trailing" constant="1" id="nvD-rg-lB4"/>
                                                 <constraint firstItem="wK2-1R-PTM" firstAttribute="leading" secondItem="q8u-zc-tJD" secondAttribute="leadingMargin" constant="-1" id="scO-dh-QkX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="downloadProgress" destination="nnL-sq-JsQ" id="wRe-WD-12D"/>
-                                            <outlet property="playingProgress" destination="Nuk-yI-3QK" id="aOW-HJ-zwX"/>
+                                            <outlet property="equalizer" destination="WMg-Tm-oLd" id="Hhe-Fx-a5O"/>
                                             <outlet property="songDuration" destination="dzu-y3-eYl" id="5Bx-0P-FtL"/>
                                             <outlet property="songName" destination="16B-Az-CFD" id="hit-ZY-ttD"/>
                                             <outlet property="songNumber" destination="wK2-1R-PTM" id="OEz-jo-aaR"/>

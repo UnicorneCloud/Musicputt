@@ -10,6 +10,7 @@
 
 #import "UIViewControllerAlbumStore.h"
 #import "ITunesSearchApi.h"
+#import "UIViewEqualizer.h"
 
 @interface UITableViewCellFeatureSongsStore() <ITunesSearchApiDelegate>
 {
