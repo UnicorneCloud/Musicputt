@@ -1,1 +1,1 @@
-../../../AMWaveTransition/AMWaveTransition/AMWaveViewController.h
+../../../AMWaveTransition/Source/AMWaveViewController.h

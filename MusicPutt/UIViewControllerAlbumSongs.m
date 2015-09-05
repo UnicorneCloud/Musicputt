@@ -83,8 +83,9 @@
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.backgroundColor = [UIColor whiteColor];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
+    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 50.0);
     self.tableView.tableHeaderView = self.searchController.searchBar;
+    
     [self dismissKeyboard];
 }
 
@@ -97,14 +98,15 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_tableView reloadData];
+    //[_tableView reloadData];
+    self.searchController.searchBar.hidden = false;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.searchController.searchBar.hidden = true;
-    self.searchController.active = false;
+    [self dismissKeyboard];
 }
 
 #pragma mark - UITableViewDataSource
@@ -335,7 +337,6 @@
     
     if (self.tableView.bounds.origin.y == -64)
     {
-        [[self searchController] setActive: false];
         [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.frame.size.height-70, 1, 1) animated:YES];
     }
     else
