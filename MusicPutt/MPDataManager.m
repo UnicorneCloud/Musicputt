@@ -11,19 +11,26 @@
 #import "LastPlaying.h"
 #import "Playlist.h"
 #import "PlaylistItem.h"
+#import "ITunesSearchApi.h"
+#import "MusicPuttApi.h"
+#import "MPListening.h"
 
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <CoreMotion/CoreMotion.h>
 
+#define _QUALITY_MUSICPUTT_SERVER_ @"300x300-100"
+
 #define IS_IOS7 [[UIDevice currentDevice].systemVersion hasPrefix:@"7"]
 
-@interface MPDataManager()
+@interface MPDataManager() <ITunesSearchApiDelegate>
 {
     BOOL mediaplayerinit;
     CMMotionManager *motionmanager;
     
     BOOL playlistEditing;
     bool currentPlayingToolbarMustBeHidden; // if true, CurrentPlayingToolBar must be hidden.
+    
+    MPMediaItem* _lastPlayingMediaItem;
 }
 
 @end
@@ -60,6 +67,9 @@
     
     // init magic record
     [MagicalRecord setupCoreDataStack];
+    
+    // init last playing media item
+    _lastPlayingMediaItem = nil;
     
     return retval;
 }
@@ -514,6 +524,28 @@
 }
 
 /**
+ *  Set the last media playing item. This action will send item in musicputt server database.
+ *
+ *  @param item Media item now playing.
+ */
+- (void) setLastPlayingItem:(MPMediaItem*)item
+{
+    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
+    
+    if (item != _lastPlayingMediaItem) {
+        
+        _lastPlayingMediaItem = item;
+        
+        // prepare itunes service for query
+        ITunesSearchApi *itunes = [[ITunesSearchApi alloc] init];
+        [itunes setDelegate:self];
+        
+        // query song with media item
+        [itunes queryMusicTrackWithSearchTerm:[itunes buildSearchTermForMusicTrackFromMediaItem:item] asynchronizationMode:true];
+    }
+}
+
+/**
  *  Shared CMotionManager.
  *
  *  @return singleton CMotionManager
@@ -525,6 +557,67 @@
         motionmanager = [[CMMotionManager alloc] init];
     });
     return motionmanager;
+}
+
+#pragma mark - ITunesSearchApiDelegate
+
+/**
+ *  Implement this methode for recieve result after query.
+ *
+ *  @param status  Status of the querys
+ *  @param type    Type of query sender
+ *  @param results resultset of the query
+ */
+-(void) queryResult:(ITunesSearchApiQueryStatus)status type:(ITunesSearchApiQueryType)type results:(NSArray*)results
+{
+    // check if request return result
+    if (status==ITunesSearchApiStatusSucceed && [results count]>0 && type == QueryMusicTrackWithSearchTerm)
+    {
+        NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Set last playing songs return a ITunesStore result.");
+        
+        ITunesMusicTrack* result = results[0];
+        
+        if (result){
+            
+            // convert itunes store result into musicputt listening object to post the songs on the
+            // musicputt server by json.
+            MusicPuttApi* musicputtapi = [[MusicPuttApi alloc] init];
+            MPListening* listening = [[MPListening alloc] init];
+            
+            [listening setTrackId:result.trackId];
+            [listening setArtistId:result.artistId];
+            [listening setCollectionId:result.collectionId];
+            [listening setTrackName:result.trackName];
+            [listening setArtistName:result.artistName];
+            [listening setCollectionName:result.collectionName];
+            [listening setPreviewUrl:result.previewUrl];
+            [listening setArtworkUrl100:result.artworkUrl100];
+            
+            // check if listening is complete before send it to musicputt server
+            if ( [[listening trackId] isEqualToString:@""] != true &&
+                 [[listening artistId] isEqualToString:@""] != true &&
+                 [[listening collectionId] isEqualToString:@""] != true &&
+                 [[listening trackName] isEqualToString:@""] != true &&
+                 [[listening artistName] isEqualToString:@""] != true &&
+                 [[listening collectionName] isEqualToString:@""] != true &&
+                 [[listening previewUrl] isEqualToString:@""] != true &&
+                 [[listening artworkUrl100] isEqualToString:@""] != true)
+            {
+                NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Set last playing songs sending to musicputt server.");
+                
+                // improve artwork quality
+                [listening setArtworkUrl100: [[listening artworkUrl100] stringByReplacingOccurrencesOfString:@"100x100-75" withString:_QUALITY_MUSICPUTT_SERVER_] ];
+                
+                // post the song to the server
+                [musicputtapi postListening:listening];
+                
+                NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Set last playing songs send completed to musicputt server.");
+                
+            }// endif check valid listening (complete)
+            
+        }// endif valid result
+        
+    }// endif valid request
 }
 
 

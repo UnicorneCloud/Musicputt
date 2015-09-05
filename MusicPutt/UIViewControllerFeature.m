@@ -11,35 +11,56 @@
 #import "UITableViewCellFeature.h"
 #import "ITunesAlbum.h"
 #import "ITunesFeedsApi.h"
+#import "MusicputtApi.h"
+#import "MPListening.h"
 #import "PreferredGender.h"
 #import "AppDelegate.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
 
+
+/**
+ *  Index for each cell. Local, MusicPutt and TopRate.
+ */
+#define _LOCAL_CELL_INDEX_              2
+#define _MUSICPUTT_CELL_INDEX_          0
+#define _TOP_RATE_CELL_INDEX_           1
+
+#define _NB_CELL_                       3
 
 
 @interface UIViewControllerFeature ()  <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, ITunesFeedsApiDelegate, UIActionSheetDelegate>
 {
     UIBarButtonItem* editButton;
     NSArray *sortedSongsArray;
+    NSArray *musicPuttTracks;
     NSArray *topRates;
     
-    NSInteger currentMusicPuttUpdate;
-    NSInteger currentMusicPuttStep;
+    
+    NSInteger currentLocalUpdate;
+    NSInteger currentLocalStep;
     
     NSInteger currentTopRateUpdate;
     NSInteger currentTopRateStep;
+    
+    NSInteger currentMusicPuttUpdate;
+    NSInteger currentMusicPuttStep;
     
     NSTimer *timerFlip;
     
     NSInteger nextFlip;
     
-    BOOL MusicPuttReadyToFlip;
-    BOOL TopRateReadyToFlip;
+    BOOL localReadyToFlip;
+    BOOL musicPuttReadyToFlip;
+    BOOL topRateReadyToFlip;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView*            tableView;
 @property AppDelegate* del;
 @property ITunesFeedsApi* itunes;
+@property MusicPuttApi* musicputt;
+
+
 
 @end
 
@@ -50,6 +71,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -73,8 +95,9 @@
     scrollView = _tableView;
     
     // init members
-    TopRateReadyToFlip = false;
-    MusicPuttReadyToFlip = false;
+    localReadyToFlip = false;
+    musicPuttReadyToFlip = false;
+    topRateReadyToFlip = false;
     
     // load most recent songs
     sortedSongsArray = [[NSArray alloc] init];
@@ -83,31 +106,86 @@
     // init itunes feeds api
     _itunes = [[ITunesFeedsApi alloc] init];
     [_itunes setDelegate:self];
-}
-
-
-/**
- *  viewWillAppear start timer to flip feature image.
- *
- *  @param animated <#animated description#>
- */
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    
+    // init musicputt api
+    _musicputt = [[MusicPuttApi alloc] init];
     
     // itunes search api
     NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
     if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
         country = @"US";
     }
+    
     [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
     
+    // musicputt api
+    [_musicputt queryListeningListAsynchronizationMode:true
+                                               success:^(NSArray* results){
+                                                   NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicPutt request succeed");
+                                                   
+                                                   musicPuttTracks = results;
+                                                   currentMusicPuttUpdate = 4;
+                                                   currentMusicPuttStep = 0;
+                                                   
+                                                   if (musicPuttTracks.count>=4) {
+                                                       results = musicPuttTracks;
+                                                       
+                                                       
+                                                       UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_MUSICPUTT_CELL_INDEX_ inSection:0]];
+                                                       if(cell)
+                                                       {
+                                                           // image 1
+                                                           MPListening* album = [results objectAtIndex:0];
+                                                           [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
+                                                           cell.collectionId1 = [album collectionId];
+                                                           
+                                                           // image 2
+                                                           MPListening* album2 = [results objectAtIndex:1];
+                                                           [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
+                                                           cell.collectionId2 = [album2 collectionId];
+                                                           
+                                                           // image 3
+                                                           MPListening* album3 = [results objectAtIndex:2];
+                                                           [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
+                                                           cell.collectionId3 = [album3 collectionId];
+                                                           
+                                                           // image 4
+                                                           MPListening* album4 = [results objectAtIndex:3];
+                                                           [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                                                                            placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
+                                                           cell.collectionId4 = [album4 collectionId];
+                                                           
+                                                           [cell stopProgress];
+                                                           musicPuttReadyToFlip = true;
+                                                           
+                                                       }
+                                                   }
+                                               }
+                                               failure:^(NSError* error){
+                                                   NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicPutt request failed");
+                                               }];
+    
+}
+
+
+/**
+ *  viewWillAppear
+ *
+ *  @param animated <#animated description#>
+ */
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
     // start timer
     timerFlip = [NSTimer scheduledTimerWithTimeInterval:3
-                                             target:self
-                                           selector:@selector(nextFlip)
-                                           userInfo: nil
-                                            repeats:YES];
+                                                 target:self
+                                               selector:@selector(nextFlip)
+                                               userInfo: nil
+                                                repeats:YES];
 }
 
 /**
@@ -145,7 +223,7 @@
     
     NSTimeInterval finish = [[NSDate date] timeIntervalSince1970];
     
-    MusicPuttReadyToFlip = true;
+    localReadyToFlip = true;
     
     NSLog(@" %s - %@ %f secondes\n", __PRETTY_FUNCTION__, @"Finish ordering took", finish - start);
     
@@ -154,19 +232,19 @@
 
 
 /**
- *  Update initial 4 images for musicputt cell with most recents songs.
+ *  Update initial 4 images for local cell with most recents songs.
  *
  *  @param currentLoadingCell <#currentLoadingCell description#>
  */
--(void) updateMusicPuttImage:(UITableViewCellFeature*)currentLoadingCell
+-(void) updateLocalImage:(UITableViewCellFeature*)currentLoadingCell
 {
     UITableViewCellFeature* cell = nil;
     
     // check if there is at less 4 songs for display
     if (sortedSongsArray.count>=4)
     {
-        currentMusicPuttUpdate = 4;
-        currentMusicPuttStep = 0;
+        currentLocalUpdate = 4;
+        currentLocalStep = 0;
         
         if (currentLoadingCell != nil)
         {
@@ -174,7 +252,7 @@
         }
         else
         {
-            cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_LOCAL_CELL_INDEX_ inSection:0]];
         }
         
         if (cell)
@@ -208,8 +286,8 @@
                 {
                     // skip songs
                     nbtry++;
-                    if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
-                        song2 = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                    if (currentLocalUpdate + currentLocalStep + nbtry < sortedSongsArray.count) {
+                        song2 = [sortedSongsArray objectAtIndex:currentLocalUpdate + currentLocalStep + nbtry];
                     }
                     else{
                         // accept song because no more
@@ -251,8 +329,8 @@
                 {
                     // skip songs
                     nbtry++;
-                    if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
-                        song3 = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                    if (currentLocalUpdate + currentLocalStep + nbtry < sortedSongsArray.count) {
+                        song3 = [sortedSongsArray objectAtIndex:currentLocalUpdate + currentLocalStep + nbtry];
                     }
                     else{
                         // accept song because no more
@@ -294,8 +372,8 @@
                 {
                     // skip songs
                     nbtry++;
-                    if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
-                        song4 = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                    if (currentLocalUpdate + currentLocalStep + nbtry < sortedSongsArray.count) {
+                        song4 = [sortedSongsArray objectAtIndex:currentLocalUpdate + currentLocalStep + nbtry];
                     }
                     else{
                         // accept song because no more
@@ -336,21 +414,22 @@
 {
     nextFlip++;
     if (nextFlip==1) {
-        if (MusicPuttReadyToFlip) {
-            [self nextMusicputt];
+        if (localReadyToFlip) {
+            [self nextLocal];
         }
     }
     else if (nextFlip==2){
-        if (MusicPuttReadyToFlip) {
-            [self nextMusicputt];
+        if (localReadyToFlip) {
+            [self nextLocal];
         }
     }
     else if (nextFlip==3){
         
-        if (TopRateReadyToFlip) {
+        if (topRateReadyToFlip) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                        ^{
                             [self nextTopRate];
+                            [self nextMusicPutt];
                        });
         }
         nextFlip=0;
@@ -362,32 +441,32 @@
 /**
  *  Flip musicputt image.
  */
-- (void) nextMusicputt
+- (void) nextLocal
 {
-    UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_LOCAL_CELL_INDEX_ inSection:0]];
     if(cell && sortedSongsArray.count>=4)
     {
         bool accept = false;
         int nbtry = 0;
         int nbtrymax = 64;
         
-        if(currentMusicPuttUpdate == 64){
-            currentMusicPuttUpdate = 4;
+        if(currentLocalUpdate == 64){
+            currentLocalUpdate = 4;
         }
         
-        if (currentMusicPuttStep==4) {
-            currentMusicPuttStep = 1;
-            currentMusicPuttUpdate = currentMusicPuttUpdate + 4;
+        if (currentLocalStep==4) {
+            currentLocalStep = 1;
+            currentLocalUpdate = currentLocalUpdate + 4;
         }
         else{
-            currentMusicPuttStep++;
+            currentLocalStep++;
         }
         
-        if (currentMusicPuttUpdate + currentMusicPuttStep >= sortedSongsArray.count) {
-            currentMusicPuttUpdate = 4;
-            currentMusicPuttStep = 1;
+        if (currentLocalUpdate + currentLocalStep >= sortedSongsArray.count) {
+            currentLocalUpdate = 4;
+            currentLocalStep = 1;
         }
-        MPMediaItem* song = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep];
+        MPMediaItem* song = [sortedSongsArray objectAtIndex:currentLocalUpdate + currentLocalStep];
         UIImage* image;
         MPMediaItemArtwork *artwork = nil;
         
@@ -401,8 +480,8 @@
             {
                 // skip songs
                 nbtry++;
-                if (currentMusicPuttUpdate + currentMusicPuttStep + nbtry < sortedSongsArray.count) {
-                    song = [sortedSongsArray objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep + nbtry];
+                if (currentLocalUpdate + currentLocalStep + nbtry < sortedSongsArray.count) {
+                    song = [sortedSongsArray objectAtIndex:currentLocalUpdate + currentLocalStep + nbtry];
                 }
                 else{
                     // accept song because no more
@@ -421,16 +500,16 @@
         
         // cell update
         UIImageView* imageToUpdate = nil;
-        if (currentMusicPuttStep==1) {
+        if (currentLocalStep==1) {
             imageToUpdate = cell.image1;
         }
-        else if (currentMusicPuttStep==2){
+        else if (currentLocalStep==2){
             imageToUpdate = cell.image2;
         }
-        else if (currentMusicPuttStep==3){
+        else if (currentLocalStep==3){
             imageToUpdate = cell.image3;
         }
-        else if (currentMusicPuttStep==4){
+        else if (currentLocalStep==4){
             imageToUpdate = cell.image4;
         }
         
@@ -457,16 +536,16 @@
                         }];
         
         // albumUid
-        if (currentMusicPuttStep==1) {
+        if (currentLocalStep==1) {
             cell.albumUid1 = [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
         }
-        else if (currentMusicPuttStep==2){
+        else if (currentLocalStep==2){
             cell.albumUid2 = [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
         }
-        else if (currentMusicPuttStep==3){
+        else if (currentLocalStep==3){
             cell.albumUid3= [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
         }
-        else if (currentMusicPuttStep==4){
+        else if (currentLocalStep==4){
             cell.albumUid4 = [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
         }
     }
@@ -478,7 +557,7 @@
  */
 - (void) nextTopRate
 {
-    UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_TOP_RATE_CELL_INDEX_ inSection:0]];
     if(cell)
     {
         if(currentTopRateUpdate == 16){
@@ -558,6 +637,91 @@
     }
 }
 
+/**
+ *  Flip next musicputt image
+ */
+- (void) nextMusicPutt
+{
+    UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_MUSICPUTT_CELL_INDEX_ inSection:0]];
+    if(cell)
+    {
+        if(currentMusicPuttUpdate == 16){
+            currentMusicPuttUpdate = 4;
+        }
+        
+        if (currentMusicPuttStep==4) {
+            currentMusicPuttStep = 1;
+            currentMusicPuttUpdate = currentMusicPuttUpdate + 4;
+        }
+        else{
+            currentMusicPuttStep++;
+        }
+        
+        if (currentMusicPuttUpdate + currentMusicPuttStep <= musicPuttTracks.count) {
+            
+        }
+        else{
+            currentMusicPuttUpdate = 4;
+            currentMusicPuttStep = 1;
+        }
+        
+        // cell update
+        UIImageView* imageToUpdate = nil;
+        if (currentMusicPuttStep==1) {
+            imageToUpdate = cell.image1;
+        }
+        else if (currentMusicPuttStep==2){
+            imageToUpdate = cell.image2;
+        }
+        else if (currentMusicPuttStep==3){
+            imageToUpdate = cell.image3;
+        }
+        else if (currentMusicPuttStep==4){
+            imageToUpdate = cell.image4;
+        }
+        
+        
+        if (musicPuttTracks.count > currentMusicPuttUpdate + currentMusicPuttStep) {
+            MPListening* album = [musicPuttTracks objectAtIndex:currentMusicPuttUpdate + currentMusicPuttStep];
+            id path = [album artworkUrl100];
+            NSURL *url = [NSURL URLWithString:path];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *newImage = [[UIImage alloc] initWithData:data];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                // TODO MAYBE LEAK PROBLEM
+                [UIView transitionWithView:imageToUpdate
+                                  duration:0.6
+                                   options:UIViewAnimationOptionTransitionFlipFromRight
+                                animations:^{
+                                    //  Set the new image
+                                    //  Since its done in animation block, the change will be animated
+                                    imageToUpdate.image = newImage;
+                                } completion:^(BOOL finished) {
+                                    //  Do whatever when the animation is finished
+                                }];
+                
+                
+                // albumUid
+                if (currentMusicPuttStep==1) {
+                    cell.collectionId1 = [album collectionId];
+                }
+                else if (currentMusicPuttStep==2){
+                    cell.collectionId2 = [album collectionId];
+                }
+                else if (currentMusicPuttStep==3){
+                    cell.collectionId3 = [album collectionId];
+                }
+                else if (currentMusicPuttStep==4){
+                    cell.collectionId4 = [album collectionId];
+                }
+                
+            });
+        }
+    }
+}
+
 
 #pragma mark - AMWaveViewController
 
@@ -571,28 +735,40 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return _NB_CELL_;
 }
 
 
 - (UITableViewCellFeature*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCellFeature* cell = [tableView dequeueReusableCellWithIdentifier:@"CellFeature"];
-    if (indexPath.row==0)
+    if (indexPath.row==_LOCAL_CELL_INDEX_)
+    {
+        [[cell title] setText:@"+ on your device"];
+        [[cell desc] setText:@"Click here for more action ...\nYou can create custom playlist."];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.parentView = self.view;
+        cell.parentNavCtrl = self.navigationController;
+        cell.type = TypeLocal;
+        
+        [self updateLocalImage:cell];
+        
+    }
+    if (indexPath.row==_MUSICPUTT_CELL_INDEX_)
     {
         [[cell title] setText:@"+ musicputt"];
-        [[cell desc] setText:@"Click here for more action ...\nYou can create custom playlist."];
+        [[cell desc] setText:@"Click here for more action ...\nSee more songs ..."];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.parentView = self.view;
         cell.parentNavCtrl = self.navigationController;
         cell.type = TypeMusicPutt;
         
-        [self updateMusicPuttImage:cell];
+        [cell startProgress];
         
     }
-    else if (indexPath.row==1)
+    else if (indexPath.row==_TOP_RATE_CELL_INDEX_)
     {
-        [[cell title] setText:@"+ discover"];
+        [[cell title] setText:@"+ top rated"];
         [[cell desc] setText:@"Click here for more action ...\nYou can listen what's hot today."];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.parentView = self.view;
@@ -600,6 +776,39 @@
         cell.type = TypeDiscover;
         
         [cell startProgress];
+        
+        NSArray* results;
+        if (topRates.count>=4)
+        {
+            results = topRates;
+            
+            // image 1
+            ITunesAlbum* album = [results objectAtIndex:0];
+            [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
+            cell.collectionId1 = [album collectionId];
+            
+            // image 2
+            ITunesAlbum* album2 = [results objectAtIndex:1];
+            [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
+            cell.collectionId2 = [album2 collectionId];
+            
+            // image 3
+            ITunesAlbum* album3 = [results objectAtIndex:2];
+            [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
+            cell.collectionId3 = [album3 collectionId];
+            
+            // image 4
+            ITunesAlbum* album4 = [results objectAtIndex:3];
+            [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                             placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
+            cell.collectionId4 = [album4 collectionId];
+            
+            topRateReadyToFlip = true;
+            [cell stopProgress];
+        }
     }
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"End cellForRowAtIndexPath");
@@ -621,69 +830,53 @@
 {
     if (status == StatusSucceed) {
         
-        // load images from itunes store
-        UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        if (cell && results.count>=4) {
+        // load result from iTunesStore
+        if (results.count>=4) {
             
             NSLog(@" %s - %@:%ld\n", __PRETTY_FUNCTION__, @"queryResult", (unsigned long)results.count);
             
             // filter results
             topRates = [self filterTopRatesWithPreferred:results];
             
+            UITableViewCellFeature *cell = (UITableViewCellFeature *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_TOP_RATE_CELL_INDEX_ inSection:0]];
+            
             currentTopRateUpdate = 4;
             currentTopRateStep = 0;
             
-            if (topRates.count>=4) {
-                results = topRates;
+            if(cell)
+            {
+                NSArray* results;
+                if (topRates.count>=4) {
+                    results = topRates;
+                }
+                
+                // image 1
+                ITunesAlbum* album = [results objectAtIndex:0];
+                [[cell image1] sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album collectionId]]]];
+                cell.collectionId1 = [album collectionId];
+                
+                // image 2
+                ITunesAlbum* album2 = [results objectAtIndex:1];
+                [[cell image2] sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album2 collectionId]]]];
+                cell.collectionId2 = [album2 collectionId];
+                
+                // image 3
+                ITunesAlbum* album3 = [results objectAtIndex:2];
+                [[cell image3] sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album3 collectionId]]]];
+                cell.collectionId3 = [album3 collectionId];
+                
+                // image 4
+                ITunesAlbum* album4 = [results objectAtIndex:3];
+                [[cell image4] sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                                 placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-100.jpg",[album4 collectionId]]]];
+                cell.collectionId4 = [album4 collectionId];
+                
+                [cell stopProgress];
+                topRateReadyToFlip = true;
             }
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                           ^{
-                               // image 1
-                               ITunesAlbum* album = [results objectAtIndex:0];
-                               id path = [album artworkUrl100];
-                               NSURL *url = [NSURL URLWithString:path];
-                               NSData *data = [NSData dataWithContentsOfURL:url];
-                               UIImage *sharedImage = [[UIImage alloc] initWithData:data];
-                               
-                               // image 2
-                               ITunesAlbum* album2 = [results objectAtIndex:1];
-                               id path2 = [album2 artworkUrl100];
-                               NSURL *url2 = [NSURL URLWithString:path2];
-                               NSData *data2 = [NSData dataWithContentsOfURL:url2];
-                               UIImage *sharedImage2 = [[UIImage alloc] initWithData:data2];
-                               
-                               // image 3
-                               ITunesAlbum* album3 = [results objectAtIndex:2];
-                               id path3 = [album3 artworkUrl100];
-                               NSURL *url3 = [NSURL URLWithString:path3];
-                               NSData *data3 = [NSData dataWithContentsOfURL:url3];
-                               UIImage *sharedImage3 = [[UIImage alloc] initWithData:data3];
-                               
-                               // image 4
-                               ITunesAlbum* album4 = [results objectAtIndex:3];
-                               id path4 = [album4 artworkUrl100];
-                               NSURL *url4 = [NSURL URLWithString:path4];
-                               NSData *data4 = [NSData dataWithContentsOfURL:url4];
-                               UIImage *sharedImage4 = [[UIImage alloc] initWithData:data4];
-                               
-                               
-                               dispatch_async(dispatch_get_main_queue(), ^{
-                                   
-                                   [[cell image1] setImage:sharedImage];
-                                   cell.collectionId1 = [album collectionId];
-                                   [[cell image2] setImage:sharedImage2];
-                                   cell.collectionId2 = [album2 collectionId];
-                                   [[cell image3] setImage:sharedImage3];
-                                   cell.collectionId3 = [album3 collectionId];
-                                   [[cell image4] setImage:sharedImage4];
-                                   cell.collectionId4 = [album4 collectionId];
-                                   
-                                   TopRateReadyToFlip = true;
-                                   [cell stopProgress];
-                               });
-
-                           });
             
             NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"queryResult - end");
         }

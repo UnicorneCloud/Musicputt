@@ -16,6 +16,8 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+#define _QUALITY_IMAGE_ @"200x200-75"
+
 @interface UIViewControllerStoreAlbum () <  ITunesSearchApiDelegate,
                                             iCarouselDataSource,
                                             iCarouselDelegate,
@@ -27,10 +29,13 @@
     NSArray* result;
     NSArray* currentAlbumSongs;
     AVAudioPlayer* audioPlayer;
-    //MONActivityIndicatorView *indicatorView;
+
     ITunesAlbum* currentAlbum;
-    NSInteger currentAlbumIndex;
     UIActivityIndicatorView *activityIndicator;
+    
+    NSInteger currentSongIndex;
+    NSInteger currentDownloadingIndex;
+    NSInteger currentPlayingIndex;
 }
 
 /**
@@ -115,22 +120,6 @@
     activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     [self.view addSubview: activityIndicator];
     [activityIndicator startAnimating];
-    /*
-    indicatorView = [[MONActivityIndicatorView alloc] init];
-    indicatorView.delegate = self;
-    indicatorView.numberOfCircles = 5;
-    indicatorView.radius = 15;
-    indicatorView.internalSpacing = 3;
-    indicatorView.duration = 0.5;
-    indicatorView.delay = 0.2;
-    indicatorView.center = self.view.center;
-    _albumlist.alpha = 0.1;
-    _viewalbum.alpha = 0.1;
-    _songstable.alpha = 0.1;
-    
-    [self.view addSubview:indicatorView];
-    [indicatorView startAnimating];
-    */
      
     // query store for album information
     ITunesSearchApi *store = [[ITunesSearchApi alloc]init];
@@ -146,6 +135,10 @@
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &setCategoryError];
     if (setCategoryError)
         NSLog(@"Error setting category! %@", setCategoryError);
+    
+    // init current downloading displaying
+    currentDownloadingIndex = -1;
+    currentPlayingIndex = -1;
     
 }
 
@@ -166,7 +159,7 @@
     NSString* sharedString = [NSString stringWithFormat:@"I'm listening : %@ - %@ @musicputt!", [currentAlbum artistName], [currentAlbum collectionName]];
     NSURL* sharedUrl = [NSURL URLWithString:[currentAlbum collectionViewUrl]];
     
-    id path = [currentAlbum artworkUrl100];
+    id path = [currentAlbum getArtworkUrlCustomQuality:@"300x300-100"];
     NSURL *url = [NSURL URLWithString:path];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *sharedImage = [[UIImage alloc] initWithData:data];
@@ -198,13 +191,13 @@
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
-    id path = [[result objectAtIndex:index+1] artworkUrl100];
+    id path = [[[result objectAtIndex:index+1] artworkUrl100] stringByReplacingOccurrencesOfString:@"100x100-75" withString:_QUALITY_IMAGE_];
     NSURL *url = [NSURL URLWithString:path];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *img = [[UIImage alloc] initWithData:data];
     
     UIImageView* imageview = [[UIImageView alloc] initWithImage:img];
-    imageview.frame = CGRectMake(0, 0, 100.0f, 100.0f);
+    imageview.frame = CGRectMake(0, 0, 110.0f, 110.0f);
     return imageview;
 }
 
@@ -222,7 +215,6 @@
 -(void) updateCurrentAlbumShow:(NSInteger) index
 {
     currentAlbum = result[index+1];
-    currentAlbumIndex = index + 1;
     
     // update display of the current album selected
     _artistname.text = [result[index+1] artistName];
@@ -247,11 +239,14 @@
 
     _price.text = [NSString stringWithFormat:@"%@$", [result[index+1] collectionPrice]];
     
-    
     // query store for album songs
     ITunesSearchApi *store = [[ITunesSearchApi alloc]init];
     [store setDelegate:self];
     [store queryMusicTrackWithAlbumId:[result[index+1] collectionId] asynchronizationMode:true];
+    
+    // Stop donwload or playing progress icon
+    [self stopDownloadProgress:[NSNumber numberWithInteger:currentSongIndex]];
+    [self stopPlayingProgress:[NSNumber numberWithInteger:currentSongIndex]];
 }
 
 /**
@@ -270,23 +265,103 @@
 - (void) startPlayingAtIndex:(NSInteger) index
 {
     if (currentAlbumSongs.count>index) {
-        currentAlbumIndex = index;
+        currentSongIndex = index;
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentAlbumIndex-1 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex-1 inSection:0];
         [_songstable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-        //[self.songstable.delegate tableView:self.songstable didSelectRowAtIndexPath:indexPath];
         
-        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing ", (long)currentAlbumIndex);
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing ", (long)currentSongIndex);
+        
+        [self startDownloadProgress:currentSongIndex-1];
         
         NSURL *url = [NSURL URLWithString: [[currentAlbumSongs objectAtIndex:index] previewUrl]];
-        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
-            audioPlayer.delegate = self;
-            [audioPlayer prepareToPlay];
-            [audioPlayer play];
-        }];
-        [task resume];
+        if (url) {
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
+                audioPlayer.delegate = self;
+                [audioPlayer prepareToPlay];
+                [audioPlayer play];
+                
+                NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
+                
+                NSNumber *param2 = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(startPlayingProgress:) withObject:param2 waitUntilDone:NO];
+            }];
+            [task resume];
+            
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"There is no preview for this song!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil,nil];
+            [alert show];
+            
+            [self stopDownloadProgress: [NSNumber numberWithInteger:currentSongIndex-1]];
+        }
     }
+}
+
+-(void) startDownloadProgress:(NSInteger) index
+{
+    if (currentDownloadingIndex != -1) {
+        // stop already downloding progress
+        [self stopDownloadProgress:[NSNumber numberWithInteger:index]];
+    }
+    
+    currentDownloadingIndex = index;
+    
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start downloading progress ", (long)index);
+    
+    UITableViewCellAlbumStoreSong *cell = (UITableViewCellAlbumStoreSong*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    if (cell) {
+        [cell startDownloadProgress];
+    }
+}
+
+-(void) stopDownloadProgress:(NSNumber*) index
+{
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    
+    UITableViewCellAlbumStoreSong *cell = (UITableViewCellAlbumStoreSong*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue] inSection:0]];
+    if (cell) {
+        [cell stopDownloadProgress];
+    }
+    currentDownloadingIndex = -1;
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) startPlayingProgress:(NSInteger) index
+{
+    if (currentPlayingIndex != -1) {
+        // stop already downloding progress
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentPlayingIndex]];
+    }
+    
+    currentPlayingIndex = currentSongIndex;
+    
+    UITableViewCellAlbumStoreSong *cell = (UITableViewCellAlbumStoreSong*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentPlayingIndex-1 inSection:0]];
+    if (cell) {
+        [cell startPlayingProgress];
+    }
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) stopPlayingProgress:(NSNumber*) index
+{
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    
+    UITableViewCellAlbumStoreSong *cell = (UITableViewCellAlbumStoreSong*)[_songstable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue]-1 inSection:0]];
+    if (cell) {
+        [cell stopPlayingProgress];
+    }
+    currentPlayingIndex = -1;
 }
 
 
@@ -380,6 +455,20 @@
 {
     UITableViewCellAlbumStoreSong* cell = [tableView dequeueReusableCellWithIdentifier:@"CellStoreSong"];
     [cell setMediaItem:[currentAlbumSongs objectAtIndex:indexPath.row+1]];
+    
+    if (currentPlayingIndex == indexPath.row) {
+        [cell startPlayingProgress];
+        
+        if (currentDownloadingIndex == indexPath.row) {
+            [cell stopPlayingProgress];
+            [cell startDownloadProgress];
+        }
+    }
+    else{
+        [cell stopPlayingProgress];
+        [cell stopDownloadProgress];
+    }
+    
     return cell;
 }
 
@@ -387,15 +476,18 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row+1 == currentAlbumIndex && [audioPlayer isPlaying]) {
-        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop playing ", (long)currentAlbumIndex);
+    if (indexPath.row+1 == currentSongIndex && [audioPlayer isPlaying]) {
+        NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop playing ", (long)currentSongIndex);
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentAlbumIndex-1 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex-1 inSection:0];
         [self.songstable deselectRowAtIndexPath:indexPath animated:YES];
         
         [audioPlayer stop];
+        
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentSongIndex]];
     }
-    else{
+    else
+    {
         [self startPlayingAtIndex:indexPath.row+1];
     }
     return indexPath;
@@ -406,13 +498,13 @@
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentAlbumIndex);
+    NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentSongIndex);
     [audioPlayer stop];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentAlbumIndex-1 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex-1 inSection:0];
     [self.songstable deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self startPlayingAtIndex:currentAlbumIndex+1];
+    [self startPlayingAtIndex:currentSongIndex+1];
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error

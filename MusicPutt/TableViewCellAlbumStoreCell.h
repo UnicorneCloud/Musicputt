@@ -11,15 +11,13 @@
 
 @class UAProgressView;
 @class ITunesMusicTrack;
+@class UIViewEqualizer;
 
 @interface TableViewCellAlbumStoreCell : UITableViewCell
 
-
-@property (strong, nonatomic) IBOutlet UAProgressView* playingProgress;
-
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView* downloadProgress;
 
-
+@property (weak, nonatomic) IBOutlet UIViewEqualizer* equalizer;
 
 /**
  *  Set the information of the media item (name, track no. and duration).
@@ -46,6 +44,16 @@
  *  Stop downloading progress
  */
 -(void) stopDownloadProgress;
+
+/**
+ *  Start playing progress
+ */
+-(void) startPlayingProgress;
+
+/**
+ *  Stop playing progress
+ */
+-(void) stopPlayingProgress;
 
 
 @end

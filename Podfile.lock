@@ -1,43 +1,44 @@
 PODS:
   - AFNetworking (1.3.4)
-  - AMWaveTransition (0.5.5)
+  - AMWaveTransition (0.6.0)
   - BFNavigationBarDrawer (1.0.2)
-  - DLAlertView (1.2.4)
-  - DZNEmptyDataSet (1.5)
-  - iPerspective (0.2.0)
-  - ISO8601DateFormatterValueTransformer (0.6.0):
+  - DLAlertView (1.2.5)
+  - DZNEmptyDataSet (1.7.1)
+  - iPerspective (0.2.1)
+  - ISO8601DateFormatterValueTransformer (0.6.1):
     - RKValueTransformers (~> 1.1.0)
-  - iTunesApi (0.1.0):
+  - iTunesApi (0.2.1):
     - AFNetworking (~> 1.3.4)
-    - RestKit (~> 0.23.1)
-  - MagicalRecord (2.2):
-    - MagicalRecord/Core (= 2.2)
-  - MagicalRecord/Core (2.2)
-  - MONActivityIndicatorView (0.0.1)
-  - REFrostedViewController (2.4.7)
-  - RestKit (0.23.3):
-    - RestKit/Core (= 0.23.3)
-  - RestKit/Core (0.23.3):
+    - RestKit (~> 0.24.1)
+  - MagicalRecord (2.3.0)
+  - MONActivityIndicatorView (0.0.3)
+  - REFrostedViewController (2.4.8)
+  - RestKit (0.24.1):
+    - RestKit/Core (= 0.24.1)
+  - RestKit/Core (0.24.1):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.23.3):
+  - RestKit/CoreData (0.24.1):
     - RestKit/ObjectMapping
-  - RestKit/Network (0.23.3):
+  - RestKit/Network (0.24.1):
     - AFNetworking (~> 1.3.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.23.3):
+  - RestKit/ObjectMapping (0.24.1):
     - ISO8601DateFormatterValueTransformer (~> 0.6.0)
     - RestKit/Support
     - RKValueTransformers (~> 1.1.0)
-  - RestKit/Support (0.23.3):
-    - TransitionKit (= 2.1.0)
-  - RKValueTransformers (1.1.1)
+  - RestKit/Support (0.24.1):
+    - TransitionKit (~> 2.1.0)
+  - RKValueTransformers (1.1.2)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - SOCKit (1.1)
-  - TransitionKit (2.1.0)
-  - UAProgressView (0.1.1)
+  - TransitionKit (2.1.1)
+  - UAProgressView (0.1.2)
 
 DEPENDENCIES:
   - AMWaveTransition
@@ -50,24 +51,26 @@ DEPENDENCIES:
   - MONActivityIndicatorView
   - REFrostedViewController (~> 2.4.6)
   - RestKit
+  - SDWebImage (~> 3.6)
   - UAProgressView
 
 SPEC CHECKSUMS:
-  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
-  AMWaveTransition: af3c5baf82bf9d414f39ab42adf3a3f6c734d127
-  BFNavigationBarDrawer: c59a8e9f8db3d60cd4641e78dba96de2f9bd483b
-  DLAlertView: 0c6645d2e47b9f880192ae3581284695855ebaab
-  DZNEmptyDataSet: 15b1425ebba29e5a04d2fac9623a7384e3eaf775
-  iPerspective: 59d1695ca08dfe4a306e52e113275265ae81c50d
-  ISO8601DateFormatterValueTransformer: a705384ea6531255258e25b6480ba1180db703a0
-  iTunesApi: 6b23adb4c6ae81af1e6cbc3032a7acb0c56b9508
-  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
-  MONActivityIndicatorView: 728965121e59cef32c1bc4676f6868e35f3c8c61
-  REFrostedViewController: 08870a24788191339608b80b2bd4fce549858f0d
-  RestKit: 193a35cddae5198388977abaedad129f8acb978b
-  RKValueTransformers: 67b4ea3eb6a1c1a0b8c3c37eb4e4c05e4febeba2
-  SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
-  TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
-  UAProgressView: c393bc53d1cabc077279e957c5898a5bb7bdb3ce
+  AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  AMWaveTransition: a00588006f144d289a390aabcfa1fa1e16bb9296
+  BFNavigationBarDrawer: 7114305b2eb64f796aeee63029a037e30bf37a93
+  DLAlertView: 774c1242cc854177fdc07634ed3f8c250a38864d
+  DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
+  iPerspective: 7b1df2239194faa7a13523d532d9ae0304024f2b
+  ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
+  iTunesApi: 37d9f63016aeb53fd58926fc8f91b7fac57f3c6c
+  MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
+  MONActivityIndicatorView: a00611695de16d956b17d03be25ee49a8effc5f2
+  REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
+  RestKit: 1987b5efef289c6b27bd980714d6ca48d3871b78
+  RKValueTransformers: 66ac5e4f077fdbe3496e792d89eeff4c3eb67701
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SOCKit: c7376ac262bea9115b8f749358f762522a47d392
+  TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
+  UAProgressView: 4ef6d60b4e060884cb0315e7628256f998744247
 
 COCOAPODS: 0.35.0

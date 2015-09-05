@@ -20,6 +20,8 @@
 #import "UITableViewCellFeatureHeaderStore.h"
 #import "UITableViewCellFeatureSongsStore.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #define SECTION_ALBUM 0
 #define SECTION_SONG 1
 
@@ -35,6 +37,7 @@
     AVAudioPlayer* audioPlayer;
     NSInteger currentSongIndex;
     NSInteger currentDownloadingIndex;
+    NSInteger currentPlayingIndex;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
@@ -49,6 +52,11 @@
 
 @implementation UIViewControllerFeatureStore
 
+
+/**
+ *  viewDidLoad
+ *  Initialisation and iTunes request
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -88,6 +96,7 @@
     
     // init current downloading displaying
     currentDownloadingIndex = -1;
+    currentPlayingIndex = -1;
     
 }
 
@@ -112,13 +121,19 @@
     [self stopPlaying];
 }
 
-
+/**
+ *  didReceiveMemoryWarning
+ */
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
+/**
+ *  handleLeftSwipeFrom
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)handleLeftSwipeFrom:(id)sender
 {
     if (topRates.count >= currentTopRateStep+7) {
@@ -142,6 +157,11 @@
     }
 }
 
+/**
+ *  handleRightSwipeFrom
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)handleRightSwipeFrom:(id)sender
 {
     if (currentTopRateStep-6 >= 0) {
@@ -195,160 +215,73 @@
                 [cell.more setHidden:FALSE];
             }
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                           ^{
-                               // image 1
-                               UIImage *sharedImage = nil;
-                               ITunesAlbum* album = nil;
-                               if (results.count>0) {
-                                   album = [results objectAtIndex:0];
-                                   id path = [album artworkUrl100];
-                                   NSURL *url = [NSURL URLWithString:path];
-                                   NSData *data = [NSData dataWithContentsOfURL:url];
-                                   sharedImage = [[UIImage alloc] initWithData:data];
-                               }
-                               
-                               
-                               // image 2
-                               UIImage *sharedImage2 = nil;
-                               ITunesAlbum* album2 = nil;
-                               if (results.count>1) {
-                                   album2 = [results objectAtIndex:1];
-                                   id path2 = [album2 artworkUrl100];
-                                   NSURL *url2 = [NSURL URLWithString:path2];
-                                   NSData *data2 = [NSData dataWithContentsOfURL:url2];
-                                   sharedImage2 = [[UIImage alloc] initWithData:data2];
-                               }
-                               
-                               // image 3
-                               UIImage *sharedImage3 = nil;
-                               ITunesAlbum* album3 = nil;
-                               if (results.count>2) {
-                                   album3 = [results objectAtIndex:2];
-                                   id path3 = [album3 artworkUrl100];
-                                   NSURL *url3 = [NSURL URLWithString:path3];
-                                   NSData *data3 = [NSData dataWithContentsOfURL:url3];
-                                   sharedImage3 = [[UIImage alloc] initWithData:data3];
-                               }
-                               
-                               // image 4
-                               UIImage *sharedImage4 = nil;
-                               ITunesAlbum* album4 = nil;
-                               if (results.count>3) {
-                                   album4 = [results objectAtIndex:3];
-                                   id path4 = [album4 artworkUrl100];
-                                   NSURL *url4 = [NSURL URLWithString:path4];
-                                   NSData *data4 = [NSData dataWithContentsOfURL:url4];
-                                   sharedImage4 = [[UIImage alloc] initWithData:data4];
-                               }
-                               
-                               // image 5
-                               UIImage *sharedImage5 = nil;
-                               ITunesAlbum* album5 = nil;
-                               if (results.count>4) {
-                                   album5 = [results objectAtIndex:4];
-                                   id path5 = [album5 artworkUrl100];
-                                   NSURL *url5 = [NSURL URLWithString:path5];
-                                   NSData *data5 = [NSData dataWithContentsOfURL:url5];
-                                   sharedImage5 = [[UIImage alloc] initWithData:data5];
-                               }
-                               
-                               // image 6
-                               UIImage *sharedImage6 = nil;
-                               ITunesAlbum* album6 = nil;
-                               if (results.count>5) {
-                                   album6 = [results objectAtIndex:5];
-                                   id path6 = [album6 artworkUrl100];
-                                   NSURL *url6 = [NSURL URLWithString:path6];
-                                   NSData *data6 = [NSData dataWithContentsOfURL:url6];
-                                   sharedImage6 = [[UIImage alloc] initWithData:data6];
-                               }
-                               
-                               
-                               dispatch_async(dispatch_get_main_queue(), ^{
-                                   
-                                   if(album!=nil && sharedImage!=nil){
-                                       [[cell image1] setImage:sharedImage];
-                                       cell.collectionId1 = [album collectionId];
-                                       [cell title1].text = [album collectionName];
-                                       [cell artist1].text = [album artistName];
-                                    }
-                                   else{
-                                       [[cell image1] setImage:nil];
-                                       cell.collectionId1 = nil;
-                                       [cell title1].text = @"";
-                                       [cell artist1].text = @"";
-                                   }
-                                   
-                                   if(album2!=nil && sharedImage2!=nil){
-                                       [[cell image2] setImage:sharedImage2];
-                                       cell.collectionId2 = [album2 collectionId];
-                                       [cell title2].text = [album2 collectionName];
-                                       [cell artist2].text = [album2 artistName];
-                                   }
-                                   else{
-                                       [[cell image2] setImage:nil];
-                                       cell.collectionId2 = nil;
-                                       [cell title2].text = @"";
-                                       [cell artist2].text = @"";
-                                   }
-                                   
-                                   if(album3!=nil && sharedImage3!=nil){
-                                       [[cell image3] setImage:sharedImage3];
-                                       cell.collectionId3 = [album3 collectionId];
-                                       [cell title3].text = [album3 collectionName];
-                                       [cell artist3].text = [album3 artistName];
-                                   }
-                                   else{
-                                       [[cell image3] setImage:nil];
-                                       cell.collectionId3 = nil;
-                                       [cell title3].text = @"";
-                                       [cell artist3].text = @"";
-                                   }
-                                   
-                                   if(album4!=nil && sharedImage4!=nil){
-                                       [[cell image4] setImage:sharedImage4];
-                                       cell.collectionId4 = [album4 collectionId];
-                                       [cell title4].text = [album4 collectionName];
-                                       [cell artist4].text = [album4 artistName];
-                                   }
-                                   else{
-                                       [[cell image4] setImage:nil];
-                                       cell.collectionId4 = nil;
-                                       [cell title4].text = @"";
-                                       [cell artist4].text = @"";
-                                   }
-                                   
-                                   if(album5!=nil && sharedImage5!=nil){
-                                       [[cell image5] setImage:sharedImage5];
-                                       cell.collectionId5 = [album5 collectionId];
-                                       [cell title5].text = [album5 collectionName];
-                                       [cell artist5].text = [album5 artistName];
-                                   }
-                                   else{
-                                       [[cell image5] setImage:nil];
-                                       cell.collectionId5 = nil;
-                                       [cell title5].text = @"";
-                                       [cell artist5].text = @"";
-                                   }
-                                   
-                                   if(album6!=nil && sharedImage6!=nil){
-                                       [[cell image6] setImage:sharedImage6];
-                                       cell.collectionId6 = [album6 collectionId];
-                                       [cell title6].text = [album6 collectionName];
-                                       [cell artist6].text = [album6 artistName];
-                                   }
-                                   else{
-                                       [[cell image6] setImage:nil];
-                                       cell.collectionId6 = nil;
-                                       [cell title6].text = @"";
-                                       [cell artist6].text = @"";
-                                   }
-                                   
-                                   [cell stopLoading];
-                               });
-                               
-                           });
+            // album 1
+            ITunesAlbum* album = nil;
+            if (results.count>0) {
+                album = [results objectAtIndex:0];
+                cell.collectionId1 = [album collectionId];
+                [cell title1].text = [album collectionName];
+                [cell artist1].text = [album artistName];
+                [cell.image1 sd_setImageWithURL:[NSURL URLWithString:[album artworkUrl100]]
+                               placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",[album collectionId]]]];
+            }
+            
+            // album 2
+            ITunesAlbum* album2 = nil;
+            if (results.count>1) {
+                album2 = [results objectAtIndex:1];
+                cell.collectionId2 = [album2 collectionId];
+                [cell title2].text = [album2 collectionName];
+                [cell artist2].text = [album2 artistName];
+                [cell.image2 sd_setImageWithURL:[NSURL URLWithString:[album2 artworkUrl100]]
+                               placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",[album2 collectionId]]]];
+            }
+            
+            // album 3
+            ITunesAlbum* album3 = nil;
+            if (results.count>2) {
+                album3 = [results objectAtIndex:2];
+                cell.collectionId3 = [album3 collectionId];
+                [cell title3].text = [album3 collectionName];
+                [cell artist3].text = [album3 artistName];
+                [cell.image3 sd_setImageWithURL:[NSURL URLWithString:[album3 artworkUrl100]]
+                               placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",[album3 collectionId]]]];
+            }
+            
+            // album 4
+            ITunesAlbum* album4 = nil;
+            if (results.count>3) {
+                album4 = [results objectAtIndex:3];
+                cell.collectionId4 = [album4 collectionId];
+                [cell title4].text = [album4 collectionName];
+                [cell artist4].text = [album4 artistName];
+                [cell.image4 sd_setImageWithURL:[NSURL URLWithString:[album4 artworkUrl100]]
+                               placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",[album4 collectionId]]]];
+            }
+            
+            // album 5
+            ITunesAlbum* album5 = nil;
+            if (results.count>4) {
+                album5 = [results objectAtIndex:4];
+                cell.collectionId5 = [album5 collectionId];
+                [cell title5].text = [album5 collectionName];
+                [cell artist5].text = [album5 artistName];
+                [cell.image5 sd_setImageWithURL:[NSURL URLWithString:[album5 artworkUrl100]]
+                               placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",[album5 collectionId]]]];
+            }
+            
+            // album 6
+            ITunesAlbum* album6 = nil;
+            if (results.count>5) {
+                album6 = [results objectAtIndex:5];
+                cell.collectionId6 = [album6 collectionId];
+                [cell title6].text = [album6 collectionName];
+                [cell artist6].text = [album6 artistName];
+                [cell.image6 sd_setImageWithURL:[NSURL URLWithString:[album6 artworkUrl100]]
+                               placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",[album6 collectionId]]]];
+            }
+            
+            [cell stopLoading];
         }
     }
 }
@@ -414,6 +347,14 @@
     return 2;
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   <#section description#>
+ *
+ *  @return <#return value description#>
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == SECTION_ALBUM) {
@@ -425,6 +366,14 @@
     return 0;
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   <#section description#>
+ *
+ *  @return <#return value description#>
+ */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UITableViewCellFeatureHeaderStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureHeaderStoreCell"];
@@ -437,12 +386,27 @@
     return cell;
 }
 
-
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param section   <#section description#>
+ *
+ *  @return <#return value description#>
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 35.0f;
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if( indexPath.section == SECTION_ALBUM )
@@ -456,7 +420,14 @@
     return 0.0f;
 }
 
-
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == SECTION_ALBUM) {
@@ -489,28 +460,31 @@
     {
         UITableViewCellFeatureSongsStore* cell = [tableView dequeueReusableCellWithIdentifier:@"FeatureSongCell"];
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         ITunesMusicTrack* track = [topRatesSongs objectAtIndex:indexPath.row];
         cell.trackId = [track trackId];
         [cell title].text = [track trackName];
         [cell artist].text = [track artistName];
         [[cell image] setImage:nil];
+        [[cell image] sd_setImageWithURL:[NSURL URLWithString:[track artworkUrl100]]
+                       placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",[track trackId]]]];
+        
         cell.parentNavCtrl = self.navigationController;
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                       ^{
-                           // image 1
-                           ITunesMusicTrack* track = [topRatesSongs objectAtIndex:indexPath.row];
-                           id path = [track artworkUrl100];
-                           NSURL *url = [NSURL URLWithString:path];
-                           NSData *data = [NSData dataWithContentsOfURL:url];
-                           UIImage *sharedImage = [[UIImage alloc] initWithData:data];
-                           
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               
-                               [[cell image] setImage:sharedImage];
-                           });
-                           
-                       });
+        if (currentPlayingIndex == indexPath.row) {
+            [cell startPlayingProgress];
+            
+            if (currentDownloadingIndex == indexPath.row) {
+                [cell stopPlayingProgress];
+                [cell startDownloadProgress];
+            }
+        }
+        else{
+            [cell stopPlayingProgress];
+            [cell stopDownloadProgress];
+        }
+        
        return cell;
     }
     return nil;
@@ -519,6 +493,14 @@
 
 #pragma mark - UITableViewDelegate
 
+/**
+ *  <#Description#>
+ *
+ *  @param tableView <#tableView description#>
+ *  @param indexPath <#indexPath description#>
+ *
+ *  @return <#return value description#>
+ */
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == currentSongIndex && [audioPlayer isPlaying]) {
@@ -528,6 +510,7 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         
         [audioPlayer stop];
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentSongIndex]];
     }
     else{
         if (indexPath.section!=0) {
@@ -540,6 +523,13 @@
 
 #pragma mark - ITunesFeedsApiDelegate
 
+/**
+ *  <#Description#>
+ *
+ *  @param status  <#status description#>
+ *  @param type    <#type description#>
+ *  @param results <#results description#>
+ */
 -(void) queryResult:(ITunesFeedsApiQueryStatus)status type:(ITunesFeedsQueryType)type results:(NSArray*)results
 {
     if (status == StatusSucceed) {
@@ -549,7 +539,7 @@
             // top albums receieved
             
             // load images from itunes store
-            UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            UITableViewCellFeatureAlbumStore* cell = (UITableViewCellFeatureAlbumStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:SECTION_ALBUM]];
             if (cell && results.count>=6)
             {
                 
@@ -586,6 +576,7 @@
 - (void) stopPlaying
 {
     [audioPlayer stop];
+    [self stopPlayingProgress:[NSNumber numberWithInteger:currentPlayingIndex]];
 }
 
 /**
@@ -599,7 +590,7 @@
         currentSongIndex = index;
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
-        [_tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:true];
         
         NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start playing", (long)currentSongIndex);
         
@@ -613,15 +604,23 @@
                 [audioPlayer prepareToPlay];
                 [audioPlayer play];
                 
+                
                 NSNumber *param = [NSNumber numberWithInteger:currentDownloadingIndex];
                 [self performSelectorOnMainThread:@selector(stopDownloadProgress:) withObject:param waitUntilDone:NO];
                 
-                //[self stopDownloadProgress:currentDownloadingIndex];
+                NSNumber *param2 = [NSNumber numberWithInteger:currentDownloadingIndex];
+                [self performSelectorOnMainThread:@selector(startPlayingProgress:) withObject:param2 waitUntilDone:NO];
+                
+                
             }];
             [task resume];
         }
         else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"There is no preview for this song!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                            message:@"There is no preview for this song!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil,nil];
             [alert show];
             
             [self stopDownloadProgress: [NSNumber numberWithInteger:currentSongIndex]];
@@ -629,22 +628,37 @@
     }
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param player <#player description#>
+ *  @param flag   <#flag description#>
+ */
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Playing ended ", (long)currentSongIndex);
-    [audioPlayer stop];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentSongIndex inSection:SECTION_SONG];
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [audioPlayer stop];
     
     [self startPlayingAtIndex:currentSongIndex+1];
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param player <#player description#>
+ *  @param error  <#error description#>
+ */
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
 {
     NSLog(@"Error occured");
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
 -(void) startDownloadProgress:(NSInteger) index
 {
     if (currentDownloadingIndex != -1) {
@@ -662,6 +676,11 @@
     }
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
 -(void) stopDownloadProgress:(NSNumber*) index
 {
     //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
@@ -671,6 +690,44 @@
         [cell stopDownloadProgress];
     }
     currentDownloadingIndex = -1;
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) startPlayingProgress:(NSInteger) index
+{
+    if (currentPlayingIndex != -1) {
+        // stop already downloding progress
+        [self stopPlayingProgress:[NSNumber numberWithInteger:currentPlayingIndex]];
+    }
+    
+    currentPlayingIndex = currentSongIndex;
+    
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Start downloading progress ", (long)index);
+    
+    UITableViewCellFeatureSongsStore *cell = (UITableViewCellFeatureSongsStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentPlayingIndex inSection:SECTION_SONG]];
+    if (cell) {
+        [cell startPlayingProgress];
+    }
+}
+
+/**
+ *  <#Description#>
+ *
+ *  @param index <#index description#>
+ */
+-(void) stopPlayingProgress:(NSNumber*) index
+{
+    //NSLog(@" %s - %@ %ld\n", __PRETTY_FUNCTION__, @"Stop downloading progress ", (long)[index integerValue]);
+    
+    UITableViewCellFeatureSongsStore *cell = (UITableViewCellFeatureSongsStore*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[index integerValue] inSection:SECTION_SONG]];
+    if (cell) {
+        [cell stopPlayingProgress];
+    }
+    currentPlayingIndex = -1;
 }
 
 

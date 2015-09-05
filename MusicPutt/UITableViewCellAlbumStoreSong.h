@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "ITunesMusicTrack.h"
 
+@class UIViewEqualizer;
+
 
 /**
  *  Cell for the store album module
  */
 @interface UITableViewCellAlbumStoreSong : UITableViewCell
+
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView* downloadProgress;
+
+@property (weak, nonatomic) IBOutlet UIViewEqualizer* equalizer;
 
 /**
  *  Set the information of the media item (name, track no. and duration).
@@ -30,6 +36,24 @@
  */
 -(ITunesMusicTrack*) getMediaItem;
 
+/**
+ *  Start downloading progress
+ */
+-(void) startDownloadProgress;
 
+/**
+ *  Stop downloading progress
+ */
+-(void) stopDownloadProgress;
+
+/**
+ *  Start playing progress
+ */
+-(void) startPlayingProgress;
+
+/**
+ *  Stop playing progress
+ */
+-(void) stopPlayingProgress;
 
 @end

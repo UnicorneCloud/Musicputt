@@ -12,7 +12,7 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
 
 @interface UACircularProgressView : UIView
 
-- (void)updateProgress:(float)progress;
+- (void)updateProgress:(CGFloat)progress;
 - (CAShapeLayer *)shapeLayer;
 
 @end
@@ -26,6 +26,7 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
 @end
 
 @implementation UAProgressView
+@synthesize tintColor = _tintColor;
 
 #pragma mark - Init
 
@@ -103,12 +104,30 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
 #pragma mark - Color
 
 - (void)tintColorDidChange {
-    [super tintColorDidChange];
+    if ([[self superclass] instancesRespondToSelector: @selector(tintColorDidChange)]) {
+        [super tintColorDidChange];
+    }
 	
     UIColor *tintColor = self.tintColor;
 	
     self.progressView.shapeLayer.strokeColor = tintColor.CGColor;
     self.progressView.shapeLayer.borderColor = tintColor.CGColor;
+}
+
+- (UIColor*) tintColor
+{
+    if (_tintColor == nil) {
+        _tintColor = [UIColor colorWithRed: 0.0 green: 122.0/255.0 blue: 1.0 alpha: 1.0];
+    }
+    return _tintColor;
+}
+
+- (void) setTintColor:(UIColor *)tintColor
+{
+    [self willChangeValueForKey: @"tintColor"];
+    _tintColor = tintColor;
+    [self didChangeValueForKey: @"tintColor"];
+    [self tintColorDidChange];
 }
 
 #pragma mark - Layout
@@ -122,7 +141,7 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
 
 #pragma mark - Progress Control
 
-- (void)setProgress:(float)progress animated:(BOOL)animated {
+- (void)setProgress:(CGFloat)progress animated:(BOOL)animated {
     
 	progress = MAX( MIN(progress, 1.0), 0.0); // keep it between 0 and 1
 	
@@ -147,7 +166,7 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
 	}
 }
 
-- (void)setProgress:(float)progress {
+- (void)setProgress:(CGFloat)progress {
 	[self setProgress:progress animated:NO];
 }
 
@@ -158,11 +177,13 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
     _animationDuration = animationDuration;
 }
 
-- (void)animateToProgress:(float)progress {
+- (void)animateToProgress:(CGFloat)progress {
     [self stopAnimation];
     
     // Add shape animation
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
     animation.duration = self.animationDuration;
     animation.fromValue = @(self.progress);
     animation.toValue = @(progress);
@@ -338,17 +359,17 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
     CGFloat width = self.frame.size.width;
 	CGFloat borderWidth = self.shapeLayer.borderWidth;
     return [UIBezierPath bezierPathWithArcCenter:CGPointMake(width/2.0f, width/2.0f)
-                                          radius:width/2.0f - borderWidth - 0.5
+                                          radius:width/2.0f - borderWidth
                                       startAngle:startAngle
                                         endAngle:endAngle
                                        clockwise:YES];
 }
 
-- (void)updateProgress:(float)progress {
+- (void)updateProgress:(CGFloat)progress {
     [self updatePath:progress];
 }
 
-- (void)updatePath:(float)progress {
+- (void)updatePath:(CGFloat)progress {
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 	self.shapeLayer.strokeEnd = progress;

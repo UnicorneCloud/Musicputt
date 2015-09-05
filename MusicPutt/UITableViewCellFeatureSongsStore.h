@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class UIViewEqualizer;
+
 @interface UITableViewCellFeatureSongsStore : UITableViewCell
 
 @property (weak, nonatomic) UINavigationController* parentNavCtrl;
@@ -22,6 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* artist;
 
+@property (weak, nonatomic) IBOutlet UIViewEqualizer* equalizer;
+
 @property NSString* trackId;
 
 /**
@@ -33,6 +37,17 @@
  *  Stop downloading progress
  */
 -(void) stopDownloadProgress;
+
+
+/**
+ *  Start playing progress
+ */
+-(void) startPlayingProgress;
+
+/**
+ *  Stop playing progress
+ */
+-(void) stopPlayingProgress;
 
 
 

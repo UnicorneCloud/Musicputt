@@ -14,6 +14,7 @@ pod 'DLAlertView'
 pod 'MagicalRecord'
 pod 'iPerspective'
 pod 'iTunesApi'
+pod 'SDWebImage', '~>3.6'
 
 end
 

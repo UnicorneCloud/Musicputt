@@ -1,6 +1,6 @@
 UAProgressView is a simple and lightweight, yet powerful animated circular progress view.
 
-![UAProgressView](https://github.com/UrbanApps/UAProgressView/blob/master/Screens/UAProgressView.gif?raw=true "Example 1")
+![UAProgressView](https://raw.githubusercontent.com/UrbanApps/UAProgressView/assets/UAProgressView.gif "Example 1")
 
 ## Installation
 
@@ -16,7 +16,7 @@ Then, simply place this line in any file that uses UAProgressView.
 #import <UAProgressView.h>
 ```
 
-UAProgressView works on iOS 7 and up.
+UAProgressView works on iOS 6.0 and up.
    
 ## Usage
 
@@ -27,7 +27,7 @@ UAProgressView has sensible defaults to make setup a breeze.
 1. Add a custom view to your storyboard, xib or create a UAProgressView in code.
 2. Set the progress on your UAProgressView by calling `setProgress:`
 
-The progress should be a `float` between 0 and 1, but we will round to the closest if over/under.
+The progress should be a `CGFloat` between 0 and 1, but we will round to the closest if over/under.
 
 The default color used for UAProgressView is the view's `tintColor`, and it will travel up the superview tree as expected to set it.
 
@@ -142,13 +142,13 @@ self.progressView.didSelectBlock = ^(UAProgressView *progressView){
 You can set a block to be called whenever the progress is changed. This can be useful if the object updating the progress does not know about the central view.
 
 ```objc
-@property (nonatomic, copy) void (^progressChangedBlock)(UAProgressView *progressView, float progress);
+@property (nonatomic, copy) void (^progressChangedBlock)(UAProgressView *progressView, CGFloat progress);
 ```
 
 Example usage:
 
 ```objc
-self.progressView.progressChangedBlock = ^(UAProgressView *progressView, float progress){
+self.progressView.progressChangedBlock = ^(UAProgressView *progressView, CGFloat progress){
     [(UILabel *)progressView.centralView setText:[NSString stringWithFormat:@"%2.0f%%", progress * 100]];
 };
 ```
@@ -179,7 +179,7 @@ self.progressView.fillChangedBlock = ^(UAProgressView *progressView, BOOL filled
 
 ### Configuration/Usage Examples
 
-![UAProgressView](https://github.com/UrbanApps/UAProgressView/blob/master/Screens/UAProgressView2.gif?raw=true "Example 2")
+![UAProgressView](https://raw.githubusercontent.com/UrbanApps/UAProgressView/assets/UAProgressView2.gif "Example 2")
 
 For more information on how to use and setup UAProgressView, please see the example project.
 
@@ -200,6 +200,7 @@ Let us know if you see ways to improve UAProgressView or see something wrong wit
 
 ## Open-Source Urban Apps Projects
 
+- [Armchair](https://github.com/UrbanApps/Armchair) - A simple yet powerful App Review Manager for iOS and OSX (Swift)
 - [UAModalPanel](https://github.com/UrbanApps/UAModalPanel) - An animated modal panel alternative for iOS
 - [UAAppReviewManager](https://github.com/UrbanApps/UAAppReviewManager) - An app review prompting tool for iOS and Mac App Store apps.
 - [UALogger](https://github.com/UrbanApps/UALogger) - A logging utility for Mac/iOS apps
@@ -211,6 +212,4 @@ Let us know if you see ways to improve UAProgressView or see something wrong wit
 If you want to thank us for open-sourcing UAProgressView, you can [buy one of our apps](http://itunes.com/apps/urbanapps?at=11l7j9&ct=github) or even donate something small.
 
 <a href='http://www.pledgie.com/campaigns/21926'><img alt='Click here to lend your support to: Support UAProgressView Development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/21926.png?skin_name=chrome' border='0' /></a>
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/coneybeare/uaprogressview/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
