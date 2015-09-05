@@ -13,6 +13,7 @@
 #import "UIViewControllerAlbumStore.h"
 #import "UIViewControllerGender.h"
 #import "UIViewControllerFeatureStore.h"
+#import "UIViewControllerFeatureMusicPutt.h"
 #import "LastPlaying.h"
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -353,7 +354,14 @@
         
     }
      */
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SEE_WHATS_NEW]) // create what's new
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:MUSICPUTT_SEE_MORE]) // see more
+    {
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewControllerFeatureMusicPutt *featureMusicPutt = [sb instantiateViewControllerWithIdentifier:@"FeatureMusicPutt"];
+        [_parentNavCtrl pushViewController:featureMusicPutt animated:YES];
+    }
+    
+    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DISCOVER_SEE_WHATS_NEW]) // see what's new
     {
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewControllerFeatureStore *featureStore = [sb instantiateViewControllerWithIdentifier:@"FeatureStore"];
