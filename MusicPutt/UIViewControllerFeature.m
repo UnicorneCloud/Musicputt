@@ -22,9 +22,9 @@
 /**
  *  Index for each cell. Local, MusicPutt and TopRate.
  */
-#define _LOCAL_CELL_INDEX_              0
-#define _MUSICPUTT_CELL_INDEX_          1
-#define _TOP_RATE_CELL_INDEX_           2
+#define _LOCAL_CELL_INDEX_              2
+#define _MUSICPUTT_CELL_INDEX_          0
+#define _TOP_RATE_CELL_INDEX_           1
 
 #define _NB_CELL_                       3
 
@@ -115,6 +115,7 @@
     if ([country compare:@"CN"]==0) { // if country = CN (Chenese) store are not available
         country = @"US";
     }
+    
     [_itunes queryFeedType:QueryTopAlbums forCountry:country size:100 genre:0 asynchronizationMode:true];
     
     // musicputt api
@@ -807,18 +808,6 @@
             
             topRateReadyToFlip = true;
             [cell stopProgress];
-        }
-        else
-        {
-            cell.collectionId1 = nil;
-            cell.collectionId2 = nil;
-            cell.collectionId3 = nil;
-            cell.collectionId4 = nil;
-            
-            cell.image1 = nil;
-            cell.image2 = nil;
-            cell.image3 = nil;
-            cell.image4 = nil;
         }
     }
     
