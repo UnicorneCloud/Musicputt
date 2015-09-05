@@ -10,10 +10,13 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import "ITunesMusicTrack.h"
+#import "UIViewEqualizer.h"
 
 @interface UITableViewCellSongStore ()
 {
     ITunesMusicTrack* _mediaitem;
+    NSTimer *timerDownload;
+    float currentProgress;
 }
 
 /**
@@ -45,14 +48,22 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        // init download progress
+        [_downloadProgress setHidden:true];
+        
+        // init playing progress
+        [_equalizer setHidden:true];
     }
     return self;
 }
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    // init download progress
+    [_downloadProgress setHidden:true];
+    
+    // init playing progress
+    [_equalizer setHidden:true];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -92,6 +103,53 @@
 -(ITunesMusicTrack*) getMediaItem
 {
     return _mediaitem;
+}
+
+/**
+ *  Start downloading progress
+ */
+-(void) startDownloadProgress
+{
+    [_songDuration setHidden:true];
+    [_equalizer setHidden:true];
+    
+    [_downloadProgress setHidden:false];
+    [_downloadProgress startAnimating];
+}
+
+/**
+ *  Stop downloading progress
+ */
+-(void) stopDownloadProgress
+{
+    
+    [_downloadProgress startAnimating];
+    [_downloadProgress setHidden:true];
+    
+    [_songDuration setHidden:false];
+}
+
+/**
+ *  Start playing progress
+ */
+-(void) startPlayingProgress
+{
+    [_downloadProgress setHidden:true];
+    [_songDuration setHidden:true];
+    
+    [_equalizer setHidden:false];
+    [_equalizer startAnimation];
+}
+
+/**
+ *  Stop playing progress
+ */
+-(void) stopPlayingProgress
+{
+    [_equalizer stopAnimation];
+    [_equalizer setHidden:true];
+    
+    [_songDuration setHidden:false];
 }
 
 

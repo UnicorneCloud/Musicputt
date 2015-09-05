@@ -352,12 +352,12 @@
 		9711FF921981DE5A00421CF4 /* Artist */ = {
 			isa = PBXGroup;
 			children = (
+				97570B76198D406F00A542DA /* UIViewControllerArtistStore.h */,
+				97570B77198D406F00A542DA /* UIViewControllerArtistStore.m */,
 				9711FF931981DFAD00421CF4 /* UIViewControllerStoreAlbum.h */,
 				9711FF941981DFAD00421CF4 /* UIViewControllerStoreAlbum.m */,
 				97C9A2101988414300BB3B8C /* UITableViewCellAlbumStoreSong.h */,
 				97C9A2111988414300BB3B8C /* UITableViewCellAlbumStoreSong.m */,
-				97570B76198D406F00A542DA /* UIViewControllerArtistStore.h */,
-				97570B77198D406F00A542DA /* UIViewControllerArtistStore.m */,
 				97570B79198D5D1700A542DA /* UIViewControllerStoreSongs.h */,
 				97570B7A198D5D1700A542DA /* UIViewControllerStoreSongs.m */,
 				97570B7C198D6B7300A542DA /* UITableViewCellSongStore.h */,

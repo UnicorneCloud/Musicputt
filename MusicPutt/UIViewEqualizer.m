@@ -155,7 +155,6 @@
     // draw line 3
     CGContextMoveToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _maxHeight);
     CGContextAddLineToPoint(context, (_lineWidth*2+_lineSpaceWidth*2)+_lineWidth/2, _firstLineCurrentValue + (_firstLineCurrentValue*_currentRatio) - (_maxHeight/3) );
-
     
     // strock path
     CGContextStrokePath(context);

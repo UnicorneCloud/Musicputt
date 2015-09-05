@@ -88,7 +88,6 @@
     return _mediaitem;
 }
 
-
 /**
  *  Start downloading progress
  */
@@ -100,7 +99,6 @@
     [_downloadProgress setHidden:false];
     [_downloadProgress startAnimating];
 }
-
 
 /**
  *  Stop downloading progress

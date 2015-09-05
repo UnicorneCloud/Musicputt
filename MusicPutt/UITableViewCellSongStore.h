@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class ITunesMusicTrack;
+@class UIViewEqualizer;
 
 @interface UITableViewCellSongStore : UITableViewCell
+
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView* downloadProgress;
+
+@property (weak, nonatomic) IBOutlet UIViewEqualizer* equalizer;
 
 /**
  *  Set the information of the media item (name, track no. and duration).
@@ -19,13 +24,32 @@
  */
 - (void)setMediaItem: (ITunesMusicTrack*)mediaitem;
 
-
 /**
  *  Get media item attach with this cell.
  *
  *  @return mediaItem attach with this cell.
  */
 -(ITunesMusicTrack*) getMediaItem;
+
+/**
+ *  Start downloading progress
+ */
+-(void) startDownloadProgress;
+
+/**
+ *  Stop downloading progress
+ */
+-(void) stopDownloadProgress;
+
+/**
+ *  Start playing progress
+ */
+-(void) startPlayingProgress;
+
+/**
+ *  Stop playing progress
+ */
+-(void) stopPlayingProgress;
 
 
 @end

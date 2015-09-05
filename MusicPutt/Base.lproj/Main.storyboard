@@ -557,6 +557,13 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="efS-xo-ZgE">
+                                                    <rect key="frame" x="277" y="11" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I82-3h-zCi" userLabel="Equalizer" customClass="UIViewEqualizer">
+                                                    <rect key="frame" x="277" y="13" width="18" height="18"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ujw-Qs-d6w" firstAttribute="centerY" secondItem="U6H-93-JkI" secondAttribute="centerY" id="F6m-ou-Doo"/>
@@ -572,6 +579,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="downloadProgress" destination="efS-xo-ZgE" id="2xz-SJ-uIh"/>
+                                            <outlet property="equalizer" destination="I82-3h-zCi" id="abJ-Rz-oA4"/>
                                             <outlet property="songDuration" destination="Ujw-Qs-d6w" id="oHz-hl-AzJ"/>
                                             <outlet property="songName" destination="WNn-hp-VPG" id="SDV-zO-jSd"/>
                                             <outlet property="trackNo" destination="OQw-fw-stn" id="UYJ-w8-eJl"/>
@@ -671,6 +680,13 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9f-KV-rgv" userLabel="Equalizer" customClass="UIViewEqualizer">
+                                                    <rect key="frame" x="286" y="14" width="18" height="18"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GCT-ov-ofM">
+                                                    <rect key="frame" x="286" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="WVW-Bn-Wzn" firstAttribute="leading" secondItem="IoI-1h-NmM" secondAttribute="trailing" constant="8" symbolic="YES" id="6L5-ay-bVU"/>
@@ -692,6 +708,8 @@
                                         <connections>
                                             <outlet property="albumName" destination="WVW-Bn-Wzn" id="vO5-IN-jhH"/>
                                             <outlet property="artWork" destination="IoI-1h-NmM" id="B3a-Ra-XXV"/>
+                                            <outlet property="downloadProgress" destination="GCT-ov-ofM" id="M0a-Uy-K9I"/>
+                                            <outlet property="equalizer" destination="n9f-KV-rgv" id="FmJ-Kc-qqB"/>
                                             <outlet property="songDuration" destination="srD-hq-lpS" id="OzX-95-0hl"/>
                                             <outlet property="songName" destination="cCf-nw-cpj" id="qvT-dK-ZNj"/>
                                         </connections>
