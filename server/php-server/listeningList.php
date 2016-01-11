@@ -21,7 +21,7 @@
 	//
 	$mysqli = new mysqli("fdb13.awardspace.net",	// host
 						 "1812630_music",		    // user
-						 "Asdlkj01msn", 		    // password
+						 "", 		    			// password
 						 "1812630_music"); 	        // database
 	if ($mysqli->connect_errno) {
 		echo "{\n";
