@@ -15,3 +15,8 @@ Great design to always see what's playing now!
 
 ### SHARE WITH YOUR FRIENDS
 Share your preferred song or discovered album with all your friends.
+
+
+## Authors
+- Eric Pinet
+- Qiaomei Wang
