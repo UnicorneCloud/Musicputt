@@ -3,6 +3,7 @@ iOS music application (http://pineri01.wix.com/musicputt)
 
 Follow us on facebook. (https://www.facebook.com/appmusicputt)
 
+Download on itunes. (https://itunes.apple.com/ca/app/musicputt/id955334106?l=fr)
 
 ### CREATE PLAYLIST FASTER
 Create a playlist with your preferred song or with your actual mood. The playlist creation is very simple.
