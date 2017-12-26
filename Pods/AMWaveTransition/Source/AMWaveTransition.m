@@ -3,7 +3,7 @@
 //  AMWaveTransitioning
 //
 //  Created by Andrea on 11/04/14.
-//  Copyright (c) 2014 Fancy Pixel. All rights reserved.
+//  Copyright (c) 2015 Fancy Pixel. All rights reserved.
 //
 
 #import "AMWaveTransition.h"
@@ -53,23 +53,19 @@ const CGFloat MAX_DELAY = 0.15;
     return self;
 }
 
-+ (instancetype)transitionWithOperation:(UINavigationControllerOperation)operation
-{
++ (instancetype)transitionWithOperation:(UINavigationControllerOperation)operation {
     return [[self alloc] initWithOperation:operation andTransitionType:AMWaveTransitionTypeNervous];
 }
 
-- (instancetype)initWithOperation:(UINavigationControllerOperation)operation
-{
+- (instancetype)initWithOperation:(UINavigationControllerOperation)operation {
     return [self initWithOperation:operation andTransitionType:AMWaveTransitionTypeNervous];
 }
 
-+ (instancetype)transitionWithOperation:(UINavigationControllerOperation)operation andTransitionType:(AMWaveTransitionType)type
-{
++ (instancetype)transitionWithOperation:(UINavigationControllerOperation)operation andTransitionType:(AMWaveTransitionType)type {
     return [[self alloc] initWithOperation:operation andTransitionType:type];
 }
 
-- (instancetype)initWithOperation:(UINavigationControllerOperation)operation andTransitionType:(AMWaveTransitionType)type
-{
+- (instancetype)initWithOperation:(UINavigationControllerOperation)operation andTransitionType:(AMWaveTransitionType)type {
     self = [super init];
     if (self) {
         [self setup];
@@ -79,8 +75,7 @@ const CGFloat MAX_DELAY = 0.15;
     return self;
 }
 
-- (void)setup
-{
+- (void)setup {
     _viewControllersInset = 20;
     _interactiveTransitionType = AMWaveTransitionEdgePan;
     _animateAlphaWithInteractiveTransition = NO;
@@ -88,8 +83,7 @@ const CGFloat MAX_DELAY = 0.15;
     _maxDelay = MAX_DELAY;
 }
 
-- (void)attachInteractiveGestureToNavigationController:(UINavigationController *)navigationController
-{
+- (void)attachInteractiveGestureToNavigationController:(UINavigationController *)navigationController {
     self.navigationController = navigationController;
     if (self.interactiveTransitionType == AMWaveTransitionEdgePan) {
         UIScreenEdgePanGestureRecognizer *recognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self
@@ -107,8 +101,7 @@ const CGFloat MAX_DELAY = 0.15;
     self.attachmentsTo = [@[] mutableCopy];
 }
 
-- (void)detachInteractiveGesture
-{
+- (void)detachInteractiveGesture {
     UINavigationController *navigationController = self.navigationController;
     [navigationController.view removeGestureRecognizer:self.gesture];
     self.navigationController = nil;
@@ -117,8 +110,7 @@ const CGFloat MAX_DELAY = 0.15;
     self.animator = nil;
 }
 
-- (void)handlePan:(UIScreenEdgePanGestureRecognizer *)gesture
-{
+- (void)handlePan:(UIScreenEdgePanGestureRecognizer *)gesture {
     UINavigationController *navigationController = self.navigationController; // support CLANG_WARN_OBJC_RECEIVER_WEAK
     
     // Starting controller
@@ -239,8 +231,7 @@ const CGFloat MAX_DELAY = 0.15;
     }
 }
 
-- (void)animationCompletionForInteractiveTransitionForView:(UIView *)view
-{
+- (void)animationCompletionForInteractiveTransitionForView:(UIView *)view {
     CGRect rect = view.frame;
     rect.origin.x = 0;
     UINavigationController *navigationController = self.navigationController;
@@ -253,17 +244,14 @@ const CGFloat MAX_DELAY = 0.15;
     view.alpha = [self alphaForView:view];
 }
 
-
-- (void)setPresentedFrameForView:(UIView *)view
-{
+- (void)setPresentedFrameForView:(UIView *)view {
     CGRect rect = view.frame;
     rect.origin.x = 0;
     view.frame = rect;
     view.alpha = [self alphaForView:view];
 }
 
-- (void)kickCellOutside:(UIView *)view
-{
+- (void)kickCellOutside:(UIView *)view {
     CGRect rect = view.frame;
     rect.origin.x = -SCREEN_WIDTH - self.viewControllersInset;
     UINavigationController *navigationController = self.navigationController;
@@ -276,18 +264,15 @@ const CGFloat MAX_DELAY = 0.15;
     view.frame = rect;
 }
 
-- (void)completeToVC:(UIView *)view
-{
+- (void)completeToVC:(UIView *)view {
     [self completeTransitionWithView:view inVC:AMWaveTransitionToVC];
 }
 
-- (void)completeFromVC:(UIView *)view
-{
+- (void)completeFromVC:(UIView *)view {
     [self completeTransitionWithView:view inVC:AMWaveTransitionFromVC];
 }
 
-- (void)completeTransitionWithView:(UIView *)view inVC:(AMWaveTransitionViewControllers)viewController
-{
+- (void)completeTransitionWithView:(UIView *)view inVC:(AMWaveTransitionViewControllers)viewController {
     CGRect rect = view.frame;
     if (viewController == AMWaveTransitionFromVC) {
         rect.origin.x = SCREEN_WIDTH - self.viewControllersInset;
@@ -302,8 +287,7 @@ const CGFloat MAX_DELAY = 0.15;
                            inView:(UIView *)view
                            touchX:(CGFloat)touchX
                          velocity:(CGFloat)velocity
-                             inVC:(AMWaveTransitionViewControllers)viewController
-{
+                             inVC:(AMWaveTransitionViewControllers)viewController {
     int selectionIndex;
     NSInteger correction = 2;
     NSMutableArray *arrayWithAttachments;
@@ -328,8 +312,7 @@ const CGFloat MAX_DELAY = 0.15;
     [arrayWithAttachments[index] setAnchorPoint:(CGPoint){delta, [view.superview convertPoint:view.frame.origin toView:nil].y + view.frame.size.height / 2}];
 }
 
-- (void)createAttachmentForView:(UIView *)view inVC:(AMWaveTransitionViewControllers)viewController
-{
+- (void)createAttachmentForView:(UIView *)view inVC:(AMWaveTransitionViewControllers)viewController {
     UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:view attachedToAnchor:(CGPoint){0, [view.superview convertPoint:view.frame.origin toView:nil].y + view.frame.size.height / 2}];
     [attachment setDamping:0.4];
     [attachment setFrequency:1];
@@ -346,8 +329,7 @@ const CGFloat MAX_DELAY = 0.15;
     [arrayWithAttachments addObject:attachment];
 }
 
-- (CGFloat)alphaForView:(UIView *)view
-{
+- (CGFloat)alphaForView:(UIView *)view {
     if (self.animateAlphaWithInteractiveTransition) {
         CGFloat width = SCREEN_WIDTH - self.viewControllersInset;
         CGFloat alpha = (width - fabs(view.frame.origin.x)) * (1 / width);
@@ -359,13 +341,11 @@ const CGFloat MAX_DELAY = 0.15;
 
 #pragma mark - Non interactive transition
 
-- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
-{
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
     return self.duration + self.maxDelay;
 }
 
-- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
-{
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIViewController *fromVC;
     if ([[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isKindOfClass:[UINavigationController class]]) {
         fromVC = (UIViewController*)([(UINavigationController*)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] visibleViewController]);
@@ -393,82 +373,80 @@ const CGFloat MAX_DELAY = 0.15;
     toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
     // And kick it aside
     toVC.view.transform = CGAffineTransformMakeTranslation(delta, 0);
-    
-    [transitionContext containerView].backgroundColor = fromVC.view.backgroundColor;
-    
-    // First step is required to trigger the load of the visible cells.
-    [UIView animateWithDuration:0 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:nil completion:^(BOOL finished) {
-        
-        // Plain animation that moves the destination controller in place. Once it's done it will notify the transition context
-        if (self.operation == UINavigationControllerOperationPush) {
-            [toVC.view setTransform:CGAffineTransformMakeTranslation(1, 0)];
-            [UIView animateWithDuration:self.duration + self.maxDelay delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                [toVC.view setTransform:CGAffineTransformIdentity];
-            } completion:^(BOOL finished2) {
-                [transitionContext completeTransition:YES];
-            }];
-        } else {
-            [fromVC.view setTransform:CGAffineTransformMakeTranslation(1, 0)];
-            [toVC.view setTransform:CGAffineTransformIdentity];
-            [UIView animateWithDuration:self.duration + self.maxDelay delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                [fromVC.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
-            } completion:^(BOOL finished2) {
-                [fromVC.view removeFromSuperview];
-                [transitionContext completeTransition:YES];
-            }];
-        }
-        
-        NSArray *fromViews = [self visibleCellsForViewController:fromVC];
-        NSArray *toViews = [self visibleCellsForViewController:toVC];
 
-        __block NSArray *currentViews;
-        __block NSUInteger currentVisibleViewsCount;
-        
-        void (^cellAnimation)(id, NSUInteger, BOOL*) = ^(UIView *view, NSUInteger idx, BOOL *stop){
-            BOOL fromMode = currentViews == fromViews;
-            NSTimeInterval delay = ((float)idx / (float)currentVisibleViewsCount) * self.maxDelay;
-            if (!fromMode) {
-                [view setTransform:CGAffineTransformMakeTranslation(delta, 0)];
-            }
-            void (^animation)() = ^{
-                if (fromMode) {
-                    view.transform = CGAffineTransformMakeTranslation(-delta, 0);
-                    view.alpha = 0;
-                } else {
-                    view.transform = CGAffineTransformIdentity;
-                    view.alpha = 1;
-                }
-            };
-            void (^completion)(BOOL) = ^(BOOL finished2){
-                if (fromMode) {
-                    [view setTransform:CGAffineTransformIdentity];
-                }
-            };
-            if (self.transitionType == AMWaveTransitionTypeSubtle) {
-                [UIView animateWithDuration:self.duration delay:delay options:UIViewAnimationOptionCurveEaseIn animations:animation completion:completion];
-            } else if (self.transitionType == AMWaveTransitionTypeNervous) {
-                [UIView animateWithDuration:self.duration delay:delay usingSpringWithDamping:0.75 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseIn animations:animation completion:completion];
-            } else if (self.transitionType == AMWaveTransitionTypeBounce){
-                [UIView animateWithDuration:self.duration delay:delay options:UIViewAnimationOptionCurveEaseInOut animations:animation completion:completion];
+    [transitionContext containerView].backgroundColor = fromVC.view.backgroundColor;
+
+    // Trigger the layout of the new cells
+    [[transitionContext containerView] layoutIfNeeded];
+
+    // Plain animation that moves the destination controller in place. Once it's done it will notify the transition context
+    if (self.operation == UINavigationControllerOperationPush) {
+        [toVC.view setTransform:CGAffineTransformMakeTranslation(1, 0)];
+        [UIView animateWithDuration:self.duration + self.maxDelay delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [toVC.view setTransform:CGAffineTransformIdentity];
+        } completion:^(BOOL finished2) {
+            [transitionContext completeTransition:YES];
+        }];
+    } else {
+        [fromVC.view setTransform:CGAffineTransformMakeTranslation(1, 0)];
+        [toVC.view setTransform:CGAffineTransformIdentity];
+        [UIView animateWithDuration:self.duration + self.maxDelay delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [fromVC.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+        } completion:^(BOOL finished2) {
+            [fromVC.view removeFromSuperview];
+            [transitionContext completeTransition:YES];
+        }];
+    }
+
+    NSArray *fromViews = [self visibleCellsForViewController:fromVC];
+    NSArray *toViews = [self visibleCellsForViewController:toVC];
+
+    __block NSArray *currentViews;
+    __block NSUInteger currentVisibleViewsCount;
+
+    void (^cellAnimation)(id, NSUInteger, BOOL*) = ^(UIView *view, NSUInteger idx, BOOL *stop){
+        BOOL fromMode = currentViews == fromViews;
+        NSTimeInterval delay = ((float)idx / (float)currentVisibleViewsCount) * self.maxDelay;
+        if (!fromMode) {
+            [view setTransform:CGAffineTransformMakeTranslation(delta, 0)];
+        }
+        void (^animation)() = ^{
+            if (fromMode) {
+                view.transform = CGAffineTransformMakeTranslation(-delta, 0);
+                view.alpha = 0;
+            } else {
+                view.transform = CGAffineTransformIdentity;
+                view.alpha = 1;
             }
         };
-        
-
-        currentViews = fromViews;
-        NSArray *viewsArrays = @[fromViews, toViews];
-        
-        for (currentViews in viewsArrays) {
-            // Animates all views
-            currentVisibleViewsCount = currentViews.count;
-            [currentViews enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:cellAnimation];
+        void (^completion)(BOOL) = ^(BOOL finished2){
+            if (fromMode) {
+                [view setTransform:CGAffineTransformIdentity];
+            }
+        };
+        if (self.transitionType == AMWaveTransitionTypeSubtle) {
+            [UIView animateWithDuration:self.duration delay:delay options:UIViewAnimationOptionCurveEaseIn animations:animation completion:completion];
+        } else if (self.transitionType == AMWaveTransitionTypeNervous) {
+            [UIView animateWithDuration:self.duration delay:delay usingSpringWithDamping:0.75 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseIn animations:animation completion:completion];
+        } else if (self.transitionType == AMWaveTransitionTypeBounce){
+            [UIView animateWithDuration:self.duration delay:delay options:UIViewAnimationOptionCurveEaseInOut animations:animation completion:completion];
         }
-    }];
+    };
+
+
+    currentViews = fromViews;
+    NSArray *viewsArrays = @[fromViews, toViews];
+
+    for (currentViews in viewsArrays) {
+        // Animates all views
+        currentVisibleViewsCount = currentViews.count;
+        [currentViews enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:cellAnimation];
+    }
 }
 
-- (NSArray *)visibleCellsForViewController:(UIViewController*)viewController
-{
+- (NSArray *)visibleCellsForViewController:(UIViewController*)viewController {
     NSArray *visibleCells = nil;
-    
+
     if ([viewController respondsToSelector:@selector(visibleCells)]) {
         visibleCells = ((UIViewController<AMWaveTransitioning>*)viewController).visibleCells;
     } else if ([viewController respondsToSelector:@selector(tableView)]) {

@@ -3,34 +3,56 @@
 //  AMWaveTransition
 //
 //  Created by Andrea on 11/04/14.
-//  Copyright (c) 2014 Fancy Pixel. All rights reserved.
+//  Copyright (c) 2015 Fancy Pixel. All rights reserved.
 //
 
 @import UIKit;
 
+/**
+ * @name AMWaveTransitioning
+ * Delegate protocol for AMWaveTransition
+ */
 @protocol AMWaveTransitioning <NSObject>
 
+/** Visible cells
+ *
+ * Returns the cells that need to be animated. 
+ *
+ * @return An array of UIViews
+ */
 - (NSArray*)visibleCells;
 
 @end
 
+/** @enum AMWaveTransitionType
+ *
+ * Enum that specifies the type of animation
+ */
 typedef NS_ENUM(NSInteger, AMWaveTransitionType) {
+    /** Smooth transition */
     AMWaveTransitionTypeSubtle,
+    /** Springy transition */
     AMWaveTransitionTypeNervous,
+    /** Spring transition with looser springs */
     AMWaveTransitionTypeBounce
 };
 
+/** @enum AMWaveInteractiveTransitionType
+ *
+ * Enum that specifies the transition type
+ */
 typedef NS_ENUM(NSInteger, AMWaveInteractiveTransitionType) {
+    /** The transition needs to start from the edge */
     AMWaveTransitionEdgePan,
-    AMWaveTransitionFullScreenPan,
+    /** The transition can start from anywhere */
+    AMWaveTransitionFullScreenPan
 };
 
-@interface AMWaveTransition : NSObject <UIViewControllerAnimatedTransitioning>
-
-/**-----------------------------------------------------------------------------
+/**
  * @name AMWaveTransition
- * -----------------------------------------------------------------------------
+ * Custom transition between viewcontrollers holding tableviews. Each cell is animated to simulate a 'wave effect'.
  */
+@interface AMWaveTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
 /** New transition
  *
@@ -81,9 +103,8 @@ typedef NS_ENUM(NSInteger, AMWaveInteractiveTransitionType) {
  */
 - (void)detachInteractiveGesture;
 
-/**-----------------------------------------------------------------------------
+/**
  * @name AMWaveTransition Properties
- * -----------------------------------------------------------------------------
  */
 
 /** Operation type
