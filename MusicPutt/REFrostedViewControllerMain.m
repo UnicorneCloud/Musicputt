@@ -27,7 +27,7 @@
 - (void)awakeFromNib
 {
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     //self.liveBlur = TRUE;
     

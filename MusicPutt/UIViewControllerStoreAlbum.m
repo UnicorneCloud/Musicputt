@@ -110,7 +110,7 @@
     // Do any additional setup after loading the view.
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // start loading annimations
     activityIndicator= [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];

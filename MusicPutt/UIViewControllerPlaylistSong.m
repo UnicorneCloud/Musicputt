@@ -47,7 +47,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // setup table view
     scrollView = self.tableView;

@@ -30,7 +30,7 @@
         // Initialization code
         
         // setup app delegate
-        self.del = [[UIApplication sharedApplication] delegate];
+        self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         
         NSMutableArray *barItems = [[NSMutableArray alloc] init];
         UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];

@@ -48,7 +48,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     artistCollection = [[self.del mpdatamanager] currentArtistCollection];
     

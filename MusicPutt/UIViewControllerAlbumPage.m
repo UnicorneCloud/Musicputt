@@ -74,7 +74,7 @@
     // Do any additional setup after loading the view.
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // Create blur effect
     UIToolbar *blurtoolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];

@@ -57,7 +57,7 @@
     // Initialization code
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // active tap gesture on title label
     _title.userInteractionEnabled = YES;

@@ -181,7 +181,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // update current playing song display
     //[self displayMediaItem:[[[self.del mpdatamanager] musicplayer] nowPlayingItem]];
