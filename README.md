@@ -1,23 +1,26 @@
+
 # Musicputt
-iOS music application (http://pineri01.wix.com/musicputt)
 
-Follow us on facebook. (https://www.facebook.com/appmusicputt)
+## Screenshots
+<table>
+  <tr>
+    <td><img src="https://github.com/ericpinet/Musicputt/blob/master/graphics/image1.PNG" width="225" height="400"/></td>
+    <td><img src="https://github.com/ericpinet/Musicputt/blob/master/graphics/image2.PNG" width="225" height="400"/></td>
+    <td><img src="https://github.com/ericpinet/Musicputt/blob/master/graphics/image3.PNG" width="225" height="400"/></td>
+  </tr>
+</table>
 
-Download on itunes. (https://itunes.apple.com/ca/app/musicputt/id955334106?l=fr)
-
-### CREATE PLAYLIST FASTER
-Create a playlist with your preferred song or with your actual mood. The playlist creation is very simple.
-
-### DISCOVER WHAT'S HOT TODAY
-Keep one eye on best selling album and songs on the iTunes Store. 
-
-### OUTSTANDING DESIGN
-Great design to always see what's playing now!
-
-### SHARE WITH YOUR FRIENDS
-Share your preferred song or discovered album with all your friends.
-
-
+## Sample application
+We use:
+ 
+ - [AFNetworking](https://github.com/AFNetworking/AFNetworking)
+ - [iPerspective](https://github.com/ericpinet/iPerspective)
+ - [iToolbar](https://github.com/ericpinet/iToolbar)
+ - [iTunesApi](https://github.com/ericpinet/iTunesApi)
+ - [MagicalRecord](https://github.com/magicalpanda/MagicalRecord)
+ - [Restkit](https://github.com/RestKit/RestKit)
+ - [SDWebImage](https://github.com/rs/SDWebImage)
+  
 ## Authors
 - Eric Pinet
 - Qiaomei Wang
