@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // by default current playlist toolbar is hide.
     isShowCurrentPlayingToolbar = false;
@@ -84,7 +84,9 @@
     currentEditingPlaylistToolbar.scrollView = self->scrollView;
 
     if ([[self.del mpdatamanager] isPlaylistEditing]) {
-        [currentEditingPlaylistToolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+        [currentEditingPlaylistToolbar setParentNavbar:(iNavigationBar*)self.navigationController.navigationBar];
+        [currentEditingPlaylistToolbar show:YES];
+        //[currentEditingPlaylistToolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
         isShowCurrentEditingPlaylistToolbar = true;
     }
     else{
@@ -127,19 +129,6 @@
 - (void) viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
-    // hide current playing toolbar
-    if ([[self.del mpdatamanager] isPlaylistEditing]==false) {
-        currentEditingPlaylistToolbar = [[self.del mpdatamanager] currentEditingPlaylistToolbar];
-        [self hideCurrentEditingPlaylistToolbar];
-    }
-    
-    // hide current playing toolbar
-    if ([[self.del mpdatamanager] currentPlayingToolbarMustBeHidden]) {
-        currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
-        [self hideCurrentPlayingToolbar];
-    }
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -158,6 +147,18 @@
      object:         [[_del mpdatamanager] musicplayer]];
     
     [[[_del mpdatamanager] musicplayer] endGeneratingPlaybackNotifications];
+    
+    // hide current playing toolbar
+    if ([[self.del mpdatamanager] isPlaylistEditing]==false) {
+        currentEditingPlaylistToolbar = [[self.del mpdatamanager] currentEditingPlaylistToolbar];
+        [self hideCurrentEditingPlaylistToolbar];
+    }
+    
+    // hide current playing toolbar
+    if ([[self.del mpdatamanager] currentPlayingToolbarMustBeHidden]) {
+        currentPlayingToolBar = [[self.del mpdatamanager] currentPlayingToolbar];
+        [self hideCurrentPlayingToolbar];
+    }
 
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -182,7 +183,9 @@
 {
     if ([[self.del mpdatamanager] isPlaylistEditing] == TRUE) {
         if([currentEditingPlaylistToolbar isVisible] == FALSE){
-            [currentEditingPlaylistToolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+            [currentEditingPlaylistToolbar setParentNavbar:(iNavigationBar*)self.navigationController.navigationBar];
+            [currentEditingPlaylistToolbar show:YES];
+            //[currentEditingPlaylistToolbar showFromNavigationBar:self.navigationController.navigationBar animated:YES];
         }
     }
 }
@@ -190,7 +193,8 @@
 -(void) hideCurrentEditingPlaylistToolbar
 {
     if ([currentEditingPlaylistToolbar isVisible]) {
-        [currentEditingPlaylistToolbar hideAnimated:YES];
+        [currentEditingPlaylistToolbar hide:YES];
+        //[currentEditingPlaylistToolbar hideAnimated:YES];
     }
 }
 

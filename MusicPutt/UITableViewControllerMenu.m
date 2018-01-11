@@ -39,7 +39,7 @@
     [super viewDidLoad];
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     self.tableView.opaque = NO;
     self.tableView.backgroundColor = [UIColor clearColor];

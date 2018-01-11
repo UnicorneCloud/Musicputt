@@ -33,7 +33,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
 }
 
 /**

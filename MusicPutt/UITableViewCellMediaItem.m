@@ -29,7 +29,7 @@
         // Initialization code
         
         // setup app delegate
-        self.del = [[UIApplication sharedApplication] delegate];
+        self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     }
     return self;
 }
@@ -39,7 +39,7 @@
     // Initialization code
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

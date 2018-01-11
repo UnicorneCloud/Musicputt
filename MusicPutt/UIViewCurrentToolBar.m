@@ -34,7 +34,7 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     [_progress setBackgroundColor:[UIColor clearColor]];
     _progress.borderWidth = 1.0;
@@ -70,30 +70,6 @@
         else
             [player play];
     };
-    
-    // Detect tapgesture
-    _imageview.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureImageview = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewPressed)];
-    [_imageview addGestureRecognizer:tapGestureImageview];
-    
-    _songTitle.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureSongtitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(songtitlePressed)];
-    [_songTitle addGestureRecognizer:tapGestureSongtitle];
-    
-    _artist.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureArtist = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(artistPressed)];
-    [_artist addGestureRecognizer:tapGestureArtist];
-    
-    _album.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureAlbum = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(albumPressed)];
-    [_album addGestureRecognizer:tapGestureAlbum];
-    
-    _progress.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGestureProgress = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(progressPressed)];
-    [_progress addGestureRecognizer:tapGestureProgress];
-    
-    // improve hittest for play/pause button.
-    [_progress setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Completed");
 }
@@ -240,60 +216,13 @@
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"stoped");
 }
 
-
-- (void)imageViewPressed
+- (void)viewPressed
 {
     NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
     [self.navigationController pushViewController:musicView animated:YES];
 }
-
-
-- (void)songtitlePressed
-{
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
-    [self.navigationController pushViewController:musicView animated:YES];
-}
-
-
-
-- (void)artistPressed
-{
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
-    [self.navigationController pushViewController:musicView animated:YES];
-}
-
-
-
-- (void)albumPressed
-{
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewControllerMusic *musicView = [sb instantiateViewControllerWithIdentifier:@"Song"];
-    [self.navigationController pushViewController:musicView animated:YES];
-}
-
-
-
-- (void)progressPressed
-{
-    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    /*
-    MPMusicPlayerController* player = [[self.del mpdatamanager] musicplayer];
-    //if([player playbackState] == MPMoviePlaybackStatePlaying)
-    if([[AVAudioSession sharedInstance] isOtherAudioPlaying])
-        [player pause];
-    else
-        [player play];
-    */
-}
-
-
 
 /**
  *  Check the current playing item and update display.
@@ -315,8 +244,6 @@
     }
 }
 
-
-
 #pragma  mark - MPMusicPlayerNSNotificationCenter
 
 -(void) handle_PlaybackStateChanged:(id) notification
@@ -337,7 +264,6 @@
 -(void) handle_NowPlayingItemChanged:(id) notification
 {
     //NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"Begin");
-    
     // do action only if media player is ready
     if ([[self.del mpdatamanager] isMediaPlayerInitialized])
     {
@@ -348,8 +274,5 @@
         NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"[Warning] - MediaPlayer isn't initialized.");
     }
 }
-
-
-
 
 @end

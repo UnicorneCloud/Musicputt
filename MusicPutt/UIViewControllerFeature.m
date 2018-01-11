@@ -86,7 +86,7 @@
     // Do any additional setup after loading the view.
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // setup title
     [self setTitle:@"Feature"];
@@ -129,8 +129,6 @@
                                                    
                                                    if (musicPuttTracks.count>=4) {
                                                        results = musicPuttTracks;
-                                                       
-                                                       
                                                        UITableViewCellFeature* cell = (UITableViewCellFeature*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_MUSICPUTT_CELL_INDEX_ inSection:0]];
                                                        if(cell)
                                                        {
@@ -165,6 +163,7 @@
                                                    }
                                                }
                                                failure:^(NSError* error){
+                                                   musicPuttReadyToFlip = true;
                                                    NSLog(@" %s - %@\n", __PRETTY_FUNCTION__, @"MusicPutt request failed");
                                                }];
     

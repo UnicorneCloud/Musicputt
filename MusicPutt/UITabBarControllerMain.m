@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view.
     
     // setup app delegate
-    self.del = [[UIApplication sharedApplication] delegate];
+    self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.del.mpdatamanager.tabbar = self;
     
     // setup current navigation controller

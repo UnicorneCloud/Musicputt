@@ -15,6 +15,7 @@
 @class CMMotionManager;
 @class Playlist;
 @class BFNavigationBarDrawer;
+@class iToolbar;
 
 /**
  * MPDataManager is the main application data manager. This class maintain all data for
@@ -36,7 +37,7 @@
 /**
  *  Toolbar displayed when playlist is editing.
  */
-@property (strong, nonatomic) BFNavigationBarDrawer*  currentEditingPlaylistToolbar;
+@property (strong, nonatomic) iToolbar*  currentEditingPlaylistToolbar;
 
 /**
  *  Current selected itunes playlist select in the playlist navigation bar.

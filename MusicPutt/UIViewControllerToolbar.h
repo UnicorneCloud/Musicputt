@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AMWaveViewController.h"
 #import "UICurrentPlayingToolBar.h"
 
+#import <BFNavigationBarDrawer.h>
+#import <iToolbar.h>
 
 
 /**
@@ -23,8 +24,6 @@
  *  If you inherits from this class your UIViewController will be display a
  *  current playing toolbar automatic. See UICurrentPlayingToolBar.
  *
- *  You can also add a wav effect if you add a visibleCells methode. See AMWaveTransition.
- *
  *  @warning To active wave effect, add this to your UIViewController class
  *
  *          -(NSArray*)visibleCells
@@ -33,7 +32,7 @@
  *          }
  * 
  */
-@interface UIViewControllerToolbar : AMWaveViewController
+@interface UIViewControllerToolbar : UIViewController
 {
     /**
      *  Toolbar to display current playing song.
@@ -43,7 +42,7 @@
     /**
      * Toolbar to display edition action during playlist edition
      */
-    BFNavigationBarDrawer*      currentEditingPlaylistToolbar;
+    iToolbar*      currentEditingPlaylistToolbar;
     
     /**
      *  TableView attach with the current playing song.
