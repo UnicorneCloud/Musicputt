@@ -7,6 +7,7 @@ PODS:
   - iPerspective (0.2.1)
   - ISO8601DateFormatterValueTransformer (0.6.1):
     - RKValueTransformers (~> 1.1.0)
+  - iToolbar (0.1.1)
   - iTunesApi (0.2.1):
     - AFNetworking (~> 1.3.4)
     - RestKit (~> 0.24.1)
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - DLAlertView
   - DZNEmptyDataSet
   - iPerspective
+  - iToolbar
   - iTunesApi
   - MagicalRecord
   - MONActivityIndicatorView
@@ -64,6 +66,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   iPerspective: 7b1df2239194faa7a13523d532d9ae0304024f2b
   ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
+  iToolbar: b5046507bcd4f7499732c5157ae24996f4abc691
   iTunesApi: 37d9f63016aeb53fd58926fc8f91b7fac57f3c6c
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   MONActivityIndicatorView: a00611695de16d956b17d03be25ee49a8effc5f2
@@ -75,6 +78,6 @@ SPEC CHECKSUMS:
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
   UAProgressView: ce49aee47c14df6dc372f6fd57852f570ca97e6b
 
-PODFILE CHECKSUM: a2924a92429767c10e842cd89b97abd7cd829e21
+PODFILE CHECKSUM: acbc539c83743f017643debe6e8ba3831aef57b6
 
 COCOAPODS: 1.3.1

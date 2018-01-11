@@ -19,7 +19,7 @@
     BOOL                    isMusicputtPlaylist;
     MPMediaQuery*           everything;             
     NSArray*                songs;
-    BFNavigationBarDrawer*  toolbar;
+    iToolbar*  toolbar;
     NSTimer*                timerUpdatePlaylistTrackCount;
 }
 

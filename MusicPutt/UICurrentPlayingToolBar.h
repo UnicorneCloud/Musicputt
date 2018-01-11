@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Eric Pinet. All rights reserved.
 //
 
-#import "BFNavigationBarDrawer.h"
+#import <iToolbar.h>
 
 #import "UIViewCurrentToolBar.h"
 
@@ -16,7 +16,7 @@
  *  This toolbar can display current playing song. 
  * @see UIViewCurrentToolBar.h
  */
-@interface UICurrentPlayingToolBar : BFNavigationBarDrawer
+@interface UICurrentPlayingToolBar : iToolbar
 {
     UIViewCurrentToolBar *view;
 }

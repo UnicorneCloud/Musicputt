@@ -32,21 +32,10 @@
         // setup app delegate
         self.del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         
-        NSMutableArray *barItems = [[NSMutableArray alloc] init];
-        UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-        [barItems addObject:flexSpace];
-        
-        UINib *nib = [UINib nibWithNibName:@"UIViewCurrentPlayingToolBar" bundle:nil];
-        view = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
-        [view setBackgroundColor:[UIColor clearColor]];
-        UIBarButtonItem *customViewContainer = [[UIBarButtonItem alloc] initWithCustomView:view];
-        
-        [barItems addObject:customViewContainer];
-        
-        UIBarButtonItem *flexSpace2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-        [barItems addObject:flexSpace2];
-        
-        [self setItems:barItems animated:YES];
+        view = [[[NSBundle mainBundle] loadNibNamed:@"UIViewCurrentPlayingToolBar" owner:nil options:nil] objectAtIndex:0];
+        [view setBackgroundColor:UIColor.clearColor];
+        [self setContentView:view];
+        [self layoutIfNeeded];
     }
     return self;
 }
@@ -57,7 +46,8 @@
 - (void) setNavigationController:(UINavigationController*) controller;
 {
     self->navController = controller;
-    [view setNavigationController:navController];
+    [view setNavigationController:self->navController];
+    [self setParentNavbar:(iNavigationBar*)controller.navigationBar];
 }
 
 - (id)init
@@ -66,34 +56,11 @@
     return self;
 }
 
-- (void)setupConstraintsWithNavigationBar:(UINavigationBar *)bar {
-	NSLayoutConstraint *constraint;
-	constraint = [NSLayoutConstraint constraintWithItem:self
-											  attribute:NSLayoutAttributeLeft
-											  relatedBy:NSLayoutRelationEqual
-												 toItem:bar
-											  attribute:NSLayoutAttributeLeft
-											 multiplier:1
-											   constant:0];
-	[self.superview addConstraint:constraint];
-	
-	constraint = [NSLayoutConstraint constraintWithItem:self
-											  attribute:NSLayoutAttributeRight
-											  relatedBy:NSLayoutRelationEqual
-												 toItem:bar
-											  attribute:NSLayoutAttributeRight
-											 multiplier:1
-											   constant:0];
-	[self.superview addConstraint:constraint];
-	
-	constraint = [NSLayoutConstraint constraintWithItem:self
-											  attribute:NSLayoutAttributeHeight
-											  relatedBy:NSLayoutRelationEqual
-												 toItem:nil
-											  attribute:NSLayoutAttributeNotAnAttribute
-											 multiplier:1
-											   constant:60];
-	[self addConstraint:constraint];
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // Triggered when touch is released
+    [self hideAnimated:false];
+    [view viewPressed];
 }
 
 /**
@@ -105,7 +72,7 @@
 - (void)showFromNavigationBar:(UINavigationBar *)bar animated:(BOOL)animated
 {
     [view updateCurrentPlayingItem];
-    [super showFromNavigationBar:bar animated:animated];
+    [super show:animated];
     [view startNotificationCapture];
 }
 
@@ -116,7 +83,7 @@
  */
 - (void)hideAnimated:(BOOL)animated
 {
-    [super hideAnimated:animated];
+    [super hide:animated];
     [view stopNotificationCapture];
 }
 

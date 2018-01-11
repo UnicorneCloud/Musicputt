@@ -14,6 +14,7 @@
 #import "ITunesSearchApi.h"
 #import "MusicPuttApi.h"
 #import "MPListening.h"
+#import <BFNavigationBarDrawer.h>
 
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <CoreMotion/CoreMotion.h>
@@ -57,7 +58,7 @@
     currentPlayingToolbarMustBeHidden = false;
     
     // init current editing playlist toolbar
-    _currentEditingPlaylistToolbar = [[BFNavigationBarDrawer alloc] init];
+    _currentEditingPlaylistToolbar = [[iToolbar alloc] init];
     
     // the initial state of playlist editing mode is FALSE:
     playlistEditing = false;

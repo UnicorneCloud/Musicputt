@@ -2,6 +2,8 @@
 # platform :ios, "7.0"
 
 target "MusicPutt" do
+    
+platform :ios, '8.0'
 
 pod 'AMWaveTransition'
 pod 'DZNEmptyDataSet'
@@ -14,11 +16,14 @@ pod 'DLAlertView'
 pod 'MagicalRecord'
 pod 'iPerspective'
 pod 'iTunesApi'
+pod 'iToolbar'
 pod 'SDWebImage'
 
 end
 
 target "MusicPuttTests" do
+    
+platform :ios, '8.0'
 
 end
 

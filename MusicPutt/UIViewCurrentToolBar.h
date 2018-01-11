@@ -67,28 +67,10 @@
 
 
 /**
- *  Image of the album Artwork pressed by the user.
+ *  View press by the user
  */
-- (void)imageViewPressed;
+- (void)viewPressed;
 
-/**
- *  Song title of the current playing song is pressed by the user.
- */
-- (void)songtitlePressed;
 
-/**
- *  Artist name of the current playing song is pressed by the user.
- */
-- (void)artistPressed;
-
-/**
- *  Album title of the current playing song is pressed by the user.
- */
-- (void)albumPressed;
-
-/**
- *  Progress Play/Pause button pressed by the user.
- */
-- (void)progressPressed;
 
 @end
